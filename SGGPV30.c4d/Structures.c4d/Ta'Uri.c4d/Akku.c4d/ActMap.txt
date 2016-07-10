@@ -1,0 +1,6 @@
+[Action]
+Name=EnergyStand
+Length=20
+Delay=
+Facet=0,0,30,40
+NextAction=Hold

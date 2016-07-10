@@ -1,0 +1,13 @@
+[Action]
+Name=NoARW
+Length=1
+Delay=1
+Facet=0,0,30,20
+NextAction=Hold
+
+[Action]
+Name=ARW
+Length=1
+Delay=1
+Facet=30,0,30,20
+NextAction=Hold

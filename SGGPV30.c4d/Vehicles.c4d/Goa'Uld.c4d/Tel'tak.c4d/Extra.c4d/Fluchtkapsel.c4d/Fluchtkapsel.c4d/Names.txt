@@ -1,0 +1,2 @@
+DE:Fluchtkapsel
+US:Escape Pod

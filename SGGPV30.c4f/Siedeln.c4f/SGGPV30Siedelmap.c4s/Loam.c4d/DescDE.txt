@@ -1,0 +1,5 @@
+Aus Lehm können Wände und Brücken gebaut werden.
+Diese Lehmklumpen haben eine viel höhere Dichte als die normalen Lehmklumpen,
+was dazu führt, dass wenn sie freigesetzt (dekomprimiert) werden, weit aus mehr Lehm freigesetzt werden kann.
+
+Wichtiger Hinweis: Man kann die "Brücke oben" Funktion nur nutzen, wenn man sie über die Kontexttaste aufruft.

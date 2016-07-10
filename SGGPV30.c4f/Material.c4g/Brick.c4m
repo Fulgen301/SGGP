@@ -1,0 +1,5 @@
+[Material]
+Name=Brick
+Color=50,50,50,20,20,20,80,80,80
+Density=100
+Friction=3

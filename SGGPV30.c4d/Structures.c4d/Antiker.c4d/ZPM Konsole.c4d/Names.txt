@@ -1,0 +1,2 @@
+DE:ZPM Konsole
+US:ZPM Console

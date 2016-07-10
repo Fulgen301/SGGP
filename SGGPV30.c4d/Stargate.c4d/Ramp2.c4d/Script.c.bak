@@ -1,0 +1,119 @@
+/*--- Die Stargaterampe (Stein) ---*/
+
+#strict
+//#include SGR1
+
+local Energie;
+local target;
+local type;
+
+func Initialize()
+{
+	var hlp;
+	while (FindObject(0, -1 * (GetDefCoreVal("Width", "DefCore") / 2), -12, GetDefCoreVal("Width", "DefCore"), 22))
+	{
+		var hlp = FindObject(0, -1 * (GetDefCoreVal("Width", "DefCore") / 2), -12, GetDefCoreVal("Width", "DefCore"), 22);
+		hlp->SetPosition(GetX(), GetY() - 25);
+	}
+	var own;
+	own = GetCursor(GetOwner());
+	CreateMenu(SGR2, own, 0, 0, "Welches Gate?", 0, 1);
+	AddMenuItem("Milchstraßen-Gate", "Milk", STGT, own);
+	AddMenuItem("Pegasus-Gate", "Pega", SGAG, own);
+	AddMenuItem("Destiny-Gate", "Dest", SGDG, own);
+	return(1);
+}
+
+func Milk()
+{
+	type = 0;
+	PlaceGate();
+	return(1);
+}
+
+func Pega()
+{
+	type = 1;
+	PlaceGate();
+	return(1);
+}
+
+func Dest()
+{
+	type = 2;
+	PlaceGate();
+	return(1);
+}
+
+func PlaceGate()
+{
+	if (type == 0)
+	{
+		target = CreateObject(STGT, 0, -25);
+	}
+	if (type == 1)
+	{
+		target = CreateObject(SGAG, 0, -25);
+	}
+	if (type == 2)
+	{
+		target = CreateObject(SGDG, 0, -25);
+	}
+	return(1);
+}
+
+func Holde()
+{
+  Effect();
+  if(! target)  { return(1); }
+  target -> SetPosition(GetX(this())-78,GetY(this())-71);
+  SetCategory(130);
+  return(1);
+}
+
+func Effect()
+{
+  if(target)
+  {
+   if(!target->IsBusy())
+   {
+    return(1);
+   }
+  }
+  if(GetMaterial(0,-20) == Material("Water"))
+  {
+   return(1);
+  }
+  if(GetCon() != 100)
+  {
+   return(1);
+  }
+//  if (type == 0)
+//  {
+	  CreateParticle("Fire", RandomX(-2, 2) - 34, -13, 0, RandomX(-6, -12), RandomX(40, 60), RGBa(255, RandomX(224, 255), 0, 128));
+	  CreateParticle("Fire2", RandomX(-2, 2) - 34, -13, 0, RandomX(-8, -14), RandomX(40, 60), RGBa(255, 255, 255, 64));
+
+	  CreateParticle("Fire", RandomX(-2, 2) + 10, -13, 0, RandomX(-6, -12), RandomX(40, 60), RGBa(255, RandomX(224, 255), 0, 128));
+	  CreateParticle("Fire2", RandomX(-2, 2) + 10, -13, 0, RandomX(-8, -14), RandomX(40, 60), RGBa(255, 255, 255, 64));
+	  return(1);
+//  }
+//  if (type == 1)
+//  {
+//	  CreateParticle("Fire", RandomX(-2, 2) - 34, -13, 0, RandomX(-6, -12), RandomX(40, 60), RGBa(0, RandomX(224, 255), 255, 128));
+//	  CreateParticle("Fire2", RandomX(-2, 2) - 34, -13, 0, RandomX(-8, -14), RandomX(40, 60), RGBa(255, 255, 255, 64));
+//
+//	  CreateParticle("Fire", RandomX(-2, 2) + 10, -13, 0, RandomX(-6, -12), RandomX(40, 60), RGBa(0, RandomX(224, 255), 255, 128));
+//	  CreateParticle("Fire2", RandomX(-2, 2) + 10, -13, 0, RandomX(-8, -14), RandomX(40, 60), RGBa(255, 255, 255, 64));
+//	  return(1);
+//  }
+}
+
+func ReName(string szName)
+{
+	return(target->ReName(szName));
+}
+
+public func IsStargateRamp()
+{
+	return(1);
+}

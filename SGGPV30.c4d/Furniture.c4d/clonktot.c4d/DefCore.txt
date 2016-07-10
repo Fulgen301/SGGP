@@ -1,0 +1,12 @@
+[DefCore]
+id=_CLT
+Name=Clonktot
+Category=1
+Width=16
+Height=14
+Offset=-15,-15
+Value=1
+Mass=1
+Components=METL=1;
+Picture=0,0,16,14
+ 

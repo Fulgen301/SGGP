@@ -1,0 +1,10 @@
+[Action]
+Name=Wait
+Procedure=NONE
+Directions=2
+Length=1
+Delay=1
+FlipDir=1
+Facet=0,0,150,300
+FacetTopFace=1
+NextAction=Wait

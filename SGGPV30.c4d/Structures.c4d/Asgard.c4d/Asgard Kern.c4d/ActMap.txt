@@ -1,0 +1,13 @@
+[Action]
+Name=Aus
+Length=1
+Delay=1
+Facet=0,0,60,50
+NextAction=Hold
+
+[Action]
+Name=An
+Length=1
+Delay=1
+Facet=60,0,60,50
+NextAction=Hold

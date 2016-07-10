@@ -1,0 +1,3 @@
+Eine beinahe unerschöpfliche Energiequelle, die genutzt wird, um Antikertechnologie mit Strom zu versorgen.
+
+Denkt jetzt nicht, ich hätte hier das ZPM nochmal reingepackt. Das ist ein Hilfsobjekt, das das ZPM in der Konsole darstellt.

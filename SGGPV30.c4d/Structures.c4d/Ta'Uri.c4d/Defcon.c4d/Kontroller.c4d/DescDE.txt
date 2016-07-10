@@ -1,0 +1,4 @@
+1. Kontrollobjekt erstellen (nur 1 pro Map!)
+2. Konsole erstellen
+3. Konsole: target = FindObject(DEFC)
+4. DEFCON-Schild mit Konsole steuern

@@ -1,0 +1,7 @@
+[DefCore]
+id=HEL2
+Name=Helfes Helfer
+Version=4,9,5
+Category=C4D_StaticBack
+Picture=6,0,64,64
+ 

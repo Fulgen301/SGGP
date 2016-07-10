@@ -1,0 +1,7 @@
+[Action]
+Name=Stand
+Delay=5
+Facet=0,0,30,40,0,0
+Directions=2
+NextAction=Hold
+

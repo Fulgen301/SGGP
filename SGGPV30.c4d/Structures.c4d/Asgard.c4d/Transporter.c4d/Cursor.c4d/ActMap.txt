@@ -1,0 +1,17 @@
+[Action]
+Name=1
+NextAction=1
+Procedure=FLOAT
+Delay=1
+Length=1
+Facet=0,0,25,25
+PhaseCall=Timer
+
+[Action]
+Name=2
+NextAction=2
+Procedure=FLOAT
+Delay=1
+Length=1
+Facet=25,0,25,25
+PhaseCall=Timer

@@ -1,0 +1,33 @@
+MCLK_PrefCombo
+MCLK_QS
+Scoreboard
+Path %d does not exist.
+<c ff0000>                       TOP SECRET!</c>|<c ffff00>Nach dem die Tür reperiert wurde haben wir den Code geändert. Der neue Code lautet 89374!
+Hallo Schatz hier ist dein Mann Iwan, wir haben hier zurzeit ein par Schwierigkeiten ich werde darum heute entweder ganz spät oder erst morgen nach Hause kommen. Dein Iwan.
+               <c ff0000><<c ffff00>!<c ff0000>> CODE RED <<c ffff00>!<c ff0000><c ff0000>>|<c 0000ff>SOFORT ALLE TÜREN VERRIEGELN!
+Russen
+Name der letzen Toradresse: Wasser
+Stand
+Need4Speed
+Part1
+Part2
+Part3
+Part1
+Part2
+Part3
+Part1
+Part2
+Part3
+Part1
+Part2
+Part3
+Part1
+Part2
+Part3
+Part1
+Part2
+Part3
+Part1
+Part2
+Part3
+Wasser

@@ -1,0 +1,13 @@
+[DefCore]
+id=SGGP
+Name=SGGP
+Version=4,9,5
+Category=C4D_StaticBack
+MaxUserSelect=10
+Width=6
+Height=6
+Offset=-3,-3
+Value=10
+Mass=10
+Components=SGGP=1;
+Picture=0,0,70,50

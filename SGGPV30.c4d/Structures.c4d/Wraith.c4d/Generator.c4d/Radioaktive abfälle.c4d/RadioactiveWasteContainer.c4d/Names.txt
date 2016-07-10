@@ -1,0 +1,2 @@
+DE:Atommüllcontainer
+US:Wastecontainer

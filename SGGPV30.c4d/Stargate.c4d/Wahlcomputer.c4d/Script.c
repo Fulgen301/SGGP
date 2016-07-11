@@ -325,7 +325,7 @@ func Alert(int state)
 
 public func FindStargate()
 {
-	return FindStargate();
+	return FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance());
 }
 		
 public func IsMachine() {return true;}

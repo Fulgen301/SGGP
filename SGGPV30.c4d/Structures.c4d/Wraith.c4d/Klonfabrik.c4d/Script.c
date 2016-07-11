@@ -10,6 +10,11 @@ local energy;
 protected func SoundOpenDoor() { return(1); }
 protected func SoundCloseDoor() { return(1); }
 
+protected func Initialize()
+{
+	_inherited(...);
+	AddEffect("IntEnergy",this,1,1,this);
+}
 protected func Damage()
 {
   if(GetDamage() >= 250)
@@ -21,9 +26,12 @@ protected func Damage()
 
 protected func ContainedUp(pCaller)
 {
-	if(energy >= 200000)
+	if(EnergyCheck(200000))
 	{
-		energy -= 200000;
+		for(var i = 0; i < 100; i++)
+		{
+			DoEnergy(-2000);
+		}
 		var clonk = CreateContents(GetID(pCaller));
 		MakeCrewMember(clonk,GetOwner(pCaller));
 		clonk->SetAction("Walk");
@@ -36,16 +44,13 @@ protected func ContainedUp(pCaller)
 	}
 }
 
-protected func Timer()
+protected func ContextClone(object pCaller)
 {
-	if(EnergyCheck(10000))
-	{
-		DoEnergy(-10000);
-		energy += 100;
-	}
-	if(energy >= 10000000)
-	{
-		energy = 10000000;
-	}
-	return(1);
+	[$Clone$|Image=WRKF]
+	return ContainedUp(pCaller);
+}
+
+protected func FxIntEnergyTimer(object pTarget, int iEffect)
+{
+	EnergyCheck(100);
 }

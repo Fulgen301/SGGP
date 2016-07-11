@@ -19,9 +19,6 @@ Entrance=-40,-5,40,35
 Exclusive=1
 LineConnect=C4D_PowerInput|C4D_PowerOutput|C4D_PowerConsumer
 Construction=1
-AutoContextMenu=1
-Timer=1
-TimerCall=Timer
 
 [Physical]
-Energy=100000
+Energy=1000000

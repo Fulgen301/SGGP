@@ -11,7 +11,6 @@ ADD:
 -Beim Puddle Jumper kann man nun den Naquadah-Reaktor und den Disruptor wieder ausbauen.
 -Umbenennung von "ARW einbauen" in "Disruptor einbauen" und "ARW feuern" in "EM-Welle abfeuern".
 -Pegasus-Gate kann nun an der Stargate-Außenrampe gebaut werden.
--MARK X aus SGGPBeta7 übernommen. (war dort stärker)
 -Tel'tak ist jetzt auch eine Heimatbasis. (Ver-)Kaufen via Kontextmenü!
 -Tel'tak hat jetzt Schild und Hyperantrieb.
 -Destiny-Stargate

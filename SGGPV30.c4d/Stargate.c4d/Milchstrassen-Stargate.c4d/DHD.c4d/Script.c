@@ -1,9 +1,8 @@
 /*---- Das DHD ----*/
 
-#strict
+#strict 2
 
-local pUser,ready,rena,atlantis;
-local Name;
+local pUser,ready,rena,atlantis, forw, bState;
 
 func Initialize() 
 {
@@ -67,12 +66,12 @@ func ControlRightDouble(pCaller)
    Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
    return(1);
   }
-
+  ChevronSound();
   if(FindObject(UMBE))
   {
    if(FindObject(NOKR))
    {
-    Message("Gatename:|<c 00ff00>%v</c>",this(),Name);
+    Message("Gatename:|<c 00ff00>%v</c>",this(),FindStargate()->GetName());
     return;
    }
   }
@@ -94,7 +93,60 @@ func ControlRightDouble(pCaller)
   {
    AddMenuItem("DHD manipulieren","CrystChange",MEPU,pUser);
   }
+  
+  if(!LocalN("outgoing",FindStargate()))
+  {
+	  AddMenuItem("Ausgehende Wurmlöcher erlauben","ChangeOutgoingState",MEPU,pUser,0,true);
+  }
+  else AddMenuItem("Ausgehende Wurmlöcher verbieten","ChangeOutgoingState",MEPU,pUser,0,false);
+  
+  if(!LocalN("incoming",FindStargate()))
+  {
+	  AddMenuItem("Eingehende Wurmlöcher erlauben","ChangeIncomingState",MEPU,pUser,0,true);
+  }
+  else AddMenuItem("Eingehende Wurmlöcher verbieten","ChangeIncomingState",MEPU,pUser,0,false);
+  
+  if(!LocalN("forwarding",FindStargate()))
+  {
+	  AddMenuItem("Weiterleitung einrichten","ChangeForwardingState",MEPU,pUser,0,true);
+  }
+  else AddMenuItem("Weiterleitung entfernen","ChangeForwardingState",MEPU,pUser,0,false);
   return(1);
+}
+
+protected func ChangeOutgoingState(id dummy, bool state)
+{
+	if(FindStargate())
+	{
+		LocalN("outgoing",FindStargate()) = state;
+		return true;
+	}
+}
+
+protected func ChangeIncomingState(id dummy, bool state)
+{
+	if(FindStargate())
+	{
+		LocalN("incoming",FindStargate()) = state;
+		return true;
+	}
+}
+
+protected func ChangeForwardingState(id dummy, bool state)
+{
+	bState = state;
+	if(state)
+	{
+		forw=1;
+		CallMessageBoard(0,false,"Geben Sie den Namen des Stargates ein, zu dem eine Weiterleitung eingerichtet werden soll:",GetOwner(pUser));
+	}
+	else
+	{
+		LocalN("forwarding",FindStargate()) = false;
+		LocalN("fGate",FindStargate()) = 0;
+		bState = false;
+		Message("<c 00ff00>Weiterleitung entfernt!",this);
+	}
 }
 
 func Iris()
@@ -178,6 +230,36 @@ func InputCallback(string pGate)
    Message("<c 00ff00>Neuer Gatename:</c><c 0000ff>%v</c>",this(),pGate);
    return(1);
   }
+  if(forw)
+  {
+	  forw = 0;
+	  if(!FindStargate())
+	  {
+		Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
+		Sound("Error");
+		return(1);
+	  }
+	  var Gate;
+	  for(Gate in FindObjects(Find_Func("IsStargate")))
+	  {
+		if (Gate != FindStargate())
+		{
+			var szName;
+			szName = Gate ->GetName();
+			if (szName == pGate)
+			{
+				LocalN("forwarding",FindStargate()) = bState;
+				LocalN("fGate",FindStargate()) = Gate;
+				Message("<c 00ff00>Weiterleitung eingerichtet zu:</c><c 0000ff>%v</c>",this,Gate->GetName());
+				bState = 0;
+				return(1);
+			}
+		}
+      }
+	  bState = 0;
+	  Message("<c ff0000>Weiterleitung fehlgeschlagen!</c>",this);
+	  return(1);
+  }
   if(!ready)
   {
    Sound("start");
@@ -228,7 +310,6 @@ public func FindStargate()
 	return(FindObject2(Find_Func("IsStargate"),Find_Func("IsMilkywayGate"),Find_Distance(1000),Sort_Distance()));
 }
 
-public func GetName()		{return Name;}
 public func IsDHD()			{return true;}
 public func IsMilkywayDHD()	{return true;}
 public func IsPegasusDHD()	{return false;}

@@ -1,4 +1,4 @@
-/*--Das Stargate --*/
+	/*--Das Stargate --*/
 
 #strict 2
 
@@ -13,6 +13,8 @@ local destiny;
 local energy;
 local ramp;
 local iX, iY;
+local outgoing, incoming, forwarding;
+local fGate;
 
 public func IsTeltakGate()
 {
@@ -59,6 +61,9 @@ func Initialize()
   Name = Format("Stargate %v",i);
   iX = GetX();
   iY = GetY();
+  outgoing = true;
+  incoming = true;
+  forwarding = false;
   return(1);
 }
 
@@ -285,7 +290,7 @@ func GetState()
    return(1);
   }
   
-  if(GetAction() == "Incoming3" || GetAction() == "Incoming4")
+  if(GetAction() == "Income3" || GetAction() == "Income4")
   {
    return(2);
   }
@@ -300,6 +305,7 @@ func GetState()
 //Gibt nur den Namen zurück:
 func GetName()
 {
+  if(!Name) return "";
   return(Name);
 }
 
@@ -334,7 +340,7 @@ func IsBusy()
 //Die Namensüberprüfung/1. Anwahl des Gates:
 func Dial(string gate)
 {
-  if(IsBusy())
+  if(IsBusy() || !outgoing)
   {
    return(1);
   }
@@ -349,7 +355,7 @@ func Dial(string gate)
     		if (szName == gate)
     		{
      			CallGate(pGate);
-     			return(1);
+     			return(1);	
     		}
    }
   }
@@ -364,7 +370,11 @@ func CallGate(object pGate)
 {
   if(GetAction(pGate) != "Idle")
   {
-   return(1);
+   return FailSound();
+  }
+  if(!LocalN("incoming", pGate))
+  {
+	  return FailSound();
   }
   if(!FindObject2(Find_ID(ENRG)))
   {
@@ -373,9 +383,9 @@ func CallGate(object pGate)
   }
   if(ChevronCount(pGate) == 8)
   {
-  	if(energy >= 200000)
+  	if(energy >= 500000)
   	{
-  		energy -= 200000;
+  		energy -= 500000;
   		CallGate2(pGate);
   		return(1);
   	}
@@ -457,7 +467,14 @@ func Check()
     SetAction("Outgoing3");
    }
   }
-  
+  if(forwarding && WildcardMatch(GetAction(),"Income*") && fGate && !fGate->IsBusy() && !IsForwarding())
+  {
+	  LocalN("pTo",pFrom) = fGate;
+	  LocalN("pFrom",fGate) = pFrom;
+	  pFrom = 0;
+	  fGate->SetAction(GetAction());
+	  Deactivate();
+  }
   if(GetAction() == "Off")
   {
    return(1);
@@ -626,6 +643,7 @@ protected func Damage()
 		Destroy();
 	}
 }
+
 public func LightningStrike() 
 {
 	if (GetCon() < 100) return(0);
@@ -633,10 +651,15 @@ public func LightningStrike()
 	return(1);
 }
 
-protected func FxPositionTimer(object pTarget, int iEffect)
+public func SetFGate(object gate)
 {
-	if(!IsSpaceGate()) return;
-	else SetPosition(iX, iY);
+	fGate = gate;
+	return fGate;
+}
+public func IsForwarding()
+{
+	if(forwarding && !IsBusy()) return true;
+	else return false;
 }
 
 public func IsStargate()

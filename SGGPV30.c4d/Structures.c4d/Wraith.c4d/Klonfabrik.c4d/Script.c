@@ -27,6 +27,7 @@ protected func ContainedUp(pCaller)
 		var clonk = CreateContents(GetID(pCaller));
 		MakeCrewMember(clonk,GetOwner(pCaller));
 		clonk->SetAction("Walk");
+		clonk->SetOwner(pCaller->GetOwner());
 		Message("<c 00ff00>Klonen erfolgreich!</c>",this);
 	}
 	else

@@ -139,25 +139,7 @@ protected func Check()
   return(1);
 }
 
-protected func ContainedLeft()
-{
-  Call("ContainedUp");
-  return(1);
-}
-
-protected func ContainedRight()
-{
-  Call("ContainedUp");
-  return(1);
-}
-
-protected func ContainedThrow()
-{
-  Call("ContainedUp");
-  return(1);
-}
-
-protected func ContainedDig()
+protected func ContainedDown()
 {
   Call("ContainedUp");
   return(1);

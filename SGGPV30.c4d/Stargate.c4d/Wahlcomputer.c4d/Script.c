@@ -1,7 +1,7 @@
 
 /*---- Das Wahlcomputer ----*/
 
-#strict
+#strict 2
 
 local password;
 local user;
@@ -14,10 +14,12 @@ local myGate;
 local iris;
 local defcon_action;
 local Name;
+local forw;
+local bState;
 
 func Initialize()
 {
-  password = 0;
+  password = "";
   return(1);
 }
 
@@ -25,7 +27,7 @@ func ControlDigDouble(pCaller)
 {
   user = pCaller;
   ask=1;
-  if(password eq "") 
+  if(password == "") 
   {
    InputCallback("");
    return(0);
@@ -35,15 +37,45 @@ func ControlDigDouble(pCaller)
 }
 
 func InputCallback(string pw)
-{			
+{
+  if(forw)
+  {
+	  forw = 0;
+	  if(!FindStargate())
+	  {
+		Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
+		Sound("Error");
+		return(1);
+	  }
+	  var Gate;
+	  for(Gate in FindObjects(Find_Func("IsStargate")))
+	  {
+		if (Gate != FindStargate())
+		{
+			var szName;
+			szName = Gate ->GetName();
+			if (szName == pw)
+			{
+				LocalN("forwarding",FindStargate()) = bState;
+				LocalN("fGate",FindStargate()) = Gate;
+				Message("<c 00ff00>Weiterleitung eingerichtet zu:</c><c 0000ff>%v</c>",this,Gate->GetName());
+				bState = 0;
+				return(1);
+			}
+		}
+      }
+	  bState = 0;
+	  Message("<c ff0000>Weiterleitung fehlgeschlagen!</c>",this);
+	  return(1);
+  }
   if(ask)
   {
    ask=0;
-   if(pw ne password)
+   if(pw != password)
    {
     Sound("Error");
     Message("<c ff0000>Falsches Passwort!</c>",this());
-    return();
+    return;
    }
    MakeMenu();
    return(5);
@@ -52,13 +84,13 @@ func InputCallback(string pw)
   if(dial)
   {
    dial = 0;
-   if(!FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))
+   if(!FindStargate())
    {
     Message("<c ff0000>Kein Gate gefunden!</c>",this());
     Sound("Error");
     return(1);
    }
-   FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance())->Dial(pw);
+   FindStargate()->Dial(pw);
    return(1);
   }
   
@@ -72,13 +104,13 @@ func InputCallback(string pw)
   if(rena)
   {
    rena = 0;
-   if(!FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))
+   if(!FindStargate())
    {
     Message("<c ff0000>Kein Gate gefunden!</c>",this());
     Sound("Error");
     return(1);
    }
-   FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance())->ReName(pw);
+   FindStargate()->ReName(pw);
    Message("<c 00ff00>Neuer Gatename:</c><c 0000ff>%v</c>",this(),pw);
    return(1);
   }
@@ -102,58 +134,111 @@ func MakeMenu()
   }
   if(!FindObject(NOIR))
   {
-   if(FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))
+   if(FindStargate())
    {
      AddMenuItem("Iris bedienen","Iris",MEPU,user);
    }
   }
   AddMenuItem("Energieanzeige des Gates","GateEnergy",MEPU,user);
+  if(!LocalN("outgoing",FindStargate()))
+  {
+	  AddMenuItem("Ausgehende Wurmlöcher erlauben","ChangeOutgoingState",MEPU,user,0,true);
+  }
+  else AddMenuItem("Ausgehende Wurmlöcher verbieten","ChangeOutgoingState",MEPU,user,0,false);
+  
+  if(!LocalN("incoming",FindStargate()))
+  {
+	  AddMenuItem("Eingehende Wurmlöcher erlauben","ChangeIncomingState",MEPU,user,0,true);
+  }
+  else AddMenuItem("Eingehende Wurmlöcher verbieten","ChangeIncomingState",MEPU,user,0,false);
+  
+  if(!LocalN("forwarding",FindStargate()))
+  {
+	  AddMenuItem("Weiterleitung einrichten","ChangeForwardingState",MEPU,user,0,true);
+  }
+  else AddMenuItem("Weiterleitung entfernen","ChangeForwardingState",MEPU,user,0,false);
   return(1);
+}
+
+protected func ChangeOutgoingState(id dummy, bool state)
+{
+	if(FindStargate())
+	{
+		LocalN("outgoing",FindStargate()) = state;
+		return true;
+	}
+}
+
+protected func ChangeIncomingState(id dummy, bool state)
+{
+	if(FindStargate())
+	{
+		LocalN("incoming",FindStargate()) = state;
+		return true;
+	}
+}
+
+protected func ChangeForwardingState(id dummy, bool state)
+{
+	bState = state;
+	if(state)
+	{
+		forw=1;
+		CallMessageBoard(0,false,"Geben Sie den Namen des Stargates ein, zu dem eine Weiterleitung eingerichtet werden soll:",GetOwner(user));
+	}
+	else
+	{
+		LocalN("forwarding",FindStargate()) = false;
+		LocalN("fGate",FindStargate()) = 0;
+		Message("<c 00ff00>Weiterleitung entfernt!",this);
+		bState = false;
+	}
+	
 }
 
 func GetGateName()
 {
-  if(!FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))
+  if(!FindStargate())
   {
    Message("<c ff0000>Kein Gate gefunden!</c>",this());
    Sound("Error");
    return(1);
   }
-  Message("<c 0000ff>Gatename:</c><c 00ff00>%v</c>",this(),LocalN("Name",FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance())));
+  Message("<c 0000ff>Gatename:</c><c 00ff00>%v</c>",this(),LocalN("Name",FindStargate()));
   return(1);
 }
 
 func BuildIris()
 {
-  if(!FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))
+  if(!FindStargate())
   {
    Message("<c ff0000>Kein Gate gefunden!</c>",this());
    Sound("Error");
    return(1);
   }
-  if(FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance())->HasIris())
+  if(FindStargate()->HasIris())
   {
-   FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance())->HasIris()->Update();
+   FindStargate()->HasIris()->Update();
    Sound("Error");
    return(1);
   }
-  FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance())->InstallIris();
+  FindStargate()->InstallIris();
   return(1);
 }
 
 func Iris()
 {
-  if(!FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))
+  if(!FindStargate())
   {
    Message("<c ff0000>Kein Gate gefunden!</c>",this());
    Sound("Error");
    return(1);
   }
-  if(!FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance())->HasIris())
+  if(!FindStargate()->HasIris())
   {
    BuildIris();
   }
-  LocalN("iris", FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))->Switch();
+  LocalN("iris", FindStargate())->Switch();
   return(1);
 }
 
@@ -166,13 +251,13 @@ func Rename()
 
 func Deactivate()
 {
-  if(!FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))
+  if(!FindStargate())
   {
    Message("<c ff0000>Kein Gate gefunden!</c>",this());
    Sound("Error");
    return(1);
   }
-  FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance())->Deactivate();
+  FindStargate()->Deactivate();
   return(1);
 }
 
@@ -192,19 +277,19 @@ func Dial()
 
 func GateEnergy()
 {
-	if(FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))
+	if(FindStargate())
 	{
-		Message("Energie: %v",this(),FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance())->~Energy());
+		Message("Energie: %v",this(),FindStargate()->~Energy());
 	}
 }
 
 func EMPShock()
 {
 EMPShockEffect(20);
-if(FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance()))
+if(FindStargate())
 {
 var gate;
-gate = FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance());
+gate = FindStargate();
 if(FindObject2(Find_Func("IsStargate"),Find_Exclude(gate)))
 {
 gate->Dial(FindObject2(Find_Func("IsStargate"),Find_Exclude(gate))->GetName());
@@ -236,6 +321,11 @@ func Alert(int state)
 		return(1);
 	}
 	return(0);
+}
+
+public func FindStargate()
+{
+	return FindStargate();
 }
 		
 public func IsMachine() {return true;}

@@ -112,3 +112,15 @@ global func SHA1m(string s)
   return Format("%08X%08X%08X%08X%08X",h0,h1,h2,h3,h4);
 }
 
+global func GetIDsByName(string name, int category) // WARNING: desyncs between clients with different languages
+{
+	var i, id, ret = [];
+	while(id = GetDefinition(i++, category))
+	{
+		if(GetName(0, id) == name)
+		{
+			ret[GetLength(ret)] = id;
+		}
+	}
+	return ret;
+}

@@ -30,20 +30,45 @@ func Create()
 
 func InputCallback(string szString)
 {
-/*	var i;
-	var Def;
-	while (Def = GetDefinition(i++))
+	var category = C4D_Object;
+	var id = C4Id(szString);
+	if(!id || !FindDefinition(id))
 	{
-	 	if(GetName(0,Def) eq szString)
-	 	{*/
-	 		idDef = /*Def;*/C4Id(szString);
+		var ids = GetIDsByName(szString, category);
+		if(GetLength(ids) > 0)
+		{
+			var first = true;
+			var text = Format("%s: ", szString);
+			for(var id in ids)
+			{
+				if(!first)
+				{
+					text = Format("%s, ", text);
+				}
+				else
+				{
+					first = false;
+				}
+				
+				text = Format("%s{{%i}} %i", text, id, id);
+			}
+			Message(text, this);
+			Wait = 200;
+			return;
+		}
+	}
+	else
+	{
+		if(GetCategory(0, id) & category)
+		{
+			idDef = id;
+			HasEnrg = 0;
 			SetAction("Start");
-		 	HasEnrg = 0;
-		 	return();
-	 	/*}
-	}*/
+			return;
+		}
+	}
+	Message("<c ff0000>Objekt nicht in Datenbank!</c>",this);
 	Wait = 200;
-	Message("<c ff0000>Objekt nicht in Datenbank!</c>",this());
 }
 
 func Off()

@@ -6,7 +6,7 @@
 ###############
  ---*/
 
-#strict
+#strict 2
 
 //################
 //### SONSTIGE ###
@@ -79,7 +79,7 @@ public func Initialize()
   ring2 = CreateObject(RIG3);  //Außenbordringtransporter
   ringc = CreateObject(RIG2);  //Ringtransportersteuerung
   LocalN("nobase",ringc) = 1;
-  SetCategory(C4D_Vehicle(),ringc);
+  SetCategory(C4D_Vehicle,ringc);
   LocalN("nobase",ring1) = 1;
 
 //################
@@ -138,14 +138,14 @@ func Ring()
 func Gate()
 {
 	chosen=1;
-	RemoveObject(ring1);
-	RemoveObject(ring2);
-	RemoveObject(ringc);
+	if(ring1) RemoveObject(ring1);
+	if(ring2) RemoveObject(ring2);
+	if(ringc) RemoveObject(ringc);
 	ring1=CreateObject(STGT);
 	ring1->SetTeltak(this());
 	ringc=CreateObject(DHD_);
 	SetCategory(C4D_Vehicle,ring1);
-	SetCategory(C4D_Vehicle(),ringc);
+	SetCategory(C4D_Vehicle,ringc);
 	aArray[0]=ring1;
 	aArray[1]=ringc;
 	return(1);
@@ -250,7 +250,7 @@ public func Check()
 //Keine Positionsveränderung wärnd man getarnt ist
   if(cloaked)
   {
-   if(GetAction() eq "Fly")
+   if(GetAction() == "Fly")
    {
     SetXDir();
     SetYDir();
@@ -323,7 +323,7 @@ public func Check()
    x -> SetYDir();
   }
 //
-  if ((GetAction(gen) eq "Deactive")||(energy<10))
+  if ((GetAction(gen) == "Deactive")||(energy<10))
   {
 	  SetPhysical("Float", 200, 3);
 /*	  if (!cloaked)
@@ -337,7 +337,7 @@ public func Check()
 	  }*/
   }
   
-  if (GetAction(gen) eq "Active")
+  if (GetAction(gen) == "Active")
   {
 	  genstate = 1;
 	  SetPhysical("Float", 1100);
@@ -412,7 +412,7 @@ public func Check()
 //In der Luft stehenbleiben
 public func ContainedUpDouble()
 {
-  SetComDir(COMD_Stop());
+  SetComDir(COMD_Stop);
   SetXDir(0);
   SetYDir(0);
   return(1);
@@ -466,7 +466,7 @@ public func EMPShock()
 {
   EMPShockEffect(200);
   DoDamage(20);
-  if(GetAction() eq "Fly")
+  if(GetAction() == "Fly")
   {
    SetAction("StartStand");
   }
@@ -529,14 +529,14 @@ public func Schaden()
 
 public func Heck()
 {
-  if(GetAction(luke1) eq "Open")
+  if(GetAction(luke1) == "Open")
   {
    ObjectSetAction(luke1, "Close");
    Sound("ring_button2");
    return(1);
   }
 
-  if(GetAction(luke1) eq "Close")
+  if(GetAction(luke1) == "Close")
   {
    ObjectSetAction(luke1, "Open");
    Sound("ring_button1");
@@ -645,13 +645,13 @@ public func Exit()
 
 protected func ContainedThrow()
 {
-  if(GetAction() eq "Fly")
+  if(GetAction() == "Fly")
   {
    SetAction("StartStand");
    return(1);
   }
 
-  if(GetAction() eq "Stand")
+  if(GetAction() == "Stand")
   {
    SetAction("Standend");
    return(1);
@@ -669,81 +669,81 @@ func SDir()
 
 protected func ContainedUp()
 {
-  if(GetAction() eq "Stand")
+  if(GetAction() == "Stand")
   {
    SetAction("Standend");
    return(1);
   }
 
-  if(GetComDir() == COMD_UpLeft() || GetComDir() == COMD_UpRight()) SetComDir(COMD_Up());
-  if(GetComDir() == COMD_Down()) SetComDir(COMD_Up());
-  if(GetComDir() == COMD_Left()) SetComDir(COMD_UpLeft());
-  if(GetComDir() == COMD_DownLeft()) SetComDir(COMD_Left()); 
-  if(GetComDir() == COMD_DownRight()) SetComDir(COMD_Right());
-  if(GetComDir() == COMD_Right()) SetComDir(COMD_UpRight());
-  if(GetComDir() == COMD_Stop()) SetComDir(COMD_Up());
+  if(GetComDir() == COMD_UpLeft || GetComDir() == COMD_UpRight) SetComDir(COMD_Up);
+  if(GetComDir() == COMD_Down) SetComDir(COMD_Up);
+  if(GetComDir() == COMD_Left) SetComDir(COMD_UpLeft);
+  if(GetComDir() == COMD_DownLeft) SetComDir(COMD_Left); 
+  if(GetComDir() == COMD_DownRight) SetComDir(COMD_Right);
+  if(GetComDir() == COMD_Right) SetComDir(COMD_UpRight);
+  if(GetComDir() == COMD_Stop) SetComDir(COMD_Up);
   return(true);
 }
 
 protected func ContainedDown()
 {
-//  if(GetAction() S= "Fly") 
+//  if(GetAction() == "Fly") 
 //   {
 
-  if(GetAction() eq "Stand")
+  if(GetAction() == "Stand")
   {
    SetAction("Standend");
    return(1);
   }
 
-   if(GetComDir() == COMD_DownLeft() ||GetComDir() == COMD_DownRight())
+   if(GetComDir() == COMD_DownLeft ||GetComDir() == COMD_DownRight)
     {
-    SetComDir(COMD_Down());
+    SetComDir(COMD_Down);
     }
-   if(GetComDir() == COMD_Up())
+   if(GetComDir() == COMD_Up)
     {
-    SetComDir(COMD_Stop());
+    SetComDir(COMD_Stop);
     }
-   if(GetComDir() == COMD_Left()) 
+   if(GetComDir() == COMD_Left) 
     {
-    SetComDir(COMD_DownLeft());
+    SetComDir(COMD_DownLeft);
     }
-   if(GetComDir() == COMD_UpLeft())
+   if(GetComDir() == COMD_UpLeft)
     {
-    SetComDir(COMD_Left());
+    SetComDir(COMD_Left);
     }
-   if(GetComDir() == COMD_Stop())
+   if(GetComDir() == COMD_Stop)
     {
-    SetComDir(COMD_Down());
+    SetComDir(COMD_Down);
     }
-   if(GetComDir() == COMD_Right()) 
+   if(GetComDir() == COMD_Right) 
     {
-    SetComDir(COMD_DownRight());
+    SetComDir(COMD_DownRight);
     }
-   if(GetComDir() == COMD_UpRight())
+   if(GetComDir() == COMD_UpRight)
     {
-    SetComDir(COMD_Right());
+    SetComDir(COMD_Right);
 //    }
    }
 //  SetAction("Stand",GetActionTarget(0),GetActionTarget(1));
-//  if(GetAction() S="Stand") SetEntrance(1);
+//  if(GetAction() == "Stand") SetEntrance(1);
   return(true);
 }
 
 protected func ContainedRight()
 {
 
-  if(GetAction() eq "Stand")
+  if(GetAction() == "Stand")
   {
    SetAction("Standend");
    return(1);
   }
 
   if(iExtra) return(0);
-  if(GetAction() S="Turn") return(0);
-  SetCommand(this(),"None");
-  SetComDir(COMD_Right());
-   if(GetDir() == DIR_Left())
+  if(GetAction() == "Turn") return(0);
+  SetCommand(this,"None");
+  SetComDir(COMD_Right);
+   if(GetDir() == DIR_Left)
     {
     SetAction("Turn");
     iExtra++;
@@ -754,17 +754,17 @@ protected func ContainedRight()
 protected func ContainedLeft()
 {
 
-  if(GetAction() eq "Stand")
+  if(GetAction() == "Stand")
   {
    SetAction("Standend");
    return(1);
   }
 
-  if(iExtra) return(0);
-  if(GetAction() S="Turn") return(0);
+  if(iExtra) return;
+  if(GetAction() =="Turn") return;
   SetCommand(this(),"None");
-  SetComDir(COMD_Left());  
-   if(GetDir() == DIR_Right())
+  SetComDir(COMD_Left);  
+   if(GetDir() == DIR_Right)
     {
    SetAction("Turn");
    iExtra++;
@@ -776,7 +776,7 @@ func Turned()
 {
 //Neusetzung der Crew und allem
   var obj;
-  for(obj in FindObjects(Find_InRect(-150,-75,300,150),Find_OCF(OCF_Alive())))
+  for(obj in FindObjects(Find_InRect(-150,-75,300,150),Find_OCF(OCF_Alive)))
   {
    obj->SetPosition(GetX()-(GetX(obj)-GetX()),GetY(obj));
   }
@@ -831,15 +831,15 @@ func Turned()
   }
 
 //Der rest:
-  if(GetDir() == DIR_Left()) SetDir(DIR_Right());
-  else SetDir(DIR_Left());
+  if(GetDir() == DIR_Left) SetDir(DIR_Right);
+  else SetDir(DIR_Left);
   iExtra = 0;
   return(true);
 }   
 
 public func Stop() 
 {
-  SetComDir(COMD_Stop());
+  SetComDir(COMD_Stop);
   SetYDir(0);
   SetXDir(0);
   return(true);
@@ -848,17 +848,17 @@ public func Stop()
 protected func ContainedRightDouble()
 {
 
-  if(GetAction() eq "Stand")
+  if(GetAction() == "Stand")
   {
    SetAction("Standend");
    return(1);
   }
 
-  if(GetDir() == DIR_Right())
+  if(GetDir() == DIR_Right)
   {
-   SetComDir(COMD_Stop());
+   SetComDir(COMD_Stop);
    SetYDir(0);
-   SetComDir(COMD_Right());
+   SetComDir(COMD_Right);
   }
   else
   {
@@ -869,17 +869,17 @@ protected func ContainedRightDouble()
 
 protected func ContainedLeftDouble()
 {
-  if(GetAction() eq "Stand")
+  if(GetAction() == "Stand")
   {
    SetAction("Standend");
    return(1);
   }
 
-  if(GetDir() == DIR_Left())
+  if(GetDir() == DIR_Left)
   {
-   SetComDir(COMD_Stop());
+   SetComDir(COMD_Stop);
    SetYDir(0);
-   SetComDir(COMD_Left());
+   SetComDir(COMD_Left);
   }
   else
   {
@@ -891,8 +891,8 @@ protected func ContainedLeftDouble()
 public func Starting()
 {
   SetAction("Fly",GetActionTarget(0),GetActionTarget(1));
-  if(GetDir() == DIR_Left()) SetComDir(COMD_UpLeft());
-  if(GetDir() == DIR_Right()) SetComDir(COMD_UpRight());
+  if(GetDir() == DIR_Left) SetComDir(COMD_UpLeft);
+  if(GetDir() == DIR_Right) SetComDir(COMD_UpRight);
   return(true);
 }
 
@@ -908,7 +908,7 @@ public func ContactRight()
 
 public func ContactBottom()
 {
-  if(GetAction() eq "Fly")
+  if(GetAction() == "Fly")
   {
    SetAction("StartStand",GetActionTarget(0),GetActionTarget(1));
    return(1);
@@ -918,7 +918,7 @@ public func ContactBottom()
 
 func Wenden()
 {
-  SetComDir(COMD_Stop());
+  SetComDir(COMD_Stop);
   return(true);
 }
 
@@ -966,7 +966,7 @@ func Shield()
 		}
 
    //ABSTOSSVERHALTEN
-   for(target in FindObjects(Find_Distance(radius-10),Find_OCF(OCF_HitSpeed4())))
+   for(target in FindObjects(Find_Distance(radius-10),Find_OCF(OCF_HitSpeed4)))
    {
     //Jumperdrohne
 	   if (GetID(target) == PUDD)
@@ -996,7 +996,7 @@ func Shield()
      return(1);
     }
     
-    if (GetCategory(target) & C4D_Structure())
+    if (GetCategory(target) & C4D_Structure)
     {
     	return(1);
     }

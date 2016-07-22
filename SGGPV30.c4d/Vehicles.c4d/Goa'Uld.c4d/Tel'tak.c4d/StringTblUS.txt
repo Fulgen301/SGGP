@@ -10,6 +10,7 @@ Iris=Toggle iris
 Buy=Buy
 Sell=Sell
 Activate=Activate object
+Hyperspace=Hyperdrive
 
 #Damage
 DamageCall=Damage: %v|Left: %v

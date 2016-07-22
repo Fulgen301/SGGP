@@ -1,8 +1,8 @@
 ********************
 ***              ***
 ***Von Beta 9 auf***
-***die erste	 ***
-***Haupt-version:***
+***  die erste	 ***
+*** Hauptversion:***
 *** 	(V3.0)   ***
 ***              ***
 ********************
@@ -24,6 +24,8 @@ ADD:
 -Flammenwerfer aus dem Hazardpack zündet jetzt brennbare Objekte an.
 -Wraith-Klonfabrik
 -DHDs können nur noch ihre zugehörigen Gates steuern.
+-Punktesystem
+-Hyperraum
 
 FIX:
 -Pegasus-Gate-Bugfix, der das Überladen mittels Stargate-Overloader ermöglicht. (Danksagung an Der Tod für seine Hilfe!)

@@ -4,8 +4,6 @@
 
 #strict
 
-local basement;
-
 /* Initialisierung */
 
 protected func Initialize()
@@ -49,7 +47,6 @@ protected func Incineration()
 public func CastlePartWidth()    { return (80);  }
 public func CastlePartHeight()   { return (74);  }
 public func CastlePartTop()      { return (-13); }
-public func CastlePartBasement() { return(BSC3); }
 /*public func Color()				 { return(RGB(65,41,78)); }*/
 public func Color()				 {return RGB(27,86,184);}
 
@@ -148,49 +145,6 @@ public func CastlePartAdjust()
     SetCategory(C4D_StaticBack());
     SetObjectOrder(pPart, 0, 1);
   }
-
-  // Objekt mit Fundament wurde verschoben?
-  if (basement) 
-  	if((iOldX -= GetX()) || (iOldY -= GetY()))
-	    // Dann das Fundament und daraufliegende Objekte nachschieben
-	    MoveBasement(basement, -iOldX, -iOldY);
-
-  // Fertig
-  return(1);
-}
-
-private func MoveBasement(object pBasement, int iByX, int iByY)
-{
-  // Fundament verschieben
-  SetPosition(GetX(pBasement) + iByX, GetY(pBasement) + iByY, pBasement);
-  // Verschiebung nicht nach oben? Keine (ernstzunehmende) Gefahr
-  if (iByY >= 0) return(1);
-  // Ansonsten: Objekte aus dem Fundament holen
-  var iWdt = CastlePartWidth();
-  var iX = GetX(pBasement) - GetX() - iWdt/2;
-  var iY = GetY(pBasement) - GetY() - 25;
-  var pObj;
-  while (pObj = FindObject(0, iX, iY, iWdt, 32, 0, 0, 0, NoContainer(), pObj))
-    if (!(GetCategory(pObj) | C4D_StaticBack() | C4D_Structure()))
-      if(pObj != pBasement)
-        SetPosition(GetX(pObj) + iByX, GetY(pObj) + iByY, pObj);
-  // Fertig
-  return(1);
-}
-
-public func RecheckBasement()
-{
-  // Fundament vorhanden?
-  if (!basement) return(1);
-  // Prüfen, ob links und rechts ein Burgteil unterhalb existiert
-  var iWdt4 = CastlePartWidth()/4;
-  var iY = CastlePartHeight()/2 + CastlePartRange();
-  // Unterhalb rechts prüfen
-  if (FindCastlePart(iWdt4, iY))
-    // Unterhalb links prüfen
-    if (FindCastlePart(-iWdt4, iY))
-      // OK; das Fundament ist unnötig
-      RemoveObject(basement);
   // Fertig
   return(1);
 }
@@ -215,25 +169,12 @@ public func CastlePartInitialize()
 
 public func CastlePartConstruction()
 {
-  // Fundament erstellen?
-  var idBasement = CastlePartBasement();
-  if (!idBasement) return(1);
-  // nötig?
-  if(FindCastlePart(0, CastlePartRange())) return(1);
-  // OK, Fundament erstellen und speichern
-  basement = CreateObject(idBasement, 0, 8, GetOwner());
-  // Da das Burgteil statisch ist, sollte sich auch das Fundament nicht bewegen
-  basement->Consolidate();
-  basement->SetClrModulation(Color());
   return(1);
 }
 
 // Der Aufruf von CastleChange muss verzögert erfolgen, damit das Teil zum Aufruf auch wirklich weg ist
 public func CastlePartDestruction()
 {
-  // Fundament?
-  if (basement) 
-  	RemoveObject(basement);
   // Globaler Temporäreffekt, wenn nicht schon vorhanden
   if (!GetEffect("IntCPW2CastleChange"))
   	AddEffect("IntCPW2CastleChange", 0, 1, 2, 0, CPW2);

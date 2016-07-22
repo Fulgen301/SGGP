@@ -93,7 +93,7 @@ func ControlRightDouble(pCaller)
   {
    AddMenuItem("DHD manipulieren","CrystChange",MEPU,pUser);
   }
-  
+  if(FindObject2(Find_ID(NOMA))) return(1);
   if(!LocalN("outgoing",FindStargate()))
   {
 	  AddMenuItem("Ausgehende Wurmlöcher erlauben","ChangeOutgoingState",MEPU,pUser,0,true);

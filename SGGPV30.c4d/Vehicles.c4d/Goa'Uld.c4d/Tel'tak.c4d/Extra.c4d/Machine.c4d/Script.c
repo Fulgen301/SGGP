@@ -1,4 +1,4 @@
-#strict
+#strict 2
 
 local time;
 
@@ -10,14 +10,14 @@ public func Initialize()
 
 public func ControlDigDouble()
 {
-  if(GetAction() eq "Active")
+  if(GetAction() == "Active")
   {
    SetAction("Deactive");
    Sound("ring_button1");
    return(1);
   }
 
-  if(GetAction() eq "Deactive")
+  if(GetAction() == "Deactive")
   {
 	SetAction("Active");
 	Sound("ring_button2");
@@ -35,18 +35,6 @@ func Activate()
 {
 	SetAction("Active");
 	return(1);
-}
-
-func Test()
-{
-	if (GlobalN("energy", FindObject2(Find_ID(TEL_), Find_Distance(20)) > 10))
-	{
-		SetAction("Active");
-	}
-	else
-	{
-		SetAction("Deactive");
-	}
 }
 
 public func Teltak()

@@ -119,7 +119,7 @@ func OpenPlayerMenu(iPlayer,i)
 private func On() 
 {
 	ScriptOn = 1;
-  	AddMsgBoardCmd("s","Run(\"%s\")",true);
+  	AddMsgBoardCmd("s","Run(\"%s\")",0);
 	Log("<c ffcc00>Das Scripten wurde aktiviert</c>");
   	return(1);
 }
@@ -884,4 +884,27 @@ func ClimUp()
 	Sound("Connect");
 	Message("{{ICE1}} <c ffcc00>Wärmer</c>");
 	Temperature++;
+}
+
+public func OnClonkDeath(object pClonk, int iKiller)
+{
+	if(pClonk->GetOwner() == iKiller)
+	{
+		if(!pClonk->~IsWraith())
+		{
+			DoPoints(iKiller, 30, SGGP_MinusPoints);
+		}
+	}
+	else
+	{
+		if(Hostile(iKiller, pClonk->GetOwner()))
+		{
+			DoPoints(iKiller, 50, SGGP_KillPoints);
+		}
+		else
+		{
+			DoPoints(iKiller, 80, SGGP_MinusPoints);
+		}
+	}
+	return true;
 }

@@ -433,6 +433,7 @@ public func ContainedDig(pCaller)
   AddMenuItem("$Destruction$","Destroy",TEM6,pUser);
   AddMenuItem("$Shield$", "ToggleShield", GOSG, pUser);
   AddMenuItem("$Energy$", "ToggleEnergy", GetID(this), pUser);
+  if(energy >= 70) AddMenuItem("$Hyperspace$","Hyperspace",gen->GetID(), pUser, 0, pUser);
   if(HasGate())
   {
   	AddMenuItem("$Iris$", "Iris", STGT, pUser);
@@ -442,8 +443,25 @@ public func ContainedDig(pCaller)
 	  AddMenuItem("$Buy$","BuyMenu",SPIP,pUser,0,pUser);
 	  AddMenuItem("$Sell$","SellMenu",DPIP,pUser,0,pUser);
   }
-  AddMenuItem("$Activate$","ActivateMenu",CXTX,pUser,0,pUser);
   return(1);
+}
+
+protected func Hyperspace(id dummy, object pUser)
+{
+	var cursor = CreateObject(CURS);
+	cursor->SetBeamer(this,pUser->GetOwner(),pUser);
+	SetCursor(pUser->GetOwner(), cursor);
+}
+
+public func Okay(int x, int y)
+{
+	Log("X: %d, Y: %d", x, y);
+	gen->SetAction("Active");
+	Cloak();
+	energy -= 50;
+	TravelInHyperspace(this, x, y);
+	Cloak();
+	gen->SetAction("Deactive");
 }
 
 protected func BuyMenu(id dummy, object pUser)

@@ -132,19 +132,41 @@ func Check()
   {
    GiveEnerg();
   }
-  zpm1->SetPosition(GetX()-13,GetY()-5);
-  zpm1->SetYDir();
-  
-  zpm2->SetPosition(GetX()+3,GetY()-5);
-  zpm2->SetYDir();
-  
-  zpm3->SetPosition(GetX()+13,GetY()-5);
-  zpm3->SetYDir();
-
+  if(zpm1)
+  {
+	zpm1->SetPosition(GetX()-13,GetY()-5);
+	zpm1->SetYDir();
+  }
+  else
+  {
+	  zpm1 = CreateObject(ZPM2);
+	  SetObjectOrder(zpm1,this);
+  }
+  if(zpm2)
+  {
+	  zpm2->SetPosition(GetX()+3,GetY()-5);
+	  zpm2->SetYDir();
+  }
+  else
+  {
+	  zpm2 = CreateObject(ZPM2);
+	  SetObjectOrder(zpm2,this);
+  }
+  if(zpm3)
+  {
+	  zpm3->SetPosition(GetX()+13,GetY()-5);
+	  zpm3->SetYDir();
+  }
+  else
+  {
+	  zpm3 = CreateObject(ZPM2);
+	  SetObjectOrder(zpm3,this);
+  }
   if(info)
   {
    Message(Format("%v (%v%)|%v (%v%)|%v (%v%)",ZpmA(),EnrgA(),ZpmB(),EnrgB(),ZpmC(),EnrgC()),this());
   }
+  else Message("");
   return(1);
 }
 

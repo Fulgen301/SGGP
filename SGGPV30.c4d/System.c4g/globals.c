@@ -4,29 +4,23 @@
 
 global func CreateObjects(id ID, int x, int y, int owner, int amount)
 {
-	var i = 0;
-	while(i < amount)
+	var array = CreateArray(amount);
+	for(var i = 0; i < amount; i++)
 	{
-		CreateObject(ID, x, y, owner);
-		i++;
+		array[i] = CreateObject(ID, x, y, owner);
 	}
-	return(amount);
+	return array;
 }
 
-/*Experimentell*/
-
-global func GetPlayerPoints(int iPlr)
-{	
-	var spoints = BoundBy(GetPlrExtraData(iPlr, "SGGP_Points"), 0, 0x7FFFFFFF);
-	return(spoints);
-}
-
-global func SetPlayerPoints(int iPlr, int iValue)
+global func RemoveObjects(array aObjects, bool fContents)
 {
-	SetPlrExtraData(iPlr, "SGGP_Points", iValue);
-	return(1);
+	if(!aObjects || GetType(aObjects) != C4V_Array) return false;
+	for(obj in aObjects)
+	{
+		if(obj) RemoveObject(obj, fContents);
+	}
+	return true;
 }
-
 /* Member-System */
 
 static SGGP_Developers;
@@ -46,6 +40,9 @@ global func IsSGGPTeamMember(int iPlr)
 
 
 /* Compute a hash of string (by Sven2) */
+/** SHA1m
+	
+*/
 
 global func SHA1m(string s)
 {
@@ -112,6 +109,12 @@ global func SHA1m(string s)
   return Format("%08X%08X%08X%08X%08X",h0,h1,h2,h3,h4);
 }
 
+/** GetIDsByName
+	@par name The name.
+	@par category The category of the ids.
+	@author DerTod
+*/
+
 global func GetIDsByName(string name, int category) // WARNING: desyncs between clients with different languages
 {
 	var i, id, ret = [];
@@ -123,4 +126,72 @@ global func GetIDsByName(string name, int category) // WARNING: desyncs between 
 		}
 	}
 	return ret;
+}
+
+global func GivePlrAllKnowledge(int iPlr)
+{
+	var i, j, Def;
+	while(Def = GetDefinition(i++,C4D_Magic))
+	{
+		SetPlrMagic(iPlr, Def);
+	}
+	
+	while(Def = GetDefinition(j++,C4D_Structure))
+	{
+		if(GetDefCoreVal("Construction","DefCore",Def))
+		{
+			SetPlrKnowledge(iPlr, Def);
+		}
+	}
+		
+	return i + j;
+}
+
+/** ParseInt
+	@author DerTod
+*/
+
+global func ParseInt(string int)
+{
+	if(GetLength(int) == 0)
+	{
+		return "";
+	}
+	var ret = 0, neg = false;
+	for(var i = 0; i < GetLength(int); ++i)
+	{
+		var c = GetChar(int, i);
+		if(i == 0)
+		{
+			if(c == 45) // "-"
+			{
+				neg = true;
+				continue;
+			}
+			else if(c == 43) // "+"
+			{
+				continue;
+			}
+		}
+		c -= 48; // "0" == 48
+		if(c < 0 || c > 9)
+		{
+			return "";
+		}
+		ret *= 10;
+		ret += c;
+	}
+	return ret * (1 - (2 * neg));
+}
+
+/** Assert
+*/
+
+global func assert(string sz)
+{
+	var result = eval(sz);
+	if(!result)
+	{
+		return FatalError(Format("AssertionError: %s", sz));
+	}
 }

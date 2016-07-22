@@ -4,7 +4,7 @@
 
 func ContextRelease(pCaller) 
 {
-	[Hilfsregel|Image=HELP]
+	[$HelpRule$|Image=HELP]
   	HelpContext(GetController());
   	return(1);
 }

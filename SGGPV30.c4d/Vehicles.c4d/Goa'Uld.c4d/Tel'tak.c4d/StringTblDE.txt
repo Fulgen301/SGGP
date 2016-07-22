@@ -10,6 +10,7 @@ Iris=Iris bedienen
 Buy=Kaufen
 Sell=Verkaufen
 Activate=Objekt aktivieren
+Hyperspace=Hyperantrieb
 
 #Schadensabfrage
 DamageCall=Schaden: %v|Verbleibend: %v

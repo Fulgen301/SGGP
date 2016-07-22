@@ -26,12 +26,9 @@ protected func Damage()
 
 protected func ContainedUp(pCaller)
 {
-	if(EnergyCheck(200000))
+	if(energy >= 300000)
 	{
-		for(var i = 0; i < 100; i++)
-		{
-			DoEnergy(-2000);
-		}
+		energy -= 300000;
 		var clonk = CreateContents(GetID(pCaller));
 		MakeCrewMember(clonk,GetOwner(pCaller));
 		clonk->SetAction("Walk");
@@ -52,5 +49,8 @@ protected func ContextClone(object pCaller)
 
 protected func FxIntEnergyTimer(object pTarget, int iEffect)
 {
-	EnergyCheck(100);
+	if(EnergyCheck(100) && energy < 1000000)
+	{
+		energy += 50;
+	}
 }

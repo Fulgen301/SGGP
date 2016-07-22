@@ -140,6 +140,7 @@ func MakeMenu()
    }
   }
   AddMenuItem("Energieanzeige des Gates","GateEnergy",MEPU,user);
+  if(FindObject2(Find_ID(NOMA))) return(1);
   if(!LocalN("outgoing",FindStargate()))
   {
 	  AddMenuItem("Ausgehende Wurmlöcher erlauben","ChangeOutgoingState",MEPU,user,0,true);

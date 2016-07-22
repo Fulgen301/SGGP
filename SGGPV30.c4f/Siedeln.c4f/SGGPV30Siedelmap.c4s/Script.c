@@ -4,6 +4,7 @@ static CanClose;
 
 func Initialize() 
 {
+	_inherited(...);
 	SetSkyParallax(1, 20,20, 20,0,0,0);
 	ScriptGo(1);
 	return(1);

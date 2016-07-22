@@ -59,7 +59,7 @@ func InputCallback(string szString)
 	}
 	else
 	{
-		if(GetCategory(0, id) & category)
+		if(GetCategory(0, id) & category && !id->~IsNotConvertable())
 		{
 			idDef = id;
 			HasEnrg = 0;

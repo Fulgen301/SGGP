@@ -1,0 +1,47 @@
+# Automatically generated texture map
+# Contains material-texture-combinations added at runtime
+# Import materials from global file as well
+OverloadMaterials
+# Import textures from global file as well
+OverloadTextures
+
+1=Tunnel-Smooth
+2=Tunnel-Rough
+3=Water-Liquid
+4=Acid-Liquid
+5=DuroLava-Liquid
+6=Ashes-Spots
+7=Sand-Swirl
+8=FlySand-Smooth
+9=Coal-Swirl
+10=Crystal-Structure
+11=FlyAshes-Spots
+12=Gold-Rough
+13=Earth-Smooth
+14=Earth-Rough
+15=Granite-Rock
+16=Ice-Sponge
+17=Oil-Liquid
+18=Ore-Structure
+19=FlySand-Smooth2
+20=Rock-Rough
+21=Snow-Spots
+22=Sulphur-Swirl
+23=Lava-Liquid
+24=Vehicle-Smooth
+25=Granite-SMOOTH2
+26=Tunnel-LIQUID
+27=Brick-Smooth
+28=BackWall-Smooth
+29=Wall-Smooth
+30=Wall-Concrete1
+31=BackWall-Laboratory1
+32=Wall-Brick
+33=Wall-Bricks1
+99=Sand-Smooth2
+100=Tunnel-Smooth2
+114=Brick-Brick
+117=Tunnel-RoughDark
+118=Tunnel-Ashes
+123=Earth-Smooth2
+124=Naquadah-NaquadahTex

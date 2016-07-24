@@ -897,7 +897,7 @@ public func OnClonkDeath(object pClonk, int iKiller)
 	}
 	else
 	{
-		if(Hostile(iKiller, pClonk->GetOwner()))
+		if(Hostile(iKiller, pClonk->GetOwner()) || pClonk->IsZombie())
 		{
 			DoPoints(iKiller, 50, SGGP_KillPoints);
 		}

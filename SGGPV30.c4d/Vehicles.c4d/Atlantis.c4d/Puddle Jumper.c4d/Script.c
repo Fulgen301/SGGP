@@ -244,7 +244,10 @@ protected func ContainedDig(pCaller)
   AddMenuItem("Motor Aus","Enginestop",PUD5,Par(0));
   AddMenuItem("Energieanzeige","Energy",PUD6,Par(0));
   AddMenuItem("Heckluke","Luke",PUD7,Par(0));
-
+  if(iEnergy >= 50 && EXTENDED_MODE)
+  {
+	  AddMenuItem("Hyperantrieb","Hyperspace", MEPU,pUser, 0, pUser);
+  }
   if(FindObject2(Find_Distance(800),Find_Func("IsStargate")))
   {
    if(GetDamage() < 200)
@@ -290,6 +293,21 @@ protected func ContainedDig(pCaller)
    AddMenuItem("Disruptor ausbauen", "ArwAuBa", ARW_, Par(0));
   }
   return(1);
+}
+
+protected func Hyperspace(id dummy, object pCaller)
+{
+	var cursor = CreateObject(CURS,0,0,pCaller->GetOwner());
+	cursor->SetBeamer(this, pCaller->GetOwner(),pCaller);
+	SetCursor(pCaller->GetOwner(), cursor);
+}
+
+public func Okay(int x, int y)
+{
+	Cloak();
+	iEnergy -= 50;
+	TravelInHyperspace(this, x, y, 30);
+	Schedule("Cloak()",1);
 }
 
 func DialGate()

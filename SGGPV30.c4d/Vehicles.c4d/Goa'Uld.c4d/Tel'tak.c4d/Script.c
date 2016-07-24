@@ -455,12 +455,11 @@ protected func Hyperspace(id dummy, object pUser)
 
 public func Okay(int x, int y)
 {
-	Log("X: %d, Y: %d", x, y);
+	Cloaking();
 	gen->SetAction("Active");
-	Cloak();
 	energy -= 50;
-	TravelInHyperspace(this, x, y);
-	Cloak();
+	TravelInHyperspace(this, x, y, 50);
+	Cloaking();
 	gen->SetAction("Deactive");
 }
 

@@ -2,6 +2,8 @@
 
 #strict 2
 
+static EXTENDED_MODE;
+
 global func CreateObjects(id ID, int x, int y, int owner, int amount)
 {
 	var array = CreateArray(amount);

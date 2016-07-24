@@ -21,6 +21,7 @@ protected func Death()
 }
 
 func IsBulletTarget()    { return(1); }
+public func IsZombie()	 {return true;}
 
 func Check()
 {

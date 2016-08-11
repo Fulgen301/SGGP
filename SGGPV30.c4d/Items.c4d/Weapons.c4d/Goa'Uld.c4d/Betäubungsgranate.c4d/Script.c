@@ -53,3 +53,4 @@ func IsGoauldWeapon() { return(true); }
 func AlchemProcessTime() { return(500); }
 func IsGrenade() { return(true); }
 public func IsReloading() {return(0);}
+public func GetRace() { return SG1_Goauld; }

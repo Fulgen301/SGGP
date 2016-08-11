@@ -43,3 +43,4 @@ protected func Hit()
 
 func IsGrenade() { return(true); }
 public func IsReloading() {return(0);}
+public func GetRace()	{ return SG1_StargateCenter; }

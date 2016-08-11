@@ -4,6 +4,8 @@ local iXDir,iYDir,thrower,disable;
 
 /* --- Boomerang --- */
 
+public func GetRace()	{ return SGA_Wraith; }
+
 protected func Departure(pObj) 
 {
   thrower = pObj;

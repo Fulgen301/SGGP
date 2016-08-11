@@ -88,3 +88,4 @@ protected func Hit()
 
 func IsGrenade() { return(0); }
 public func IsReloading() {return(0);}
+public func GetRace()	{ return SGA_Wraith; }

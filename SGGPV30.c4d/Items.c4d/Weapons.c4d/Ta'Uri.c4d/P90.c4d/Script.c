@@ -11,6 +11,7 @@ public func HandSize() { return(900); }
 public func HandX()    { return(5000); }
 public func HandY()    { return(0); }
 public func BarrelYOffset() { return(-1000); }
+public func GetRace()	{ return SG1_StargateCenter; }
 
 public func OnReload(int i)
 {

@@ -9,6 +9,7 @@ local laser; //der Laserstrahl
 // Anzeige in der Hand
 public func HandX() { return(5000); }
 public func HandY() { return(500); }
+public func GetRace()	{ return SG1_StargateCenter; }
 
 public func FMData1(int data)
 {

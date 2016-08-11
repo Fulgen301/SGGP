@@ -9,6 +9,7 @@ public func HandSize() { return(800); }
 public func HandX()    { return(5500); }
 public func HandY()    { return(-1000); }
 public func BarrelYOffset() { return(-2700); }
+public func GetRace()	{ return SG1_Goauld; }
 
 public func FMData1(int data)
 {

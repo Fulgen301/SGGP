@@ -167,3 +167,5 @@ public func ConUse(object pCaller)
 	ActivateMe(pCaller);
 	Sound("Click");
 }
+
+public func GetRace()	{ return SG1_StargateCenter; }

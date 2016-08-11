@@ -1,15 +1,14 @@
 
 /*---- Wraith ----*/
 
-#strict
-#include CLNK
-#include HZCK
+#strict 2
+#include JAFA
 
 local SDestroy;
 
 public func Zated()
 {
-  if(GetAction() eq "Lie")
+  if(GetAction() == "Lie")
   {
    SetAction("Lie");
    EMPShockEffect(50);
@@ -30,11 +29,11 @@ protected func Initialize()
 
 public func FindKnockClonk() 
 {
-  if(FindObject(0,-15,-15,30,30,OCF_Alive(),"Lie",0,NoContainer()))
+  if(FindObject(0,-15,-15,30,30,OCF_Alive,"Lie",0,NoContainer()))
   {
    return(1); 
   }
-  return();
+  return;
 }
 
 //Die Funktion zum Aussaugen des Feindes
@@ -44,13 +43,13 @@ protected func ContextSuck()
   [$CtxSuck$|Image=MEPU:4|Condition=FindKnockClonk]
   // Lebensenergie aussaugen
 
-  if(GetAction(this()) eq "Suck")
+  if(GetAction(this()) == "Suck")
   {
    SetAction("Walk");
    return(1);
   }
 
-  if(!FindObject(0,-10,-10,20,20,OCF_Alive()))
+  if(!FindObject(0,-10,-10,20,20,OCF_Alive))
   {
    Message("Hier ist keine Nahrung!",this());
    return(1);
@@ -63,11 +62,11 @@ protected func ContextSuck()
 
 protected func Suck()
 {
-  if(FindObject(0,-10,-10,20,20,OCF_Alive()))
+  if(FindObject(0,-10,-10,20,20,OCF_Alive))
   {
-   FindObject(0,-10,-10,20,20,OCF_Alive())->SetAction("Lie");
-   DoEnergy(-1,FindObject(0,-10,-10,20,20,OCF_Alive()));
-   DoEnergy(1,this());
+   FindObject(0,-10,-10,20,20,OCF_Alive)->SetAction("Lie");
+   DoEnergy(-1,FindObject(0,-10,-10,20,20,OCF_Alive));
+   DoEnergy(1,this);
    SetAction("Suck");
    return(1);
   }
@@ -86,26 +85,27 @@ protected func ContextDestroy()
 
 private func DestroyerCheck() 
 {
-  if(GetAction(this()) eq "Lie")
+  if(this->GetAction() == "Lie")
   {
-   return();
+   return;
   }
 
   if(SDestroy == 1)
   {
    return(1);
   }
-  return();
+  return;
 }
 
 
 private func Control2Contents (string command, par1, par2, par3, par4)
 {
-  if(GetAction() S= "Push")
+  if(GetAction() == "Push")
     return(0);
-  if(ObjectCall(Contents(), command, this(), par1, par2, par3, par4))
+  if(ObjectCall(Contents(), command, this, par1, par2, par3, par4))
     return(1);
   return(0);
 }
 
 public func IsWraith()	{return true;}
+public func GetRace()	{ return SGA_Wraith; }

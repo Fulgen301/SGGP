@@ -1,25 +1,9 @@
 /*---- Stargate Kommando ----*/
 
-#strict
-#include CLNK
-#include HZCK
+#strict 2
+#include JAFA
 
 local hegrend;
-
-public func Zated()
-{
-  if(GetAction() eq "Lie")
-  {
-   SetAction("Lie");
-   EMPShockEffect(50);
-   return(1);
-  }
-  SetAction("Zatfall");
-  EMPShockEffect(50);
-  return(1);
-}
-
-
 
 /* Kontextmenü */
 
@@ -27,7 +11,7 @@ protected func ContextGetGrenade()
 {
   [$CtxGetGrenade$|Image=HEGR|Condition=GetGrenade]
   CreateContents(HEGR);
-  hegrend --;
+  hegrend--;
   Sound("Connect");
   return(1);
 }
@@ -36,7 +20,7 @@ protected func ContextPutGrenade()
 {
   [$CtxPutGrenade$|Image=HEGR|Condition=PutGrenade]
   hegrend ++;
-  FindObject(HEGR,0,0,0,0,0,0,0,this())->RemoveObject();
+  FindObject(HEGR,0,0,0,0,0,0,0,this)->RemoveObject();
   Sound("Connect");
   return(1);
 }
@@ -53,7 +37,7 @@ protected func GetGrenade()
 
 protected func PutGrenade()
 {
-  if(FindObject(HEGR,0,0,0,0,0,0,0,this()))
+  if(FindObject(HEGR,0,0,0,0,0,0,0,this))
   {
    if(hegrend < 2)
    {
@@ -82,3 +66,5 @@ protected func Death()
   }
   return(_inherited());
 }
+
+public func GetRace()	{ return SG1_StargateCenter; }

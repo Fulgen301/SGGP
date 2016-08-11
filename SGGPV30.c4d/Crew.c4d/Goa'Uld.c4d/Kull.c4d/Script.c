@@ -1,7 +1,7 @@
 /*---- Kull ----*/
 
 #strict
-#include HZCK
+#include JAFA
 
 static const HZCK_LADDERSPEED = 7;
 
@@ -31,23 +31,6 @@ func RejectCollect(pObj)
   return();
 }
 
-func Zated()
-{
-  if(HasGear())
-  {
-   return(1);
-  }
-  if(GetAction() eq "Lie")
-  {
-   SetAction("Lie");
-   EMPShockEffect(50);
-   return(1);
-  }
-  SetAction("Zatfall");
-  EMPShockEffect(50);
-  return(1);
-}
-
 func UpdateCharge()
 {
   if(RandomX(0,2000) == 1)
@@ -56,3 +39,5 @@ func UpdateCharge()
   }
   return(_inherited());
 }
+
+public func GetRace()	{ return SG1_Goauld; }

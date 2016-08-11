@@ -1,12 +1,12 @@
 /*---- Jaffa ----*/
 
-#strict
+#strict 2
 #include CLNK
 #include HZCK
 
 public func Zated()
 {
-  if(GetAction() eq "Lie")
+  if(GetAction() == "Lie")
   {
    SetAction("Lie");
    EMPShockEffect(50);
@@ -17,15 +17,26 @@ public func Zated()
   return(1);
 }
 
-protected func ControlUpdate(object clonk, int comdir, bool dig, bool throw)
+public func GetRace()	{ return SG1_Goauld; }
+
+protected func RejectCollect(id idObj, object pObj)
 {
-  if(Control2Contents("ControlUpdate", comdir, dig, throw)) return(1);
-  if(ControlLadder("ControlUpdate", comdir, dig, throw)) return(1);
-
-  if(IsAiming()) {
-    AimUpdate(this(), comdir, 1, "ControlConf");
-    return(1);
-  }
-
-  return(_inherited());
+	if(ObjectCount(RACS))
+	{
+		if(idObj->~GetRace() == SG_All) return 0;
+		else if(idObj->~GetRace() == GetRace()) return 0;
+		else return 1;
+	}
+	return _inherited(idObj, pObj, ...);
 }
+
+/*protected func Grab(object pTarget, bool fGrab)
+{
+	if(fGrab)
+	{
+		var race = pTarget->~GetRace();
+		if(race != GetRace()) return SetCommand(pTarget, "UnGrab");
+		else if(race != SG_All) return SetCommand(pTarget, "UnGrab");
+	}
+	return _inherited(pTarget, fGrab,...);
+}//*/

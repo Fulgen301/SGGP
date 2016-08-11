@@ -15,6 +15,8 @@ local ramp;
 local iX, iY;
 local outgoing, incoming, forwarding;
 local fGate;
+local chevroncount;
+local fake;
 
 public func IsTeltakGate()
 {
@@ -77,8 +79,8 @@ func HasIris()
 func InstallIris()
 {
   iris = CreateObject(SGIR);
-  SetObjectOrder(this(),iris);
-  LocalN("target",iris) = this();
+  SetObjectOrder(this,iris);
+  LocalN("target",iris) = this;
   return(1);
 }
 
@@ -131,8 +133,7 @@ func GDOControlIris(passw)
 //Tötung beim Kawoosh
 func KawooshKill()
 {
-  if(GetPhase() == 35)
-  {
+	if(GetPhase() > 66) return;
    var xobj;
    DigFree(GetX()+18,GetY()+46,12);
    DigFree(GetX()+41,GetY()+44,15);
@@ -165,74 +166,11 @@ func KawooshKill()
 	else
 		if(xobj) xobj->DoDamage(1000);
    }
-  }
-  
-  if(GetPhase() == 10)
-  {
-   var xobj;
-   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Or(Find_OCF(OCF_Living),Find_OCF(OCF_Collectible))))
-   {
-    if(!IsTeltakGate())
-   	{
-   		if(xobj) xobj->RemoveObject();
-   	}
-	else
-	{
-		if(xobj && !Contained(xobj))
-		{
-			xobj->RemoveObject();
-		}
-	}
-   }
-   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Category(C4D_Vehicle)))
-   {
-    if(IsTeltakGate())
-   	{
-		if(xobj && !xobj->~Teltak())
-		{
-			xobj->DoDamage(1000);
-		}
-   	}
-	else
-		if(xobj) xobj->DoDamage(1000);
-   }
-  }
-  
-  if(GetPhase() == 60)
-  {
-   var xobj;
-   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Or(Find_OCF(OCF_Living),Find_OCF(OCF_Collectible))))
-   {
-    if(!IsTeltakGate())
-   	{
-   		if(xobj) xobj->RemoveObject();
-   	}
-	else
-	{
-		if(xobj && !Contained(xobj))
-		{
-			xobj->RemoveObject();
-		}
-	}
-   }
-   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Category(C4D_Vehicle)))
-   {
-    if(IsTeltakGate())
-   	{
-		if(xobj && !xobj->~Teltak())
-		{
-			xobj->DoDamage(1000);
-		}
-   	}
-	else
-		if(xobj) xobj->DoDamage(1000);
-   }
-  }
   return(1);
 }
 
 //Die Sounds beim anwählen
-func DialSounds()
+protected func DialSounds()
 {
   if(GetPhase() == 1)
   {
@@ -269,6 +207,14 @@ func DialSounds()
    ChevronSound();
   }
 
+  if(GetPhase() == 49)
+  {
+	  if(fake)
+	  {
+		  FailSound();
+		  Deactivate();
+	  }
+  }
   if(GetPhase() == 50)
   {
    ChevronSound();
@@ -319,7 +265,7 @@ func ReName(newName)
 {
   if(newName == 0)
   {
-   Message("Es muss ein Name gesetzt werden!",this());
+   Message("Es muss ein Name gesetzt werden!",this);
    Sound("Error");
    return(1);
   }
@@ -330,11 +276,7 @@ func ReName(newName)
 //Beschäftigt?!
 func IsBusy()
 {
-  if(GetAction() == "Idle")
-  {
-   return(0);
-  }
-  return(1);
+  return !(GetAction() == "Idle");
 }
 
 //Die Namensüberprüfung/1. Anwahl des Gates:
@@ -346,28 +288,53 @@ func Dial(string gate)
   }
   
   var pGate;
+  var szName = "";
   for(pGate in FindObjects(Find_Func("IsStargate")))
   {
-   if (pGate != this())
+   if (pGate != this)
    {
-    		var szName;
-    		szName = pGate -> GetName(pGate);
-    		if (szName == gate)
-    		{
-     			CallGate(pGate);
-     			return(1);	
-    		}
+    	szName = pGate -> GetName(pGate);
+    	if (szName == gate)
+    	{
+			fake = false;
+     		CallGate(pGate);
+     		return(1);	
+    	}
+		else
+		{
+			szName = "";
+		}
    }
   }
-  Message("<c ff0000>Gate wurde nicht gefunden!</c>",this());
-  FailSound();
-  //Sound("Fail",0,0,50);
+  if(szName == "" || szName == 0)
+  {
+	  fake = true;
+	  CallGate(this);
+	  return 1;
+  }
+  //Message("<c ff0000>Gate wurde nicht gefunden!</c>",this);
+  //FailSound();
   return(1);
 }
 
 //Das eigentliche "Anwählen" des Gates beginnt:
 func CallGate(object pGate)
 {
+  if(pGate == this)
+  {
+	  if(energy >= 100000)
+	  {
+		  energy -= 100000;
+		  CallGate2(this, 7);
+		  return 1;
+	  }
+	  else
+	  {
+		  Message("<c ff0000>Zu wenig Energie!</c>",this);
+		  FailSound();
+		  return 1;
+	  }
+  }
   if(GetAction(pGate) != "Idle")
   {
    return FailSound();
@@ -386,7 +353,7 @@ func CallGate(object pGate)
   	if(energy >= 500000)
   	{
   		energy -= 500000;
-  		CallGate2(pGate);
+  		CallGate2(pGate, 8);
   		return(1);
   	}
   }
@@ -395,7 +362,7 @@ func CallGate(object pGate)
   	if(energy > 1000000)
   	{
   		energy -= 1000000;
-  		CallGate2(pGate);
+  		CallGate2(pGate, 9);
   		return(1);
   	}
   }
@@ -404,23 +371,40 @@ func CallGate(object pGate)
   	if(energy > 100000)
   	{
   		energy -= 100000;
-  		CallGate2(pGate);
+  		CallGate2(pGate, 7);
   		return(1);
   	}
   }
-  Message("<c ff0000>Zu wenig Energie!</c>",this());
+  Message("<c ff0000>Zu wenig Energie!</c>",this);
   FailSound();
   return(1);
  }
 
 
-func CallGate2(object pGate)
+func CallGate2(object pGate, int iChevronCount)
 {
-	time = 20;
+	if(IsDestinyGate())
+	{
+		time = 7;
+	}
+	else
+	{
+		time = 20;
+	}
+	if(pGate == this)
+	{
+		SetAction("Outgoing1");
+		return 1;
+	}
   pTo = pGate;
-  LocalN("pFrom",pGate) = this();
+  LocalN("pFrom",pGate) = this;
+  chevroncount = iChevronCount;
+  pGate->LocalN("chevroncount") = iChevronCount;
+  if(IsDestinyGate()) Sound("destiny_start");
   SetAction("Outgoing1");
 //  LaunchEarthquake(GetX(),GetY());
+
+  if(IsDestinyGate()) pGate->Sound("destiny_start");
   pGate->SetAction("Income1");
 //  LaunchEarthquake(GetX(pGate),GetY(pGate));
   return(1);
@@ -487,12 +471,12 @@ func Check()
 
   if(!pFrom)
   {
-   if(!pTo)
+   if(!pTo && !fake)
    {
     Deactivate();
    }
   }
-  if(pTo)
+  if(pTo && !fake)
   {
    if(GetAction(pTo) == "Idle")
    {
@@ -550,6 +534,7 @@ func Deactivate(all)
    pFrom -> Deactivate(1);
    pFrom = 0;
   }
+  if(fake) fake = false;
   
   if(GetAction() == "Outgoing1")
   {
@@ -626,9 +611,10 @@ func Transport()
   }
   return(1);
 }
+
 protected func Destroy()
 {
-   if(ramp && LocalN("target",ramp) == this)
+   if(ramp)
    {
      ramp->RemoveObject();
    }

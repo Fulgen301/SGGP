@@ -17,9 +17,16 @@ func Initialize()
   var own;
   own = GetCursor(GetOwner());
   CreateMenu(SGR1,own,0,0,"Welches Gate?",0,1);
-  AddMenuItem("Milchstraﬂen-Gate","PlaceGate",STGT,own);
+  for(var i = 0, Def; Def = GetDefinition(i); i++)
+  {
+	  if(Def->~IsStargate() && Def != STRG)
+	  {
+		  AddMenuItem(GetName(0, Def), "PlaceGate", Def, own);
+	  }
+  }
+  /*AddMenuItem("Milchstraﬂen-Gate","PlaceGate",STGT,own);
   AddMenuItem("Pegasus-Gate","PlaceGate",SGAG,own);
-  AddMenuItem("Destiny-Gate", "PlaceGate", SGDG, own);
+  AddMenuItem("Destiny-Gate", "PlaceGate", SGDG, own);*/
   return(1);
 }
 

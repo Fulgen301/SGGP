@@ -6,7 +6,7 @@
 
 public func ChevronSound()
 {
-	Sound("pegasus_dhd");
+	Sound("destiny_chevron");
 	return(1);
 }
 

@@ -57,7 +57,7 @@ func Timer()
 protected func InitializePlayer(int iPlayer)
 {
 	var Saver;
-	if(FindInArray(GetPlayerName(iPlayer),aBann))
+	if(GetIndexOf(GetPlayerName(iPlayer),aBann) != -1)
 	{
 		PlrMessage("%s Wurde vom SGGP gebannt",iPlayer,GetTaggedPlayerName(iPlayer));
 		Log("%s wurde eliminiert, da er vom SGGP gebannt ist.",GetTaggedPlayerName(iPlayer)); 
@@ -390,18 +390,6 @@ global func LogMap()
 	Log("Replace All '#' by quotation marks");
 	Log("Remove all [00:00:00]");
 	return(0);
-}
-
-global func FindInArray(What,Arr)
-{
-	var i;
-	i = 0;
-	while(Arr[i] != What)
-	{
-		if(GetLength(Arr) == i) return(0);
-		i++;
-	}
-	return(i+1);
 }
 
 global func AddToArray(What,Arr)

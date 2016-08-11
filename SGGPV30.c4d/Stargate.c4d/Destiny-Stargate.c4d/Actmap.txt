@@ -2,15 +2,16 @@
 
 [Action]
 Name=Outgoing1
-Length=51
-Delay=4
+Length=120
+Delay=2
+FlipDir=1
 Facet=0,0,110,80
 NextAction=Outgoing2
 PhaseCall=DialSounds
 
 [Action]
 Name=Outgoing2
-Length=66
+Length=80
 Delay=2
 Facet=0,80,110,80
 NextAction=Outgoing3
@@ -19,8 +20,9 @@ PhaseCall=KawooshKill
 
 [Action]
 Name=Outgoing3
-Length=51
+Length=200
 Delay=1
+FlipDir=1
 Facet=0,160,110,80
 NextAction=Outgoing4
 EndCall=ShutDelay
@@ -29,8 +31,9 @@ PhaseCall=Transport
 
 [Action]
 Name=Outgoing4
-Length=51
+Length=200
 Delay=1
+FlipDir=1
 Reverse=1
 Facet=0,160,110,80
 NextAction=Outgoing3
@@ -42,16 +45,18 @@ PhaseCall=Transport
 
 [Action]
 Name=Income1
-Length=51
-Delay=4
+Length=120
+Delay=2
+FlipDir=1
 Facet=0,0,110,80
 NextAction=Income2
 PhaseCall=DialSounds
 
 [Action]
 Name=Income2
-Length=66
+Length=80
 Delay=2
+FlipDir=1
 Facet=0,80,110,80
 NextAction=Income3
 StartCall=OpenSound
@@ -59,16 +64,18 @@ PhaseCall=KawooshKill
 
 [Action]
 Name=Income3
-Length=51
+Length=200
 Delay=1
+FlipDir=1
 Facet=0,160,110,80
 NextAction=Income4
 Sound=Opened
 
 [Action]
 Name=Income4
-Length=51
+Length=200
 Delay=1
+FlipDir=1
 Reverse=1
 Facet=0,160,110,80
 NextAction=Income3
@@ -80,5 +87,7 @@ Sound=Opened
 Name=Off
 Length=63
 Delay=1
+FlipDir=1
 Facet=0,240,110,80
 Sound=StargateClose
+EndCall=SmokeEffect

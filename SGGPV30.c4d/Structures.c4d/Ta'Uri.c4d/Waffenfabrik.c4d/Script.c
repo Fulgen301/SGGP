@@ -105,7 +105,7 @@ func Lauf()
 	for(p in FindObjects(Find_Category(C4D_Object),Find_InRect(-15,-2,45,3)))
 	{
 		SetYDir(-2,p);
-		if(FindInArray(GetID(p),aIn))
+		if(GetIndexOf(GetID(p),aIn) != -1)
 		{
 			SetXDir(-2,p);
 		}

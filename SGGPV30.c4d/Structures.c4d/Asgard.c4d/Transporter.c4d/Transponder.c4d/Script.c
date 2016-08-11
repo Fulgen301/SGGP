@@ -41,7 +41,7 @@ func Delete(int i)
 {
 	aTrans[i] = 0;
 	aNames[i] = 0;
-	Message("<c 00ff00>Transporter zuordnung gelöscht!</c>",User);
+	Message("<c 00ff00>Transporterzuordnung gelöscht!</c>",User);
 }
 
 func GetGearType()	

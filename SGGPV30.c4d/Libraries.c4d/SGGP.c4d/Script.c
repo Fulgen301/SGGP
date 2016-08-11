@@ -37,6 +37,9 @@ global func FxIntTeamDisplayTimer(object pTarget, int iEffectNumber, int iEffect
     aIndex[ i] = GetPlayerByIndex(i);
     CustomMessage("",0,aIndex[ i],0,0,0,0,0,MSG_Top|MSG_Left);
   }
+  
+  if(FindObject(MS4K) || FindObject(EI4K)) return;
+  
   for(i = 0; i < iCount; i++) {
     iPlr = aIndex[ i];
     pClonk = GetCursor(iPlr);

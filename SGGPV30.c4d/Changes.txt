@@ -26,6 +26,7 @@ ADD:
 -DHDs können nur noch ihre zugehörigen Gates steuern.
 -Punktesystem
 -Hyperraum
+-Wurmlöcher (Zauber) berücksichtigen Stargates.
 
 FIX:
 -Pegasus-Gate-Bugfix, der das Überladen mittels Stargate-Overloader ermöglicht. (Danksagung an Der Tod für seine Hilfe!)
@@ -35,7 +36,8 @@ FIX:
 -Tel'tak-Selbstzerstörung erzeugt nun keinen Stack Overflow mehr.
 -Fix Nullpointer beim Fernzünder, wenn es kein C4 gibt.
 
-
+DELETED:
+-Iris-Kit
 
 ********************
 ***              ***

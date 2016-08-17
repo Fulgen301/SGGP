@@ -876,6 +876,7 @@ func ClimUp()
 
 public func OnClonkDeath(object pClonk, int iKiller)
 {
+	var melee = GameCall("IsMelee");
 	if(pClonk->GetOwner() == iKiller)
 	{
 		if(!pClonk->~IsWraith())

@@ -1,5 +1,0 @@
-[Action]
-Name=Wait
-Delay=1
-NextAction=Idle
-EndCall=Initialized

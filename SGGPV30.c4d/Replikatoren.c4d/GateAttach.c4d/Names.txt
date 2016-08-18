@@ -1,2 +1,0 @@
-DE:Replikator GateAttach
-US:Replicator gateattach

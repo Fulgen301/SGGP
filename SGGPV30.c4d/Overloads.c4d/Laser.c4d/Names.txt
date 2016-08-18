@@ -1,2 +1,0 @@
-DE:Laser-Upgrade
-US:Laser-Upgrade

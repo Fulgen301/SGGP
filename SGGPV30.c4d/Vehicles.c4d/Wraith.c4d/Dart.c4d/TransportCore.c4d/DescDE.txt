@@ -1,8 +1,0 @@
-Der TransportKern ist eigentlich nur ein Hilfsobjekt, indem die gesammelten Lebewesen gespeichert werden.
-Wenn du dashier liest, bist du vermutlich in einem Wraithdart gefangen worden und dir ist ziemlich langweilig.
-Deswegen hab ich dir hier mal n Paar tricks aufgeschrieben:
--Zat und Rononsgun kombinieren, dann kann man schnell jemanden töten, nachdem man ihn betäubt hat.
--Flüssigkeiten kühlen den Naquadahgenerator, damit kann er ununterbrochen auf Stufe 9 betrieben werden.
--Man kann (sofern angeschaltet) im Spiel mit /s Scripten (jeder spieler).
--Ein FLAK Geschütz ist auch sehr gut, um in Tälern sich vor angreifenden Clonks zu schützen.
--Bevor der Overloader ein Gate zerstört, wird die Iris auf der anderen Seite gekackt.

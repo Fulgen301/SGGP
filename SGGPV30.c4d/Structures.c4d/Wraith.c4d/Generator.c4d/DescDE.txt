@@ -1,2 +1,0 @@
-Der Standartgenerator der Wraith. Er wird in Schiffen, auf Basen und allem anderen verwendet.
-Effiziente Energieversorgung mit nur wenig abfällen.

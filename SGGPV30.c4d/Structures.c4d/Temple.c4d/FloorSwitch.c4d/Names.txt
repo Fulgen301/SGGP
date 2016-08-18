@@ -1,3 +1,0 @@
-DE:Bodenschalter
-US:Floor switch
-

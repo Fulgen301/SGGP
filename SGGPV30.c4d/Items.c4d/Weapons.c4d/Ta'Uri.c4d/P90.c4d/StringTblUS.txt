@@ -1,5 +1,0 @@
-Standard=Automatic
-Singleshot=Singleshot
-Antikull=Antikullfunction
-ANTKUpgradeDesc=put Antikullchip on P90
-ANTKUpgraded=You have put a Antikullchip on the P90!

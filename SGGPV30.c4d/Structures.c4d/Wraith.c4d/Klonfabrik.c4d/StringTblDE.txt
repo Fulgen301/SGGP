@@ -1,3 +1,0 @@
-Success=<c 00ff00>Klonen erfolgreich!</c>
-EnergyFail=<c ff0000>Zu wenig Energie!</c>
-Clone=Klonen

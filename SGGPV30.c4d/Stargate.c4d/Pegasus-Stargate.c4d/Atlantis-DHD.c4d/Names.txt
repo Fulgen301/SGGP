@@ -1,2 +1,0 @@
-DE:Pegasus-DHD
-US:Pegasus-DHD

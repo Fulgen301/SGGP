@@ -1,1 +1,0 @@
-A metal blockade, that rejects Objects that want to come threw the Gate.

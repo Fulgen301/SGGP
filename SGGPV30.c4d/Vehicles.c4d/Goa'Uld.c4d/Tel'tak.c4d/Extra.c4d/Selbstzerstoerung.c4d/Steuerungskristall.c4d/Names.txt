@@ -1,0 +1,2 @@
+DE:Steuerkristall
+US:Controlcrystal

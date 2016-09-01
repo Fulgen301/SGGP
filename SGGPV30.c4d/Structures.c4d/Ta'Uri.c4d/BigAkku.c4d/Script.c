@@ -1,6 +1,6 @@
 #strict
 
-#include BA15
+//#include BA15
 
 local EnergieStand,InfoOn;
 

@@ -3,7 +3,7 @@
 #strict 2
 
 #include DOOR
-#include BA15
+//#include BA15
 
 local energy;
 

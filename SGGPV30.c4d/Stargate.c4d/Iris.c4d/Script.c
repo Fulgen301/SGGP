@@ -47,6 +47,7 @@ func GDOControl(pwget)
 
 func Switch()
 {
+    var phase = GetPhase();
   if(open)
   {
    if(GetAction() eq "Open")
@@ -70,6 +71,7 @@ func Switch()
      Sound("iris_atlantis_close");
     }
 	else Sound("luke1");
+    SetPhase(20-phase);
    }
    if(GetAction() eq "Closes")
    {
@@ -100,6 +102,7 @@ func Switch()
      Sound("iris_atlantis_open");
     }
 	else Sound("luke1");
+    SetPhase(20 - phase);
    }
    if(GetAction() eq "Close")
    {
@@ -167,11 +170,6 @@ func IsClose()
 
 func Break()
 {
-  if(IsClose())
-  {
-   CreateObject(ROCK,GetX(target),GetY(target),-1)->Explode(24);
-   return(1);
-  }
-  RemoveObject();
-  return(1);
+  Explode(24);
+  return 1;
 }

@@ -83,7 +83,7 @@ func Activate(int iPlayer)
 	pCall = GetCursor(iPlayer);
 	CreateMenu(HELP, pCall, 0, 0,"Infos und so", 0, 1,1);
 	AddMenuItem("Info", Format("Info(%d)",iPlayer),MEPU, pCall);
-	if(iPlayer == 0)
+	if(iPlayer == 0 || IsSGGPTeamMember(iPlayer))
 	{
 		AddMenuItem("Einstellungen", Format("ChooseRules(%d)",iPlayer),MEPU, pCall);
 		if(!NoMordet)AddMenuItem("Beitritt deaktivieren", Format("NoMore(0)"),MEPU, pCall);

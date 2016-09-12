@@ -1,5 +1,5 @@
 [DefCore]
-id=SPER
+id=SPRE
 Name=Sperre
 Version=4,9,6,0
 Category=524289

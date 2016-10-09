@@ -27,6 +27,7 @@ func ControlDigDouble(pCaller)
 {
   user = pCaller;
   ask=1;
+  if(password == 0) password = "";
   if(password == "") 
   {
    InputCallback("");

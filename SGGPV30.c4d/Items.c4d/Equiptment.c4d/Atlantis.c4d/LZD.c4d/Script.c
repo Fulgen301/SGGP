@@ -34,7 +34,6 @@ func Entf()
   {
    target->RemoveObject();
   }
-  Explode(5);
   return(1);
 }
 

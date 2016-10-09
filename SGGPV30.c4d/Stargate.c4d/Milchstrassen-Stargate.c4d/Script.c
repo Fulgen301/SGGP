@@ -9,7 +9,6 @@ protected func Initialize()
 	return _inherited();
 }
 
-
 public func ChevronCount(object gate)
 {
 	if(gate->~IsDestinyGate())

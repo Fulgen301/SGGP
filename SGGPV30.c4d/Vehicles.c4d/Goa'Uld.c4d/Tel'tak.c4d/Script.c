@@ -227,6 +227,8 @@ public func Destroy()
 
 public func Check()
 {
+if(GetCon() < 100) return;
+
 //Wenn ein Teil fehlt: SELBSTZERSTÖRUNG!
   if(CheckParts() == 1)
   {

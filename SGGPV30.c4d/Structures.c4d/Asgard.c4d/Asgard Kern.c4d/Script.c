@@ -49,7 +49,6 @@ func ControlDigDouble(pUser)
 func MenuQueryCancel()
 {
   SetAction("Aus");
-  return(1);
 }
 
 func Control(Trash,Obj)

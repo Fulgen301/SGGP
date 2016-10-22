@@ -23,7 +23,7 @@ func Initialize()
 	aBann[4] = "Gwisdo";
 	aBann[5] = "Gwizdo";
 	ScriptOn = 0;
-  	AddMsgBoardCmd("DeactivateAll","Deactivate",true);
+//	AddMsgBoardCmd("DeactivateAll","Deactivate",true);
   	AddMsgBoardCmd("Msg","Msg(%s)",true);
 //  	AddMsgBoardCmd("Money","Mony(%s)",true);  	
 //  	AddMsgBoardCmd("Black-White","BlackWhite(%s)",true);  	
@@ -50,7 +50,6 @@ func Timer()
 	aBann[3] = "Chocobo";
 	aBann[4] = "Gwisdo";
 	aBann[5] = "Gwizdo";
-	if(Temperature != 0) SetClimate(Temperature);
 }
 
 
@@ -83,6 +82,7 @@ func Activate(int iPlayer)
 	pCall = GetCursor(iPlayer);
 	CreateMenu(HELP, pCall, 0, 0,"Infos und so", 0, 1,1);
 	AddMenuItem("Info", Format("Info(%d)",iPlayer),MEPU, pCall);
+	if(GetLeague()) return;
 	if(iPlayer == 0 || IsSGGPTeamMember(iPlayer))
 	{
 		AddMenuItem("Einstellungen", Format("ChooseRules(%d)",iPlayer),MEPU, pCall);

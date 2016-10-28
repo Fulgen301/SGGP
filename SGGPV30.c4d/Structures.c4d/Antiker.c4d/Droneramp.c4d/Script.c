@@ -2,7 +2,8 @@
 
 #strict 2
 
-local iDrone;
+local pDrone;
+local pTarget;
 
 protected func Initialize()
 {
@@ -35,18 +36,27 @@ protected func Fire(id type)
 	if(EnergyCheck(1000))
 	{
 		DoEnergy(-1000);
-		iDrone = CreateObject(type, 0, 0, this->GetOwner());
-		iDrone->SetYDir(-100);
+		pDrone = CreateObject(type, 0, 0, this->GetOwner());
+		pDrone->SetYDir(-100);
 		
 		var random = RandomX(-10,10);
-		iDrone->SetXDir(random);
-		iDrone->SetR(random);
+		pDrone->SetXDir(random);
+		pDrone->SetR(random);
+		pDrone->SetAction("Fliegen");
+		if(pTarget) pDrone->LocalN("target") = pTarget;
 		return true;
 	}
 	else
 	{
 		return Message("$NotEnoughEnergy$",this);
 	}
+}
+
+public func SetTarget(object pObj)
+{
+	if(!pObj) return;
+	pTarget = pObj;
+	return this;
 }
 
 public func Atlantis()	{return true;}

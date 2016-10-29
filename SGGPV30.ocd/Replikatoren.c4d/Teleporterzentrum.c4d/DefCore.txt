@@ -1,0 +1,24 @@
+[DefCore]
+id=RETE
+Version=4,9,8
+Name=Replikator Teleporter
+Category=C4D_Living|C4D_Structure
+MaxUserSelect=1
+ContactCalls=1
+Width=30
+Height=20
+Offset=-15,-10
+Vertices=1
+VertexY=9
+VertexCNAT=1,8,2
+VertexFriction=800,800,800
+Value=7
+Mass=500
+BorderBound=1
+NoBurnDecay=1
+ClosedContainer=2
+NoFight=1
+NoBreath=1
+Timer=10
+TimerCall=Timer
+Picture=0,-10,30,30

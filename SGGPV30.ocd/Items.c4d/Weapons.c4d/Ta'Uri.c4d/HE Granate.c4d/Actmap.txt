@@ -1,0 +1,6 @@
+[Action]
+Name=Scharf
+Delay=100
+Length=1
+Facet=0,6,6,6
+EndCall=Exploden

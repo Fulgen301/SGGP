@@ -1,0 +1,1 @@
+Die Hauptsteuerungseinheit des DHDs, ohne sie kann das DHD weder Tore anwählen, noch sonst etwas machen. Leider ist sie schnell beschädigt und sollte nicht runterfallen.

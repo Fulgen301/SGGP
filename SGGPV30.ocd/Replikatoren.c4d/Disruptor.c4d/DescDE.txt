@@ -1,0 +1,1 @@
+Stößt eine EM-Welle aus, welche bei kontakt mit Naniten oder Replikatorenzellen alle verbindungen kappt und damit den Replikator für immer tötet.

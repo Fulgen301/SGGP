@@ -1,0 +1,16 @@
+[DefCore]
+id=_HAC
+Name=Luke
+Category=4
+Width=24
+Height=20
+Offset=-12,-8
+Value=5
+Mass=50
+Components=METL=2
+Vertices=2
+VertexX=-8,8
+VertexY=7,7
+VertexFriction=50,50
+Grab=2
+TimerCall=CheckArea

@@ -1,0 +1,2 @@
+Standard=Einzelschuss
+Menu=Stabwaffe

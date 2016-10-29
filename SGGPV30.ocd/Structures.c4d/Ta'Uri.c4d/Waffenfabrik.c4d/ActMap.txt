@@ -1,0 +1,17 @@
+[Action]
+Name=Produce
+Length=20
+Delay=15
+EndCall=Ready
+Facet=0,20,80,20
+PhaseCall=Sm
+NextAction=Stand
+EnergyUsage=100
+
+[Action]
+Name=Stand
+Length=1
+Delay=5
+Facet=0,0,80,20
+StartCall=Check
+NextAction=Stand

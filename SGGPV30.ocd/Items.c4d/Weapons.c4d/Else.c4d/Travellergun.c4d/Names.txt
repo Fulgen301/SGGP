@@ -1,0 +1,2 @@
+DE:Waffe der Reisenden
+US:Travellerweapon

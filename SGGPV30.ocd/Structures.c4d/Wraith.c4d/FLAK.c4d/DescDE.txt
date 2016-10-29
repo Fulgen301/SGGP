@@ -1,0 +1,1 @@
+Feuert einen Elektromagnetischen Impuls in Richtung des Ziels.

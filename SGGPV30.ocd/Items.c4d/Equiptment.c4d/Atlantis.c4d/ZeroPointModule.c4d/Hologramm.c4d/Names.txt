@@ -1,0 +1,2 @@
+DE:ZPM(Hologramm)
+US:Zero Point Modul(Hologram)

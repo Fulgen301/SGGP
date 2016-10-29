@@ -1,0 +1,1 @@
+A Grenade which timer is setable to 1,3 and 5 seconds.

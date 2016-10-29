@@ -1,0 +1,2 @@
+Fire=Fire drone
+NotEnoughEnergy=<c ff0000>Not enough energy!</c>

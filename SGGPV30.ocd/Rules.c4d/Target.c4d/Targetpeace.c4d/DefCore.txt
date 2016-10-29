@@ -1,0 +1,13 @@
+[DefCore]
+id=TGTP
+Name=Targetpeace
+Mass=0
+Category=4
+Version=4,9,5
+Picture=0,0,15,15
+Offset=-8,-8
+Width=15
+Height=15
+Timer=4
+TimerCall=FadeOut
+Rotate=1

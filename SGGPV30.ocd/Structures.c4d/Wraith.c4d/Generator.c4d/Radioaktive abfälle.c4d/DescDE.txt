@@ -1,0 +1,8 @@
+Wenn die Regel für "Radioaktive Abfälle" aktiviert ist, entsteht dieser Stoff beim betreiben von Naquadahreaktoren.
+
+VORSICHT:
+Es ist Radioaktiver Abfall, also schadet allen Lebewesen in der nähe.
+Sollte zuviel an einem Punkt gelagert sein, kann es zu schweren Strahlungen kommen.
+Der Abfall sollte kostenpflichtig in der Basis entsorgt werden, 
+kann aber auch in Fässsern vergraben werden, dabei sollte das Fass versiegelt sein, da sost die Radioaktivität entweicht.
+Nach dem hantieren mit Radioaktven Stoffen die hände kräftig mit Seife waschen!

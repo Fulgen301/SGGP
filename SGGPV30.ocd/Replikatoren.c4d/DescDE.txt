@@ -1,0 +1,15 @@
+Die Replikatoren sind kleine Spinnenartige Roboterwesen.
+Wie ihr Name schon verrät, ist ihr oberstes Ziel sich zu Replizieren.
+Sie verwerten ABSOLUT ALLES, was sie in die Klauen bekommen zu:
+-Waffensystemen
+-Verteidigungsanlagen
+-Schutzwällen
+-Neuen Replikatoren
+-Geräte wie z.B. Teleporter
+-Upgrades für ihre Objekte
+-...
+So ist es also eine der wenigen KI's, die man nicht so einfach "Totschießen" kann.
+
+ACHTUNG:
+Die Replikatoren greifen nicht an, wenn sie sich nicht bedroht fühlen.
+Erst, wenn sie selbst angegriffen werden, oder weit genug entwickelt sind, um einen Krieg zu überleben, gehen sie in den Agressiven Modus über.

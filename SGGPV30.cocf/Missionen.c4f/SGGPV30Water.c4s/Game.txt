@@ -1,0 +1,2 @@
+[Script]
+GlobalNamed=8;lgt_enlightment=i1028,lgt_last_lgt_frame=i4698,ScriptOn=A0,WAYP_visibleWaypoints=A0,MAP_ScreenWidth=A0,MAP_ScreenHeight=A0,MAP_MasterScreen=A0,LOG_debug=A0

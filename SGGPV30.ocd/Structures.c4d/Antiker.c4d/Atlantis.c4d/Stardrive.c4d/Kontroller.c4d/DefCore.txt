@@ -1,0 +1,9 @@
+[DefCore]
+id=ALSK
+Name=Sternenantrieb-Kontroller
+Category=1
+Width=20
+Height=20
+Picture=0,20,80,150
+Timer=1
+TimerCall=Check

@@ -106,3 +106,42 @@ func IsAntiker()
 {
 	return(1);
 }
+local Touchable = 2;
+local ActMap = {
+Stand = {
+Prototype = Action,
+Name = "Stand",
+NextAction = "Hold",
+Delay = 1,
+Length = 1,
+X = 0,
+Y = 0,
+Wdt = 30,
+Hgt = 20,
+},
+Activ = {
+Prototype = Action,
+Name = "Activ",
+NextAction = "ActivRev",
+Delay = 2,
+Length = 5,
+X = 0,
+Y = 0,
+Wdt = 30,
+Hgt = 20,
+PhaseCall = "Timer",
+},
+ActivRev = {
+Prototype = Action,
+Name = "ActivRev",
+NextAction = "Activ",
+Reverse = 1,
+Delay = 2,
+Length = 5,
+X = 0,
+Y = 0,
+Wdt = 30,
+Hgt = 20,
+PhaseCall = "Timer",
+},  };
+local Name = "$Name$";

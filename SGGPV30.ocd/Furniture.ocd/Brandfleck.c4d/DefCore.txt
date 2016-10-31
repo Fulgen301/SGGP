@@ -1,6 +1,5 @@
 [DefCore]
 id=RF3V
-Name=Brandfleck
 Category=1
 
 Width=100

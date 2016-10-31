@@ -1,6 +1,5 @@
 [DefCore]
 id=LJ3V
-Name=Lichtschein
 Category=4
 Width=40
 Height=20

@@ -1,19 +1,20 @@
-#Menu
-Exit=Exit
-Cloak=Cloak
-Heck=Hatch
-Damage=Damage
-Destruction=Self-destruction
-Shield=Toggle shield state
-Energy=Energy
-Iris=Toggle iris
-Buy=Buy
-Sell=Sell
-Activate=Activate object
-Hyperspace=Hyperdrive
-
-#Damage
-DamageCall=Damage: %v|Left: %v
-
-#Selection
-Choose={{RIG1}} / {{STGT}}?
+#Menu
+Exit=Exit
+Cloak=Cloak
+Heck=Hatch
+Damage=Damage
+Destruction=Self-destruction
+Shield=Toggle shield state
+Energy=Energy
+Iris=Toggle iris
+Buy=Buy
+Sell=Sell
+Activate=Activate object
+Hyperspace=Hyperdrive
+
+#Damage
+DamageCall=Damage: %v|Left: %v
+
+#Selection
+Choose={{RIG1}} / {{STGT}}?
+Name=Tel'tak

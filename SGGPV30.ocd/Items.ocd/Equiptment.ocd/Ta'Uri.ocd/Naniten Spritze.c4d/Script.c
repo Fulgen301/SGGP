@@ -100,3 +100,5 @@ global func FxRenaniteTimer(object pTarget)
   }
   return(1);
 }
+local Name = "$Name$";
+local Collectible = 1;

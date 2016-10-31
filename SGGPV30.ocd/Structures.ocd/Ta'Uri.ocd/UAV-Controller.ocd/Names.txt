@@ -1,2 +1,0 @@
-DE:UAV-Kontrollstation
-US:UAV-Controller

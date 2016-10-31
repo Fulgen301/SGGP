@@ -91,3 +91,5 @@ public func Fire1()    // Projektilschuss
 func IsGoauldWeapon() { return(true); }
 func AlchemProcessTime() { return(700); }
 public func GetRace()	{ return SG1_Goauld; }
+local Name = "$Name$";
+local Collectible = 1;

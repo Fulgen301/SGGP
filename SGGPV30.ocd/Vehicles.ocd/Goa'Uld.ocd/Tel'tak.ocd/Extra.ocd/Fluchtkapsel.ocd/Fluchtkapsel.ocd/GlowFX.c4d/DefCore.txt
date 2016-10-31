@@ -1,6 +1,5 @@
 [DefCore]
 id=SCAG
-Name=GlowFX
 Category=4
 Width=29
 Height=29

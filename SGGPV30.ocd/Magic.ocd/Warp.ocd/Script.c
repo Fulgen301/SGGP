@@ -75,3 +75,4 @@ private func GetWarpPosition(&x, &y)
 
 public func GetSpellClass(object pMage) { return(AIR1); }
 public func GetSpellCombo(pMage) { return ("144"); } // (1: Backward; 2: Down; 3: Forward; 4: Throw; 5: Jump; 6: Dig)
+local Name = "$Name$";

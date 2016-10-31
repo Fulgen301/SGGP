@@ -1,7 +1,6 @@
 [DefCore]
 id=REDR
 Version=4,9,8
-Name=Replikatoren Drohne
 Category=C4D_Object
 Width=20
 Offset=-10,-15

@@ -100,3 +100,27 @@ func FindObj()
 {
 	return();
 }
+local ActMap = {
+NoARW = {
+Prototype = Action,
+Name = "NoARW",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 75,
+Hgt = 80,
+NextAction = "Hold",
+},
+ARW = {
+Prototype = Action,
+Name = "ARW",
+Length = 1,
+Delay = 1,
+X = 75,
+Y = 0,
+Wdt = 75,
+Hgt = 80,
+NextAction = "Hold",
+},  };
+local Name = "$Name$";

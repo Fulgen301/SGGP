@@ -1,7 +1,6 @@
 [DefCore]
 id=JUDO
 Version=4,9,8,2
-Name=Jumperdock
 Category=1154
 Width=35
 Height=35

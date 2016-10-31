@@ -108,3 +108,26 @@ func Trekking()
 
 
 
+local ActMap = {
+FadeIn = {
+Prototype = Action,
+Name = "FadeIn",
+Length = 1,
+Delay = 1,
+FacetBase = 1,
+NextAction = "FadeIn",
+StartCall = "FadingIn",
+},
+Search = {
+Prototype = Action,
+Name = "Search",
+Length = 5,
+Delay = 10,
+X = 0,
+Y = 0,
+Wdt = 75,
+Hgt = 75,
+NextAction = "Search",
+PhaseCall = "Searching",
+},  };
+local Name = "$Name$";

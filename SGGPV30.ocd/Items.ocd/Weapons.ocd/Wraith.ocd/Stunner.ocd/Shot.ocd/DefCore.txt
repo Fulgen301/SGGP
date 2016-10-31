@@ -1,7 +1,6 @@
 [DefCore]
 id=WRSF
 Version=4,9,5
-Name=Stunner Projectile
 Category=4
 Width=11
 Height=18

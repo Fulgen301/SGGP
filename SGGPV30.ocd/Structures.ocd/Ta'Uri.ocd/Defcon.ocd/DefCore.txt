@@ -1,6 +1,5 @@
 [DefCore]
 id=DEFC
-Name=Defcon
 Version=4,9,5
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 Width=10

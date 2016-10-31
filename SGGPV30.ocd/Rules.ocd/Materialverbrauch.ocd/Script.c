@@ -15,3 +15,4 @@ global func SetRepliMaterial(int iLimit)
 	RepliHunger = iLimit;
 }
 
+local Name = "$Name$";

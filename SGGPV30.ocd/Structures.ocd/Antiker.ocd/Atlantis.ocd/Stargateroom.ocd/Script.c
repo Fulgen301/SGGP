@@ -24,3 +24,4 @@ public func Atlantis()
 {
 	return(1);
 }
+local Name = "$Name$";

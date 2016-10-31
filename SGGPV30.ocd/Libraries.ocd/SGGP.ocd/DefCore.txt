@@ -1,6 +1,5 @@
 [DefCore]
 id=SGGP
-Name=SGGP
 Version=4,9,5
 Category=C4D_StaticBack
 MaxUserSelect=10

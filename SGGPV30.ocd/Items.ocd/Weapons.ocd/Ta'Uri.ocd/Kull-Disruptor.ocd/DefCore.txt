@@ -1,7 +1,6 @@
 [DefCore]
 id=TAKD
 Version=4,9,8,2
-Name=Kull-Disruptor
 Category=C4D_Object|C4D_SelectMaterial|C4D_SelectKnowledge|C4D_SelectHomebase
 MaxUserSelect=1
 Width=18
@@ -16,4 +15,3 @@ Mass=15
 Components=METL=3;ENAP=3;CRYS=2;NAQU=3
 Picture=18,0,64,64
 Rebuy=1
-Collectible=1

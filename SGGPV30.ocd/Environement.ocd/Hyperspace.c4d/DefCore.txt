@@ -1,6 +1,5 @@
 [DefCore]
 id=HPRS
-Name=Hyerspace
 Category=1
 Width=20
 Height=20

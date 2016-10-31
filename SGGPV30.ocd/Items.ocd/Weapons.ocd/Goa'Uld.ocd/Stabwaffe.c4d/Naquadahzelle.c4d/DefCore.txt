@@ -1,7 +1,6 @@
 [DefCore]
 id=GONZ
 Version=4,9,9
-Name=Naquadah-Zelle
 Category=3600
 Width=5
 Height=5
@@ -15,5 +14,4 @@ Mass=10
 Components=NAQU=1;METL=1
 Picture=5,0,64,64
 Rebuy=1
-Collectible=1
 Rotate=1

@@ -1,0 +1,12 @@
+/*-- Gebäude sind mit dem Punktesystem kompatibel --*/
+#appendto *
+
+protected func Completion()
+{
+	_inherited(...);
+	if((this->GetCategory() & C4D_Structure) && !this->~IsRepli())
+	{
+		DoPoints(this->GetOwner(), 10, SGGP_SettlePoints);
+	}
+	return true;
+}

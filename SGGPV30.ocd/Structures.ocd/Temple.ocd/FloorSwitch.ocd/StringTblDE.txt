@@ -1,2 +1,3 @@
-MsgStuck=Klemmt!
-
+MsgStuck=Klemmt!
+
+Name=Bodenschalter

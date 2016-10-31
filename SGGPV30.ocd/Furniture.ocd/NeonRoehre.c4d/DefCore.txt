@@ -1,6 +1,5 @@
 [DefCore]
 id=NR31
-Name=Neonröhre
 Category=1
 MaxUserSelect=10
 Width=28

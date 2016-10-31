@@ -1,6 +1,0 @@
-[Action]
-Name=Standing
-Procedure=FLOAT
-Length=1
-Delay=0
-FacetBase=1

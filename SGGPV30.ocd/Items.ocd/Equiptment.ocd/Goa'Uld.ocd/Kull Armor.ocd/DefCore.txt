@@ -1,7 +1,6 @@
 [DefCore]
 id=GOKR
 Version=4,9,8,2
-Name=Kull Armor
 Category=16
 MaxUserSelect=1
 Width=20
@@ -16,6 +15,5 @@ Mass=20
 Components=METL=3;ENAP=1;NAQU=5;
 Picture=0,13,64,64
 Rebuy=1
-Collectible=1
 Timer=1
 TimerCall=GearGiveBreath

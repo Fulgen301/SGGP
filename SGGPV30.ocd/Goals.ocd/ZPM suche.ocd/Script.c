@@ -24,3 +24,4 @@ func Activate(int iPlayer)
 {
 	MessageWindow("Sie müssen das ZPM unversehrt in die Konsole packen!",iPlayer);
 }
+local Name = "$Name$";

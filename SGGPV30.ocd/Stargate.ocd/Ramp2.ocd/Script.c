@@ -53,3 +53,4 @@ public func IsStargateRamp()
 {
 	return(1);
 }
+local Name = "$Name$";

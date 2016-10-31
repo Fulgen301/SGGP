@@ -73,3 +73,4 @@ global func CheckHelp()
 {
 	if(!FindObject(HELP)) CreateObject(HELP);
 }
+local Name = "$Name$";

@@ -1,2 +1,0 @@
-DE:Atlantis-Wand
-US:Atlantis-Wall

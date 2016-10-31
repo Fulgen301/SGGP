@@ -1,19 +1,17 @@
 /*--Pegasus-Stargate --*/
 
-#strict 2
-
-#include STRG
+#include Stargate
 
 protected func Initialize()
 {
-	return _inherited();
+	return inherited();
 }
 
 public func ChevronCount(object gate)
 {
 	if(gate->~IsDestinyGate())
 	{
-		if(gate->~GetName() == "Destiny" && gate->LocalN("destiny")) return 9;
+		if(gate->~GetName() == "Destiny" && gate.destiny) return 9;
 		return 8;
 	}
 	if(gate->~IsMilkywayGate()) return 8;
@@ -30,3 +28,4 @@ private func ChevronSound()	  { return Sound("pegasus_chevron2");  }
 private func FailSound()	  { return Sound("pegasus_fail",0,0,50); }
 
 public func FindDHD()		  { return FindObject2(Find_Func("IsDHD"),Find_Or(Find_Func("IsPegasusDHD"),Find_Func("IsDialPC"))); }
+local Name = "$Name$";

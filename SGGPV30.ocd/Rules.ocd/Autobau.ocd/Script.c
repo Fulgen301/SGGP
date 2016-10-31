@@ -23,3 +23,4 @@ func Activate(int iPlayer)
 {
 	MessageWindow("Sorgt für den automatischen Aufbau von Objekten!",iPlayer);
 }
+local Name = "$Name$";

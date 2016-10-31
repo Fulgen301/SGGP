@@ -1,6 +1,5 @@
 [DefCore]
 id=_FLT
-Name=FlintThrower
 Version=4,9,5,3
 Category=2
 Width=32

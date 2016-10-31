@@ -90,3 +90,4 @@ global func DoPoints(int iPlr, int iAmount, int iType)
 	SetPlrExtraData(iPlr, "SGGP_Points", points);
 	return points;
 }
+local Name = "$Name$";

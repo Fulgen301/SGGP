@@ -1,7 +1,6 @@
 [DefCore]
 id=REDA
 Version=4,9,8
-Name=Replikator Drohnenabschuss
 Category=C4D_Structure
 MaxUserSelect=1
 ContactCalls=1

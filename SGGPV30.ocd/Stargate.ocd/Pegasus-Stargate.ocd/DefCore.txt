@@ -1,6 +1,5 @@
 [DefCore]
 id=SGAG
-Name=Pegasus-Stargate
 Version=4,9,5
 Category=2
 Components=NAQU=20;METL=2

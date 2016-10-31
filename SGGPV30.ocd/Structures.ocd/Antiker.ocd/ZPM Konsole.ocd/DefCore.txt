@@ -1,7 +1,6 @@
 [DefCore]
 id=ZPMG
 Version=4,9,8
-Name=ZPM Console
 Category=1154
 MaxUserSelect=1
 Width=45
@@ -17,7 +16,6 @@ Components=ROCK=5;CRYS=1;METL=3
 Picture=0,0,45,15
 Construction=1
 LineConnect=19
-Grab=2
 Timer=1
 TimerCall=Check
 

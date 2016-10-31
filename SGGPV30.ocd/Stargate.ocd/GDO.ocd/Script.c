@@ -63,3 +63,5 @@ func InputCallback(pw)
   }
   return(1);
 }
+local Name = "$Name$";
+local Collectible = 1;

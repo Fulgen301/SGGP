@@ -9,3 +9,4 @@ protected Blinken:
   if(licht==34)CreateParticle("Lichtlein",-4,-19,0,0,80,RGBa(0,255,0,0));
   if(licht==36)licht=0;
   return(1);
+local Name = "Lampe2";

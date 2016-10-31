@@ -22,3 +22,4 @@ func Disappear()
   }
   return(1);
 }
+local Name = "$Name$";

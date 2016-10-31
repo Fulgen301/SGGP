@@ -1,1 +1,2 @@
-Standard=Schnellfeuer
+Standard=Schnellfeuer
+Name=Handgelenkswaffe

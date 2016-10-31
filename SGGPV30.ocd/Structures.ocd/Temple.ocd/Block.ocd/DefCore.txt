@@ -1,7 +1,6 @@
 [DefCore]
 id=_BLK
 Version=4,9,8
-Name=Block
 Category=C4D_Vehicle
 ContactCalls=15
 Width=40

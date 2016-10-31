@@ -1,6 +1,5 @@
 [DefCore]
 id=TEL_
-Name=Tel'tak
 Category=3332
 Version=4,9,5
 Value=2000

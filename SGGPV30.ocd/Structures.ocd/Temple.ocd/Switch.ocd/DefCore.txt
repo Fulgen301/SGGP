@@ -1,7 +1,6 @@
 [DefCore]
 id=_SWT
 Version=4,9,8
-Name=Switch
 Category=C4D_Structure
 Width=16
 Height=16
@@ -14,5 +13,4 @@ Mass=70
 Components=WOOD=1;METL=2
 Picture=0,0,16,16
 BurnTo=NONE
-Grab=2
 HorizontalFix=1

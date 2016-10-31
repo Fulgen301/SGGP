@@ -1,7 +1,6 @@
 [DefCore]
 id=ZPM2
 Version=4,9,5
-Name=ZeroPointModule
 Category=2
 Width=4
 Height=7

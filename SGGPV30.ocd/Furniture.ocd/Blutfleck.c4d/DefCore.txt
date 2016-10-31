@@ -1,6 +1,5 @@
 [DefCore]
 id=LK3V
-Name=Blutfleck
 Category=1
 
 Width=40

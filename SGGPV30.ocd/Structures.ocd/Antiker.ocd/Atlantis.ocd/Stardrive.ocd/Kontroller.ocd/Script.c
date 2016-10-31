@@ -77,3 +77,4 @@ public func IsAntiker()
 {
 	return(1);
 }
+local Name = "$Name$";

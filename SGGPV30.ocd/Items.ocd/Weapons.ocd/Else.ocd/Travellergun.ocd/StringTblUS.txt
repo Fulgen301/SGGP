@@ -1,2 +1,3 @@
-Standard=Single shots
-Beteuben=Knockout
+Standard=Single shots
+Beteuben=Knockout
+Name=Travellerweapon

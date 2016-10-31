@@ -17,3 +17,4 @@ func Activate(int iPlayer)
 {
 	MessageWindow("Sie müssen das Naquadah finden!",iPlayer);
 }
+local Name = "$Name$";

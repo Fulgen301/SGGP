@@ -1,1 +1,2 @@
-Shockwave=Schockwelle
+Shockwave=Schockwelle
+Name=Disruptor

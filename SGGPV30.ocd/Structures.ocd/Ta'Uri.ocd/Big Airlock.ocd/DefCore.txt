@@ -1,7 +1,6 @@
 [DefCore]
 id=TAGL
 Version=4,9,8
-Name=Groﬂe Luftschleuse
 Category=2
 Width=130
 Height=70

@@ -1,6 +1,5 @@
 [DefCore]
 id=DHDP
-Name=DHD
 Version=4,9,5
 MaxUserSelect=1
 Category=1154
@@ -13,7 +12,6 @@ VertexX=-10,10,0,0,10,10
 VertexY=-8,6,-8,6,-8,6
 VertexFriction=80,80,80,80,80,80
 Offset=-10,-8
-Grab=2
 Components=NAQU=2;METL=1;CRYS=3
 Construction=1
 Timer=50

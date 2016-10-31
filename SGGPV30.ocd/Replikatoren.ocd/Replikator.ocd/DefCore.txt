@@ -1,7 +1,6 @@
 [DefCore]
 id=REPL
 Version=4,9,8
-Name=Replikator
 Category=C4D_SelectAnimal|C4D_Living
 MaxUserSelect=10
 ContactCalls=1

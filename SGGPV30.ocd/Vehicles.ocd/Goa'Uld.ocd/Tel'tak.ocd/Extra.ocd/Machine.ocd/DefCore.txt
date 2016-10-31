@@ -1,7 +1,6 @@
 [DefCore]
 id=TEL4
 Version=4,9,1,3
-Name=Hyperraumgenerator
 Category=C4D_Vehicle
 Width=17
 Height=43

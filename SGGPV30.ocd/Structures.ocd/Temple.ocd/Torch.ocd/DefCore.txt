@@ -1,6 +1,5 @@
 [DefCore]
 id=_TOR
-Name=Torch
 Version=4,9,5,2
 Category=1
 Value=11
@@ -13,4 +12,3 @@ Vertices=3
 VertexX=0,-1,1
 VertexY=-2,13,13
 VertexFriction=10,10,10
-Grab=1

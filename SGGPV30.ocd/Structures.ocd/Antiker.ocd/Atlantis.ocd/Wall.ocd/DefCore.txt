@@ -1,7 +1,6 @@
 [DefCore]
 id=ALW1
 Version=4,9,8
-Name=Atlantis-Wand
 Category=C4D_Structure|C4D_SelectKnowledge
 MaxUserSelect=1
 Width=40

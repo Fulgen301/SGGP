@@ -1,7 +1,6 @@
 [DefCore]
 id=GOWV
 Version=4,9,8
-Name=BurnedWeaponFactory
 Category=C4D_Structure
 Width=80
 Height=50

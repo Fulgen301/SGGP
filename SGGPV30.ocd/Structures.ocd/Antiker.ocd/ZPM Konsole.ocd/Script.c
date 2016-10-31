@@ -441,3 +441,5 @@ protected func FxIntEnergyTimer(object pTarget, int iEffect)
 		}
 	}
 }
+local Touchable = 2;
+local Name = "$Name$";

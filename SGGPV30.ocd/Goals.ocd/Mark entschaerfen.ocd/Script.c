@@ -20,3 +20,4 @@ func Activate(int iPlayer)
 {
 	MessageWindow("Sie müssen die Mark entschärfen!",iPlayer);
 }
+local Name = "$Name$";

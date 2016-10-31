@@ -1,7 +1,6 @@
 [DefCore]
 id=GOBV
 Version=4,9,8
-Name=BurnedBase
 Category=C4D_Structure
 Width=64
 Height=43
@@ -18,6 +17,5 @@ ContactIncinerate=3
 BlastIncinerate=10
 Construction=1
 ConstructTo=GOEB
-Grab=1
 Rotate=1
 Float=1

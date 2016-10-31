@@ -1,6 +1,5 @@
 [DefCore]
 id=SGR2
-Name=Stargate Ramp (Aussen)
 Version=4,9,8
 Category=1154
 MaxUserSelect=1

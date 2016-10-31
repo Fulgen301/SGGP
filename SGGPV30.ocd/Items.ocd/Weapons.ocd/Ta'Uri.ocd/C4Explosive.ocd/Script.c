@@ -152,3 +152,6 @@ func Entrance()
 	SetPosition(x,y);
 	return(1);
 }
+local Touchable = 1;
+local Name = "$Name$";
+local Collectible = 1;

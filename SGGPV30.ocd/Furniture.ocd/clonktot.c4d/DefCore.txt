@@ -1,6 +1,5 @@
 [DefCore]
 id=_CLT
-Name=Clonktot
 Category=1
 Width=16
 Height=14

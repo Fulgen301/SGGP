@@ -1,7 +1,6 @@
 [DefCore]
 id=TEL3
 Version=4,9,1,3
-Name=Heckluke
 Category=C4D_Vehicle
 Width=31
 Height=21

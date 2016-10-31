@@ -1,2 +1,3 @@
-MsgStuck=Stuck!
-
+MsgStuck=Stuck!
+
+Name=Floor switch

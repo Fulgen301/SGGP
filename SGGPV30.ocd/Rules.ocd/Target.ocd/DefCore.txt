@@ -1,6 +1,5 @@
 [DefCore]
 id=TRGT
-Name=Target
 Mass=10
 Category=4
 Version=4,9,5

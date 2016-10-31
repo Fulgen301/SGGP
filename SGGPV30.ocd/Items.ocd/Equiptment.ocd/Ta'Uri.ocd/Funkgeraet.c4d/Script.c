@@ -248,3 +248,5 @@ func Funkout(chnlout,status)
   }
   return(1);
 }
+local Name = "Funkgerät";
+local Collectible = 1;

@@ -1,8 +1,9 @@
-Titel=Optionen
-Off=Deaktivieren
-On=Aktivieren
-Stickon=Anbringen
-Stickonwhat=Anbringen an...
-Activated=<c 00d600>Aktiviert
-Deactivated=<c d60000>Deaktiviert
-accessdenied=<c d60000>Zugriff verweigert
+Titel=Optionen
+Off=Deaktivieren
+On=Aktivieren
+Stickon=Anbringen
+Stickonwhat=Anbringen an...
+Activated=<c 00d600>Aktiviert
+Deactivated=<c d60000>Deaktiviert
+accessdenied=<c d60000>Zugriff verweigert
+Name=C4 Sprengsatz

@@ -28,3 +28,4 @@ protected func Timer(){
  
   return(1);
   }
+local Name = "Ambiente";

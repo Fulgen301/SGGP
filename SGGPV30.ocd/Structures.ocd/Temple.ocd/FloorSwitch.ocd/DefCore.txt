@@ -1,7 +1,6 @@
 [DefCore]
 id=_FLS
 Version=4,9,8
-Name=FloorSwitch
 Category=C4D_StaticBack
 Timer=5
 TimerCall=Timer10

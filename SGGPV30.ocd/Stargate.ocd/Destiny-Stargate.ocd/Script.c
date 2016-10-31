@@ -1,17 +1,14 @@
 /*--Destiny-Stargate --*/
-
-#strict 2
-
-#include STRG
+#include Stargate
 
 protected func Initialize()
 {
-	return _inherited();
+	return inherited();
 }
 
 public func ChevronCount(object gate)
 {
-	if(IsDestinyGate() && Name == "Destiny" && gate->LocalN("destiny")) return 9;
+	if(IsDestinyGate() && Name == "Destiny" && gate.destiny) return 9;
 	if(gate->~IsMilkywayGate() || gate->~IsPegasusGate()) return 8;
 	return 7;
 }
@@ -25,7 +22,7 @@ private func ChevronSound()	  { return Sound("destiny_chevron");  }
 //private func OpenSound()	  { return Sound("destiny_kawoosh"); }
 private func FailSound()	  { return Sound("pegasus_fail",0,0,50); }
 
-public func FindDHD()		  { return FindObject2(Find_Func("IsDHD"),Find_Or(Find_Func("IsDestinyDHD"),Find_Func("IsDialPC"))); }
+public func FindDHD()		  { return FindObject(Find_Func("IsDHD"),Find_Or(Find_Func("IsDestinyDHD"),Find_Func("IsDialPC"))); }
 
 protected func SmokeEffect()
 {
@@ -82,11 +79,13 @@ protected func DialSounds()
 	  {
 		  FailSound();
 		  Deactivate();
+		  return true;
 	  }
   }
   if(GetPhase() == 99)
   {
    ChevronSound();
   }
-  return(1);
+  return true;
 }
+local Name = "$Name$";

@@ -1,7 +1,6 @@
 [DefCore]
 id=MGWP
 Version=4,9,8
-Name=Wurmloch
 Category=C4D_Magic
 Width=1
 Height=1

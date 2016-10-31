@@ -143,3 +143,28 @@ func InputCallback(string szName)
   Message("Kein Ringtransporter in der nähe!",this());
   return(1);
 }
+local Touchable = 2;
+local ActMap = {
+Fuse = {
+Prototype = Action,
+Name = "Fuse",
+Length = 1,
+Delay = 100,
+X = 10,
+Y = 0,
+Wdt = 10,
+Hgt = 15,
+EndCall = "Start",
+},
+Fuse2 = {
+Prototype = Action,
+Name = "Fuse2",
+Length = 1,
+Delay = 100,
+X = 10,
+Y = 0,
+Wdt = 10,
+Hgt = 15,
+EndCall = "FuseEnd2",
+},  };
+local Name = "Pult";

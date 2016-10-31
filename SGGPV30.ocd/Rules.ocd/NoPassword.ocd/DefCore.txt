@@ -1,6 +1,5 @@
 [DefCore]
 id=NOPW
-Name=Keine Passwörter
 Version=4,9,6,0
 Category=524289
 Value=1

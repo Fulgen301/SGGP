@@ -49,3 +49,5 @@ public func Fire1()    // Projektilschuss
   Sound("wr_pistolfire",0,ammo);
   Reload();
 }
+local Name = "$Name$";
+local Collectible = 1;

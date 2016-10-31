@@ -1,6 +1,5 @@
 [DefCore]
 id=TELO
-Name=Tel'tak
 Category=1
 Version=4,9,5
 Width=300

@@ -1,2 +1,0 @@
-DE:Sternenantrieb-Kontroller
-US:Stardrive-Controller

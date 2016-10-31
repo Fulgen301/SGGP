@@ -58,3 +58,5 @@ func GetYLaunch(int i,int j)
   while(GBackSolid(j-GetX(),a-GetY())||GBackLiquid(j-GetX(),a-GetY())) a-=2;
   return(a);
 }
+local Name = "$Name$";
+local Collectible = 1;

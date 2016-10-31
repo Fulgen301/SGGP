@@ -314,3 +314,5 @@ public func IsDHD()			{return true;}
 public func IsMilkywayDHD()	{return true;}
 public func IsPegasusDHD()	{return false;}
 public func IsDestinyDHD()	{return false;}
+local Touchable = 2;
+local Name = "$Name$";

@@ -1,7 +1,6 @@
 [DefCore]
 id=KULL
 Version=4,9,8,2
-Name=Kull
 Category=C4D_Living|C4D_SelectHomebase
 MaxUserSelect=5
 Timer=1

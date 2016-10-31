@@ -1,7 +1,6 @@
 [DefCore]
 id=TELS
 Version=4,9,1,3
-Name=Selbstzerstörung
 Category=C4D_Vehicle
 MaxUserSelect=15
 Width=16
@@ -15,6 +14,5 @@ Vertices=4
 VertexY=-3,-3,3,3
 VertexX=5,-5,-5,5
 VertexFriction=50,50,100,100
-Grab=2
 Construction=0
 GrabPutGet=3

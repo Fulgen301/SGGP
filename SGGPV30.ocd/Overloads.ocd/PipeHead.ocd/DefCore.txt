@@ -1,7 +1,6 @@
 [DefCore]
 id=PIPH
 Version=4,9,8
-Name=Pipehead
 Category=C4D_Structure
 ContactCalls=1
 Width=3

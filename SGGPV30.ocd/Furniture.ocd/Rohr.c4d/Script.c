@@ -17,3 +17,17 @@ Peng:
 Timer:
   if(Global(111)==1)unlook=0;
   return(1);
+local ActMap = {
+"_NIX" = {
+Prototype = Action,
+Name = "_NIX",
+Procedure = DFA_FLOAT,
+Length = 1,
+Delay = 7,
+X = 0,
+Y = 0,
+Wdt = 8,
+Hgt = 69,
+NextAction = "_NIX",
+},  };
+local Name = "Rohre1";

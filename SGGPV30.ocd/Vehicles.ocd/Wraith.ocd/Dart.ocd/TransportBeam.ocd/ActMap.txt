@@ -1,7 +1,0 @@
-[Action]
-Name=Attach
-Procedure=ATTACH
-NextAction=Attach
-Length=5
-Delay=1
-Facet=0,0,128,128

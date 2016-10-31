@@ -70,3 +70,4 @@ public func Check()
 }
 
 public func IsChooseable() {return false;}
+local Name = "$Name$";

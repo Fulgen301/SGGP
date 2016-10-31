@@ -1,7 +1,6 @@
 [DefCore]
 id=CPFR
 Version=4,9,8
-Name=CampFire
 Category=C4D_Vehicle
 TimerCall=CheckContents
 Width=24
@@ -17,5 +16,4 @@ Components=WOOD=1
 Picture=20,0,20,25
 BurnTo=NONE
 ConstructTo=NONE
-Grab=2
 GrabPutGet=C4D_GrabGet|C4D_GrabPut

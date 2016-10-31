@@ -333,3 +333,5 @@ public func FindStargate()
 public func IsMachine() {return true;}
 public func IsDHD()		{return true;}
 public func IsDialPC()	{return true;}
+local Touchable = 2;
+local Name = "$Name$";

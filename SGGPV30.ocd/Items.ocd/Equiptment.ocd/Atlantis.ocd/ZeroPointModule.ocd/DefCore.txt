@@ -1,7 +1,6 @@
 [DefCore]
 id=ZPM_
 Version=4,9,5
-Name=ZPM
 Category=C4D_Vehicle|C4D_SelectHomebase|C4D_SelectKnowledge
 MaxUserSelect=1
 Width=4
@@ -16,7 +15,6 @@ Mass=10
 Components=CRYS=50;METL=5;
 Picture=13,0,64,64
 Rebuy=1
-Collectible=1
 //LineConnect=2
 Timer=1
 TimerCall=Piccheck

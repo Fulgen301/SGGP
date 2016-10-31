@@ -1,6 +1,5 @@
 [DefCore]
 id=TALP
-Name=Laptop
 Version=4,9,1,3
 Category=3600
 MaxUserSelect=2
@@ -18,7 +17,6 @@ VertexFriction=50,50,50,50
 Exclusive=1
 Rebuy=1
 BorderBound=1
-Collectible=1
 
 [Physical]
 Energy=100000

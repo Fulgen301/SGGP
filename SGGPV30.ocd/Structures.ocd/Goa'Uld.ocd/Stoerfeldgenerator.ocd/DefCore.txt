@@ -1,6 +1,5 @@
 [DefCore]
 id=STRF
-Name=Störfeldgenerator
 Category=1154
 Value=200
 MaxUserSelect=10
@@ -14,7 +13,6 @@ Vertices=1
 VertexX=0
 VertexY=10
 VertexFriction=80
-Grab=2
 Construction=1
 LineConnect=C4D_PowerInput|C4D_PowerOutput|C4D_PowerConsumer
 

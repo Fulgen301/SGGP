@@ -1,1 +1,2 @@
-DescSwitch=Switch
+DescSwitch=Switch
+Name=Switch

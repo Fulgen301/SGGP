@@ -1,7 +1,6 @@
 [DefCore]
 id=WRAT
 Version=4,9,8,2
-Name=Wraith
 Category=C4D_Living|C4D_SelectHomebase
 MaxUserSelect=5
 Timer=1

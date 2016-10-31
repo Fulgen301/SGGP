@@ -1,6 +1,5 @@
 [DefCore]
 id=_KSC
-Name=kaputter Screen
 Category=1
 Width=39
 Height=39

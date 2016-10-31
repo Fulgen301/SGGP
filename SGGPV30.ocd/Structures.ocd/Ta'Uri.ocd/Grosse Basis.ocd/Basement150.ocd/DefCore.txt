@@ -1,7 +1,6 @@
 [DefCore]
 id=BA15
 Version=4,9,8
-Name=Basement
 Category=C4D_Structure
 Width=150
 Height=8

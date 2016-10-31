@@ -60,3 +60,18 @@ func Damage(int iLevel)
 }
 
 func IsBulletTarget()    { return(1); }
+local ActMap = {
+Fliegen = {
+Prototype = Action,
+Name = "Fliegen",
+Procedure = DFA_FLOAT,
+NextAction = "Fliegen",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 20,
+Hgt = 30,
+PhaseCall = "Timer",
+},  };
+local Name = "$Name$";

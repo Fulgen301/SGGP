@@ -70,3 +70,5 @@ public func ConUse(object pCaller)
 	ActivateMe(pCaller);
 	Sound("Click");
 }
+local Name = "$Name$";
+local Collectible = 1;

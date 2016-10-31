@@ -1,6 +1,5 @@
 [DefCore]
 id=GDO_
-Name=Irisöffner
 Version=4,9,5
 Category=3600
 MaxUserSelect=2
@@ -14,7 +13,6 @@ Vertices=1
 VertexY=1
 VertexFriction=20
 Rebuy=1
-Collectible=1
 Components=METL=3;CRYS=2;
 Timer=1
 TimerCall=Check

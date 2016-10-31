@@ -1,2 +1,0 @@
-DE:Replikator Teleporter
-US:Replicator teleporter

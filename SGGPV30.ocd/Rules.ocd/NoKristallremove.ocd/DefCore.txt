@@ -1,6 +1,5 @@
 [DefCore]
 id=NOKR
-Name=Kein Kristall entnehmen
 Version=4,9,6,0
 Category=524289
 Value=1

@@ -1,6 +1,5 @@
 [DefCore]
 id=PRCA
-Name=Particle Cannon
 Version=4,9,5
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 MaxUserSelect=1
@@ -17,4 +16,3 @@ VertexY=-5,15,15
 VertexFriction=100,100
 Exclusive=1
 Construction=1 
-Grab=2

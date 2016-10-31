@@ -1,7 +1,6 @@
 [DefCore]
 id=SH7X
 Version=4,9,5
-Name=Blastershot
 Category=4
 Width=11
 Height=18

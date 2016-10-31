@@ -1,2 +1,0 @@
-DE:DNS Manipulator
-US:DNS Manipulator

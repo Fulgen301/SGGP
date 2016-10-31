@@ -1,6 +1,5 @@
 [DefCore]
 id=C4EP
-Name=C4 Pack
 Category=3600
 MaxUserSelect=16
 Width=10
@@ -14,5 +13,3 @@ Vertices=1
 VertexY=1
 VertexFriction=90
 Rebuy=1
-Grab=1
-Collectible=1

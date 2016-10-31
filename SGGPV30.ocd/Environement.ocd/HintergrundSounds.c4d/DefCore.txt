@@ -1,6 +1,5 @@
 [DefCore]
 id=HN_S
-Name=Ambiente
 Category=25165825
 Width=15
 Height=15

@@ -64,3 +64,4 @@ public func ControlRight(pCaller)
 		}
 	return(1);
 }
+local Name = "$Name$";

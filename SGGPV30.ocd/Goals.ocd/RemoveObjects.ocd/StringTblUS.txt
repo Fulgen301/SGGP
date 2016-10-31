@@ -1,2 +1,3 @@
-MsgGoalFulfilled=All specified objects have been removed!
-MsgGoalTodo=%dx %s still have to be removed.
+MsgGoalFulfilled=All specified objects have been removed!
+MsgGoalTodo=%dx %s still have to be removed.
+Name=Remove objects

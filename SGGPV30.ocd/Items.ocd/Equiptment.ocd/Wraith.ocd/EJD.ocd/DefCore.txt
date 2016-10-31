@@ -1,6 +1,5 @@
 [DefCore]
 id=WREJ
-Name=EJD
 Version=4,9,5
 Category=3600
 MaxUserSelect=1
@@ -15,6 +14,5 @@ Vertices=1
 VertexY=1
 VertexFriction=20
 Rebuy=1
-Collectible=1
 Timer=1
 TimerCall=Check

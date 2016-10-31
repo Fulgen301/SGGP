@@ -1,7 +1,6 @@
 [DefCore]
 id=REZI
 Version=4,9,8
-Name=Replikatorenjagd
 Category=C4D_StaticBack|C4D_Goal
 MaxUserSelect=50
 Width=1

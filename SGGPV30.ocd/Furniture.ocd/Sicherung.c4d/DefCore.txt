@@ -1,6 +1,5 @@
 [DefCore]
 id=SKST
-Name=Sicherungskasten
 Category=1
 Width=28
 Height=24

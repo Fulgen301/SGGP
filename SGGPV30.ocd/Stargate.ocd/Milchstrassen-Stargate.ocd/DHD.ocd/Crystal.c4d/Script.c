@@ -29,3 +29,5 @@ func Damage()
 {
   return(Damaged);
 }
+local Name = "$Name$";
+local Collectible = 1;

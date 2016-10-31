@@ -1,2 +1,3 @@
-DescUp=÷ffnen
-DescDown=Schlieﬂen
+DescUp=÷ffnen
+DescDown=Schlieﬂen
+Name=Tor

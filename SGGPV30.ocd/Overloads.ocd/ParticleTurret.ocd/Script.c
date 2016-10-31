@@ -101,3 +101,19 @@ public func ControlThrow()
     [$TxtFire$|Image=TAN2:0]
 	_inherited(...);
 }
+local Touchable = 2;
+local ActMap = {
+Aim = {
+Prototype = Action,
+Name = "Aim",
+Procedure = DFA_NONE,
+Directions = 1,
+Length = 37,
+Delay = 0,
+X = 0,
+Y = 0,
+Wdt = 52,
+Hgt = 32,
+FacetTopFace = 1,
+},  };
+local Name = "$Name$";

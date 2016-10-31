@@ -1,7 +1,6 @@
 [DefCore]
 id=SGIR
 Version=4,9,8
-Name=Iris
 Category=2
 Width=110
 Height=80

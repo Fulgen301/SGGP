@@ -1,2 +1,0 @@
-DE:Laptop
-US:Notebook

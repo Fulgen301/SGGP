@@ -113,3 +113,5 @@ public func Serialize(array& extra)
 	if (smashed)
 		extra[GetLength(extra)] = "LocalN(\"smashed\")=true";
 }
+local Touchable = 1;
+local Name = "$Name$";

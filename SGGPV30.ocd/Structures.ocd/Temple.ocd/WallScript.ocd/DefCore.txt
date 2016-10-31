@@ -1,7 +1,6 @@
 [DefCore]
 id=_WSC
 Version=4,9,8
-Name=WallScript
 Category=C4D_Structure
 Width=20
 Height=20
@@ -10,5 +9,4 @@ Value=30
 Mass=20
 Components=ROCK=2
 Picture=0,0,20,20
-Grab=1
 HorizontalFix=1

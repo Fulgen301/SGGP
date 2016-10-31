@@ -77,3 +77,4 @@ public func InitScoreboard()
 }
 
 
+local Name = "$Name$";

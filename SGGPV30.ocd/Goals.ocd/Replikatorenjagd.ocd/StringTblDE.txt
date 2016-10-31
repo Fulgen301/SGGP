@@ -1,1 +1,2 @@
-Count=Anzahl:
+Count=Anzahl:
+Name=Replikatorenjagd

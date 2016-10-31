@@ -1,6 +1,5 @@
 [DefCore]
 id=WRDC
-Name=Transportcore
 Version=4,9,5
 Category=2
 Width=20

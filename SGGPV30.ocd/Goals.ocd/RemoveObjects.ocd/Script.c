@@ -18,3 +18,4 @@ func AddType(id IdType)
 {
 	Type = IdType;
 }
+local Name = "$Name$";

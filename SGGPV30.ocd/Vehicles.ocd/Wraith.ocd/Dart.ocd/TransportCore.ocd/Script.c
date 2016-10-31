@@ -114,3 +114,4 @@ public func Eject()
   obj->SetXDir(0);
   return(1);
 }
+local Name = "$Name$";

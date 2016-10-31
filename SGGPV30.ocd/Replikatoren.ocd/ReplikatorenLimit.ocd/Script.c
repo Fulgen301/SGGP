@@ -15,3 +15,4 @@ global func SetRepliLimit(int iLimit)
 	RepliLimit = iLimit;
 }
 
+local Name = "$Name$";

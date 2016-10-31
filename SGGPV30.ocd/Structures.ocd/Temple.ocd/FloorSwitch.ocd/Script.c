@@ -55,3 +55,4 @@ public func AddTarget(object pTarget, int iDir)
   }
 
 public func IsSwitch() { return(true); }
+local Name = "$Name$";

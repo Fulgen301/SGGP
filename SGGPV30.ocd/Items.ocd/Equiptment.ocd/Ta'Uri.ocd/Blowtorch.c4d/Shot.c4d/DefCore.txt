@@ -1,7 +1,6 @@
 [DefCore]
 id=BTS_
 Version=4,9,5
-Name=Shot
 Category=4
 Width=11
 Height=18

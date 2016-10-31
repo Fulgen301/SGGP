@@ -41,3 +41,5 @@ public func ControlThrow()
 /* Kann geschmiedet werden */
 public func IsAnvilProduct() { return(1); }
 
+local Name = "$Name$";
+local Collectible = 1;

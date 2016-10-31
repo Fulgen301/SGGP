@@ -243,3 +243,5 @@ func IsAntiker()
 {
 	return(1);
 }
+local Touchable = 2;
+local Name = "$Name$";

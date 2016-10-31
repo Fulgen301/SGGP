@@ -68,3 +68,56 @@ func Check()
   }
   return(1);
 }
+local Touchable = 2;
+local ActMap = {
+Opens = {
+Prototype = Action,
+Name = "Opens",
+Length = 50,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 60,
+Hgt = 75,
+NextAction = "Open",
+Sound = "SarkTr",
+EnergyUsage = 100,
+},
+Open = {
+Prototype = Action,
+Name = "Open",
+Length = 1,
+Delay = 37,
+X = 3000,
+Y = 0,
+Wdt = 60,
+Hgt = 75,
+NextAction = "Closes",
+StartCall = "Fire",
+Sound = "LasertowerCharge",
+},
+Closes = {
+Prototype = Action,
+Name = "Closes",
+Length = 50,
+Reverse = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 60,
+Hgt = 75,
+NextAction = "Close",
+Sound = "SarkTr",
+},
+Close = {
+Prototype = Action,
+Name = "Close",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 60,
+Hgt = 75,
+NextAction = "Close",
+},  };
+local Name = "$Name$";

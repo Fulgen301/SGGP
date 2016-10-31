@@ -1,3 +1,4 @@
-NoGate=Kein Gate in Reichweite!
-Disabled=Gate nicht bereit
-Connecting=Wurmloch öffnen
+NoGate=Kein Gate in Reichweite!
+Disabled=Gate nicht bereit
+Connecting=Wurmloch öffnen
+Name=Puddle Jumper

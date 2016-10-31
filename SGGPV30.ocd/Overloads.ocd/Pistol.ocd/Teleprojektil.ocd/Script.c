@@ -47,3 +47,4 @@ func CheckCursor() {
 }
 
 func IsBouncy() { return(true); }
+local Name = "$Name$";

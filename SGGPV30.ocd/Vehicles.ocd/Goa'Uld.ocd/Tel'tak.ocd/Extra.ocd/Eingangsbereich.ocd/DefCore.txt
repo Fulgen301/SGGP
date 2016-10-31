@@ -1,7 +1,6 @@
 [DefCore]
 id=TELZ
 Version=4,9,1,3
-Name=Eingangsbereich
 Category=C4D_Vehicle
 Width=40
 Height=40

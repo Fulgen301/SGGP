@@ -46,3 +46,5 @@ public func Fire1()    // Projektilschuss
 
 func IsGoauldWeapon() { return(true); }
 func AlchemProcessTime() { return(800); }
+local Name = "$Name$";
+local Collectible = 1;

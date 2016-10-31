@@ -1,1 +1,2 @@
-Standard=Einzelschuss
+Standard=Einzelschuss
+Name=Stunner

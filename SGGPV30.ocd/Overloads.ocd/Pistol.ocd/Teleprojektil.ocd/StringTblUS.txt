@@ -1,1 +1,2 @@
-BadPlace=Target location unsuitable
+BadPlace=Target location unsuitable
+Name=Teleprojectile

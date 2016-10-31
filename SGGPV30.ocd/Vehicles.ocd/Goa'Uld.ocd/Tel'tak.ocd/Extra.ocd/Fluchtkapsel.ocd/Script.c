@@ -79,3 +79,44 @@ public func Teltak()
 {
 	return(1);
 }
+local Touchable = 2;
+local ActMap = {
+Full = {
+Prototype = Action,
+Name = "Full",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 15,
+Hgt = 30,
+NextAction = "Full",
+EndCall = "Full",
+},
+Eject = {
+Prototype = Action,
+Name = "Eject",
+Length = 11,
+Delay = 3,
+X = 0,
+Y = 0,
+Wdt = 15,
+Hgt = 30,
+EndCall = "Ejected",
+Sound = "Elevator",
+PhaseCall = "Empty",
+NextAction = "Empty",
+},
+Empty = {
+Prototype = Action,
+Name = "Empty",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 30,
+Wdt = 15,
+Hgt = 30,
+NextAction = "Empty",
+EndCall = "Empty",
+},  };
+local Name = "Fluchtkapsel";

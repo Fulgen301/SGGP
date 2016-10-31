@@ -152,3 +152,5 @@ func Open()
 }
 
 func IsBulletTarget() 	{ return(1); }
+local Touchable = 1;
+local Name = "$Name$";

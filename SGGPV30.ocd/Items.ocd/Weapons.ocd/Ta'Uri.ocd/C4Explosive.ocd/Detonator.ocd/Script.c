@@ -169,3 +169,5 @@ public func ConUse(object pCaller)
 }
 
 public func GetRace()	{ return SG1_StargateCenter; }
+local Name = "$Name$";
+local Collectible = 1;

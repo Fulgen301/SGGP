@@ -1,6 +1,5 @@
 [DefCore]
 id=WRDR
-Name=Dart
 Category=3332
 Version=4,9,8,2
 MaxUserSelect=2

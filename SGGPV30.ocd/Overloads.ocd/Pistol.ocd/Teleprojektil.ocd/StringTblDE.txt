@@ -1,1 +1,2 @@
-BadPlace=Zielort ungeeignet
+BadPlace=Zielort ungeeignet
+Name=Teleprojektil

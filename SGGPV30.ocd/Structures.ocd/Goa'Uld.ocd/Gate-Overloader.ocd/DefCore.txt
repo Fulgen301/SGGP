@@ -1,7 +1,6 @@
 [DefCore]
 id=GOGO
 Version=4,9,9
-Name=Gate-Overloader
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 MaxUserSelect=1
 Width=70
@@ -17,6 +16,5 @@ Components=METL=10;ROCK=5;CRYS=5;NAQU=10;
 Picture=70,0,64,64
 Exclusive=1
 Construction=1
-Grab=2
 Timer=1
 TimerCall=Check

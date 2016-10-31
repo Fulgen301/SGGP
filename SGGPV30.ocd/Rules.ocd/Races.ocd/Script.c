@@ -19,3 +19,4 @@ static const SGA_Athosians = 11;
 
 //Stargate Universe
 static const SGU_Nakai = 12;
+local Name = "Lernen";

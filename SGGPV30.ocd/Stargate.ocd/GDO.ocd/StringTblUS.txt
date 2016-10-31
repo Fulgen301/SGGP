@@ -1,1 +1,2 @@
-Menu=use GDO
+Menu=use GDO
+Name=GDO

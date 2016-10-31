@@ -59,3 +59,5 @@ public func ConDesc()
 }
 
 protected func Hit()		{ Sound("ClonkHit*"); }
+local Name = "$Name$";
+local Collectible = 1;

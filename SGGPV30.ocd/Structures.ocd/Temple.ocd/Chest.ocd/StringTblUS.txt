@@ -1,1 +1,2 @@
-MsgUnlocked=Chest unlocked!
+MsgUnlocked=Chest unlocked!
+Name=Chest

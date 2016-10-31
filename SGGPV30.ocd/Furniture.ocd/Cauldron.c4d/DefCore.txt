@@ -1,7 +1,6 @@
 [DefCore]
 id=CLD1
 Version=4,9,8
-Name=Cauldron
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 MaxUserSelect=1
 TimerCall=CheckContents
@@ -19,7 +18,6 @@ Picture=0,0,58,49
 Collection=-20,-18,40,20
 Exclusive=1
 Construction=1
-Grab=2
 GrabPutGet=C4D_GrabGet|C4D_GrabPut
 ContainBlast=1
 HorizontalFix=1

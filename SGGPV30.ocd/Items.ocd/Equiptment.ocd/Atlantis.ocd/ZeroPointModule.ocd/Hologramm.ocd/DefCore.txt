@@ -1,7 +1,6 @@
 [DefCore]
 id=ZPM9
 Version=4,9,5
-Name=ZeroPointModule (Hologram)
 Category=C4D_Vehicle|C4D_SelectHomebase|C4D_SelectKnowledge
 MaxUserSelect=0
 Width=4
@@ -16,6 +15,5 @@ Mass=10
 Components=CRYS=50;METL=5;
 Picture=13,0,64,64
 Rebuy=1
-Collectible=0
 //LineConnect=2
 Rotate=1

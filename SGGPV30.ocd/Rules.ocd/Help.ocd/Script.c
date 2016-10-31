@@ -897,3 +897,4 @@ public func OnClonkDeath(object pClonk, int iKiller)
 	}
 	return true;
 }
+local Name = "$Name$";

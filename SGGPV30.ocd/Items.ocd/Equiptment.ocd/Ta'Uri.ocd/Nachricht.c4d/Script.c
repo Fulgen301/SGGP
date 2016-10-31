@@ -10,3 +10,5 @@ public func Activate(Leser){
 }
 
 func Set(brief){Nachricht = brief;return(1);}
+local Name = "$Name$";
+local Collectible = 1;

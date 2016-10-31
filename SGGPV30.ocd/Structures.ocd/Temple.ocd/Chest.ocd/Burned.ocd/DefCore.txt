@@ -1,7 +1,6 @@
 [DefCore]
 id=_CSB
 Version=4,9,8
-Name=BurnedChest
 Category=C4D_Vehicle
 Width=18
 Height=18

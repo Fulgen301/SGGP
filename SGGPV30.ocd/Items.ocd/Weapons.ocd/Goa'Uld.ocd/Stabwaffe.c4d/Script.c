@@ -136,3 +136,5 @@ public func PutTake()
 
 func IsGoauldWeapon() { return(true); }
 func AlchemProcessTime() { return(800); }
+local Name = "$Name$";
+local Collectible = 1;

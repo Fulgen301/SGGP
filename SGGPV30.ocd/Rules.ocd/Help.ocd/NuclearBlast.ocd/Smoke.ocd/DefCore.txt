@@ -1,6 +1,5 @@
 [DefCore]
 id=NUCR
-Name=Static Rauch
 Category=C4D_Vehicle
 Value=10
 Mass=10

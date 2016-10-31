@@ -1,7 +1,6 @@
 [DefCore]
 id=RETE
 Version=4,9,8
-Name=Replikator Teleporter
 Category=C4D_Living|C4D_Structure
 MaxUserSelect=1
 ContactCalls=1

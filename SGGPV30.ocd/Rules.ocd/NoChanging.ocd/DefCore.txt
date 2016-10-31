@@ -1,6 +1,5 @@
 [DefCore]
 id=NOMA
-Name=No Manipulations
 Version=4,9,6,0
 Category=524289
 Value=1

@@ -1,7 +1,6 @@
 [DefCore]
 id=_CST
 Version=4,9,8,4
-Name=Chest
 Category=C4D_Vehicle|C4D_SelectVehicle|C4D_SelectKnowledge|C4D_SelectHomebase
 MaxUserSelect=1
 Width=18
@@ -21,7 +20,6 @@ CollectionLimit=10
 BlastIncinerate=30
 BurnTo=_CSB
 Rebuy=1
-Grab=2
 GrabPutGet=C4D_GrabGet|C4D_GrabPut
 ContainBlast=1
 ClosedContainer=1

@@ -43,3 +43,4 @@ func Disable()
 	Enabled = 0;
 	Message("<c ff0000> Gebietssperre nicht aktiv! </c>");
 }
+local Name = "$Name$";

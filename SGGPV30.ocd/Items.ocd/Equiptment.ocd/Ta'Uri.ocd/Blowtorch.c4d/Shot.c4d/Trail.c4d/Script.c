@@ -82,3 +82,31 @@ public func DrawTransform() {
 }
 
 func NoWarp() { return(true); }
+local ActMap = {
+Travel = {
+Prototype = Action,
+Name = "Travel",
+Procedure = DFA_FLOAT,
+NextAction = "Travel",
+X = 0,
+Y = 0,
+Wdt = 20,
+Hgt = 100,
+Length = 1,
+Delay = 1,
+StartCall = "Traveling",
+},
+Travel2 = {
+Prototype = Action,
+Name = "Travel2",
+Procedure = DFA_FLOAT,
+NextAction = "Travel2",
+X = 20,
+Y = 0,
+Wdt = 20,
+Hgt = 100,
+Length = 4,
+Delay = 1,
+PhaseCall = "Traveling",
+},  };
+local Name = "$Name$";

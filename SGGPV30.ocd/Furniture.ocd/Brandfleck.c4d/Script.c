@@ -10,3 +10,4 @@ SetSize:
 Initialize:
   SetLocal(0,100);
   return(1);  
+local Name = "Brandfleck";

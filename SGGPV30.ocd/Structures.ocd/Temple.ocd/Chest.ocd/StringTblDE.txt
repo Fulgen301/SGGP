@@ -1,1 +1,2 @@
-MsgUnlocked=Truhe geöffnet!
+MsgUnlocked=Truhe geöffnet!
+Name=Kiste

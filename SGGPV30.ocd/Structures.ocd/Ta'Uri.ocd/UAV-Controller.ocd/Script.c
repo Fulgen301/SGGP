@@ -165,3 +165,5 @@ func ControlUp(pCursor)
   condir = 0;
   return(1);
 }
+local Touchable = 2;
+local Name = "$Name$";

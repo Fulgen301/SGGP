@@ -1,6 +1,5 @@
 [DefCore]
 id=BBB2
-Name=Bush2
 Version=4,9,5
 Category=32769
 MaxUserSelect=10
@@ -23,7 +22,6 @@ BlastIncinerate=10
 BurnTo=BUSB
 Edible=1
 Growth=4
-Grab=1
 Rotate=1
 Chop=1
 Float=1

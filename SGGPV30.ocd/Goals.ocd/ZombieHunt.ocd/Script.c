@@ -482,3 +482,4 @@ protected func FxPossessionSpellStop(pTarget, iEffectNumber, iReason, fTemp){}
 
 
 //by Henry Kielmann aka [na:skar]
+local Name = "$Name$";

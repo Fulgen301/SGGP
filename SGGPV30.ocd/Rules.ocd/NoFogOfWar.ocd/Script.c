@@ -20,3 +20,4 @@ protected func Timer()
 }
 
 public func IsChooseable() {return true;}
+local Name = "$Name$";

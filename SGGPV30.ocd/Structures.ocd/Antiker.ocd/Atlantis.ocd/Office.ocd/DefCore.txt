@@ -1,7 +1,6 @@
 [DefCore]
 id=ALBA
 Version=4,9,8
-Name=CastleOffice
 Category=C4D_Structure|C4D_SelectKnowledge
 Width=80
 Height=74

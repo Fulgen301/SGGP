@@ -1,7 +1,6 @@
 [DefCore]
 id=WRDB
 Version=4,9,8,2
-Name=Light Cone
 Category=17825796
 Width=128
 Height=128

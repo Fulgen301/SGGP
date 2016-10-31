@@ -1,6 +1,5 @@
 [DefCore]
 id=GRAV
-Name=Grab
 Version=4,9,5
 Category=C4D_Structure
 MaxUserSelect=10

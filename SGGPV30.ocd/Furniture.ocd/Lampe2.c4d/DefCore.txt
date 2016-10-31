@@ -1,6 +1,5 @@
 [DefCore]
 id=LAM2
-Name=Lampe2
 Category=1
 MaxUserSelect=1
 Width=15

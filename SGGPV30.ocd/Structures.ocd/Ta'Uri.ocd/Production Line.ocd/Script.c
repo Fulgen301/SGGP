@@ -172,3 +172,40 @@ func Info()
 	Message("Geschwindigkeit:<c %x>%d%</c>|Richtung: <c ffcc00>%s</c>|Status:%s",this(),RGB(200-Speed*4,Speed*4,0),Speed*2,Direc,Stat);
 }
 	
+local Touchable = 2;
+local ActMap = {
+MoveLeft = {
+Prototype = Action,
+Name = "MoveLeft",
+Delay = 1,
+Length = 11,
+X = 0,
+Y = 0,
+Wdt = 100,
+Hgt = 15,
+NextAction = "MoveLeft",
+},
+Stand = {
+Prototype = Action,
+Name = "Stand",
+Delay = 1,
+Length = 1,
+X = 0,
+Y = 0,
+Wdt = 100,
+Hgt = 15,
+NextAction = "Hold",
+},
+MoveRight = {
+Prototype = Action,
+Name = "MoveRight",
+Delay = 1,
+Length = 11,
+Reverse = 1,
+X = 0,
+Y = 0,
+Wdt = 100,
+Hgt = 15,
+NextAction = "MoveRight",
+},  };
+local Name = "$Name$";

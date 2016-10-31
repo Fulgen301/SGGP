@@ -167,3 +167,40 @@ public func Teltak()
 	return(1);
 }
 
+local Touchable = 1;
+local ActMap = {
+Flight = {
+Prototype = Action,
+Name = "Flight",
+Procedure = DFA_NONE,
+Length = 1,
+Delay = 2,
+FacetBase = 1,
+NextAction = "Flight",
+EndCall = "Flight",
+},
+Open = {
+Prototype = Action,
+Name = "Open",
+Procedure = DFA_NONE,
+Length = 8,
+Delay = 3,
+X = 0,
+Y = 0,
+Wdt = 21,
+Hgt = 24,
+NextAction = "Stand",
+},
+Stand = {
+Prototype = Action,
+Name = "Stand",
+Procedure = DFA_NONE,
+Length = 1,
+Delay = 100,
+X = 147,
+Y = 0,
+Wdt = 21,
+Hgt = 24,
+NextAction = "Stand",
+},  };
+local Name = "$Name$";

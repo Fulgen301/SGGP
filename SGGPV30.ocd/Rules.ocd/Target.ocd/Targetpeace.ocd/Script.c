@@ -22,3 +22,4 @@ private func FadeOut()
   return(1);
 }
 
+local Name = "$Name$";

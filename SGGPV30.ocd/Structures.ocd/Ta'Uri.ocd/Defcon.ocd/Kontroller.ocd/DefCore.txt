@@ -1,6 +1,5 @@
 [DefCore]
 id=DEFK
-Name=Kontroller
 Category=1
 Width=20
 Height=20

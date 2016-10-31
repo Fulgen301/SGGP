@@ -1,7 +1,6 @@
 [DefCore]
 id=TABN
 Version=4,9,9
-Name=Big Akku
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 MaxUserSelect=1
 Width=150
@@ -19,7 +18,6 @@ Exclusive=1
 BlastIncinerate=100
 LineConnect=C4D_PowerInput|C4D_PowerOutput
 Construction=1
-Grab=1
 Timer=1
 TimerCall=Timer
 

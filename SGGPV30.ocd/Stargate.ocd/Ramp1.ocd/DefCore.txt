@@ -1,6 +1,5 @@
 [DefCore]
 id=SGR1
-Name=Stargate Ramp (SGC)
 Version=4,9,8
 Category=1154
 MaxUserSelect=1

@@ -1,6 +1,5 @@
 [DefCore]
 id=TRB2
-Name=BurnedTree2
 Version=4,9,5
 Category=32769
 MaxUserSelect=10
@@ -18,7 +17,6 @@ VertexFriction=50,50,50
 FireTop=20
 ContactIncinerate=2
 BlastIncinerate=10
-Grab=1
 Rotate=1
 Chop=1
 Float=1

@@ -11,3 +11,5 @@ public func Teltak()
 {
 	return(1);
 }
+local Name = "$Name$";
+local Collectible = 1;

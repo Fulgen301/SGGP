@@ -1,6 +1,5 @@
 [DefCore]
 id=CO3V
-Name=Controllpult
 Category=4
 MaxUserSelect=5
 Width=30

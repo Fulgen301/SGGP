@@ -38,3 +38,16 @@ func ControlDigDouble()
 		InfoOn = 1;
 	}
 }	
+local Touchable = 1;
+local ActMap = {
+EnergyStand = {
+Prototype = Action,
+Name = "EnergyStand",
+Length = 20,
+X = 0,
+Y = 0,
+Wdt = 30,
+Hgt = 40,
+NextAction = "Hold",
+},  };
+local Name = "$Name$";

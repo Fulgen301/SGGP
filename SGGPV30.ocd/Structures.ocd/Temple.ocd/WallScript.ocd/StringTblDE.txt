@@ -1,2 +1,3 @@
-CtrlRead=Lesen
-
+CtrlRead=Lesen
+
+Name=Wandnachricht

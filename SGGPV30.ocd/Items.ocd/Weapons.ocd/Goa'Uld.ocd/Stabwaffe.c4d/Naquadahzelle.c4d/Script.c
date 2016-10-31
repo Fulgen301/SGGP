@@ -27,3 +27,5 @@ public func IsGoauldWeapon() {return true;}
 public func IsAlchemContainer() {return(true);}
 public func AlchemProcessTime() {return(150);}
 public func IsBulletTarget() { return(true);}
+local Name = "$Name$";
+local Collectible = 1;

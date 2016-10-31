@@ -49,3 +49,5 @@ public func UpgradeObject(object pObj) {
 public func IsUpgrade() { return(1); }
 
 public func GetUpgradeGraphicsIDBit() { return 1; }
+local Name = "$Name$";
+local Collectible = 1;

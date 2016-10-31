@@ -1,6 +1,5 @@
 [DefCore]
 id=TGTP
-Name=Targetpeace
 Mass=0
 Category=4
 Version=4,9,5

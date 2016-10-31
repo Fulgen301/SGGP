@@ -1,7 +1,6 @@
 [DefCore]
 id=GOLV
 Version=4,9,8
-Name=BurnedLittleBase
 Category=C4D_Structure
 Width=100
 Height=35

@@ -1,6 +1,5 @@
 [DefCore]
 id=RIG4
-Name=Handaktivator
 Version=4,9,5
 Category=18960
 MaxUserSelect=2
@@ -15,4 +14,3 @@ Vertices=1
 VertexY=3
 VertexFriction=80
 Rebuy=1
-Collectible=1

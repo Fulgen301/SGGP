@@ -233,3 +233,17 @@ global func StartReplis()
 		pRepl -> SetAction("Walk");
 	}
 }
+local ActMap = {
+Stand = {
+Prototype = Action,
+Name = "Stand",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 20,
+Hgt = 20,
+NextAction = "Hold",
+StartCall = "Dummer",
+},  };
+local Name = "$Name$";

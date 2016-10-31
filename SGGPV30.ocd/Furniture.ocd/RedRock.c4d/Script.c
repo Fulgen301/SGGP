@@ -17,3 +17,16 @@ protected func Damage()
   RemoveObject();
   return(1);
 }
+local ActMap = {
+Standard = {
+Prototype = Action,
+Name = "Standard",
+Delay = 0,
+Length = 3,
+X = 0,
+Y = 0,
+Wdt = 32,
+Hgt = 32,
+NextAction = "Hold",
+},  };
+local Name = "$Name$";

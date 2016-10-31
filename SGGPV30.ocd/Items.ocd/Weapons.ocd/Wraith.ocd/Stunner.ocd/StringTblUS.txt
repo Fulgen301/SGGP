@@ -1,1 +1,2 @@
-Standard=Single shots
+Standard=Single shots
+Name=Stunner

@@ -77,3 +77,47 @@ private func Sparkle(int x, int y, int r, int g, int b, bool allow_big_sparkles)
     CreateParticle("MaterialSpark", x,y, 0,0, 10*5+Random(40*5), RGBa(r,g,b,192+Random(64)));
   return(1);
 }
+local ActMap = {
+Float = {
+Prototype = Action,
+Name = "Float",
+Procedure = DFA_FLOAT,
+Directions = 7,
+Length = 1,
+Delay = 10,
+X = 0,
+Y = 0,
+Wdt = 20,
+Hgt = 20,
+NextAction = "Float",
+StartCall = "Floating",
+},
+Fireball = {
+Prototype = Action,
+Name = "Fireball",
+Procedure = DFA_FLOAT,
+Directions = 1,
+Length = 1,
+Delay = 10,
+X = 0,
+Y = 0,
+Wdt = 1,
+Hgt = 1,
+NextAction = "Fireball",
+StartCall = "Fireballing",
+},
+Fire = {
+Prototype = Action,
+Name = "Fire",
+Procedure = DFA_FLOAT,
+Directions = 1,
+Length = 1,
+Delay = 10,
+X = 0,
+Y = 0,
+Wdt = 1,
+Hgt = 1,
+NextAction = "Fire",
+StartCall = "Firing",
+},  };
+local Name = "FlyingKey";

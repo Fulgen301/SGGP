@@ -50,3 +50,5 @@ public func OnDeselect()
     RemoveObject(laser);
   }
 }
+local Name = "$Name$";
+local Collectible = 1;

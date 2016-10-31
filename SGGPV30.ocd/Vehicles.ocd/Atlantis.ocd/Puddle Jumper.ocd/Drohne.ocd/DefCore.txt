@@ -1,6 +1,5 @@
 [DefCore]
 id=PUDD
-Name=Drohne
 Category=C4D_Vehicle
 Width=4
 Height=14

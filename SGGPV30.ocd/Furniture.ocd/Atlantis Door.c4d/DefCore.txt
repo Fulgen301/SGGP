@@ -1,7 +1,6 @@
 [DefCore]
 id=ATDO
 Version=4,9,8,2
-Name=Atlantis Door
 Category=C4D_Structure
 MaxUserSelect=3
 Width=20

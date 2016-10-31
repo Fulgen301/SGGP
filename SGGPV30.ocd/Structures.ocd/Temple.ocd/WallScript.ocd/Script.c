@@ -31,3 +31,14 @@ global func AssignWScriptText(string sScriptName, string sToText)
       return(true);
       }
   }
+local Touchable = 1;
+local ActMap = {
+Walling = {
+Prototype = Action,
+Name = "Walling",
+Procedure = DFA_FLOAT,
+Length = 1,
+Delay = 0,
+FacetBase = 1,
+},  };
+local Name = "$Name$";

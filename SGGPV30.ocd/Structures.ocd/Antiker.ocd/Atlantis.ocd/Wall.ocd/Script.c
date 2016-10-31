@@ -15,3 +15,4 @@ public func CastlePartBasement() { return(BSC1); }
 /* Forschung */
 
 public func GetResearchBase() { return(ALW2); }
+local Name = "$Name$";

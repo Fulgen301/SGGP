@@ -1,2 +1,3 @@
-Standard=Töten
-Beteuben=Betäuben
+Standard=Töten
+Beteuben=Betäuben
+Name=Waffe der Reisenden

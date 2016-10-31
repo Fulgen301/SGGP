@@ -178,3 +178,4 @@ public func IsConsoleTarget()
 {
 	return(1);
 }
+local Name = "$Name$";

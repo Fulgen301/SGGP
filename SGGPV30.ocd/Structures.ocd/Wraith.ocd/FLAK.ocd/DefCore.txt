@@ -1,7 +1,6 @@
 [DefCore]
 id=WRFG
 Version=4,9,8
-Name=FLAK Geschütz
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 MaxUserSelect=1
 Width=60
@@ -16,7 +15,6 @@ Mass=1000
 Components=CRYS=2;METL=4;ROCK=3;
 Picture=0,0,60,60
 Construction=1
-Grab=2
 Timer=1
 TimerCall=Check
 LineConnect=C4D_PowerInput|C4D_PowerOutput|C4D_PowerConsumer

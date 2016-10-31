@@ -97,3 +97,4 @@ global func ZombieSpawnOff()
 		}
 		return(1);
 }
+local Name = "$Name$";

@@ -51,3 +51,4 @@ func IsMachine()
 { 
 	return(true); 
 }
+local Name = "$Name$";

@@ -1,6 +1,5 @@
 [DefCore]
 id=ASTE
-Name=Teleporter
 Category=1154
 Value=200
 MaxUserSelect=10

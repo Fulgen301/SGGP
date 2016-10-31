@@ -1,6 +1,5 @@
 [DefCore]
 id=RIG5
-Name=Ringtransporter
 Version=4,9,1,3
 Category=8389762
 Components=METL=12;SFLN=1;

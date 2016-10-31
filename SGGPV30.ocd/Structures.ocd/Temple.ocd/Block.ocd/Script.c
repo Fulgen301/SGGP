@@ -64,3 +64,14 @@ private func UpdateComDir() // nur für iXDir|iYDir != 0
   // Puzzling, isn't it?
   return(SetComDir(iXDir*(iYDir-2)+!iXDir*(iYDir-1)*2+5));
   }
+local ActMap = {
+Block = {
+Prototype = Action,
+Name = "Block",
+Procedure = DFA_FLOAT,
+Length = 1,
+Delay = 0,
+FacetBase = 1,
+NextAction = "Block",
+},  };
+local Name = "Block";

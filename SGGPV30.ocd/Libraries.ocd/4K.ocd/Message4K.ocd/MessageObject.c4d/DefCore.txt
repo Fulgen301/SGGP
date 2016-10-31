@@ -1,6 +1,5 @@
 [DefCore]
 id=MS4K
-Name=MessageObject
 Version=4,9,5
 Category=60817409
 Width=1

@@ -1,6 +1,5 @@
 [DefCore]
 id=ER13
-Name=Explosive Rock
 Version=4,6,2
 Category=4
 Width=32

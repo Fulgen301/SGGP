@@ -1,1 +1,2 @@
-Control=Bedienen
+Control=Bedienen
+Name=Konsole

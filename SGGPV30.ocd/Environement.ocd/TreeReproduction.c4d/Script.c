@@ -63,3 +63,4 @@ public func Sub(idType, iCount)
 {
   return(Set(idType, Get(idType) - Max(iCount, 1)));
 }
+local Name = "$Name$";

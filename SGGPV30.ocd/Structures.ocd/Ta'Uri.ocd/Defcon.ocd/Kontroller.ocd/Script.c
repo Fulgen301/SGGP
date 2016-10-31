@@ -52,3 +52,4 @@ public func ConsoleControlled(int i)
    return(1);
   }
 }
+local Name = "$Name$";

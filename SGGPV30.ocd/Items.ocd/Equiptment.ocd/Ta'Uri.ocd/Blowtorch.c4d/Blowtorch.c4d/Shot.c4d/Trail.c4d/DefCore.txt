@@ -1,7 +1,6 @@
 [DefCore]
 id=BTT_
 Version=4,9,5
-Name=Trail
 Category=4
 Width=2
 Height=2

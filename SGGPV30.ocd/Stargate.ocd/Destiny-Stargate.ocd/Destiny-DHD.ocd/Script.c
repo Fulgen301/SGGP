@@ -18,3 +18,5 @@ public func FindStargate()
 public func IsMilkywayDHD()	{return false;}
 public func IsPegasusDHD()	{return false;}
 public func IsDestinyDHD()	{return true;}
+local Touchable = 2;
+local Name = "$Name$";

@@ -1,7 +1,6 @@
 [DefCore]
 id=_RO1
 Version=4,5,9
-Name=Rohre1
 Category=1
 Width=8
 Height=69

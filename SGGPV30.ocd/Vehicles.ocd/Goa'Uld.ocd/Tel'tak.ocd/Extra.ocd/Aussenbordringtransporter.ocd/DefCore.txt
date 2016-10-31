@@ -1,6 +1,5 @@
 [DefCore]
 id=RIG3
-Name=Auﬂenbordringtransporter
 Version=4,9,1,3
 Category=8388610
 Components=METL=10;NAQU=5;

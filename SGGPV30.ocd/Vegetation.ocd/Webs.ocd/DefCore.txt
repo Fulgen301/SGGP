@@ -1,6 +1,5 @@
 [DefCore]
 id=SWEB
-Name=Webs
 Category=32769
 MaxUserSelect=10
 Width=34

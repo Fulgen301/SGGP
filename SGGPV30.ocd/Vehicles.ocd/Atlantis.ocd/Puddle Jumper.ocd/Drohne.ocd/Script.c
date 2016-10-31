@@ -118,3 +118,28 @@ public func Hit()
 func IsMachine() 		{ return(1); }
 func IsBulletTarget()    { return(1); }
 
+local ActMap = {
+Fliegen = {
+Prototype = Action,
+Name = "Fliegen",
+NextAction = "Fliegen",
+Delay = 1,
+FacetBase = 1,
+StartCall = "Fliegen",
+},
+Dead = {
+Prototype = Action,
+Name = "Dead",
+Delay = 15,
+FacetBase = 1,
+NextAction = "Fliegen",
+},
+Over = {
+Prototype = Action,
+Name = "Over",
+NextAction = "Over",
+Delay = 1,
+FacetBase = 1,
+EndCall = "Over",
+},  };
+local Name = "Drohne";

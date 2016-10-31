@@ -36,3 +36,5 @@ public func IsJungleResearch() { return(1); }
 
 // ohne Hütte keinen Kochtopp
 public func GetResearchBase() { return(HUT1); }
+local Touchable = 2;
+local Name = "$Name$";

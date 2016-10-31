@@ -1,7 +1,6 @@
 [DefCore]
 id=CONS
 Version=4,9,8,2
-Name=Console
 Category=1154
 MaxUserSelect=1
 TimerCall=Lights
@@ -16,5 +15,4 @@ Value=150
 Mass=50
 Components=METL=3;NAQU=1
 Picture=0,10,64,64
-Grab=1
 Construction=1

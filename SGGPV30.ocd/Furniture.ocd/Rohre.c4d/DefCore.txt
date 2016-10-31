@@ -1,6 +1,5 @@
 [DefCore]
 id=RR3V
-Name=Rohre
 Category=1
 Width=10
 Height=10

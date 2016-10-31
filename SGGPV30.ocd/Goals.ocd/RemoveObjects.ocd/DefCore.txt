@@ -1,6 +1,5 @@
 [DefCore]
 id=RMOB
-Name=RemoveObjects
 Version=4,9,1
 Value=100
 Category=33

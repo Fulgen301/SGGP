@@ -1,7 +1,6 @@
 [DefCore]
 id=WRBA
 Version=4,9,9
-Name=Basis
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 MaxUserSelect=1
 Width=150

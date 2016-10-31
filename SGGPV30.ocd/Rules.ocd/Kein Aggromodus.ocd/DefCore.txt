@@ -1,6 +1,5 @@
 [DefCore]
 id=REAG
-Name=Anti Aggromodus
 Version=4,9,6,0
 Category=524289
 Value=1

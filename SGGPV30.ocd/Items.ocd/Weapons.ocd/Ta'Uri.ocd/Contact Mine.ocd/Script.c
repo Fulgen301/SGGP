@@ -73,3 +73,5 @@ protected func Hit()
 
 func IsGrenade() { return(true); }
 public func GetRace()	{ return SG1_StargateCenter; }
+local Name = "$Name$";
+local Collectible = 1;

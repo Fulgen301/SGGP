@@ -1,7 +1,6 @@
 [DefCore]
 id=MAGO
 Version=4,9,8
-Name=zpm ziel
 Category=C4D_StaticBack|C4D_Goal
 MaxUserSelect=50
 Width=1

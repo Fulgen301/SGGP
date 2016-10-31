@@ -129,3 +129,5 @@ public func Fire2()    // Projektilschuss
   Sound("ronongun",0,ammo);
   Reload();
 }
+local Name = "$Name$";
+local Collectible = 1;

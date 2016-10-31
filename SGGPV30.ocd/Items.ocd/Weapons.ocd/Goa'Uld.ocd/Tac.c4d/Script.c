@@ -117,3 +117,5 @@ public func Check()
 func IsGoauldWeapon() 	{ return(true); }
 func IsMachine() 		{ return(true); }
 public func GetRace()	{ return SG1_Goauld; }
+local Touchable = 2;
+local Name = "$Name$";

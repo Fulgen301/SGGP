@@ -1,6 +1,5 @@
 [DefCore]
 id=HOL2
-Name=Hole
 Category=1
 Width=20
 Height=15

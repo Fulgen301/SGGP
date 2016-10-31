@@ -234,3 +234,4 @@ protected func Damage()
 }
 
 private func ExplodeSize() {return 30;}
+local Name = "$Name$";

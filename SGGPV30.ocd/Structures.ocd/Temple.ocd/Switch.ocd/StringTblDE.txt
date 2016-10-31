@@ -1,1 +1,2 @@
-DescSwitch=Umschalten
+DescSwitch=Umschalten
+Name=Schalter

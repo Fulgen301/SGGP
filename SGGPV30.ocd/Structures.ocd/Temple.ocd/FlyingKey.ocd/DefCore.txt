@@ -1,7 +1,6 @@
 [DefCore]
 id=_FKE
 Version=4,9,8
-Name=FlyingKey
 Category=C4D_Vehicle
 Timer=5
 TimerCall=Glowing

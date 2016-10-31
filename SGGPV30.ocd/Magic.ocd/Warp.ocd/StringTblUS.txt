@@ -1,1 +1,2 @@
-TxtNoPlace=No warp target!
+TxtNoPlace=No warp target!
+Name=Wormhole

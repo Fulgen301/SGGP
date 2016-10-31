@@ -1,7 +1,6 @@
 [DefCore]
 id=TAAK
 Version=4,9,9
-Name=Tauri Akku
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 MaxUserSelect=2
 Width=30
@@ -20,7 +19,6 @@ BlastIncinerate=100
 Base=1
 LineConnect=C4D_PowerInput|C4D_PowerOutput
 Construction=1
-Grab=1
 Timer=1
 TimerCall=Timer
 

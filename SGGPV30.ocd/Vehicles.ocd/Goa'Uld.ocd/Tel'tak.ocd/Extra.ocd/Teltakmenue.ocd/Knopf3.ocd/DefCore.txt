@@ -1,6 +1,5 @@
 [DefCore]
 id=TEM3
-Name=3
 Category=1
 Width=1
 Height=1

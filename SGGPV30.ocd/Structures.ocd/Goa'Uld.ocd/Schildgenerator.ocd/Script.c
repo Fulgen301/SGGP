@@ -462,3 +462,65 @@ public func ToggleAtlantis()
 	atlantis=1;
 	return(atlantis);
 }
+local Touchable = 2;
+local ActMap = {
+Off = {
+Prototype = Action,
+Name = "Off",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 40,
+Hgt = 25,
+NextAction = "Off",
+EnergyUsage = 100,
+},
+On = {
+Prototype = Action,
+Name = "On",
+Length = 36,
+Delay = 1,
+X = 0,
+Y = 25,
+Wdt = 40,
+Hgt = 25,
+NextAction = "On",
+},
+Opens = {
+Prototype = Action,
+Name = "Opens",
+Length = 26,
+Delay = 2,
+Reverse = 1,
+X = 0,
+Y = 50,
+Wdt = 40,
+Hgt = 25,
+NextAction = "Off",
+Sound = "SarkTr",
+},
+Closes = {
+Prototype = Action,
+Name = "Closes",
+Length = 26,
+Delay = 2,
+X = 0,
+Y = 50,
+Wdt = 40,
+Hgt = 25,
+NextAction = "Close",
+Sound = "SarkTr",
+},
+Close = {
+Prototype = Action,
+Name = "Close",
+Length = 1,
+Delay = 1,
+X = 40,
+Y = 0,
+Wdt = 40,
+Hgt = 25,
+NextAction = "Close",
+},  };
+local Name = "$Name$";

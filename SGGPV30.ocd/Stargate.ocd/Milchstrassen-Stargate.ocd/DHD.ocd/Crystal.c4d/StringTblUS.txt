@@ -1,2 +1,3 @@
-Damaged=The Crystal seems to be damaged
-NotDamaged=The Crystal seems to be Okay
+Damaged=The Crystal seems to be damaged
+NotDamaged=The Crystal seems to be Okay
+Name=Navigatingcrystal

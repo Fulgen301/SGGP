@@ -23,3 +23,12 @@ for(var i1=0; i1<GetPlayerCount(); i1++) {
 	for(var i2=0; i2<GetCrewCount(i1); i2++) {
 		SetPlrViewRange(211-Local()*26-Local()*15*( GetMaterial(GetX(GetCrew(i1,i2))-GetX(),GetY(GetCrew(i1,i2))-GetY())!=-1 || IsNight()),GetCrew(i1,i2));
 }}}
+local ActMap = {
+Wait = {
+Prototype = Action,
+Name = "Wait",
+Delay = 1,
+NextAction = "Idle",
+EndCall = "Initialized",
+},  };
+local Name = "$Name$";

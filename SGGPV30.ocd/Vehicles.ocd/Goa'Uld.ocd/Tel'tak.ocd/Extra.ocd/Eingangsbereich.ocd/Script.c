@@ -32,3 +32,4 @@ public func Teltak()
 {
 	return(1);
 }
+local Name = "Eingangsbereich";

@@ -88,3 +88,5 @@ public func OnClonkDmg(int iDamage, int iType, object pClonk)
   if(iType == DMG_Bio)
     return(110);
 }
+local Name = "$Name$";
+local Collectible = 1;

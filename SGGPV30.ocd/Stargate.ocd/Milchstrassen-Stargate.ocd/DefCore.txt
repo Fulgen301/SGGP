@@ -1,6 +1,5 @@
 [DefCore]
 id=STGT
-Name=Milchstraﬂen-Stargate
 Version=4,9,5
 Category=2
 Components=NAQU=20;METL=2

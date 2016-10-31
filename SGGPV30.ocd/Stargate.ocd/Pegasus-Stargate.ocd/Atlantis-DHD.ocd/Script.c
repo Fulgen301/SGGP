@@ -29,3 +29,5 @@ public func IsMilkywayDHD()	{return false;}
 public func IsPegasusDHD()	{return true;}
 public func IsDestinyDHD()	{return false;}
 
+local Touchable = 2;
+local Name = "$Name$";

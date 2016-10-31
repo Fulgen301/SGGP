@@ -169,3 +169,27 @@ func IsBulletTarget()
 	return(true); 
 }
 
+local ActMap = {
+NoARW = {
+Prototype = Action,
+Name = "NoARW",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 30,
+Hgt = 20,
+NextAction = "Hold",
+},
+ARW = {
+Prototype = Action,
+Name = "ARW",
+Length = 1,
+Delay = 1,
+X = 30,
+Y = 0,
+Wdt = 30,
+Hgt = 20,
+NextAction = "Hold",
+},  };
+local Name = "$Name$";

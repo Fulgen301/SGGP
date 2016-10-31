@@ -54,3 +54,4 @@ func Piccheck()
   }
   return(1);
 }
+local Name = "$Name$";

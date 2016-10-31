@@ -1,6 +1,5 @@
 [DefCore]
 id=LETA
-Name=Letter
 Version=4,9,5
 Category=4
 MaxUserSelect=10
@@ -16,6 +15,5 @@ VertexY=5,-5
 VertexX=0,0,5,5
 VertexFriction=40
 Rebuy=1
-Collectible=1
 Rotate=1
 BorderBound=1

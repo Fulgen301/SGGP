@@ -157,3 +157,5 @@ public func OnDowngrade(id uid) {
   }
 }
 
+local Name = "$Name$";
+local Collectible = 1;

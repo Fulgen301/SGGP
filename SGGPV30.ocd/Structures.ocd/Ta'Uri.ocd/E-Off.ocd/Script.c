@@ -110,3 +110,4 @@ func ChangeOwner(int iOwner)
 	ContainedDigDouble(pUser);
 }
 			
+local Name = "$Name$";

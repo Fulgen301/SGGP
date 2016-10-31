@@ -1,6 +1,5 @@
 [DefCore]
 id=CNS2
-Name=Console2
 Version=4,9,5
 Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 MaxUserSelect=1
@@ -16,5 +15,4 @@ Value=150
 Mass=75
 Components=METL=3;NAQU=1
 Picture=25,0,64,64
-Grab=1
 Construction=1

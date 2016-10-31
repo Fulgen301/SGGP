@@ -110,3 +110,5 @@ public func Upgrade(id uid) {
     return(true);
   }
 }
+local Name = "$Name$";
+local Collectible = 1;

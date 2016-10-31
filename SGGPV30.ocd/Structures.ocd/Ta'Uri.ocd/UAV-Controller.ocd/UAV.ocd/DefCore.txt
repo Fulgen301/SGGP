@@ -1,7 +1,6 @@
 [DefCore]
 id=TAUV
 Version=4,9,9
-Name=UAV
 Category=4
 Width=40
 Height=40
@@ -14,6 +13,5 @@ Value=200
 Mass=2000
 Components=METL=5;ROCK=1;CRYS=2;
 Picture=0,0,40,40
-Grab=0
 Timer=1
 TimerCall=Check

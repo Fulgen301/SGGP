@@ -1,6 +1,5 @@
 [DefCore]
 id=WS3V
-Name=Tropfen
 Category=4
 Value=0
 Mass=1

@@ -1,2 +1,3 @@
-Fire=Drohne abfeuern
-NotEnoughEnergy=<c ff0000>Nicht genug Energie!</c>
+Fire=Drohne abfeuern
+NotEnoughEnergy=<c ff0000>Nicht genug Energie!</c>
+Name=Drohnenabschussrampe

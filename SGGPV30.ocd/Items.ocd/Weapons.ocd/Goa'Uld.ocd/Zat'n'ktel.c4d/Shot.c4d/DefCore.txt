@@ -1,7 +1,6 @@
 [DefCore]
 id=ZATS
 Version=4,9,5
-Name=Zat'nik'tel Schuss
 Category=4
 Width=11
 Height=18

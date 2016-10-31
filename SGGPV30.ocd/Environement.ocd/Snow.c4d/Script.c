@@ -20,3 +20,4 @@ protected func Snowing(){
    }
   return(1);
 }
+local Name = "$Name$";

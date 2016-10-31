@@ -53,3 +53,15 @@ private func GlowColor(int iATime) {
 }
 
 public func TrailColor(int iATime) { return(Color(iATime)); }
+local ActMap = {
+Travel = {
+Prototype = Action,
+Name = "Travel",
+Procedure = DFA_FLOAT,
+NextAction = "Travel",
+FacetBase = 1,
+Length = 1,
+Delay = 1,
+StartCall = "Traveling",
+},  };
+local Name = "$Name$";

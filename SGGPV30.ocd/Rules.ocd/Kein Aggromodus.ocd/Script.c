@@ -9,3 +9,4 @@ func Hallo()
 {
 	RepliAggro();
 }
+local Name = "$Name$";

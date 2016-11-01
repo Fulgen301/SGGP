@@ -16,23 +16,14 @@ public func Set(phase) {
   var height = GetDefCoreVal("Height", "DefCore", GetID());
 }
 
-local ActMap = {
-
-Be = {
-
-Prototype = Action,
-
-Name = "Be",
-
-X = 0,
-
-Y = 0,
-
-Wdt = 34,
-
-Hgt = 45,
-
-Length = 5,
-
+local ActMap = {
+Be = {
+Prototype = Action,
+Name = "Be",
+X = 0,
+Y = 0,
+Wdt = 34,
+Hgt = 45,
+Length = 5,
 },  };
 local Name = "$Name$";

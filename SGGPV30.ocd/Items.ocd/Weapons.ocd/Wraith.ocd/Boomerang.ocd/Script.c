@@ -95,48 +95,27 @@ func Spark()
   CreateParticle("SparkB",0,0,RandomX(-10,10),RandomX(-10,-20),RandomX(40,60));
   return(1);
 }
-local ActMap = {
-
-Depart = {
-
-Prototype = Action,
-
-Name = "Depart",
-
-Procedure = DFA_NONE,
-
-FacetBase = 1,
-
-Length = 1,
-
-Delay = 1,
-
-NextAction = "Fly",
-
-EndCall = "Departure2",
-
-},
-
-Fly = {
-
-Prototype = Action,
-
-Name = "Fly",
-
-Procedure = DFA_NONE,
-
-FacetBase = 1,
-
-Length = 1,
-
-Delay = 5,
-
-NextAction = "Fly",
-
-EndCall = "FlyCheck",
-
-Sound = "BmFly",
-
+local ActMap = {
+Depart = {
+Prototype = Action,
+Name = "Depart",
+Procedure = DFA_NONE,
+FacetBase = 1,
+Length = 1,
+Delay = 1,
+NextAction = "Fly",
+EndCall = "Departure2",
+},
+Fly = {
+Prototype = Action,
+Name = "Fly",
+Procedure = DFA_NONE,
+FacetBase = 1,
+Length = 1,
+Delay = 5,
+NextAction = "Fly",
+EndCall = "FlyCheck",
+Sound = "BmFly",
 },  };
 local Name = "$Name$";
 local Collectible = 1;

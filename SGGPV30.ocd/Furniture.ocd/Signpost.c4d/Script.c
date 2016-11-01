@@ -32,21 +32,13 @@ global func SignpostText(string sScriptName, string sToText)
       }
   }
 local Touchable = 1;
-local ActMap = {
-
-Standing = {
-
-Prototype = Action,
-
-Name = "Standing",
-
-Procedure = DFA_FLOAT,
-
-Length = 1,
-
-Delay = 0,
-
-FacetBase = 1,
-
+local ActMap = {
+Standing = {
+Prototype = Action,
+Name = "Standing",
+Procedure = DFA_FLOAT,
+Length = 1,
+Delay = 0,
+FacetBase = 1,
 },  };
 local Name = "$Name$";

@@ -101,29 +101,17 @@ func Undock()
   jumper = 0;
   return(1);
 }
-local ActMap = {
-
-Wait = {
-
-Prototype = Action,
-
-Name = "Wait",
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 35,
-
-Hgt = 35,
-
-FlipDir = 1,
-
-Directions = 2,
-
-NextAction = "Wait",
-
+local ActMap = {
+Wait = {
+Prototype = Action,
+Name = "Wait",
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 35,
+Hgt = 35,
+FlipDir = 1,
+Directions = 2,
+NextAction = "Wait",
 },  };
 local Name = "$Name$";

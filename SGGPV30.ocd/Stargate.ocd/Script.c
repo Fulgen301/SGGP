@@ -21,17 +21,9 @@ public func IsTeltakGate()
     return teltak;
 }
 
-public func SetTeltak(object pObj)
-{
-    if(!pObj) return false;
-    teltak = pObj;
-    return true;
-}
-
-public func IsDestinyGate()
+public func HasDestiny()
 {
     return destiny;
-}
 }
 
 protected func Construction()
@@ -46,7 +38,7 @@ protected func Initialize()
   SetAction("Idle");
   var i;
   i = 0;
-  for(obj in FindObjects(Find_Func("IsStargate")))
+  for(var obj in FindObjects(Find_Func("IsStargate")))
   {
 	  if(obj) i++;
   }
@@ -79,21 +71,27 @@ func InstallIris()
 }
 
 //Abfrage ob die Iris zu ist
-func IsClose()
+public func IsClose()
 {
-  if(!iris) return false;
-  return iris->IsClose() ;
+  if(!iris)
+  {
+   return nil;
+  }
+  return iris->IsClose();
 }
 
 //Abfrage ob beim angewählten Gate die Iris geschlossen ist
 public func pToClose()
 {
-    if(!pTo) return false;
-    return pTo->IsClose();
+  if(!pTo)
+  {
+   return nil;
+  }
+  return pTo->IsClose();
 }
 
 //Sound wenn was gegen die Iris kracht
-protected func Dong()
+private func Dong()
 {
   Sound("IrisHit");
   return true;
@@ -109,7 +107,7 @@ protected func ControlIris()
   return true;
 }
 
-protected func GDOControlIris(passw)
+public func GDOControlIris(passw)
 {
   if(iris)
   {
@@ -118,12 +116,11 @@ protected func GDOControlIris(passw)
   return true;
 }
 
-
 //Tötung beim Kawoosh
 protected func KawooshKill()
 {
    var xobj;
-   FreeRect(GetX() - GetID()->GetDefOffset(0), GetY()- GetID()->GetDefOffset(1), GetID()->GetDefWidth(), GetID()->GetDefHeight();
+   FreeRect(GetX() - GetID()->GetDefOffset(0), GetY() - GetID()->GetDefOffset(1), GetID()->GetDefWidth(), GetID()->GetDefHeight();
    for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Or(Find_OCF(OCF_Living),Find_OCF(OCF_Collectible))))
    {
     if(!IsTeltakGate())
@@ -272,7 +269,7 @@ public func Dial(string gate)
 	
 	//Energy
 	
-	var cc = ChevronCount(pGate);
+	var cc = ChevronCount(this);
 	if(cc == 7 && energy >= 100000)
 	{
 		energy -= 100000;
@@ -398,7 +395,6 @@ public func Deactivate()
 //Überbringung des Ziels:
 protected func Transport()
 {
-  return; // :DEBUG:
   var obj;
   for(obj in FindObjects(Find_InRect(70,0,25,80)))
   {
@@ -483,7 +479,7 @@ public func IsDestinyGate()				{ return false; }
 public func IsMilkywayGate()			{ return false; }
 public func IsPegasusGate()				{ return false; }
 public func IsSpaceGate()				{ return !ramp; }
-public func IsForwarding()				{ return (forwarding && !IsBusy()); }
+public func IsForwarding()				{ return (state.forwarding && !IsBusy()); }
 public func ChevronCount(object gate)	{ return 7; }
 public func IsBusy()					{ return !(GetAction() == "Idle"); }
 
@@ -497,134 +493,252 @@ private func FailSound()				{ return; }
 
 //Console
 public func IsConsoleTarget()			{ return true; }
-
-local Name = "$Name$";
-
 local ActMap = {
+
 Outgoing1 = {
+
 Prototype = Action,
+
 Name = "Outgoing1",
+
 Length = 51,
+
 Delay = 4,
+
 FlipDir = 1,
+
 X = 0,
+
 Y = 0,
+
 Wdt = 110,
+
 Hgt = 80,
+
 NextAction = "Outgoing2",
+
 PhaseCall = "DialSounds",
+
 },
 
 Outgoing2 = {
+
 Prototype = Action,
+
 Name = "Outgoing2",
+
 Length = 66,
+
 Delay = 2,
+
 FlipDir = 1,
+
 X = 0,
+
 Y = 80,
+
 Wdt = 110,
+
 Hgt = 80,
+
 NextAction = "Outgoing3",
+
 StartCall = "OpenSound",
+
 PhaseCall = "KawooshKill",
+
 },
 
 Outgoing3 = {
-Prototype = Action,
-Name = "Outgoing3",
-Length = 51,
-Delay = 1,
-FlipDir = 1,
-X = 0,
-Y = 160,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Outgoing4",
-EndCall = "ShutDelay",
-Sound = "Opened",
-PhaseCall = "Transport",
-},
-Outgoing4 = {
-Prototype = Action,
-Name = "Outgoing4",
-Length = 51,
-Delay = 1,
-FlipDir = 1,
-Reverse = 1.
-X = 0,
-Y = 160,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Outgoing3",
-Sound = "Opened",
-PhaseCall = "Transport",
-},
-Income1 = {
-Prototype = Action,
-Name = "Income1",
-Length = 51,
-Delay = 4,
-FlipDir = 1,
-X = 0,
-Y = 0,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Income2",
-PhaseCall = "DialSounds",
-},
-Income2 = {
-Prototype = Action,
-Name = "Income2",
-Length = 66,
-Delay = 2,
-FlipDir = 1,
-X = 0,
-Y = 80,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Income3",
-StartCall = "OpenSound",
-PhaseCall = "KawooshKill",
-},
-Income3 = {
-Prototype = Action,
-Name = "Income3",
-Length = 51,
-Delay = 1,
-FlipDir = 1,
-X = 0,
-Y = 160,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Income4",
-Sound = "Opened",
-},
-Income4 = {
-Prototype = Action,
-Name = "Income4",
-Length = 51,
-Delay = 1,
-FlipDir = 1,
-Reverse = 1,
-X = 0,
-Y = 160,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Income3",
-Sound = "Opened",
-},
-Off = {
-Prototype = Action,
-Name = "Off",
-Length = 63,
-Delay = 1,
-FlipDir = 1,
-X = 0,
-Y = 240,
-Wdt = 110,
-Hgt = 80,
-Sound = "StargateClose",
-NextAction = "Idle",
-},  };
 
+Prototype = Action,
+
+Name = "Outgoing3",
+
+Length = 51,
+
+Delay = 1,
+
+FlipDir = 1,
+
+X = 0,
+
+Y = 160,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Outgoing4",
+
+EndCall = "ShutDelay",
+
+Sound = "Opened",
+
+PhaseCall = "Transport",
+
+},
+
+Outgoing4 = {
+
+Prototype = Action,
+
+Name = "Outgoing4",
+
+Length = 51,
+
+Delay = 1,
+
+FlipDir = 1,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 160,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Outgoing3",
+
+Sound = "Opened",
+
+PhaseCall = "Transport",
+
+},
+
+Income1 = {
+
+Prototype = Action,
+
+Name = "Income1",
+
+Length = 51,
+
+Delay = 4,
+
+FlipDir = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Income2",
+
+PhaseCall = "DialSounds",
+
+},
+
+Income2 = {
+
+Prototype = Action,
+
+Name = "Income2",
+
+Length = 66,
+
+Delay = 2,
+
+FlipDir = 1,
+
+X = 0,
+
+Y = 80,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Income3",
+
+StartCall = "OpenSound",
+
+PhaseCall = "KawooshKill",
+
+},
+
+Income3 = {
+
+Prototype = Action,
+
+Name = "Income3",
+
+Length = 51,
+
+Delay = 1,
+
+FlipDir = 1,
+
+X = 0,
+
+Y = 160,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Income4",
+
+Sound = "Opened",
+
+},
+
+Income4 = {
+
+Prototype = Action,
+
+Name = "Income4",
+
+Length = 51,
+
+Delay = 1,
+
+FlipDir = 1,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 160,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Income3",
+
+Sound = "Opened",
+
+},
+
+Off = {
+
+Prototype = Action,
+
+Name = "Off",
+
+Length = 63,
+
+Delay = 1,
+
+FlipDir = 1,
+
+X = 0,
+
+Y = 240,
+
+Wdt = 110,
+
+Hgt = 80,
+
+Sound = "StargateClose",
+
+NextAction = "Idle",
+
+},  };

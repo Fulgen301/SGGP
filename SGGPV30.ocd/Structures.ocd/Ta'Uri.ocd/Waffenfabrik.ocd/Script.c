@@ -147,57 +147,31 @@ func Damage()
   return(1);
 }
 local Touchable = 2;
-local ActMap = {
-
-Produce = {
-
-Prototype = Action,
-
-Name = "Produce",
-
-Length = 20,
-
-Delay = 15,
-
-EndCall = "Ready",
-
-X = 0,
-
-Y = 20,
-
-Wdt = 80,
-
-Hgt = 20,
-
-PhaseCall = "Sm",
-
-NextAction = "Stand",
-
-EnergyUsage = 100,
-
-},
-
-Stand = {
-
-Prototype = Action,
-
-Name = "Stand",
-
-Length = 1,
-
-Delay = 5,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 80,
-
-Hgt = 20,
-
-StartCall = "Check",
-
-NextAction = "Stand",
-
+local ActMap = {
+Produce = {
+Prototype = Action,
+Name = "Produce",
+Length = 20,
+Delay = 15,
+EndCall = "Ready",
+X = 0,
+Y = 20,
+Wdt = 80,
+Hgt = 20,
+PhaseCall = "Sm",
+NextAction = "Stand",
+EnergyUsage = 100,
+},
+Stand = {
+Prototype = Action,
+Name = "Stand",
+Length = 1,
+Delay = 5,
+X = 0,
+Y = 0,
+Wdt = 80,
+Hgt = 20,
+StartCall = "Check",
+NextAction = "Stand",
 },  };
 local Name = "$Name$";

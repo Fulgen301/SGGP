@@ -1,6 +1,6 @@
 /*-- Shieldemitter --*/
 
-#strict 2
+#strict
 #include BAS3
 
 local on;
@@ -10,24 +10,29 @@ local help;
 local energy, time;
 local info;
 local atlantis;
-local shield;
+local cloaked;
 
-protected func Initialize()
+func Initialize()
 {
   SetAction("Off");
   radius = 200;
   energy = 0;
 }
 
-protected func ControlDigDouble(object pUser)
+func ControlDigDouble(object pUser)
 {
-  if(GetAction() == "Close")
+  if(GetAction() eq "Close")
   {
    SetAction("Opens");
    return(1);
   }
 
-  if(GetAction() == "Closes" || GetAction() == "Opens")
+  if(GetAction() eq "Closes")
+  {
+   return(1);
+  }
+  
+  if(GetAction() eq "Opens")
   {
    return(1);
   }
@@ -43,7 +48,7 @@ protected func ControlDigDouble(object pUser)
   {
    AddMenuItem("- Radius", "RadDown",MEPU,pUser);
   }
-  if(GetAction() == "Off")
+  if(GetAction() eq "Off")
   {
    AddMenuItem("Herunterfahren", "Close",MEPU,pUser);
   }
@@ -57,7 +62,7 @@ protected func ControlDigDouble(object pUser)
   return(1);
 }
 
-protected func ControlRight(object pUser)
+func ControlRight(object pUser)
 {
 	if (radius > 150)
 	{
@@ -65,7 +70,7 @@ protected func ControlRight(object pUser)
 	}
 }
 
-protected func ControlLeft(object pUser)
+func ControlLeft(object pUser)
 {
 	if (radius < 650)
 	{
@@ -73,35 +78,37 @@ protected func ControlLeft(object pUser)
 	}
 }
 
-private func RadUp()
+func RadUp()
 {
+	if(cloaked)
+		return(1);
   if(radius < 550)
   {
    radius += 100;
-   RadiusChanged();
    return(1);
   }
 }
 
-private func RadDown()
+func RadDown()
 {
+	if(cloaked)
+		return(1);
   if(radius > 250)
   {
    radius -= 100;
-   RadiusChanged();
    return(1);
   }
 }
 
 
-protected func Close()
+func Close()
 {
   SetAction("Closes");
   info = 0;
   return(1);
 }
   
-protected func Damage()
+func Damage()
 {
   if(GetDamage() > 200)
   {
@@ -112,7 +119,7 @@ protected func Damage()
 }
 
 
-protected func Info()
+func Info()
 {
   Sound("Ding");
   if(info)
@@ -124,7 +131,18 @@ protected func Info()
   return(1);
 }
 
-public func Switch()
+func ToggleCloak()
+{
+	if(!cloaked)
+	{
+		cloaked=1;
+		return(1);
+	}
+	cloaked=0;
+	return(0);
+}
+
+func Switch()
 {
   if(energy < 20)
   {
@@ -140,41 +158,32 @@ public func Switch()
   {
    on = 0;
    SetAction("Off");
-   this->Message("<c ff0000>Aus</c>");
-   shield->RemoveObject();
+   Message("<c ff0000>Aus</c>",this());
    return(1);
   }
   on = 1;
   SetAction("On");
-  this->Message("<c 00ff00>An</c>");
-  shield = CreateObject(GOSH);
-  shield->SetAction("Field", this);
-  shield->SetClrModulation(GetPlrColorDw(GetOwner()));
-  shield->SetCon(radius*2);
-  
-  return true;
-}
-
-protected func RadiusChanged()
-{
-	if(!on || !shield) return;
-	shield->SetCon(radius*2);
-	shield->SetSolidMask(0, 0, radius*2, radius*2, -50*radius/100, -50*radius/100);
+  Message("<c 00ff00>An</c>",this());
+  return(1);
 }
 
 func Check()
 {
   if(info)
   {
-   Message("<c ff0000>Energie:</c> <c 00ff00>%v</c>|<c ff0000>Radius:</c> <c 00ff00>%v</c>",this,energy,radius);
+   Message("<c ff0000>Energie:</c> <c 00ff00>%v</c>|<c ff0000>Radius:</c> <c 00ff00>%v</c>",this(),energy,radius);
   }
-  
-  var zpm = FindObject2([40, this], [10, ZPM_], [1, [30, "Depledet"]]);
 
-  if(zpm && energy < 90 && zpm->LocalN("iEnergy") > 0)
+  if(FindObject(ZPM_,0,0,0,0,0,"Inactive",0,this()))
   {
-     zpm->LocalN("iEnergy") -= 1;
+   if(energy < 90)
+   {
+    if(LocalN("iEnergy",FindObject2(Find_Container(this()),Find_Not(Find_Action("Depledet")))) != 0)
+    {
+     LocalN("iEnergy",FindObject(ZPM_,0,0,0,0,0,"Inactive",0,this())) -= 1;
      energy += 10;
+    }
+   }
   }
   
   if(FindContents(ENAP))
@@ -185,35 +194,244 @@ func Check()
     FindContents(ENAP)->RemoveObject();
    }
   }
-   if(EnergyCheck(10000) && energy < 100)
+  
+  if(FindObject(ENRG))
+  {
+   if(EnergyCheck(10000))
    {
+    if(energy != 100)
+    {
      DoEnergy(-10000);
      energy += 1;
+    }
    }
+  }
 
   if(energy < 0)
   {
    energy = 0;
   }
 
-  else if(energy > 100)
+  if(energy > 100)
   {
    energy = 100;
   }
 
-  if(on && energy <= 5)
-  {
-    Switch();
-  }
-  
   if(on)
   {
-	  time++;
-	  if(time % 50 == 0)
-		  energy--;
+   //Depledetbearbeitung
+   if(energy <= 5)
+   {
+    Switch();
+    return(1);
+   }
+   
+   if(cloaked)
+   {
+   	Cloak();
+   	time += 1;
+   	if(time == 10)
+   	{
+   		energy -= 1;
+   		time = 0;
+   	}	
+   	return(1);
+   }
+
+   //Effektbearbeitung
+   help += 10;
+   var pX;
+   var pY;
+   var mat;
+   var i;
+   var lX, lY;
+   lX = 0;
+   lY = 0;
+   pX = Cos(help,radius);
+   pY = Sin(help,radius);
+   CreateParticle("PSpark",pX,pY,RandomX(-10,10),RandomX(-10,-20),RandomX(40,60),GetPlrColorDw(GetOwner()));
+   pX = Cos(help+180,radius);
+   pY = Sin(help+180,radius);
+   CreateParticle("PSpark",pX,pY,RandomX(-10,10),RandomX(-10,-20),RandomX(40,60),GetPlrColorDw(GetOwner()));
+   /*while (i <= 360)
+	{
+		i++;
+		if(i <= 90)
+		{
+			mat = ExtractLiquid(lX, lY);
+			lX++;
+			lY++;
+		}
+		if(i <= 180 && i > 90)
+		{
+			mat = ExtractLiquid(lX, lY);
+			lX--;
+			lY++;
+		}
+		if(i <= 270 && i > 180)
+		{
+			mat = ExtractLiquid(lX,lY);
+			lX--;
+			lY--;
+		}
+		if(i <= 360 && i > 270)
+		{
+			mat = ExtractLiquid(lX,lY);
+			lX++;
+			lY--;
+		}
+			
+	}*/
+   time += 1;
+   if (time == 50)
+   {
+	   energy -= 1;
+	   time = 0;
+   }
+
+
+   //ABSTOSSVERHALTEN
+   for(target in FindObjects(Find_Distance(radius-10),Find_OCF(OCF_HitSpeed4())))
+   {
+    //Jumperdrohne
+	   if (GetID(target) == PUDD)
+	   {
+		   target->~Hit();
+		   energy -= 5;
+		   if (!target)
+		   {
+			   return(1);
+		   }
+	   }
+    
+    //Meteorid
+    if(GetID(target) == METO)
+    {
+     target->~Hit();
+     return(1);
+    }
+   }
+  
+   //Trefferbearbeitung 2
+   for(target in FindObjects(Find_Distance(radius),Find_Not(Find_Distance(radius - radius/8))))
+   {
+    //Objekt wird nicht abgestoßen, wenn es sich nicht bewegt!
+    if((GetXDir(target) + GetYDir(target)) == 0)
+    {
+     return(1);
+    }
+    
+    if (GetCategory(target) & C4D_Structure())
+    {
+    	return(1);
+    }
+    
+    //Normale Kugel
+    if(target->~IsBullet() == 1)
+    {
+     target->RemoveObject();
+//     energy -= 2;
+     return(1);
+    }
+    
+    //KULL Ignorieren
+    if(GetID(target) == KULL)
+    {
+     if(target->~HasGear())
+     {
+      return(1);
+     }
+    }
+    
+    //Jumperdrohne
+    if(GetID(target) == PUDD)
+    {
+     target->~EMPShock();
+     //energy -= 5;
+     if(!target)
+     {
+      return(1);
+     }
+    }
+    
+    //Meteorid
+    if(GetID(target) == METO)
+    {
+     target->~Hit();
+	 energy -= 5;
+     return(1);
+    }
+
+	if (GetID(target) == REDR)
+	{
+		target->~Hit();
+		energy -= 5;
+		return(1);
+	}
+    
+    //Rakete
+    if(GetID(target) == MISS)
+    {
+     target->~Hit();
+     energy -= 10;
+     if(!target)
+     {
+      return(1);
+     }
+    }
+    
+    //Lenkrakete
+    if(GetID(target) == HMIS)
+    {
+     target->~Hit();
+     energy -= 13;
+     if(!target)
+     {
+      return(1);
+     }
+    }
+
+    /*if(GetOCF(target) & OCF_Construct())
+    {
+     return(1);
+    }*/
+
+    target->~SetAction("Walk");
+    target->SetXDir((GetX(target)-RandomX(GetX()+2,GetX()-2)) / 5);
+    target->SetYDir((GetY(target)-GetY()) / 5);
+   }
   }
   
-  return true;
+  return(1);
+}
+
+func Cloak()
+{
+	var obj;
+	for(obj in FindObjects(Find_InRect(-(radius/2),-(radius/2),radius,radius)))
+	{
+		if(!(GetCategory(obj) & C4D_Living))
+		{
+			obj->SetOwner(GetOwner());
+		}
+		obj->SetVisibility(VIS_Owner());
+	}
+	DrawParticleLine("PSpark",GetX()-(radius/2),GetY()-(radius/2),GetX()+(radius/2),GetY()+(radius/2),0,RandomX(40,60));
+	return(1);
+}
+
+func UnCloak()
+{
+	var obj;
+	for(obj in FindObjects(Find_InRect(-(radius/2),-(radius/2),radius,radius)))
+	{
+		if(!(GetCategory(obj) & C4D_Living))
+		{
+			obj->SetOwner(GetOwner());
+		}
+		obj->SetVisibility(VIS_All());
+	}
+	return(1);
 }
 
 func IsAsgard()

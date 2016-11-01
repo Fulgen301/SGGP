@@ -150,97 +150,51 @@ private func SetDTRotation (int r, int xoff, int yoff, object obj) {
   );
 }
 
-local ActMap = {
-
-Initialize = {
-
-Prototype = Action,
-
-Name = "Initialize",
-
-Directions = 1,
-
-Length = 1,
-
-Delay = 1,
-
-FacetBase = 1,
-
-NextAction = "Bridge",
-
-EndCall = "Initialized",
-
-},
-
-Bridge = {
-
-Prototype = Action,
-
-Name = "Bridge",
-
-Directions = 1,
-
-Length = 1,
-
-Delay = 1,
-
-NextAction = "Bridge",
-
-EndCall = "WeightBridge",
-
-},
-
-Part = {
-
-Prototype = Action,
-
-Name = "Part",
-
-Directions = 2,
-
-FlipDir = 1,
-
-Length = 6,
-
-Delay = 0,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 12,
-
-Hgt = 15,
-
-FacetBase = 0,
-
-},
-
-End = {
-
-Prototype = Action,
-
-Name = "End",
-
-Directions = 2,
-
-Length = 2,
-
-Delay = 0,
-
-X = 0,
-
-Y = 23,
-
-Wdt = 15,
-
-Hgt = 30,
-
-OffX = -1,
-
-OffY = -12,
-
-FacetBase = 0,
-
+local ActMap = {
+Initialize = {
+Prototype = Action,
+Name = "Initialize",
+Directions = 1,
+Length = 1,
+Delay = 1,
+FacetBase = 1,
+NextAction = "Bridge",
+EndCall = "Initialized",
+},
+Bridge = {
+Prototype = Action,
+Name = "Bridge",
+Directions = 1,
+Length = 1,
+Delay = 1,
+NextAction = "Bridge",
+EndCall = "WeightBridge",
+},
+Part = {
+Prototype = Action,
+Name = "Part",
+Directions = 2,
+FlipDir = 1,
+Length = 6,
+Delay = 0,
+X = 0,
+Y = 0,
+Wdt = 12,
+Hgt = 15,
+FacetBase = 0,
+},
+End = {
+Prototype = Action,
+Name = "End",
+Directions = 2,
+Length = 2,
+Delay = 0,
+X = 0,
+Y = 23,
+Wdt = 15,
+Hgt = 30,
+OffX = -1,
+OffY = -12,
+FacetBase = 0,
 },  };
 local Name = "$Name$";

@@ -1,77 +1,80 @@
 /*---- Das DHD ----*/
 
-#strict 2
-
 local pUser,ready,rena,atlantis, forw, bState;
 
-func Initialize() 
+protected func Construction()
+{
+	AddEffect("Check", this, 1, 1, this);
+}
+
+protected func Initialize() 
 {
   ready = 1;
-  return(1);
+  return true;
 }
 
-func ControlLeft(pCaller)
+protected func ControlLeft(pCaller)
 {
   pUser = pCaller;
 
   if(!ready)
   {
    Sound("start");
-   return(1);
+   return;
   }
   
   ChevronSound();
   if(!FindStargate())
   {
-   Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
-   return(1);
+   Message("<c ff0000>Kein Gate in Reichweite!</c>",this);
+   return;
   }
   FindStargate()->Deactivate();
-  return(1);
+  return true;
 }
 
-func ControlUpDouble(pCaller)
+protected func ControlUpDouble(pCaller)
 {
   pUser = pCaller;
 
   if(!ready)
   {
    Sound("start");
-   return(1);
+   return;
   }
   
   ChevronSound();
   if(!FindStargate())
   {
-   Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
-   return(1);
+   Message("<c ff0000>Kein Gate in Reichweite!</c>",this;
+   return;
   }
   else
   {
-   CallMessageBoard(0,false,"Geben sie hier den Namen des anzuwählenden Stargates ein:",GetOwner(pUser));
+   CallMessageBoard(this,false,"Geben sie hier den Namen des anzuwÃ¤hlenden Stargates ein:",pUser->GetOwner());
   }
-  return(1);
+  return true;
 }
 
-func ControlDigDouble(pCaller)
+protected func ControlDigDouble(pCaller)
 {
   ControlRightDouble(pCaller);
-  return(1);
+  return true;
 }
 
-func ControlRightDouble(pCaller)
+protected func ControlRightDouble(pCaller)
 {
   if(!FindStargate())
   {
-   Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
-   return(1);
+   Message("<c ff0000>Kein Gate in Reichweite!</c>",this);
+   return;
   }
   ChevronSound();
   if(FindObject(UMBE))
   {
    if(FindObject(NOKR))
    {
-    Message("Gatename:|<c 00ff00>%v</c>",this(),FindStargate()->GetName());
+    Message("Gatename:|<c 00ff00>%v</c>",this,FindStargate()->GetName());
     return;
    }
   }
@@ -79,11 +82,11 @@ func ControlRightDouble(pCaller)
   if(!ready)
   {
    CrystChange();
-   return(1);
+   return;
   }
 
   pUser = pCaller;
-  CreateMenu(DHD_,pUser, 0, 0, FindStargate()->GetName(), 0, 1);
+  CreateMenu(GetID(),pUser, 0, 0, FindStargate()->GetName(), 0, 1);
   if(!FindObject(UMBE))
   {
    AddMenuItem("Gate umbenennen","Rename",MEPU,pUser);
@@ -93,32 +96,32 @@ func ControlRightDouble(pCaller)
   {
    AddMenuItem("DHD manipulieren","CrystChange",MEPU,pUser);
   }
-  if(FindObject2(Find_ID(NOMA))) return(1);
-  if(!LocalN("outgoing",FindStargate()))
+  if(FindObject(Find_ID(NOMA))) return(1);
+  if(FindStargate().outgoing)
   {
-	  AddMenuItem("Ausgehende Wurmlöcher erlauben","ChangeOutgoingState",MEPU,pUser,0,true);
+	  AddMenuItem("Ausgehende Wurmlï¿½cher erlauben","ChangeOutgoingState",MEPU,pUser,0,true);
   }
-  else AddMenuItem("Ausgehende Wurmlöcher verbieten","ChangeOutgoingState",MEPU,pUser,0,false);
+  else AddMenuItem("Ausgehende Wurmlï¿½cher verbieten","ChangeOutgoingState",MEPU,pUser,0,false);
   
-  if(!LocalN("incoming",FindStargate()))
+  if(FindStargate().incoming)
   {
-	  AddMenuItem("Eingehende Wurmlöcher erlauben","ChangeIncomingState",MEPU,pUser,0,true);
+	  AddMenuItem("Eingehende Wurmlï¿½cher erlauben","ChangeIncomingState",MEPU,pUser,0,true);
   }
-  else AddMenuItem("Eingehende Wurmlöcher verbieten","ChangeIncomingState",MEPU,pUser,0,false);
+  else AddMenuItem("Eingehende Wurmlï¿½cher verbieten","ChangeIncomingState",MEPU,pUser,0,false);
   
-  if(!LocalN("forwarding",FindStargate()))
+  if(FindStargate().forwarding)
   {
 	  AddMenuItem("Weiterleitung einrichten","ChangeForwardingState",MEPU,pUser,0,true);
   }
   else AddMenuItem("Weiterleitung entfernen","ChangeForwardingState",MEPU,pUser,0,false);
-  return(1);
+  return true;
 }
 
 protected func ChangeOutgoingState(id dummy, bool state)
 {
 	if(FindStargate())
 	{
-		LocalN("outgoing",FindStargate()) = state;
+		FindStargate().outgoing = state;
 		return true;
 	}
 }
@@ -127,7 +130,7 @@ protected func ChangeIncomingState(id dummy, bool state)
 {
 	if(FindStargate())
 	{
-		LocalN("incoming",FindStargate()) = state;
+		FindStargate().incoming = state;
 		return true;
 	}
 }
@@ -138,83 +141,65 @@ protected func ChangeForwardingState(id dummy, bool state)
 	if(state)
 	{
 		forw=1;
-		CallMessageBoard(0,false,"Geben Sie den Namen des Stargates ein, zu dem eine Weiterleitung eingerichtet werden soll:",GetOwner(pUser));
+		CallMessageBoard(this,false,"Geben Sie den Namen des Stargates ein, zu dem eine Weiterleitung eingerichtet werden soll:",pUser->GetOwner());
 	}
 	else
 	{
-		LocalN("forwarding",FindStargate()) = false;
-		LocalN("fGate",FindStargate()) = 0;
+		FindStargate().forwarding = false;
+		FindStargate().fGate = nil;
 		bState = false;
-		Message("<c 00ff00>Weiterleitung entfernt!",this);
+		this->Message("<c 00ff00>Weiterleitung entfernt!");
 	}
 }
 
-func Iris()
-{
-  if(!FindStargate())
-  {
-   Message("<c ff0000>Kein Gate gefunden!</c>",this());
-   Sound("Error");
-   return(1);
-  }
-  if(!FindStargate()->HasIris())
-  {
-   Message("<c ff0000>Das Gate hat keine Iris!</c>",this());
-   Sound("Error");
-   return(1);
-  }
-  FindStargate()->ControlIris();
-  return(1);
-}
-
-func Rename()
+protected func Rename()
 {
   rena = 1;
-  CallMessageBoard(0, false, "Geben sie hier den neuen Namen ihres Stargates ein:", GetOwner(pUser));
-  return(1);
+  CallMessageBoard(nil, false, "Geben sie hier den neuen Namen ihres Stargates ein:", pUser->GetOwner());
+  return;
 }
 
-func CrystChange()
+protected func CrystChange()
 {
   if(!ready)
   {
-   if(FindContents(DHDK,pUser))
+   if(pUser->FindContents(DHDK))
    {
-    if(LocalN("Damaged",FindContents(DHDK,pUser)) == 1)
+    if(pUser->FindContents(DHDK).Damaged = 1)
     {
-     Message("<c ff0000>Der Kristall ist kaputt!</c>",this());
+     Message("<c ff0000>Der Kristall ist kaputt!</c>",this);
      Sound("Error");
-     return(1);
+     return;
     }
     
-    FindContents(DHDK,pUser)->RemoveObject();
+    pUser->FindContents(DHDK)->RemoveObject();
     ready = 1;
     ChevronSound();
-    return(1);
+    return;
    }
    else
    {
-    Message("<c ff0000>Kein Kontrollkristall vorhanden!</c>",this());
-    return(1);
+    Message("<c ff0000>Kein Kontrollkristall vorhanden!</c>",this);
+    return;
    }
    Sound("start");
-   return(1);
+   return;
   }
   else
   {
-   CreateContents(DHDK,pUser);
+   pUser->CreateContents(DHDK);
    ready = 0;
-   return(1);
+   return true;
   }
-  return(1);
+  return true;
 }
 
-func InputCallback(string pGate)
+protected func InputCallback(string pGate)
 {
   if(!FindStargate())
   {
-   Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
-   return(1);
+   Message("<c ff0000>Kein Gate in Reichweite!</c>",this);
+   return;
   }
 
   if(rena)
@@ -222,12 +207,12 @@ func InputCallback(string pGate)
    rena = 0;
    if(!FindStargate())
    {
-    Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
+    Message("<c ff0000>Kein Gate in Reichweite!</c>",this);
     Sound("Error");
-    return(1);
+    return;
    }
    FindStargate()->ReName(pGate);
-   Message("<c 00ff00>Neuer Gatename:</c><c 0000ff>%v</c>",this(),pGate);
+   Message("<c 00ff00>Neuer Gatename:</c><c 0000ff>%v</c>",this,pGate);
    return(1);
   }
   if(forw)
@@ -235,12 +220,12 @@ func InputCallback(string pGate)
 	  forw = 0;
 	  if(!FindStargate())
 	  {
-		Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
+		Message("<c ff0000>Kein Gate in Reichweite!</c>",this);
 		Sound("Error");
 		return(1);
 	  }
 	  var Gate;
-	  for(Gate in FindObjects(Find_Func("IsStargate")))
+	  for(Gate in FindObjects([C4FO_Func, "IsStargate"])
 	  {
 		if (Gate != FindStargate())
 		{
@@ -248,8 +233,8 @@ func InputCallback(string pGate)
 			szName = Gate ->GetName();
 			if (szName == pGate)
 			{
-				LocalN("forwarding",FindStargate()) = bState;
-				LocalN("fGate",FindStargate()) = Gate;
+				FindStargate().forwarding = bState;
+				FindStargate().fGate = Gate;
 				Message("<c 00ff00>Weiterleitung eingerichtet zu:</c><c 0000ff>%v</c>",this,Gate->GetName());
 				bState = 0;
 				return(1);
@@ -273,27 +258,6 @@ func InputCallback(string pGate)
   return(1);
 }
 
-func EMPShock()
-{
-EMPShockEffect(20);
-if(FindStargate())
-{
-var gate;
-gate = FindStargate();
-if(FindObject2(Find_Func("IsStargate"),Find_Exclude(gate)))
-{
-gate->Dial(FindObject2(Find_Func("IsStargate"),Find_Exclude(gate))->GetName());
-}
-}
-}
-
-func IsMachine() {return(1);}
-public func ChevronSound()
-{
-	Sound("DHDChevron");
-	return(1);
-}
-
 protected func Check()
 {
 	if(atlantis) return;
@@ -307,7 +271,7 @@ protected func Check()
 
 public func FindStargate()
 {
-	return(FindObject2(Find_Func("IsStargate"),Find_Func("IsMilkywayGate"),Find_Distance(1000),Sort_Distance()));
+	return FindObject([C4FO_Func, "IsStargate"],[C4FO_Func, "IsMilkywayGate"],[C4FO_Distance, 1000, GetX(), GetY()],[C4SO_Distance, GetX(), GetY()]);
 }
 
 public func IsDHD()			{return true;}

@@ -116,81 +116,43 @@ public func Teltak()
 {
 	return(1);
 }
-local ActMap = {
-
-Fake = {
-
-Prototype = Action,
-
-Name = "Fake",
-
-Length = 16,
-
-Delay = 3,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 100,
-
-Hgt = 100,
-
-NextAction = "Fake2",
-
-PhaseCall = "SolidUp",
-
-StartCall = "Vorb",
-
-},
-
-Fake2 = {
-
-Prototype = Action,
-
-Name = "Fake2",
-
-Length = 18,
-
-Delay = 3,
-
-X = 0,
-
-Y = 100,
-
-Wdt = 100,
-
-Hgt = 100,
-
-NextAction = "Fake3",
-
-StartCall = "SolidLight",
-
-},
-
-Fake3 = {
-
-Prototype = Action,
-
-Name = "Fake3",
-
-Length = 16,
-
-Delay = 3,
-
-Reverse = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 100,
-
-Hgt = 100,
-
-PhaseCall = "SolidDown",
-
-EndCall = "Off",
-
+local ActMap = {
+Fake = {
+Prototype = Action,
+Name = "Fake",
+Length = 16,
+Delay = 3,
+X = 0,
+Y = 0,
+Wdt = 100,
+Hgt = 100,
+NextAction = "Fake2",
+PhaseCall = "SolidUp",
+StartCall = "Vorb",
+},
+Fake2 = {
+Prototype = Action,
+Name = "Fake2",
+Length = 18,
+Delay = 3,
+X = 0,
+Y = 100,
+Wdt = 100,
+Hgt = 100,
+NextAction = "Fake3",
+StartCall = "SolidLight",
+},
+Fake3 = {
+Prototype = Action,
+Name = "Fake3",
+Length = 16,
+Delay = 3,
+Reverse = 1,
+X = 0,
+Y = 0,
+Wdt = 100,
+Hgt = 100,
+PhaseCall = "SolidDown",
+EndCall = "Off",
 },  };
 local Name = "$Name$";

@@ -256,29 +256,17 @@ public func IsBulletTarget(id idBullet, object pBullet, object pShooter)
   return(true);
 }
 local Touchable = 2;
-local ActMap = {
-
-Turn = {
-
-Prototype = Action,
-
-Name = "Turn",
-
-Length = 90,
-
-Delay = 0,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 60,
-
-Hgt = 60,
-
-NextAction = "Hold",
-
-EnergyUsage = 100,
-
+local ActMap = {
+Turn = {
+Prototype = Action,
+Name = "Turn",
+Length = 90,
+Delay = 0,
+X = 0,
+Y = 0,
+Wdt = 60,
+Hgt = 60,
+NextAction = "Hold",
+EnergyUsage = 100,
 },  };
 local Name = "$Name$";

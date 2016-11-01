@@ -379,361 +379,183 @@ public func ControlDigDouble()	//Ein und Ausschalten des Reaktors wird hier gest
 func IsMachine()		{ return(1); }
 func IsBulletTarget()		{ return(1); }
 local Touchable = 1;
-local ActMap = {
-
-Auf = {
-
-Prototype = Action,
-
-Name = "Auf",
-
-Length = 2,
-
-Delay = 2,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-Reverse = 1,
-
-Sound = "Connect",
-
-EndCall = "DoAction",
-
-},
-
-Offen1 = {
-
-Prototype = Action,
-
-Name = "Offen1",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen1",
-
-EnergyUsage = -100,
-
-EndCall = "Heat",
-
-},
-
-Offen2 = {
-
-Prototype = Action,
-
-Name = "Offen2",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen2",
-
-EnergyUsage = -250,
-
-EndCall = "Heat",
-
-},
-
-Offen3 = {
-
-Prototype = Action,
-
-Name = "Offen3",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen3",
-
-EnergyUsage = -500,
-
-EndCall = "Heat",
-
-},
-
-Offen4 = {
-
-Prototype = Action,
-
-Name = "Offen4",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen4",
-
-EnergyUsage = -750,
-
-EndCall = "Heat",
-
-},
-
-Offen5 = {
-
-Prototype = Action,
-
-Name = "Offen5",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen5",
-
-EnergyUsage = -1000,
-
-EndCall = "Heat",
-
-},
-
-Offen6 = {
-
-Prototype = Action,
-
-Name = "Offen6",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen6",
-
-EnergyUsage = -2000,
-
-EndCall = "Heat",
-
-},
-
-Offen7 = {
-
-Prototype = Action,
-
-Name = "Offen7",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen7",
-
-EnergyUsage = -2500,
-
-EndCall = "Heat",
-
-},
-
-Offen8 = {
-
-Prototype = Action,
-
-Name = "Offen8",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen8",
-
-EnergyUsage = -5000,
-
-EndCall = "Heat",
-
-},
-
-Offen9 = {
-
-Prototype = Action,
-
-Name = "Offen9",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen9",
-
-EnergyUsage = -7500,
-
-EndCall = "Heat",
-
-},
-
-Offen10 = {
-
-Prototype = Action,
-
-Name = "Offen10",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Offen10",
-
-EnergyUsage = -10000,
-
-EndCall = "Heat",
-
-},
-
-Zu = {
-
-Prototype = Action,
-
-Name = "Zu",
-
-Length = 2,
-
-Delay = 2,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Aus",
-
-Sound = "Connect",
-
-},
-
-Aus = {
-
-Prototype = Action,
-
-Name = "Aus",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 10,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Aus",
-
-},
-
-Kaputt = {
-
-Prototype = Action,
-
-Name = "Kaputt",
-
-Length = 1,
-
-Delay = 1,
-
-X = 27,
-
-Y = 10,
-
-Wdt = 27,
-
-Hgt = 10,
-
-NextAction = "Kaputt",
-
-ObjectDisabled = 1,
-
+local ActMap = {
+Auf = {
+Prototype = Action,
+Name = "Auf",
+Length = 2,
+Delay = 2,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+Reverse = 1,
+Sound = "Connect",
+EndCall = "DoAction",
+},
+Offen1 = {
+Prototype = Action,
+Name = "Offen1",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen1",
+EnergyUsage = -100,
+EndCall = "Heat",
+},
+Offen2 = {
+Prototype = Action,
+Name = "Offen2",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen2",
+EnergyUsage = -250,
+EndCall = "Heat",
+},
+Offen3 = {
+Prototype = Action,
+Name = "Offen3",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen3",
+EnergyUsage = -500,
+EndCall = "Heat",
+},
+Offen4 = {
+Prototype = Action,
+Name = "Offen4",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen4",
+EnergyUsage = -750,
+EndCall = "Heat",
+},
+Offen5 = {
+Prototype = Action,
+Name = "Offen5",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen5",
+EnergyUsage = -1000,
+EndCall = "Heat",
+},
+Offen6 = {
+Prototype = Action,
+Name = "Offen6",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen6",
+EnergyUsage = -2000,
+EndCall = "Heat",
+},
+Offen7 = {
+Prototype = Action,
+Name = "Offen7",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen7",
+EnergyUsage = -2500,
+EndCall = "Heat",
+},
+Offen8 = {
+Prototype = Action,
+Name = "Offen8",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen8",
+EnergyUsage = -5000,
+EndCall = "Heat",
+},
+Offen9 = {
+Prototype = Action,
+Name = "Offen9",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen9",
+EnergyUsage = -7500,
+EndCall = "Heat",
+},
+Offen10 = {
+Prototype = Action,
+Name = "Offen10",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Offen10",
+EnergyUsage = -10000,
+EndCall = "Heat",
+},
+Zu = {
+Prototype = Action,
+Name = "Zu",
+Length = 2,
+Delay = 2,
+X = 0,
+Y = 0,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Aus",
+Sound = "Connect",
+},
+Aus = {
+Prototype = Action,
+Name = "Aus",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 10,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Aus",
+},
+Kaputt = {
+Prototype = Action,
+Name = "Kaputt",
+Length = 1,
+Delay = 1,
+X = 27,
+Y = 10,
+Wdt = 27,
+Hgt = 10,
+NextAction = "Kaputt",
+ObjectDisabled = 1,
 },  };
 local Name = "$Name$";

@@ -183,187 +183,96 @@ protected func Stufe4()
 }
 
 public func IsBulletTarget() { return(true); }
-local ActMap = {
-
-Stand = {
-
-Prototype = Action,
-
-Name = "Stand",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 25,
-
-Hgt = 30,
-
-NextAction = "Stand",
-
-},
-
-ClipIn = {
-
-Prototype = Action,
-
-Name = "ClipIn",
-
-Length = 50,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 25,
-
-Hgt = 30,
-
-NextAction = "Clip",
-
-Sound = "SarkTr",
-
-},
-
-Clip = {
-
-Prototype = Action,
-
-Name = "Clip",
-
-Length = 1,
-
-Delay = 1,
-
-X = 1250,
-
-Y = 0,
-
-Wdt = 25,
-
-Hgt = 30,
-
-NextAction = "Clip",
-
-},
-
-Drill = {
-
-Prototype = Action,
-
-Name = "Drill",
-
-Length = 50,
-
-Delay = 1,
-
-X = 0,
-
-Y = 30,
-
-Wdt = 25,
-
-Hgt = 30,
-
-NextAction = "Drilled",
-
-Sound = "luke1",
-
-},
-
-Drilled = {
-
-Prototype = Action,
-
-Name = "Drilled",
-
-Length = 1,
-
-Delay = 1,
-
-X = 1250,
-
-Y = 30,
-
-Wdt = 25,
-
-Hgt = 30,
-
-NextAction = "Drilled",
-
-},
-
-Erb = {
-
-Prototype = Action,
-
-Name = "Erb",
-
-Length = 1,
-
-Delay = 100,
-
-X = 0,
-
-Y = 60,
-
-Wdt = 25,
-
-Hgt = 30,
-
-NextAction = "Build",
-
-},
-
-Build = {
-
-Prototype = Action,
-
-Name = "Build",
-
-Length = 50,
-
-Delay = 1,
-
-X = 0,
-
-Y = 60,
-
-Wdt = 25,
-
-Hgt = 30,
-
-NextAction = "Buildet",
-
-Sound = "SarkTr",
-
-},
-
-Buildet = {
-
-Prototype = Action,
-
-Name = "Buildet",
-
-Length = 1,
-
-Delay = 2,
-
-X = 1250,
-
-Y = 60,
-
-Wdt = 25,
-
-Hgt = 30,
-
-NextAction = "Buildet",
-
+local ActMap = {
+Stand = {
+Prototype = Action,
+Name = "Stand",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 25,
+Hgt = 30,
+NextAction = "Stand",
+},
+ClipIn = {
+Prototype = Action,
+Name = "ClipIn",
+Length = 50,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 25,
+Hgt = 30,
+NextAction = "Clip",
+Sound = "SarkTr",
+},
+Clip = {
+Prototype = Action,
+Name = "Clip",
+Length = 1,
+Delay = 1,
+X = 1250,
+Y = 0,
+Wdt = 25,
+Hgt = 30,
+NextAction = "Clip",
+},
+Drill = {
+Prototype = Action,
+Name = "Drill",
+Length = 50,
+Delay = 1,
+X = 0,
+Y = 30,
+Wdt = 25,
+Hgt = 30,
+NextAction = "Drilled",
+Sound = "luke1",
+},
+Drilled = {
+Prototype = Action,
+Name = "Drilled",
+Length = 1,
+Delay = 1,
+X = 1250,
+Y = 30,
+Wdt = 25,
+Hgt = 30,
+NextAction = "Drilled",
+},
+Erb = {
+Prototype = Action,
+Name = "Erb",
+Length = 1,
+Delay = 100,
+X = 0,
+Y = 60,
+Wdt = 25,
+Hgt = 30,
+NextAction = "Build",
+},
+Build = {
+Prototype = Action,
+Name = "Build",
+Length = 50,
+Delay = 1,
+X = 0,
+Y = 60,
+Wdt = 25,
+Hgt = 30,
+NextAction = "Buildet",
+Sound = "SarkTr",
+},
+Buildet = {
+Prototype = Action,
+Name = "Buildet",
+Length = 1,
+Delay = 2,
+X = 1250,
+Y = 60,
+Wdt = 25,
+Hgt = 30,
+NextAction = "Buildet",
 },  };
 local Name = "$Name$";

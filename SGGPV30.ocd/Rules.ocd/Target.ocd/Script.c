@@ -34,31 +34,18 @@ protected func Check()
     return(Damage());
   return(1);
 }
-local ActMap = {
-
-Exist = {
-
-Prototype = Action,
-
-Name = "Exist",
-
-Procedure = DFA_FLOAT,
-
-Directions = 1,
-
-Length = 16,
-
-Delay = 2,
-
-NextAction = "Exist",
-
-X = 0,
-
-Y = 0,
-
-Wdt = 26,
-
-Hgt = 26,
-
+local ActMap = {
+Exist = {
+Prototype = Action,
+Name = "Exist",
+Procedure = DFA_FLOAT,
+Directions = 1,
+Length = 16,
+Delay = 2,
+NextAction = "Exist",
+X = 0,
+Y = 0,
+Wdt = 26,
+Hgt = 26,
 },  };
 local Name = "$Name$";

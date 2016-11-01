@@ -1,5 +1,5 @@
 [DefCore]
-id=DHD_
+id=DHD
 Version=4,9,5
 MaxUserSelect=1
 Category=1154

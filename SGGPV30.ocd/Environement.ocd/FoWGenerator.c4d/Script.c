@@ -167,83 +167,44 @@ global func FOW_Deactivate()
   }
 
 
-local ActMap = {
-
-Placement = {
-
-Prototype = Action,
-
-Name = "Placement",
-
-Procedure = DFA_FLOAT,
-
-Length = 1,
-
-Delay = 0,
-
-NextAction = "Hold",
-
-X = 0,
-
-Y = 0,
-
-Wdt = 4,
-
-Hgt = 4,
-
-OffX = -2,
-
-OffY = -2,
-
-},
-
-Passive = {
-
-Prototype = Action,
-
-Name = "Passive",
-
-Procedure = DFA_FLOAT,
-
-Length = 1,
-
-Delay = 0,
-
-NextAction = "Hold",
-
-X = 1,
-
-Y = 1,
-
-Wdt = 1,
-
-Hgt = 1,
-
-},
-
-Active = {
-
-Prototype = Action,
-
-Name = "Active",
-
-Procedure = DFA_FLOAT,
-
-Length = 1,
-
-Delay = 20,
-
-NextAction = "Active",
-
-X = 1,
-
-Y = 1,
-
-Wdt = 1,
-
-Hgt = 1,
-
-StartCall = "CheckClonk",
-
+local ActMap = {
+Placement = {
+Prototype = Action,
+Name = "Placement",
+Procedure = DFA_FLOAT,
+Length = 1,
+Delay = 0,
+NextAction = "Hold",
+X = 0,
+Y = 0,
+Wdt = 4,
+Hgt = 4,
+OffX = -2,
+OffY = -2,
+},
+Passive = {
+Prototype = Action,
+Name = "Passive",
+Procedure = DFA_FLOAT,
+Length = 1,
+Delay = 0,
+NextAction = "Hold",
+X = 1,
+Y = 1,
+Wdt = 1,
+Hgt = 1,
+},
+Active = {
+Prototype = Action,
+Name = "Active",
+Procedure = DFA_FLOAT,
+Length = 1,
+Delay = 20,
+NextAction = "Active",
+X = 1,
+Y = 1,
+Wdt = 1,
+Hgt = 1,
+StartCall = "CheckClonk",
 },  };
 local Name = "$Name$";

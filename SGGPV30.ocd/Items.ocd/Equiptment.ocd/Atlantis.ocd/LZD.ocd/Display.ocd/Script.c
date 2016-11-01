@@ -58,41 +58,23 @@ func Searching()
   }
   return(1);
 }
-local ActMap = {
-
-FadeIn = {
-
-Prototype = Action,
-
-Name = "FadeIn",
-
-Length = 1,
-
-Delay = 1,
-
-FacetBase = 1,
-
-NextAction = "FadeIn",
-
-StartCall = "FadingIn",
-
-},
-
-Search = {
-
-Prototype = Action,
-
-Name = "Search",
-
-Length = 1,
-
-Delay = 37,
-
-FacetBase = 1,
-
-NextAction = "Search",
-
-StartCall = "Searching",
-
+local ActMap = {
+FadeIn = {
+Prototype = Action,
+Name = "FadeIn",
+Length = 1,
+Delay = 1,
+FacetBase = 1,
+NextAction = "FadeIn",
+StartCall = "FadingIn",
+},
+Search = {
+Prototype = Action,
+Name = "Search",
+Length = 1,
+Delay = 37,
+FacetBase = 1,
+NextAction = "Search",
+StartCall = "Searching",
 },  };
 local Name = "$Name$";

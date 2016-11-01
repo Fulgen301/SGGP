@@ -97,71 +97,38 @@ private func Drilling()
   return(1);
 }
 
-local ActMap = {
-
-Move = {
-
-Prototype = Action,
-
-Name = "Move",
-
-Procedure = DFA_FLOAT,
-
-FacetBase = 1,
-
-NextAction = "Move",
-
-Delay = 5,
-
-Length = 1,
-
-Sound = "Elevator",
-
-StartCall = "Processing",
-
-},
-
-Stop = {
-
-Prototype = Action,
-
-Name = "Stop",
-
-Procedure = DFA_FLOAT,
-
-FacetBase = 1,
-
-NextAction = "Stop",
-
-Delay = 5,
-
-Length = 1,
-
-StartCall = "Processing",
-
-},
-
-Drill = {
-
-Prototype = Action,
-
-Name = "Drill",
-
-Procedure = DFA_FLOAT,
-
-FacetBase = 1,
-
-NextAction = "Drill",
-
-Delay = 1,
-
-Length = 1,
-
-Sound = "Drill",
-
-DigFree = 1,
-
-StartCall = "Drilling",
-
+local ActMap = {
+Move = {
+Prototype = Action,
+Name = "Move",
+Procedure = DFA_FLOAT,
+FacetBase = 1,
+NextAction = "Move",
+Delay = 5,
+Length = 1,
+Sound = "Elevator",
+StartCall = "Processing",
+},
+Stop = {
+Prototype = Action,
+Name = "Stop",
+Procedure = DFA_FLOAT,
+FacetBase = 1,
+NextAction = "Stop",
+Delay = 5,
+Length = 1,
+StartCall = "Processing",
+},
+Drill = {
+Prototype = Action,
+Name = "Drill",
+Procedure = DFA_FLOAT,
+FacetBase = 1,
+NextAction = "Drill",
+Delay = 1,
+Length = 1,
+Sound = "Drill",
+DigFree = 1,
+StartCall = "Drilling",
 },  };
 local Name = "$Name$";

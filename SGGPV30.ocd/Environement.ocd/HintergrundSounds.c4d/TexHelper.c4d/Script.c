@@ -20,23 +20,14 @@ protected func Timer(){
   if(!pAttacher) RemoveObject();
   return(1);
   }  
-local ActMap = {
-
-Attach = {
-
-Prototype = Action,
-
-Name = "Attach",
-
-Procedure = DFA_ATTACH,
-
-Delay = 1,
-
-FacetBase = 1,
-
-NextAction = "Attach",
-
-PhaseCall = "Timer",
-
+local ActMap = {
+Attach = {
+Prototype = Action,
+Name = "Attach",
+Procedure = DFA_ATTACH,
+Delay = 1,
+FacetBase = 1,
+NextAction = "Attach",
+PhaseCall = "Timer",
 },  };
 local Name = "$Name$";

@@ -38,24 +38,15 @@ private func CheckRotation()
 	if(light)
   	light->ChangeR(user->~AimAngle(20,180));
 }
-local ActMap = {
-
-On = {
-
-Prototype = Action,
-
-Name = "On",
-
-Procedure = DFA_NONE,
-
-Delay = 1,
-
-FacetBase = 1,
-
-NextAction = "On",
-
-StartCall = "CheckRotation",
-
+local ActMap = {
+On = {
+Prototype = Action,
+Name = "On",
+Procedure = DFA_NONE,
+Delay = 1,
+FacetBase = 1,
+NextAction = "On",
+StartCall = "CheckRotation",
 },  };
 local Name = "$Name$";
 local Collectible = 1;

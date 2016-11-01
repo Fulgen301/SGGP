@@ -119,71 +119,38 @@ func SetDirec(int angle)
 
 func IsBulletTarget()  { return(true);}
 local Touchable = 0;
-local ActMap = {
-
-Spin = {
-
-Prototype = Action,
-
-Name = "Spin",
-
-Length = 90,
-
-Delay = 0,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 40,
-
-Hgt = 40,
-
-NextAction = "Spin",
-
-},
-
-Stand1 = {
-
-Prototype = Action,
-
-Name = "Stand1",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 00,
-
-Wdt = 40,
-
-Hgt = 40,
-
-NextAction = "Stand1",
-
-},
-
-Stand2 = {
-
-Prototype = Action,
-
-Name = "Stand2",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 00,
-
-Wdt = 40,
-
-Hgt = 40,
-
-NextAction = "Stand2",
-
+local ActMap = {
+Spin = {
+Prototype = Action,
+Name = "Spin",
+Length = 90,
+Delay = 0,
+X = 0,
+Y = 0,
+Wdt = 40,
+Hgt = 40,
+NextAction = "Spin",
+},
+Stand1 = {
+Prototype = Action,
+Name = "Stand1",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 00,
+Wdt = 40,
+Hgt = 40,
+NextAction = "Stand1",
+},
+Stand2 = {
+Prototype = Action,
+Name = "Stand2",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 00,
+Wdt = 40,
+Hgt = 40,
+NextAction = "Stand2",
 },  };
 local Name = "$Name$";

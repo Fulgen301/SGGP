@@ -233,173 +233,89 @@ public func SolidDown()
   SetSolidMask(help,200,100,100);
   return(1);
 }
-local ActMap = {
-
-Up = {
-
-Prototype = Action,
-
-Name = "Up",
-
-Length = 16,
-
-Delay = 3,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 100,
-
-Hgt = 100,
-
-NextAction = "Light1",
-
-PhaseCall = "SolidUp",
-
-},
-
-Light1 = {
-
-Prototype = Action,
-
-Name = "Light1",
-
-Length = 9,
-
-Delay = 3,
-
-X = 0,
-
-Y = 100,
-
-Wdt = 100,
-
-Hgt = 100,
-
-NextAction = "Light2",
-
-EndCall = "Beam",
-
-StartCall = "SolidLight",
-
-},
-
-Light2 = {
-
-Prototype = Action,
-
-Name = "Light2",
-
-Length = 9,
-
-Delay = 3,
-
-X = 900,
-
-Y = 100,
-
-Wdt = 100,
-
-Hgt = 100,
-
-NextAction = "Down",
-
-},
-
-Down = {
-
-Prototype = Action,
-
-Name = "Down",
-
-Length = 16,
-
-Delay = 3,
-
-Reverse = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 100,
-
-Hgt = 100,
-
-PhaseCall = "SolidDown",
-
-},
-
-Fake = {
-
-Prototype = Action,
-
-Name = "Fake",
-
-Length = 16,
-
-Delay = 3,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 100,
-
-Hgt = 100,
-
-NextAction = "Fake2",
-
-PhaseCall = "SolidUp",
-
-},
-
-Fake2 = {
-
-Prototype = Action,
-
-Name = "Fake2",
-
-Length = 18,
-
-Delay = 3,
-
-X = 0,
-
-Y = 100,
-
-Wdt = 100,
-
-Hgt = 100,
-
-NextAction = "Fake3",
-
-StartCall = "SolidLight",
-
-},
-
-Fake3 = {
-
-Prototype = Action,
-
-Name = "Fake3",
-
-Length = 16,
-
-Delay = 3,
-
-Reverse = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 100,
-
-Hgt = 100,
-
-PhaseCall = "SolidDown",
-
+local ActMap = {
+Up = {
+Prototype = Action,
+Name = "Up",
+Length = 16,
+Delay = 3,
+X = 0,
+Y = 0,
+Wdt = 100,
+Hgt = 100,
+NextAction = "Light1",
+PhaseCall = "SolidUp",
+},
+Light1 = {
+Prototype = Action,
+Name = "Light1",
+Length = 9,
+Delay = 3,
+X = 0,
+Y = 100,
+Wdt = 100,
+Hgt = 100,
+NextAction = "Light2",
+EndCall = "Beam",
+StartCall = "SolidLight",
+},
+Light2 = {
+Prototype = Action,
+Name = "Light2",
+Length = 9,
+Delay = 3,
+X = 900,
+Y = 100,
+Wdt = 100,
+Hgt = 100,
+NextAction = "Down",
+},
+Down = {
+Prototype = Action,
+Name = "Down",
+Length = 16,
+Delay = 3,
+Reverse = 1,
+X = 0,
+Y = 0,
+Wdt = 100,
+Hgt = 100,
+PhaseCall = "SolidDown",
+},
+Fake = {
+Prototype = Action,
+Name = "Fake",
+Length = 16,
+Delay = 3,
+X = 0,
+Y = 0,
+Wdt = 100,
+Hgt = 100,
+NextAction = "Fake2",
+PhaseCall = "SolidUp",
+},
+Fake2 = {
+Prototype = Action,
+Name = "Fake2",
+Length = 18,
+Delay = 3,
+X = 0,
+Y = 100,
+Wdt = 100,
+Hgt = 100,
+NextAction = "Fake3",
+StartCall = "SolidLight",
+},
+Fake3 = {
+Prototype = Action,
+Name = "Fake3",
+Length = 16,
+Delay = 3,
+Reverse = 1,
+X = 0,
+Y = 0,
+Wdt = 100,
+Hgt = 100,
+PhaseCall = "SolidDown",
 },  };
 local Name = "$Name$";

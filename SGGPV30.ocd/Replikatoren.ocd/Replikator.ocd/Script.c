@@ -657,209 +657,107 @@ global func RepliAggro(bool fOn)
 	}
 }
 		
-local ActMap = {
-
-Walk = {
-
-Prototype = Action,
-
-Name = "Walk",
-
-Procedure = DFA_WALK,
-
-Directions = 2,
-
-FlipDir = 1,
-
-Length = 21,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 20,
-
-Hgt = 10,
-
-NextAction = "Walk",
-
-},
-
-Dig = {
-
-Prototype = Action,
-
-Name = "Dig",
-
-Procedure = DFA_DIG,
-
-Directions = 2,
-
-FlipDir = 1,
-
-Length = 21,
-
-DigFree = 5,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 20,
-
-Hgt = 10,
-
-NextAction = "Walk",
-
-},
-
-Build = {
-
-Prototype = Action,
-
-Name = "Build",
-
-Procedure = DFA_BUILD,
-
-Directions = 2,
-
-FlipDir = 1,
-
-Length = 21,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 20,
-
-Hgt = 10,
-
-NextAction = "Build",
-
-},
-
-Jump = {
-
-Prototype = Action,
-
-Name = "Jump",
-
-Procedure = DFA_FLIGHT,
-
-Directions = 2,
-
-FlipDir = 1,
-
-Length = 6,
-
-Delay = 1,
-
-X = 0,
-
-Y = 15,
-
-Wdt = 20,
-
-Hgt = 10,
-
-NextAction = "Hold",
-
-},
-
-Scale = {
-
-Prototype = Action,
-
-Name = "Scale",
-
-Procedure = DFA_SCALE,
-
-Directions = 2,
-
-FlipDir = 1,
-
-Length = 21,
-
-Delay = 1,
-
-X = 0,
-
-Y = 25,
-
-Wdt = 20,
-
-Hgt = 50,
-
-NextAction = "ScaleDown",
-
-StartCall = "Scaling",
-
-},
-
-ScaleDown = {
-
-Prototype = Action,
-
-Name = "ScaleDown",
-
-Procedure = DFA_SCALE,
-
-Directions = 2,
-
-FlipDir = 1,
-
-Length = 21,
-
-Delay = 1,
-
-X = 0,
-
-Y = 25,
-
-Wdt = 20,
-
-Hgt = 50,
-
-Reverse = 1,
-
-NextAction = "ScaleDown",
-
-StartCall = "Scaling",
-
-},
-
-Hangle = {
-
-Prototype = Action,
-
-Name = "Hangle",
-
-Procedure = DFA_HANGLE,
-
-Directions = 2,
-
-FlipDir = 1,
-
-Length = 21,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 20,
-
-Hgt = 10,
-
-NextAction = "Hangle",
-
+local ActMap = {
+Walk = {
+Prototype = Action,
+Name = "Walk",
+Procedure = DFA_WALK,
+Directions = 2,
+FlipDir = 1,
+Length = 21,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 20,
+Hgt = 10,
+NextAction = "Walk",
+},
+Dig = {
+Prototype = Action,
+Name = "Dig",
+Procedure = DFA_DIG,
+Directions = 2,
+FlipDir = 1,
+Length = 21,
+DigFree = 5,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 20,
+Hgt = 10,
+NextAction = "Walk",
+},
+Build = {
+Prototype = Action,
+Name = "Build",
+Procedure = DFA_BUILD,
+Directions = 2,
+FlipDir = 1,
+Length = 21,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 20,
+Hgt = 10,
+NextAction = "Build",
+},
+Jump = {
+Prototype = Action,
+Name = "Jump",
+Procedure = DFA_FLIGHT,
+Directions = 2,
+FlipDir = 1,
+Length = 6,
+Delay = 1,
+X = 0,
+Y = 15,
+Wdt = 20,
+Hgt = 10,
+NextAction = "Hold",
+},
+Scale = {
+Prototype = Action,
+Name = "Scale",
+Procedure = DFA_SCALE,
+Directions = 2,
+FlipDir = 1,
+Length = 21,
+Delay = 1,
+X = 0,
+Y = 25,
+Wdt = 20,
+Hgt = 50,
+NextAction = "ScaleDown",
+StartCall = "Scaling",
+},
+ScaleDown = {
+Prototype = Action,
+Name = "ScaleDown",
+Procedure = DFA_SCALE,
+Directions = 2,
+FlipDir = 1,
+Length = 21,
+Delay = 1,
+X = 0,
+Y = 25,
+Wdt = 20,
+Hgt = 50,
+Reverse = 1,
+NextAction = "ScaleDown",
+StartCall = "Scaling",
+},
+Hangle = {
+Prototype = Action,
+Name = "Hangle",
+Procedure = DFA_HANGLE,
+Directions = 2,
+FlipDir = 1,
+Length = 21,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 20,
+Hgt = 10,
+NextAction = "Hangle",
 },  };
 local Name = "$Name$";

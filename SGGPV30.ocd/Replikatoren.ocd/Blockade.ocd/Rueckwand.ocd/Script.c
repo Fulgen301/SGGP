@@ -14,53 +14,29 @@ func IsRepli()
 {
 	return(true);
 }
-local ActMap = {
-
-1 = {
-
-Prototype = Action,
-
-Name = "1",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 32,
-
-Wdt = 330,
-
-Hgt = 30,
-
-NextAction = "Hold",
-
-StartCall = "Initialize",
-
-},
-
-2 = {
-
-Prototype = Action,
-
-Name = "2",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 330,
-
-Hgt = 30,
-
-NextAction = "Hold",
-
-StartCall = "Initialize",
-
+local ActMap = {
+1 = {
+Prototype = Action,
+Name = "1",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 32,
+Wdt = 330,
+Hgt = 30,
+NextAction = "Hold",
+StartCall = "Initialize",
+},
+2 = {
+Prototype = Action,
+Name = "2",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 330,
+Hgt = 30,
+NextAction = "Hold",
+StartCall = "Initialize",
 },  };
 local Name = "$Name$";

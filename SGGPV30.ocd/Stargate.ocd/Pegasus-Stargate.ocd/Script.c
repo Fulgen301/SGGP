@@ -27,5 +27,5 @@ private func RollSound()	  { return Sound("pegasus_startroll"); }
 private func ChevronSound()	  { return Sound("pegasus_chevron2");  }
 private func FailSound()	  { return Sound("pegasus_fail",0,0,50); }
 
-public func FindDHD()		  { return FindObject2(Find_Func("IsDHD"),Find_Or(Find_Func("IsPegasusDHD"),Find_Func("IsDialPC"))); }
+public func FindDHD()		  { return FindObject([C4FO_Func, "IsDHD"],[C4FO_Or, [C4FO_Func, "IsPegasusDHD"],[C4FO_Func, "IsDialPC"]]); }
 local Name = "$Name$";

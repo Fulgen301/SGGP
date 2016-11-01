@@ -125,99 +125,52 @@ public func Teltak()
 	return(1);
 }
 local Touchable = 2;
-local ActMap = {
-
-Active = {
-
-Prototype = Action,
-
-Name = "Active",
-
-Length = 92,
-
-Delay = 30,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 16,
-
-Hgt = 6,
-
-EndCall = "Boom",
-
-NextAction = "Active",
-
-},
-
-Activen = {
-
-Prototype = Action,
-
-Name = "Activen",
-
-Length = 92,
-
-Delay = 20,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 16,
-
-Hgt = 6,
-
-EndCall = "Boom",
-
-NextAction = "Activen",
-
-},
-
-Activef = {
-
-Prototype = Action,
-
-Name = "Activef",
-
-Length = 92,
-
-Delay = 10,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 16,
-
-Hgt = 6,
-
-EndCall = "Boom",
-
-NextAction = "Activef",
-
-},
-
-Deactive = {
-
-Prototype = Action,
-
-Name = "Deactive",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 16,
-
-Hgt = 6,
-
-NextAction = "Deactive",
-
+local ActMap = {
+Active = {
+Prototype = Action,
+Name = "Active",
+Length = 92,
+Delay = 30,
+X = 0,
+Y = 0,
+Wdt = 16,
+Hgt = 6,
+EndCall = "Boom",
+NextAction = "Active",
+},
+Activen = {
+Prototype = Action,
+Name = "Activen",
+Length = 92,
+Delay = 20,
+X = 0,
+Y = 0,
+Wdt = 16,
+Hgt = 6,
+EndCall = "Boom",
+NextAction = "Activen",
+},
+Activef = {
+Prototype = Action,
+Name = "Activef",
+Length = 92,
+Delay = 10,
+X = 0,
+Y = 0,
+Wdt = 16,
+Hgt = 6,
+EndCall = "Boom",
+NextAction = "Activef",
+},
+Deactive = {
+Prototype = Action,
+Name = "Deactive",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 16,
+Hgt = 6,
+NextAction = "Deactive",
 },  };
 local Name = "Selbstzerstörung";

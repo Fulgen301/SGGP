@@ -173,50 +173,95 @@ func Break()
   Explode(24);
   return 1;
 }
-local ActMap = {
-Opens = {
-Prototype = Action,
-Name = "Opens",
-Length = 20,
-Delay = 2,
-Reverse = 1,
-X = 0,
-Y = 0,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Open",
-},
-Open = {
-Prototype = Action,
-Name = "Open",
-Length = 1,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Open",
-},
-Closes = {
-Prototype = Action,
-Name = "Closes",
-Length = 20,
-Delay = 2,
-X = 0,
-Y = 0,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Close",
-},
-Close = {
-Prototype = Action,
-Name = "Close",
-Length = 1,
-Delay = 1,
-X = 2090,
-Y = 0,
-Wdt = 110,
-Hgt = 80,
-NextAction = "Close",
+local ActMap = {
+
+Opens = {
+
+Prototype = Action,
+
+Name = "Opens",
+
+Length = 20,
+
+Delay = 2,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Open",
+
+},
+
+Open = {
+
+Prototype = Action,
+
+Name = "Open",
+
+Length = 1,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Open",
+
+},
+
+Closes = {
+
+Prototype = Action,
+
+Name = "Closes",
+
+Length = 20,
+
+Delay = 2,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Close",
+
+},
+
+Close = {
+
+Prototype = Action,
+
+Name = "Close",
+
+Length = 1,
+
+Delay = 1,
+
+X = 2090,
+
+Y = 0,
+
+Wdt = 110,
+
+Hgt = 80,
+
+NextAction = "Close",
+
 },  };
 local Name = "$Name$";

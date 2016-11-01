@@ -42,25 +42,45 @@ private func StepOff()
         SetClrModulation(RGBa(255, 255, 255, step));
         return 1;
 }
-local ActMap = {
-Burn = {
-Prototype = Action,
-Name = "Burn",
-Procedure = DFA_ATTACH,
-Length = 1,
-Delay = 1,
-FacetBase = 1,
-NextAction = "Burn",
-StartCall = "Burning",
-},
-SwitchOff = {
-Prototype = Action,
-Name = "SwitchOff",
-Procedure = DFA_ATTACH,
-Length = 1,
-Delay = 2,
-FacetBase = 1,
-NextAction = "SwitchOff",
-PhaseCall = "StepOff",
+local ActMap = {
+
+Burn = {
+
+Prototype = Action,
+
+Name = "Burn",
+
+Procedure = DFA_ATTACH,
+
+Length = 1,
+
+Delay = 1,
+
+FacetBase = 1,
+
+NextAction = "Burn",
+
+StartCall = "Burning",
+
+},
+
+SwitchOff = {
+
+Prototype = Action,
+
+Name = "SwitchOff",
+
+Procedure = DFA_ATTACH,
+
+Length = 1,
+
+Delay = 2,
+
+FacetBase = 1,
+
+NextAction = "SwitchOff",
+
+PhaseCall = "StepOff",
+
 },  };
 local Name = "$Name$";

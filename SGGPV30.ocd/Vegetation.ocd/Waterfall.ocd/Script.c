@@ -35,14 +35,23 @@ private func Draining()
   while(i--) InsertMaterial(mat);
   return(1);
 }
-local ActMap = {
-Drain = {
-Prototype = Action,
-Name = "Drain",
-Length = 1,
-Delay = 1,
-NextAction = "Drain",
-StartCall = "Draining",
-Sound = "Water",
+local ActMap = {
+
+Drain = {
+
+Prototype = Action,
+
+Name = "Drain",
+
+Length = 1,
+
+Delay = 1,
+
+NextAction = "Drain",
+
+StartCall = "Draining",
+
+Sound = "Water",
+
 },  };
 local Name = "$Name$";

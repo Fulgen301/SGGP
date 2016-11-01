@@ -30,19 +30,33 @@ private func BurnWood() {
 // auﬂer Holz nichts aufnehmen
 protected func RejectCollect(idType,pObj) { if(idType!=WOOD) return(1); }
 local Touchable = 2;
-local ActMap = {
-Burn = {
-Prototype = Action,
-Name = "Burn",
-Procedure = DFA_NONE,
-Length = 20,
-Delay = 3,
-X = 20,
-Y = 0,
-Wdt = 20,
-Hgt = 25,
-FacetBase = 0,
-NextAction = "Burn",
-PhaseCall = "Smoking",
+local ActMap = {
+
+Burn = {
+
+Prototype = Action,
+
+Name = "Burn",
+
+Procedure = DFA_NONE,
+
+Length = 20,
+
+Delay = 3,
+
+X = 20,
+
+Y = 0,
+
+Wdt = 20,
+
+Hgt = 25,
+
+FacetBase = 0,
+
+NextAction = "Burn",
+
+PhaseCall = "Smoking",
+
 },  };
 local Name = "$Name$";

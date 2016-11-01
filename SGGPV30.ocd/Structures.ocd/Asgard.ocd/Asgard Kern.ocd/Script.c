@@ -147,27 +147,49 @@ func CallEmergencyObject()
 	return(1);
 }
 local Touchable = 2;
-local ActMap = {
-Aus = {
-Prototype = Action,
-Name = "Aus",
-Length = 1,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 60,
-Hgt = 50,
-NextAction = "Hold",
-},
-An = {
-Prototype = Action,
-Name = "An",
-Length = 1,
-Delay = 1,
-X = 60,
-Y = 0,
-Wdt = 60,
-Hgt = 50,
-NextAction = "Hold",
+local ActMap = {
+
+Aus = {
+
+Prototype = Action,
+
+Name = "Aus",
+
+Length = 1,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 60,
+
+Hgt = 50,
+
+NextAction = "Hold",
+
+},
+
+An = {
+
+Prototype = Action,
+
+Name = "An",
+
+Length = 1,
+
+Delay = 1,
+
+X = 60,
+
+Y = 0,
+
+Wdt = 60,
+
+Hgt = 50,
+
+NextAction = "Hold",
+
 },  };
 local Name = "$Name$";

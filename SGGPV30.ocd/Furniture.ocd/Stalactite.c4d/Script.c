@@ -70,29 +70,53 @@ func Hit() {
 	
   RemoveObject();
 }
-local ActMap = {
-Hanging = {
-Prototype = Action,
-Name = "Hanging",
-Procedure = DFA_NONE,
-Length = 4,
-Delay = 0,
-X = 0,
-Y = 0,
-Wdt = 14,
-Hgt = 38,
-NextAction = "Hold",
-},
-Falling = {
-Prototype = Action,
-Name = "Falling",
-Procedure = DFA_NONE,
-Delay = 0,
-Length = 4,
-X = 0,
-Y = 0,
-Wdt = 14,
-Hgt = 38,
-NextAction = "Hold",
+local ActMap = {
+
+Hanging = {
+
+Prototype = Action,
+
+Name = "Hanging",
+
+Procedure = DFA_NONE,
+
+Length = 4,
+
+Delay = 0,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 14,
+
+Hgt = 38,
+
+NextAction = "Hold",
+
+},
+
+Falling = {
+
+Prototype = Action,
+
+Name = "Falling",
+
+Procedure = DFA_NONE,
+
+Delay = 0,
+
+Length = 4,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 14,
+
+Hgt = 38,
+
+NextAction = "Hold",
+
 },  };
 local Name = "$Name$";

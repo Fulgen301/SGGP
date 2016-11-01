@@ -153,52 +153,99 @@ func Info()
 		InfoOn = 1;
 	}
 }
-local ActMap = {
-Stand = {
-Prototype = Action,
-Name = "Stand",
-Length = 1,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 50,
-NextAction = "Hold",
-},
-Start = {
-Prototype = Action,
-Name = "Start",
-Length = 13,
-Delay = 3,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 50,
-NextAction = "Wait",
-EndCall = "CreateIt",
-StartCall = "SoundAS",
-},
-Wait = {
-Prototype = Action,
-Name = "Wait",
-Length = 10,
-Delay = 1,
-X = 0,
-Y = 100,
-Wdt = 30,
-Hgt = 50,
-NextAction = "WaitRev",
-},
-WaitRev = {
-Prototype = Action,
-Name = "WaitRev",
-Length = 10,
-Delay = 1,
-Reverse = 1,
-X = 0,
-Y = 100,
-Wdt = 30,
-Hgt = 50,
-NextAction = "Wait",
+local ActMap = {
+
+Stand = {
+
+Prototype = Action,
+
+Name = "Stand",
+
+Length = 1,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 50,
+
+NextAction = "Hold",
+
+},
+
+Start = {
+
+Prototype = Action,
+
+Name = "Start",
+
+Length = 13,
+
+Delay = 3,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 50,
+
+NextAction = "Wait",
+
+EndCall = "CreateIt",
+
+StartCall = "SoundAS",
+
+},
+
+Wait = {
+
+Prototype = Action,
+
+Name = "Wait",
+
+Length = 10,
+
+Delay = 1,
+
+X = 0,
+
+Y = 100,
+
+Wdt = 30,
+
+Hgt = 50,
+
+NextAction = "WaitRev",
+
+},
+
+WaitRev = {
+
+Prototype = Action,
+
+Name = "WaitRev",
+
+Length = 10,
+
+Delay = 1,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 100,
+
+Wdt = 30,
+
+Hgt = 50,
+
+NextAction = "Wait",
+
 },  };
 local Name = "$Name$";

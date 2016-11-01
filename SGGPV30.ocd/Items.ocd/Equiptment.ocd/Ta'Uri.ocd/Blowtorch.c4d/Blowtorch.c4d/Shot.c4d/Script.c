@@ -204,15 +204,25 @@ public func FxHitCheckTimer(object target, int effect, int time)
 func NoWarp() { return(true); }
 // Ist ein Schuss!
 func IsBullet() { return(true); }
-local ActMap = {
-Travel = {
-Prototype = Action,
-Name = "Travel",
-Procedure = DFA_FLOAT,
-NextAction = "Travel",
-FacetBase = 1,
-Length = 1,
-Delay = 1,
-StartCall = "Traveling",
+local ActMap = {
+
+Travel = {
+
+Prototype = Action,
+
+Name = "Travel",
+
+Procedure = DFA_FLOAT,
+
+NextAction = "Travel",
+
+FacetBase = 1,
+
+Length = 1,
+
+Delay = 1,
+
+StartCall = "Traveling",
+
 },  };
 local Name = "$Name$";

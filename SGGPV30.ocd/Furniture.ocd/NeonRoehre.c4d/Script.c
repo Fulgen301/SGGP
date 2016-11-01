@@ -37,51 +37,97 @@ func Aus()
   if(Local(0)) RemoveObject(Local(0));
   return(1);
 }
-local ActMap = {
-An = {
-Prototype = Action,
-Name = "An",
-Delay = 500,
-Length = 1,
-X = 0,
-Y = 0,
-Wdt = 28,
-Hgt = 4,
-NextAction = "An",
-},
-FlackerAn = {
-Prototype = Action,
-Name = "FlackerAn",
-Delay = 5,
-Length = 1,
-X = 0,
-Y = 0,
-Wdt = 28,
-Hgt = 4,
-EndCall = "Flacker",
-NextAction = "FlackerAn",
-},
-Aus = {
-Prototype = Action,
-Name = "Aus",
-Delay = 500,
-Length = 1,
-X = 28,
-Y = 0,
-Wdt = 28,
-Hgt = 4,
-NextAction = "Aus",
-},
-FlackerAus = {
-Prototype = Action,
-Name = "FlackerAus",
-Delay = 5,
-Length = 1,
-X = 28,
-Y = 0,
-Wdt = 28,
-Hgt = 4,
-EndCall = "Flacker",
-NextAction = "FlackerAus",
+local ActMap = {
+
+An = {
+
+Prototype = Action,
+
+Name = "An",
+
+Delay = 500,
+
+Length = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 28,
+
+Hgt = 4,
+
+NextAction = "An",
+
+},
+
+FlackerAn = {
+
+Prototype = Action,
+
+Name = "FlackerAn",
+
+Delay = 5,
+
+Length = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 28,
+
+Hgt = 4,
+
+EndCall = "Flacker",
+
+NextAction = "FlackerAn",
+
+},
+
+Aus = {
+
+Prototype = Action,
+
+Name = "Aus",
+
+Delay = 500,
+
+Length = 1,
+
+X = 28,
+
+Y = 0,
+
+Wdt = 28,
+
+Hgt = 4,
+
+NextAction = "Aus",
+
+},
+
+FlackerAus = {
+
+Prototype = Action,
+
+Name = "FlackerAus",
+
+Delay = 5,
+
+Length = 1,
+
+X = 28,
+
+Y = 0,
+
+Wdt = 28,
+
+Hgt = 4,
+
+EndCall = "Flacker",
+
+NextAction = "FlackerAus",
+
 },  };
 local Name = "Neonröhre";

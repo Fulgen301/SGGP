@@ -17,20 +17,35 @@ private func Extinguishsh()
 }
 
 local Touchable = 1;
-local ActMap = {
-Burning = {
-Prototype = Action,
-Name = "Burning",
-Procedure = DFA_NONE,
-NextAction = "Burning",
-Delay = 5,
-Directions = 2,
-Length = 4,
-X = 14,
-Y = 0,
-Wdt = 14,
-Hgt = 26,
-OffX = 0,
-OffY = -5,
+local ActMap = {
+
+Burning = {
+
+Prototype = Action,
+
+Name = "Burning",
+
+Procedure = DFA_NONE,
+
+NextAction = "Burning",
+
+Delay = 5,
+
+Directions = 2,
+
+Length = 4,
+
+X = 14,
+
+Y = 0,
+
+Wdt = 14,
+
+Hgt = 26,
+
+OffX = 0,
+
+OffY = -5,
+
 },  };
 local Name = "$Name$";

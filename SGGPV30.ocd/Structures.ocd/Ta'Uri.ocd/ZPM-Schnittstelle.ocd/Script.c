@@ -139,118 +139,231 @@ func IsAntiker()
 	return(1);
 }
 local Touchable = 2;
-local ActMap = {
-Stand = {
-Prototype = Action,
-Name = "Stand",
-Length = 1,
-Delay = 5,
-X = 48,
-Y = 0,
-Wdt = 16,
-Hgt = 23,
-NextAction = "Stand",
-},
-OpenZPM = {
-Prototype = Action,
-Name = "OpenZPM",
-Length = 4,
-Delay = 1,
-Reverse = 1,
-X = 0,
-Y = 23,
-Wdt = 16,
-Hgt = 23,
-NextAction = "StandOpenZPM",
-},
-CloseZPM = {
-Prototype = Action,
-Name = "CloseZPM",
-Length = 4,
-Delay = 1,
-X = 0,
-Y = 23,
-Wdt = 16,
-Hgt = 23,
-NextAction = "Stand",
-},
-StandOpenZPM = {
-Prototype = Action,
-Name = "StandOpenZPM",
-Length = 1,
-Delay = 1,
-X = 0,
-Y = 23,
-Wdt = 16,
-Hgt = 23,
-NextAction = "StandOpenZPM",
-},
-OpenZPMEmpty = {
-Prototype = Action,
-Name = "OpenZPMEmpty",
-Length = 4,
-Delay = 1,
-Reverse = 1,
-X = 0,
-Y = 46,
-Wdt = 16,
-Hgt = 23,
-NextAction = "StandOpenZPMEmpty",
-},
-CloseZPMEmpty = {
-Prototype = Action,
-Name = "CloseZPMEmpty",
-Length = 4,
-Delay = 1,
-X = 0,
-Y = 46,
-Wdt = 16,
-Hgt = 23,
-NextAction = "Stand",
-},
-StandOpenZPMEmpty = {
-Prototype = Action,
-Name = "StandOpenZPMEmpty",
-Length = 1,
-Delay = 1,
-X = 0,
-Y = 46,
-Wdt = 16,
-Hgt = 23,
-NextAction = "StandOpenZPMEmpty",
-},
-OpenNo = {
-Prototype = Action,
-Name = "OpenNo",
-Length = 4,
-Reverse = 1,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 16,
-Hgt = 23,
-NextAction = "StandOpenNo",
-},
-CloseNo = {
-Prototype = Action,
-Name = "CloseNo",
-Length = 4,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 16,
-Hgt = 23,
-NextAction = "Stand",
-},
-StandOpenNo = {
-Prototype = Action,
-Name = "StandOpenNo",
-Length = 1,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 16,
-Hgt = 23,
-NextAction = "StandOpenNo",
+local ActMap = {
+
+Stand = {
+
+Prototype = Action,
+
+Name = "Stand",
+
+Length = 1,
+
+Delay = 5,
+
+X = 48,
+
+Y = 0,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "Stand",
+
+},
+
+OpenZPM = {
+
+Prototype = Action,
+
+Name = "OpenZPM",
+
+Length = 4,
+
+Delay = 1,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 23,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "StandOpenZPM",
+
+},
+
+CloseZPM = {
+
+Prototype = Action,
+
+Name = "CloseZPM",
+
+Length = 4,
+
+Delay = 1,
+
+X = 0,
+
+Y = 23,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "Stand",
+
+},
+
+StandOpenZPM = {
+
+Prototype = Action,
+
+Name = "StandOpenZPM",
+
+Length = 1,
+
+Delay = 1,
+
+X = 0,
+
+Y = 23,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "StandOpenZPM",
+
+},
+
+OpenZPMEmpty = {
+
+Prototype = Action,
+
+Name = "OpenZPMEmpty",
+
+Length = 4,
+
+Delay = 1,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 46,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "StandOpenZPMEmpty",
+
+},
+
+CloseZPMEmpty = {
+
+Prototype = Action,
+
+Name = "CloseZPMEmpty",
+
+Length = 4,
+
+Delay = 1,
+
+X = 0,
+
+Y = 46,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "Stand",
+
+},
+
+StandOpenZPMEmpty = {
+
+Prototype = Action,
+
+Name = "StandOpenZPMEmpty",
+
+Length = 1,
+
+Delay = 1,
+
+X = 0,
+
+Y = 46,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "StandOpenZPMEmpty",
+
+},
+
+OpenNo = {
+
+Prototype = Action,
+
+Name = "OpenNo",
+
+Length = 4,
+
+Reverse = 1,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "StandOpenNo",
+
+},
+
+CloseNo = {
+
+Prototype = Action,
+
+Name = "CloseNo",
+
+Length = 4,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "Stand",
+
+},
+
+StandOpenNo = {
+
+Prototype = Action,
+
+Name = "StandOpenNo",
+
+Length = 1,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 16,
+
+Hgt = 23,
+
+NextAction = "StandOpenNo",
+
 },  };
 local Name = "$Name$";

@@ -37,6 +37,7 @@ public func Teltak()
 	return(1);
 }
 local Touchable = 2;
-local ActMap = {
+local ActMap = {
+
  };
 local Name = "Pult";

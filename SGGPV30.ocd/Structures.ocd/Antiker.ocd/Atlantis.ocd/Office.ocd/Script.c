@@ -19,54 +19,103 @@ public func Atlantis()
 {
 	return(1);
 }
-local ActMap = {
-OpenDoor = {
-Prototype = Action,
-Name = "OpenDoor",
-Procedure = DFA_NONE,
-Length = 9,
-Delay = 1,
-X = 38,
-Y = 74,
-Wdt = 38,
-Hgt = 26,
-OffX = 22,
-OffY = 48,
-FacetBase = 1,
-StartCall = "SoundOpenDoor",
-NextAction = "DoorOpen",
-},
-DoorOpen = {
-Prototype = Action,
-Name = "DoorOpen",
-Procedure = DFA_NONE,
-Delay = 20,
-X = 342,
-Y = 74,
-Wdt = 38,
-Hgt = 26,
-OffX = 22,
-OffY = 48,
-FacetBase = 1,
-NextAction = "CloseDoor",
-StartCall = "OpenEntrance",
-EndCall = "CloseEntrance",
-},
-CloseDoor = {
-Prototype = Action,
-Name = "CloseDoor",
-Procedure = DFA_NONE,
-Length = 9,
-Reverse = 1,
-Delay = 1,
-X = 38,
-Y = 74,
-Wdt = 38,
-Hgt = 26,
-OffX = 22,
-OffY = 48,
-FacetBase = 1,
-StartCall = "SoundCloseDoor",
-NextAction = "Idle",
+local ActMap = {
+
+OpenDoor = {
+
+Prototype = Action,
+
+Name = "OpenDoor",
+
+Procedure = DFA_NONE,
+
+Length = 9,
+
+Delay = 1,
+
+X = 38,
+
+Y = 74,
+
+Wdt = 38,
+
+Hgt = 26,
+
+OffX = 22,
+
+OffY = 48,
+
+FacetBase = 1,
+
+StartCall = "SoundOpenDoor",
+
+NextAction = "DoorOpen",
+
+},
+
+DoorOpen = {
+
+Prototype = Action,
+
+Name = "DoorOpen",
+
+Procedure = DFA_NONE,
+
+Delay = 20,
+
+X = 342,
+
+Y = 74,
+
+Wdt = 38,
+
+Hgt = 26,
+
+OffX = 22,
+
+OffY = 48,
+
+FacetBase = 1,
+
+NextAction = "CloseDoor",
+
+StartCall = "OpenEntrance",
+
+EndCall = "CloseEntrance",
+
+},
+
+CloseDoor = {
+
+Prototype = Action,
+
+Name = "CloseDoor",
+
+Procedure = DFA_NONE,
+
+Length = 9,
+
+Reverse = 1,
+
+Delay = 1,
+
+X = 38,
+
+Y = 74,
+
+Wdt = 38,
+
+Hgt = 26,
+
+OffX = 22,
+
+OffY = 48,
+
+FacetBase = 1,
+
+StartCall = "SoundCloseDoor",
+
+NextAction = "Idle",
+
 },  };
 local Name = "$Name$";

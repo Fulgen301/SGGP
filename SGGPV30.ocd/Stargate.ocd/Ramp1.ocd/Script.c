@@ -1,48 +1,40 @@
 /*--- Die Stargaterampe (SGC) ---*/
-
-#strict
-
 local Energie;
 local target;
 local type;
 
-func Initialize() 
+protected func Initialize() 
 {
-  var hlp;
-  while(FindObject(0,-1*(GetDefCoreVal("Width", "DefCore")/2),-12,GetDefCoreVal("Width", "DefCore"),22))
+  for(var obj in FindObjects(Find_InRect(-1*(GetDefCoreVal("Width", "DefCore")/2),-12,GetDefCoreVal("Width", "DefCore"),22)))
   {
-   var hlp = FindObject(0,-1*(GetDefCoreVal("Width", "DefCore")/2),-12,GetDefCoreVal("Width", "DefCore"),22);
-   hlp->SetPosition(GetX(),GetY()-25);
+   obj->SetPosition(GetX(), GetY()-25)
   }
   var own;
   own = GetCursor(GetOwner());
-  CreateMenu(SGR1,own,0,0,"Welches Gate?",0,1);
+  CreateMenu(GetID(),own,0,0,"Welches Gate?",0,1);
   for(var i = 0, Def; Def = GetDefinition(i); i++)
   {
-	  if(Def->~IsStargate() && Def != STRG)
+	  if(Def->~IsStargate() && Def != Stargate)
 	  {
 		  AddMenuItem(GetName(0, Def), "PlaceGate", Def, own);
 	  }
   }
-  /*AddMenuItem("Milchstraßen-Gate","PlaceGate",STGT,own);
-  AddMenuItem("Pegasus-Gate","PlaceGate",SGAG,own);
-  AddMenuItem("Destiny-Gate", "PlaceGate", SGDG, own);*/
-  return(1);
+  return true;
 }
 
-func PlaceGate(id gate)
+public func PlaceGate(id gate)
 {
 	target = CreateObject(gate,0,-25);
-	LocalN("ramp",target) = this;
-  return(1);
+	target.ramp = this;
+  return true;
 }
 
-func Holde()
+private func Holde()
 {
-  if(!target)  { return(1); }
-  target -> SetPosition(GetX(this)-50,GetY(this)-60);
+  if(!target)  { return; }
+  target -> SetPosition(GetX()-50,GetY()-60);
   SetCategory(130);
-  return(1);
+  return true;
 }
 
 func ReName(string szName)

@@ -117,30 +117,56 @@ func Timer()
 	SetRDir(3);
 }	
 
-local ActMap = {
-1 = {
-Prototype = Action,
-Name = "1",
-NextAction = "1",
-Procedure = DFA_FLOAT,
-Delay = 1,
-Length = 1,
-X = 0,
-Y = 0,
-Wdt = 25,
-Hgt = 25,
-PhaseCall = "Timer",
-},
-2 = {
-Prototype = Action,
-Name = "2",
-NextAction = "2",
-Procedure = DFA_FLOAT,
-Delay = 1,
-Length = 1,
-X = 25,
-Y = 0,
-Wdt = 25,
-Hgt = 25,
-PhaseCall = "Timer",
+local ActMap = {
+
+1 = {
+
+Prototype = Action,
+
+Name = "1",
+
+NextAction = "1",
+
+Procedure = DFA_FLOAT,
+
+Delay = 1,
+
+Length = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 25,
+
+Hgt = 25,
+
+PhaseCall = "Timer",
+
+},
+
+2 = {
+
+Prototype = Action,
+
+Name = "2",
+
+NextAction = "2",
+
+Procedure = DFA_FLOAT,
+
+Delay = 1,
+
+Length = 1,
+
+X = 25,
+
+Y = 0,
+
+Wdt = 25,
+
+Hgt = 25,
+
+PhaseCall = "Timer",
+
 },  };

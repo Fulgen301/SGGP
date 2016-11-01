@@ -173,39 +173,73 @@ func Info()
 }
 	
 local Touchable = 2;
-local ActMap = {
-MoveLeft = {
-Prototype = Action,
-Name = "MoveLeft",
-Delay = 1,
-Length = 11,
-X = 0,
-Y = 0,
-Wdt = 100,
-Hgt = 15,
-NextAction = "MoveLeft",
-},
-Stand = {
-Prototype = Action,
-Name = "Stand",
-Delay = 1,
-Length = 1,
-X = 0,
-Y = 0,
-Wdt = 100,
-Hgt = 15,
-NextAction = "Hold",
-},
-MoveRight = {
-Prototype = Action,
-Name = "MoveRight",
-Delay = 1,
-Length = 11,
-Reverse = 1,
-X = 0,
-Y = 0,
-Wdt = 100,
-Hgt = 15,
-NextAction = "MoveRight",
+local ActMap = {
+
+MoveLeft = {
+
+Prototype = Action,
+
+Name = "MoveLeft",
+
+Delay = 1,
+
+Length = 11,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 100,
+
+Hgt = 15,
+
+NextAction = "MoveLeft",
+
+},
+
+Stand = {
+
+Prototype = Action,
+
+Name = "Stand",
+
+Delay = 1,
+
+Length = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 100,
+
+Hgt = 15,
+
+NextAction = "Hold",
+
+},
+
+MoveRight = {
+
+Prototype = Action,
+
+Name = "MoveRight",
+
+Delay = 1,
+
+Length = 11,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 100,
+
+Hgt = 15,
+
+NextAction = "MoveRight",
+
 },  };
 local Name = "$Name$";

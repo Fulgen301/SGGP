@@ -138,17 +138,29 @@ public func Draw() {
     -fsin*width/1000, +fcos*height/1000, (((1000-fcos)*yoff + fsin*xoff - 64000)*height)/1000+iOffY*1000
   );
 }
-local ActMap = {
-Attach = {
-Prototype = Action,
-Name = "Attach",
-Procedure = DFA_ATTACH,
-NextAction = "Attach",
-Length = 5,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 128,
-Hgt = 128,
+local ActMap = {
+
+Attach = {
+
+Prototype = Action,
+
+Name = "Attach",
+
+Procedure = DFA_ATTACH,
+
+NextAction = "Attach",
+
+Length = 5,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 128,
+
+Hgt = 128,
+
 },  };
 local Name = "$Name$";

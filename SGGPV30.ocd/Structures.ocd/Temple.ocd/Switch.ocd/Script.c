@@ -58,27 +58,49 @@ public func AddTarget(object pTarget, int iDir)
 
 public func IsSwitch() { return(true); }
 local Touchable = 2;
-local ActMap = {
-Normal = {
-Prototype = Action,
-Name = "Normal",
-Procedure = DFA_NONE,
-Length = 2,
-Delay = 0,
-X = 0,
-Y = 0,
-Wdt = 16,
-Hgt = 16,
-},
-Attach = {
-Prototype = Action,
-Name = "Attach",
-Procedure = DFA_ATTACH,
-Length = 2,
-Delay = 0,
-X = 0,
-Y = 0,
-Wdt = 16,
-Hgt = 16,
+local ActMap = {
+
+Normal = {
+
+Prototype = Action,
+
+Name = "Normal",
+
+Procedure = DFA_NONE,
+
+Length = 2,
+
+Delay = 0,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 16,
+
+Hgt = 16,
+
+},
+
+Attach = {
+
+Prototype = Action,
+
+Name = "Attach",
+
+Procedure = DFA_ATTACH,
+
+Length = 2,
+
+Delay = 0,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 16,
+
+Hgt = 16,
+
 },  };
 local Name = "$Name$";

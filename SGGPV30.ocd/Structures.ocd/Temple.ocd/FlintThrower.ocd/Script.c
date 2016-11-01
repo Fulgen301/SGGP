@@ -55,37 +55,69 @@ public func Shoot()
   Exit(r=CreateContents(idProjectile), GetVertex(iDir, 0), GetVertex(iDir, 1)+GetDefHeight(idProjectile)/2, GetR()*iDirMul, Cos(GetR(), iOutSpeed)*iDirMul, Sin(GetR(), iOutSpeed)*iDirMul);
   return(r);
   }
-local ActMap = {
-Off = {
-Prototype = Action,
-Name = "Off",
-Procedure = DFA_FLOAT,
-X = 0,
-Y = 0,
-Wdt = 32,
-Hgt = 64,
-FacetBase = 0,
-Length = 1,
-Directions = 2,
-Delay = 50,
-FlipDir = 1,
-NextAction = "Off",
-StartCall = "OffCheck",
-},
-On = {
-Prototype = Action,
-Name = "On",
-Procedure = DFA_FLOAT,
-X = 32,
-Y = 0,
-Wdt = 32,
-Hgt = 64,
-FacetBase = 0,
-Length = 1,
-Directions = 2,
-FlipDir = 1,
-Delay = 50,
-NextAction = "On",
-EndCall = "OnCheck",
+local ActMap = {
+
+Off = {
+
+Prototype = Action,
+
+Name = "Off",
+
+Procedure = DFA_FLOAT,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 32,
+
+Hgt = 64,
+
+FacetBase = 0,
+
+Length = 1,
+
+Directions = 2,
+
+Delay = 50,
+
+FlipDir = 1,
+
+NextAction = "Off",
+
+StartCall = "OffCheck",
+
+},
+
+On = {
+
+Prototype = Action,
+
+Name = "On",
+
+Procedure = DFA_FLOAT,
+
+X = 32,
+
+Y = 0,
+
+Wdt = 32,
+
+Hgt = 64,
+
+FacetBase = 0,
+
+Length = 1,
+
+Directions = 2,
+
+FlipDir = 1,
+
+Delay = 50,
+
+NextAction = "On",
+
+EndCall = "OnCheck",
+
 },  };
 local Name = "FlintThrower";

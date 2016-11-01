@@ -98,20 +98,35 @@ if(FindObject(0,-150,-75,300,150,OCF_Alive()))
 {
 	return(1);
 }
-local ActMap = {
-Wait = {
-Prototype = Action,
-Name = "Wait",
-Procedure = DFA_NONE,
-Directions = 2,
-Length = 1,
-Delay = 1,
-FlipDir = 1,
-X = 0,
-Y = 0,
-Wdt = 150,
-Hgt = 300,
-FacetTopFace = 1,
-NextAction = "Wait",
+local ActMap = {
+
+Wait = {
+
+Prototype = Action,
+
+Name = "Wait",
+
+Procedure = DFA_NONE,
+
+Directions = 2,
+
+Length = 1,
+
+Delay = 1,
+
+FlipDir = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 150,
+
+Hgt = 300,
+
+FacetTopFace = 1,
+
+NextAction = "Wait",
+
 },  };
 local Name = "$Name$";

@@ -139,38 +139,71 @@ func IsRepli()
 {
 	return(true);
 }
-local ActMap = {
-NoDr = {
-Prototype = Action,
-Name = "NoDr",
-Length = 1,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 20,
-Hgt = 30,
-NextAction = "Hold",
-},
-HasDr = {
-Prototype = Action,
-Name = "HasDr",
-Length = 1,
-Delay = 1,
-X = 20,
-Y = 0,
-Wdt = 20,
-Hgt = 30,
-NextAction = "Hold",
-},
-HasARW = {
-Prototype = Action,
-Name = "HasARW",
-Length = 1,
-Delay = 1,
-X = 40,
-Y = 0,
-Wdt = 20,
-Hgt = 30,
-NextAction = "Hold",
+local ActMap = {
+
+NoDr = {
+
+Prototype = Action,
+
+Name = "NoDr",
+
+Length = 1,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 20,
+
+Hgt = 30,
+
+NextAction = "Hold",
+
+},
+
+HasDr = {
+
+Prototype = Action,
+
+Name = "HasDr",
+
+Length = 1,
+
+Delay = 1,
+
+X = 20,
+
+Y = 0,
+
+Wdt = 20,
+
+Hgt = 30,
+
+NextAction = "Hold",
+
+},
+
+HasARW = {
+
+Prototype = Action,
+
+Name = "HasARW",
+
+Length = 1,
+
+Delay = 1,
+
+X = 40,
+
+Y = 0,
+
+Wdt = 20,
+
+Hgt = 30,
+
+NextAction = "Hold",
+
 },  };
 local Name = "$Name$";

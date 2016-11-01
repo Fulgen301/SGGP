@@ -42,13 +42,21 @@ protected func Hit()
   // 2do: sound
   }
 local Touchable = 1;
-local ActMap = {
-Gate = {
-Prototype = Action,
-Name = "Gate",
-Procedure = DFA_FLOAT,
-Delay = 10,
-FacetBase = 1,
-NextAction = "Gate",
+local ActMap = {
+
+Gate = {
+
+Prototype = Action,
+
+Name = "Gate",
+
+Procedure = DFA_FLOAT,
+
+Delay = 10,
+
+FacetBase = 1,
+
+NextAction = "Gate",
+
 },  };
 local Name = "$Name$";

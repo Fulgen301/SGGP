@@ -66,68 +66,131 @@ public func ContextConstruction(pCaller)
   [$Production$|Image=GetID(this())|Condition=IsBuilt]
   return(MenuProduction(pCaller));
 }
-local ActMap = {
-OpenDoor = {
-Prototype = Action,
-Name = "OpenDoor",
-Length = 11,
-Delay = 2,
-X = 0,
-Y = 0,
-Wdt = 80,
-Hgt = 50,
-NextAction = "DoorOpen",
-StartCall = "SoundOpenDoor",
-},
-DoorOpen = {
-Prototype = Action,
-Name = "DoorOpen",
-Delay = 20,
-X = 800,
-Y = 0,
-Wdt = 80,
-Hgt = 50,
-NextAction = "CloseDoor",
-StartCall = "OpenEntrance",
-EndCall = "CloseEntrance",
-},
-CloseDoor = {
-Prototype = Action,
-Name = "CloseDoor",
-Length = 11,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 80,
-Hgt = 50,
-NextAction = "Idle",
-StartCall = "SoundCloseDoor",
-EndCall = "DoorClosed",
-Reverse = 1,
-},
-Build2 = {
-Prototype = Action,
-Name = "Build2",
-Procedure = DFA_NONE,
-Length = 21,
-Delay = 3,
-X = 0,
-Y = 50,
-Wdt = 80,
-Hgt = 50,
-PhaseCall = "Smoking",
-Sound = "goauldproduce",
-NextAction = "Build",
-EnergyUsage = 2000,
-ObjectDisabled = 1,
-},
-Build = {
-Prototype = Action,
-Name = "Build",
-Procedure = DFA_BUILD,
-Length = 1,
-Delay = 10,
-FacetBase = 1,
-NextAction = "Build2",
+local ActMap = {
+
+OpenDoor = {
+
+Prototype = Action,
+
+Name = "OpenDoor",
+
+Length = 11,
+
+Delay = 2,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 80,
+
+Hgt = 50,
+
+NextAction = "DoorOpen",
+
+StartCall = "SoundOpenDoor",
+
+},
+
+DoorOpen = {
+
+Prototype = Action,
+
+Name = "DoorOpen",
+
+Delay = 20,
+
+X = 800,
+
+Y = 0,
+
+Wdt = 80,
+
+Hgt = 50,
+
+NextAction = "CloseDoor",
+
+StartCall = "OpenEntrance",
+
+EndCall = "CloseEntrance",
+
+},
+
+CloseDoor = {
+
+Prototype = Action,
+
+Name = "CloseDoor",
+
+Length = 11,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 80,
+
+Hgt = 50,
+
+NextAction = "Idle",
+
+StartCall = "SoundCloseDoor",
+
+EndCall = "DoorClosed",
+
+Reverse = 1,
+
+},
+
+Build2 = {
+
+Prototype = Action,
+
+Name = "Build2",
+
+Procedure = DFA_NONE,
+
+Length = 21,
+
+Delay = 3,
+
+X = 0,
+
+Y = 50,
+
+Wdt = 80,
+
+Hgt = 50,
+
+PhaseCall = "Smoking",
+
+Sound = "goauldproduce",
+
+NextAction = "Build",
+
+EnergyUsage = 2000,
+
+ObjectDisabled = 1,
+
+},
+
+Build = {
+
+Prototype = Action,
+
+Name = "Build",
+
+Procedure = DFA_BUILD,
+
+Length = 1,
+
+Delay = 10,
+
+FacetBase = 1,
+
+NextAction = "Build2",
+
 },  };
 local Name = "$Name$";

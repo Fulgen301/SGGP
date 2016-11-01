@@ -256,56 +256,107 @@ func Damage(iLevel)
 		}
 	}
 }
-local ActMap = {
-Open = {
-Prototype = Action,
-Name = "Open",
-Length = 10,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 30,
-NextAction = "StandOpen",
-EndCall = "Opened",
-PhaseCall = "UpdateSolidOpen",
-},
-Close = {
-Prototype = Action,
-Name = "Close",
-Length = 10,
-Delay = 1,
-Reverse = 1,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 30,
-NextAction = "StandClose",
-PhaseCall = "UpdateSolidClose",
-EndCall = "Closed",
-},
-StandOpen = {
-Prototype = Action,
-Name = "StandOpen",
-Length = 1,
-Delay = 3,
-X = 270,
-Y = 0,
-Wdt = 30,
-Hgt = 30,
-PhaseCall = "Check",
-NextAction = "Hold",
-},
-StandClose = {
-Prototype = Action,
-Name = "StandClose",
-Length = 1,
-Delay = 3,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 30,
-PhaseCall = "Check",
-NextAction = "Hold",
+local ActMap = {
+
+Open = {
+
+Prototype = Action,
+
+Name = "Open",
+
+Length = 10,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 30,
+
+NextAction = "StandOpen",
+
+EndCall = "Opened",
+
+PhaseCall = "UpdateSolidOpen",
+
+},
+
+Close = {
+
+Prototype = Action,
+
+Name = "Close",
+
+Length = 10,
+
+Delay = 1,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 30,
+
+NextAction = "StandClose",
+
+PhaseCall = "UpdateSolidClose",
+
+EndCall = "Closed",
+
+},
+
+StandOpen = {
+
+Prototype = Action,
+
+Name = "StandOpen",
+
+Length = 1,
+
+Delay = 3,
+
+X = 270,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 30,
+
+PhaseCall = "Check",
+
+NextAction = "Hold",
+
+},
+
+StandClose = {
+
+Prototype = Action,
+
+Name = "StandClose",
+
+Length = 1,
+
+Delay = 3,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 30,
+
+PhaseCall = "Check",
+
+NextAction = "Hold",
+
 },  };
 local Name = "$Name$";

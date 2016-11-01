@@ -148,27 +148,49 @@ func InputCallback(string szPass)
 func IsMachine()			{ return(1); }
 func IsBulletTarget()		{ return(1); }
 local Touchable = 1;
-local ActMap = {
-Active = {
-Prototype = Action,
-Name = "Active",
-Length = 2,
-Delay = 18,
-X = 0,
-Y = 0,
-Wdt = 27,
-Hgt = 10,
-NextAction = "Active",
-},
-Deactive = {
-Prototype = Action,
-Name = "Deactive",
-Length = 0,
-Delay = 1,
-X = 0,
-Y = 10,
-Wdt = 27,
-Hgt = 10,
-NextAction = "Deactive",
+local ActMap = {
+
+Active = {
+
+Prototype = Action,
+
+Name = "Active",
+
+Length = 2,
+
+Delay = 18,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 27,
+
+Hgt = 10,
+
+NextAction = "Active",
+
+},
+
+Deactive = {
+
+Prototype = Action,
+
+Name = "Deactive",
+
+Length = 0,
+
+Delay = 1,
+
+X = 0,
+
+Y = 10,
+
+Wdt = 27,
+
+Hgt = 10,
+
+NextAction = "Deactive",
+
 },  };
 local Name = "$Name$";

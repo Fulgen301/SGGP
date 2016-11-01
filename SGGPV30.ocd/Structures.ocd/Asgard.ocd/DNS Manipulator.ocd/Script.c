@@ -182,99 +182,193 @@ global func FxDNSManipulateLiveTimer(object pTarget)
 	DoEnergy(-1,pTarget);
 	return(1);
 }
-local ActMap = {
-Close = {
-Prototype = Action,
-Name = "Close",
-Length = 20,
-Delay = 1,
-EnergyUsage = 80,
-X = 0,
-Y = 80,
-Wdt = 30,
-Hgt = 40,
-PhaseCall = "SolidMaskClose",
-NextAction = "Closed",
-Sound = "Energy",
-},
-Closed = {
-Prototype = Action,
-Name = "Closed",
-Length = 1,
-Delay = 1,
-X = 600,
-Y = 80,
-Wdt = 30,
-Hgt = 40,
-NextAction = "Hold",
-},
-Open = {
-Prototype = Action,
-Name = "Open",
-Length = 20,
-Delay = 1,
-X = 0,
-Y = 80,
-Wdt = 30,
-Hgt = 40,
-EndCall = "Opened",
-EnergyUsage = 80,
-NextAction = "Stand",
-PhaseCall = "SolidMaskOpen",
-Sound = "Energy",
-Reverse = 1,
-},
-Start = {
-Prototype = Action,
-Name = "Start",
-Length = 20,
-Delay = 4,
-EnergyUsage = 80,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 40,
-NextAction = "Started",
-Sound = "Energy",
-},
-Stand = {
-Prototype = Action,
-Name = "Stand",
-Length = 1,
-Delay = 1,
-EnergyUsage = 80,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 40,
-NextAction = "Stand",
-},
-Started = {
-Prototype = Action,
-Name = "Started",
-Length = 3,
-Delay = 2,
-EnergyUsage = 80,
-X = 540,
-Y = 0,
-Wdt = 30,
-Hgt = 40,
-NextAction = "Started",
-Sound = "Energy",
-},
-End = {
-Prototype = Action,
-Name = "End",
-Length = 20,
-Delay = 1,
-Reverse = 1,
-EnergyUsage = 80,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 40,
-EndCall = "Ended",
-NextAction = "Stand",
-Sound = "Energy",
+local ActMap = {
+
+Close = {
+
+Prototype = Action,
+
+Name = "Close",
+
+Length = 20,
+
+Delay = 1,
+
+EnergyUsage = 80,
+
+X = 0,
+
+Y = 80,
+
+Wdt = 30,
+
+Hgt = 40,
+
+PhaseCall = "SolidMaskClose",
+
+NextAction = "Closed",
+
+Sound = "Energy",
+
+},
+
+Closed = {
+
+Prototype = Action,
+
+Name = "Closed",
+
+Length = 1,
+
+Delay = 1,
+
+X = 600,
+
+Y = 80,
+
+Wdt = 30,
+
+Hgt = 40,
+
+NextAction = "Hold",
+
+},
+
+Open = {
+
+Prototype = Action,
+
+Name = "Open",
+
+Length = 20,
+
+Delay = 1,
+
+X = 0,
+
+Y = 80,
+
+Wdt = 30,
+
+Hgt = 40,
+
+EndCall = "Opened",
+
+EnergyUsage = 80,
+
+NextAction = "Stand",
+
+PhaseCall = "SolidMaskOpen",
+
+Sound = "Energy",
+
+Reverse = 1,
+
+},
+
+Start = {
+
+Prototype = Action,
+
+Name = "Start",
+
+Length = 20,
+
+Delay = 4,
+
+EnergyUsage = 80,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 40,
+
+NextAction = "Started",
+
+Sound = "Energy",
+
+},
+
+Stand = {
+
+Prototype = Action,
+
+Name = "Stand",
+
+Length = 1,
+
+Delay = 1,
+
+EnergyUsage = 80,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 40,
+
+NextAction = "Stand",
+
+},
+
+Started = {
+
+Prototype = Action,
+
+Name = "Started",
+
+Length = 3,
+
+Delay = 2,
+
+EnergyUsage = 80,
+
+X = 540,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 40,
+
+NextAction = "Started",
+
+Sound = "Energy",
+
+},
+
+End = {
+
+Prototype = Action,
+
+Name = "End",
+
+Length = 20,
+
+Delay = 1,
+
+Reverse = 1,
+
+EnergyUsage = 80,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 40,
+
+EndCall = "Ended",
+
+NextAction = "Stand",
+
+Sound = "Energy",
+
 },  };
 local Name = "$Name$";

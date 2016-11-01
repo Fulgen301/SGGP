@@ -58,19 +58,33 @@ protected func ScanAndRemove() {
   RemoveObject();
   return(1);
 }
-local ActMap = {
-Exist = {
-Prototype = Action,
-Name = "Exist",
-Procedure = DFA_FLOAT,
-Directions = 1,
-Length = 1,
-X = 0,
-Y = 0,
-Wdt = 120,
-Hgt = 120,
-Delay = 1,
-StartCall = "Grow",
-NextAction = "Exist",
+local ActMap = {
+
+Exist = {
+
+Prototype = Action,
+
+Name = "Exist",
+
+Procedure = DFA_FLOAT,
+
+Directions = 1,
+
+Length = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 120,
+
+Hgt = 120,
+
+Delay = 1,
+
+StartCall = "Grow",
+
+NextAction = "Exist",
+
 },  };
 local Name = "$Name$";

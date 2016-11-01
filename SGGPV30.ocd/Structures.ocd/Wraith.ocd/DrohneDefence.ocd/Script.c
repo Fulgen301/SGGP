@@ -139,52 +139,99 @@ func Damage()
   return(1);
 }
 local Touchable = 2;
-local ActMap = {
-Opens = {
-Prototype = Action,
-Name = "Opens",
-Length = 25,
-Delay = 1,
-Reverse = 1,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 20,
-Sound = "SarkTr",
-NextAction = "Open",
-},
-Closes = {
-Prototype = Action,
-Name = "Closes",
-Length = 25,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 20,
-Sound = "SarkTr",
-NextAction = "Close",
-},
-Close = {
-Prototype = Action,
-Name = "Close",
-Length = 1,
-Delay = 1,
-X = 750,
-Y = 0,
-Wdt = 30,
-Hgt = 20,
-NextAction = "Close",
-},
-Open = {
-Prototype = Action,
-Name = "Open",
-Length = 1,
-Delay = 100,
-X = 0,
-Y = 0,
-Wdt = 30,
-Hgt = 20,
-NextAction = "Closes",
+local ActMap = {
+
+Opens = {
+
+Prototype = Action,
+
+Name = "Opens",
+
+Length = 25,
+
+Delay = 1,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 20,
+
+Sound = "SarkTr",
+
+NextAction = "Open",
+
+},
+
+Closes = {
+
+Prototype = Action,
+
+Name = "Closes",
+
+Length = 25,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 20,
+
+Sound = "SarkTr",
+
+NextAction = "Close",
+
+},
+
+Close = {
+
+Prototype = Action,
+
+Name = "Close",
+
+Length = 1,
+
+Delay = 1,
+
+X = 750,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 20,
+
+NextAction = "Close",
+
+},
+
+Open = {
+
+Prototype = Action,
+
+Name = "Open",
+
+Length = 1,
+
+Delay = 100,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 30,
+
+Hgt = 20,
+
+NextAction = "Closes",
+
 },  };
 local Name = "$Name$";

@@ -23,18 +23,31 @@ public func FxAdjustGrowthPosTimer()
   // Y-Position anpassen (Wachstumsverschiebung der Engine ausgleichen)
   SetPosition(GetX(), GetY() + GetVineLength());   
 }
-local ActMap = {
-Vine = {
-Prototype = Action,
-Name = "Vine",
-Directions = 1,
-Length = 10,
-Delay = 0,
-X = 0,
-Y = 0,
-Wdt = 18,
-Hgt = 64,
-FacetBase = 0,
-NextAction = "Vine",
+local ActMap = {
+
+Vine = {
+
+Prototype = Action,
+
+Name = "Vine",
+
+Directions = 1,
+
+Length = 10,
+
+Delay = 0,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 18,
+
+Hgt = 64,
+
+FacetBase = 0,
+
+NextAction = "Vine",
+
 },  };
 local Name = "$Name$";

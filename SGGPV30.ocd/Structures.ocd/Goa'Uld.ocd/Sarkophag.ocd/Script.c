@@ -171,67 +171,129 @@ protected func Out()
   FindObject(0,0,0,0,0,OCF_Alive(),0,0,this())->Exit();
   return(1);
 }
-local ActMap = {
-Exit = {
-Prototype = Action,
-Name = "Exit",
-Length = 40,
-Delay = 3,
-X = 0,
-Y = 0,
-Wdt = 60,
-Hgt = 20,
-NextAction = "DoorOpen",
-EndCall = "Out",
-Sound = "SarkTr",
-},
-OpenDoor = {
-Prototype = Action,
-Name = "OpenDoor",
-Length = 1,
-Delay = 3,
-X = 0,
-Y = 0,
-Wdt = 60,
-Hgt = 20,
-NextAction = "Auf",
-},
-Auf = {
-Prototype = Action,
-Name = "Auf",
-Length = 40,
-Delay = 3,
-X = 0,
-Y = 0,
-Wdt = 60,
-Hgt = 20,
-NextAction = "DoorOpen",
-Sound = "SarkTr",
-},
-DoorOpen = {
-Prototype = Action,
-Name = "DoorOpen",
-Length = 1,
-Delay = 37,
-X = 2400,
-Y = 0,
-Wdt = 60,
-Hgt = 20,
-NextAction = "CloseDoor",
-StartCall = "OpenEntrance",
-EndCall = "CloseEntrance",
-},
-CloseDoor = {
-Prototype = Action,
-Name = "CloseDoor",
-Length = 40,
-Delay = 3,
-Reverse = 1,
-X = 0,
-Y = 0,
-Wdt = 60,
-Hgt = 20,
-NextAction = "Idle",
-Sound = "SarkTr",
+local ActMap = {
+
+Exit = {
+
+Prototype = Action,
+
+Name = "Exit",
+
+Length = 40,
+
+Delay = 3,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 60,
+
+Hgt = 20,
+
+NextAction = "DoorOpen",
+
+EndCall = "Out",
+
+Sound = "SarkTr",
+
+},
+
+OpenDoor = {
+
+Prototype = Action,
+
+Name = "OpenDoor",
+
+Length = 1,
+
+Delay = 3,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 60,
+
+Hgt = 20,
+
+NextAction = "Auf",
+
+},
+
+Auf = {
+
+Prototype = Action,
+
+Name = "Auf",
+
+Length = 40,
+
+Delay = 3,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 60,
+
+Hgt = 20,
+
+NextAction = "DoorOpen",
+
+Sound = "SarkTr",
+
+},
+
+DoorOpen = {
+
+Prototype = Action,
+
+Name = "DoorOpen",
+
+Length = 1,
+
+Delay = 37,
+
+X = 2400,
+
+Y = 0,
+
+Wdt = 60,
+
+Hgt = 20,
+
+NextAction = "CloseDoor",
+
+StartCall = "OpenEntrance",
+
+EndCall = "CloseEntrance",
+
+},
+
+CloseDoor = {
+
+Prototype = Action,
+
+Name = "CloseDoor",
+
+Length = 40,
+
+Delay = 3,
+
+Reverse = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 60,
+
+Hgt = 20,
+
+NextAction = "Idle",
+
+Sound = "SarkTr",
+
 },  };
 local Name = "$Name$";

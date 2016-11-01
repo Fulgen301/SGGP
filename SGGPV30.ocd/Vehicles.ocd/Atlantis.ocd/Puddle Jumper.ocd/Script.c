@@ -838,173 +838,341 @@ public func Starting()
 func IsMachine() 		{ return(1); }
 
 func IsBulletTarget()    { return(1); }
-local ActMap = {
-Build = {
-Prototype = Action,
-Name = "Build",
-Procedure = DFA_NONE,
-NextAction = "Opens",
-Delay = 10,
-Length = 7,
-Directions = 2,
-X = 0,
-Y = 384,
-Wdt = 100,
-Hgt = 64,
-FlipDir = 1,
-Sound = "luke1",
-},
-Stand = {
-Prototype = Action,
-Name = "Stand",
-Procedure = DFA_NONE,
-NextAction = "Stand",
-InLiquidAction = "Stand",
-Delay = 1,
-Length = 1,
-Directions = 2,
-FacetBase = 1,
-FlipDir = 1,
-},
-Opens = {
-Prototype = Action,
-Name = "Opens",
-Procedure = DFA_NONE,
-NextAction = "Open",
-Delay = 2,
-Length = 6,
-Reverse = 1,
-Directions = 2,
-X = 0,
-Y = 256,
-Wdt = 100,
-Hgt = 64,
-EndCall = "Open",
-FlipDir = 1,
-Sound = "luke1",
-},
-Open = {
-Prototype = Action,
-Name = "Open",
-Procedure = DFA_NONE,
-NextAction = "Open",
-Delay = 1,
-Length = 1,
-Directions = 2,
-X = 0,
-Y = 256,
-Wdt = 100,
-Hgt = 64,
-EndCall = "Open",
-FlipDir = 1,
-},
-Close = {
-Prototype = Action,
-Name = "Close",
-Procedure = DFA_NONE,
-NextAction = "Stand",
-Delay = 2,
-Length = 6,
-Directions = 2,
-X = 0,
-Y = 256,
-Wdt = 100,
-Hgt = 64,
-StartCall = "Close",
-FlipDir = 1,
-Sound = "luke1",
-},
-Tarnan2 = {
-Prototype = Action,
-Name = "Tarnan2",
-Procedure = DFA_FLOAT,
-NextAction = "Fly",
-Delay = 2,
-Length = 10,
-Directions = 2,
-X = 0,
-Y = 128,
-Wdt = 100,
-Hgt = 64,
-EndCall = "Invisible",
-FlipDir = 1,
-},
-Tarnaus2 = {
-Prototype = Action,
-Name = "Tarnaus2",
-Procedure = DFA_FLOAT,
-NextAction = "Fly",
-Delay = 2,
-Length = 10,
-Reverse = 1,
-Directions = 2,
-X = 0,
-Y = 128,
-Wdt = 100,
-Hgt = 64,
-StartCall = "Visible",
-FlipDir = 1,
-},
-Tarnan = {
-Prototype = Action,
-Name = "Tarnan",
-Procedure = DFA_NONE,
-Delay = 2,
-Length = 10,
-Directions = 2,
-X = 0,
-Y = 128,
-Wdt = 100,
-Hgt = 64,
-FlipDir = 1,
-EndCall = "Invisible",
-NextAction = "Stand",
-},
-Tarnaus = {
-Prototype = Action,
-Name = "Tarnaus",
-Procedure = DFA_NONE,
-NextAction = "Stand",
-Delay = 2,
-Length = 10,
-Reverse = 1,
-Directions = 2,
-X = 0,
-Y = 128,
-Wdt = 100,
-Hgt = 64,
-FlipDir = 1,
-StartCall = "Visible",
-},
-Fly = {
-Prototype = Action,
-Name = "Fly",
-Procedure = DFA_FLOAT,
-Length = 1,
-Delay = 1,
-Directions = 2,
-X = 0,
-Y = 0,
-Wdt = 100,
-Hgt = 64,
-FlipDir = 1,
-NextAction = "Fly",
-Sound = "engine",
-},
-Turn = {
-Prototype = Action,
-Name = "Turn",
-Procedure = DFA_FLOAT,
-Directions = 2,
-Length = 20,
-Delay = 1,
-X = 0,
-Y = 0,
-Wdt = 100,
-Hgt = 64,
-FlipDir = 1,
-NextAction = "Fly",
-Sound = "engine",
-EndCall = "Turned",
+local ActMap = {
+
+Build = {
+
+Prototype = Action,
+
+Name = "Build",
+
+Procedure = DFA_NONE,
+
+NextAction = "Opens",
+
+Delay = 10,
+
+Length = 7,
+
+Directions = 2,
+
+X = 0,
+
+Y = 384,
+
+Wdt = 100,
+
+Hgt = 64,
+
+FlipDir = 1,
+
+Sound = "luke1",
+
+},
+
+Stand = {
+
+Prototype = Action,
+
+Name = "Stand",
+
+Procedure = DFA_NONE,
+
+NextAction = "Stand",
+
+InLiquidAction = "Stand",
+
+Delay = 1,
+
+Length = 1,
+
+Directions = 2,
+
+FacetBase = 1,
+
+FlipDir = 1,
+
+},
+
+Opens = {
+
+Prototype = Action,
+
+Name = "Opens",
+
+Procedure = DFA_NONE,
+
+NextAction = "Open",
+
+Delay = 2,
+
+Length = 6,
+
+Reverse = 1,
+
+Directions = 2,
+
+X = 0,
+
+Y = 256,
+
+Wdt = 100,
+
+Hgt = 64,
+
+EndCall = "Open",
+
+FlipDir = 1,
+
+Sound = "luke1",
+
+},
+
+Open = {
+
+Prototype = Action,
+
+Name = "Open",
+
+Procedure = DFA_NONE,
+
+NextAction = "Open",
+
+Delay = 1,
+
+Length = 1,
+
+Directions = 2,
+
+X = 0,
+
+Y = 256,
+
+Wdt = 100,
+
+Hgt = 64,
+
+EndCall = "Open",
+
+FlipDir = 1,
+
+},
+
+Close = {
+
+Prototype = Action,
+
+Name = "Close",
+
+Procedure = DFA_NONE,
+
+NextAction = "Stand",
+
+Delay = 2,
+
+Length = 6,
+
+Directions = 2,
+
+X = 0,
+
+Y = 256,
+
+Wdt = 100,
+
+Hgt = 64,
+
+StartCall = "Close",
+
+FlipDir = 1,
+
+Sound = "luke1",
+
+},
+
+Tarnan2 = {
+
+Prototype = Action,
+
+Name = "Tarnan2",
+
+Procedure = DFA_FLOAT,
+
+NextAction = "Fly",
+
+Delay = 2,
+
+Length = 10,
+
+Directions = 2,
+
+X = 0,
+
+Y = 128,
+
+Wdt = 100,
+
+Hgt = 64,
+
+EndCall = "Invisible",
+
+FlipDir = 1,
+
+},
+
+Tarnaus2 = {
+
+Prototype = Action,
+
+Name = "Tarnaus2",
+
+Procedure = DFA_FLOAT,
+
+NextAction = "Fly",
+
+Delay = 2,
+
+Length = 10,
+
+Reverse = 1,
+
+Directions = 2,
+
+X = 0,
+
+Y = 128,
+
+Wdt = 100,
+
+Hgt = 64,
+
+StartCall = "Visible",
+
+FlipDir = 1,
+
+},
+
+Tarnan = {
+
+Prototype = Action,
+
+Name = "Tarnan",
+
+Procedure = DFA_NONE,
+
+Delay = 2,
+
+Length = 10,
+
+Directions = 2,
+
+X = 0,
+
+Y = 128,
+
+Wdt = 100,
+
+Hgt = 64,
+
+FlipDir = 1,
+
+EndCall = "Invisible",
+
+NextAction = "Stand",
+
+},
+
+Tarnaus = {
+
+Prototype = Action,
+
+Name = "Tarnaus",
+
+Procedure = DFA_NONE,
+
+NextAction = "Stand",
+
+Delay = 2,
+
+Length = 10,
+
+Reverse = 1,
+
+Directions = 2,
+
+X = 0,
+
+Y = 128,
+
+Wdt = 100,
+
+Hgt = 64,
+
+FlipDir = 1,
+
+StartCall = "Visible",
+
+},
+
+Fly = {
+
+Prototype = Action,
+
+Name = "Fly",
+
+Procedure = DFA_FLOAT,
+
+Length = 1,
+
+Delay = 1,
+
+Directions = 2,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 100,
+
+Hgt = 64,
+
+FlipDir = 1,
+
+NextAction = "Fly",
+
+Sound = "engine",
+
+},
+
+Turn = {
+
+Prototype = Action,
+
+Name = "Turn",
+
+Procedure = DFA_FLOAT,
+
+Directions = 2,
+
+Length = 20,
+
+Delay = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 100,
+
+Hgt = 64,
+
+FlipDir = 1,
+
+NextAction = "Fly",
+
+Sound = "engine",
+
+EndCall = "Turned",
+
 },  };
 local Name = "$Name$";

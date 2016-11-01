@@ -399,33 +399,61 @@ global func UpdateMessage4K(iPlr)
     obj->Update();
   } 
 }
-local ActMap = {
-Fade = {
-Prototype = Action,
-Name = "Fade",
-Procedure = DFA_NONE,
-Length = 1,
-Delay = 4,
-FacetBase = 1,
-NextAction = "Fade",
-EndCall = "FadeOut_Float",
-},
-Event = {
-Prototype = Action,
-Name = "Event",
-Procedure = DFA_NONE,
-Length = 1,
-Delay = 12,
-FacetBase = 1,
-NextAction = "Event",
-EndCall = "FadeOut",
-},
-Exercise = {
-Prototype = Action,
-Name = "Exercise",
-Procedure = DFA_NONE,
-Length = 1,
-FacetBase = 1,
-NextAction = "Exercise",
+local ActMap = {
+
+Fade = {
+
+Prototype = Action,
+
+Name = "Fade",
+
+Procedure = DFA_NONE,
+
+Length = 1,
+
+Delay = 4,
+
+FacetBase = 1,
+
+NextAction = "Fade",
+
+EndCall = "FadeOut_Float",
+
+},
+
+Event = {
+
+Prototype = Action,
+
+Name = "Event",
+
+Procedure = DFA_NONE,
+
+Length = 1,
+
+Delay = 12,
+
+FacetBase = 1,
+
+NextAction = "Event",
+
+EndCall = "FadeOut",
+
+},
+
+Exercise = {
+
+Prototype = Action,
+
+Name = "Exercise",
+
+Procedure = DFA_NONE,
+
+Length = 1,
+
+FacetBase = 1,
+
+NextAction = "Exercise",
+
 },  };
 local Name = "$Name$";

@@ -233,7 +233,8 @@ public func GenES()
 
 func IsMachine()		{ return(1); }	
 func IsBulletTarget()		{ return(1); }	
-local ActMap = {
+local ActMap = {
+
  };
 local Name = "$Name$";
 local Collectible = 1;

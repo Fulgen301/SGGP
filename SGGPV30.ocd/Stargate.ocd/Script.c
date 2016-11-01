@@ -16,6 +16,24 @@ local fGate;
 local chevroncount;
 local fake;
 
+public func IsTeltakGate()
+{
+    return teltak;
+}
+
+public func SetTeltak(object pObj)
+{
+    if(!pObj) return false;
+    teltak = pObj;
+    return true;
+}
+
+public func IsDestinyGate()
+{
+    return destiny;
+}
+}
+
 protected func Construction()
 {
 	AddEffect("IntCheck", this, 1, 1, this);
@@ -45,11 +63,67 @@ protected func Initialize()
   return true;
 }
 
+//Hat das Gate eine Iris?
+func HasIris()
+{
+  return(iris);
+}
+
+//Nein? Dann müssen wir eine Installieren:
+func InstallIris()
+{
+  iris = CreateObject(SGIR);
+  SetObjectOrder(this,iris);
+  LocalN("target",iris) = this;
+  return(1);
+}
+
+//Abfrage ob die Iris zu ist
+func IsClose()
+{
+  if(!iris) return false;
+  return iris->IsClose() ;
+}
+
+//Abfrage ob beim angewählten Gate die Iris geschlossen ist
+public func pToClose()
+{
+    if(!pTo) return false;
+    return pTo->IsClose();
+}
+
+//Sound wenn was gegen die Iris kracht
+protected func Dong()
+{
+  Sound("IrisHit");
+  return true;
+}
+
+//Kontrolle an die Iris weitergeben
+protected func ControlIris()
+{
+  if(iris)
+  {
+   iris->Switch();
+  }
+  return true;
+}
+
+protected func GDOControlIris(passw)
+{
+  if(iris)
+  {
+   iris->GDOControl(passw);
+  }
+  return true;
+}
+
+
 //Tötung beim Kawoosh
 protected func KawooshKill()
 {
    var xobj;
-   FreeRect(GetX() - GetDefOffset(GetID(), 0), GetY()- GetDefOffset(GetID(), 1), GetDefWidth(GetID()), GetDefHeight(GetID()));
+   FreeRect(GetX() - GetID()->GetDefOffset(0), GetY()- GetID()->GetDefOffset(1), GetID()->GetDefWidth(), GetID()->GetDefHeight();
    for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Or(Find_OCF(OCF_Living),Find_OCF(OCF_Collectible))))
    {
     if(!IsTeltakGate())
@@ -230,7 +304,7 @@ public func Dial(string gate)
 
 protected func FxIntCheckTimer(object pTarget, proplist pEffect)
 {
-  if(EnergyCheck(100) && energy <= 1000000)
+  if(energy <= 1000000)
   {
   	energy += 50;
   }
@@ -324,6 +398,7 @@ public func Deactivate()
 //Überbringung des Ziels:
 protected func Transport()
 {
+  return; // :DEBUG:
   var obj;
   for(obj in FindObjects(Find_InRect(70,0,25,80)))
   {
@@ -422,4 +497,134 @@ private func FailSound()				{ return; }
 
 //Console
 public func IsConsoleTarget()			{ return true; }
+
 local Name = "$Name$";
+
+local ActMap = {
+Outgoing1 = {
+Prototype = Action,
+Name = "Outgoing1",
+Length = 51,
+Delay = 4,
+FlipDir = 1,
+X = 0,
+Y = 0,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Outgoing2",
+PhaseCall = "DialSounds",
+},
+
+Outgoing2 = {
+Prototype = Action,
+Name = "Outgoing2",
+Length = 66,
+Delay = 2,
+FlipDir = 1,
+X = 0,
+Y = 80,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Outgoing3",
+StartCall = "OpenSound",
+PhaseCall = "KawooshKill",
+},
+
+Outgoing3 = {
+Prototype = Action,
+Name = "Outgoing3",
+Length = 51,
+Delay = 1,
+FlipDir = 1,
+X = 0,
+Y = 160,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Outgoing4",
+EndCall = "ShutDelay",
+Sound = "Opened",
+PhaseCall = "Transport",
+},
+Outgoing4 = {
+Prototype = Action,
+Name = "Outgoing4",
+Length = 51,
+Delay = 1,
+FlipDir = 1,
+Reverse = 1.
+X = 0,
+Y = 160,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Outgoing3",
+Sound = "Opened",
+PhaseCall = "Transport",
+},
+Income1 = {
+Prototype = Action,
+Name = "Income1",
+Length = 51,
+Delay = 4,
+FlipDir = 1,
+X = 0,
+Y = 0,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Income2",
+PhaseCall = "DialSounds",
+},
+Income2 = {
+Prototype = Action,
+Name = "Income2",
+Length = 66,
+Delay = 2,
+FlipDir = 1,
+X = 0,
+Y = 80,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Income3",
+StartCall = "OpenSound",
+PhaseCall = "KawooshKill",
+},
+Income3 = {
+Prototype = Action,
+Name = "Income3",
+Length = 51,
+Delay = 1,
+FlipDir = 1,
+X = 0,
+Y = 160,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Income4",
+Sound = "Opened",
+},
+Income4 = {
+Prototype = Action,
+Name = "Income4",
+Length = 51,
+Delay = 1,
+FlipDir = 1,
+Reverse = 1,
+X = 0,
+Y = 160,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Income3",
+Sound = "Opened",
+},
+Off = {
+Prototype = Action,
+Name = "Off",
+Length = 63,
+Delay = 1,
+FlipDir = 1,
+X = 0,
+Y = 240,
+Wdt = 110,
+Hgt = 80,
+Sound = "StargateClose",
+NextAction = "Idle",
+},  };
+

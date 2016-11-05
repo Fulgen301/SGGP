@@ -402,7 +402,7 @@ protected func Transport()
   	{
 		continue;
   	}
-   if(GetXDir(obj) < 1)
+   if(obj->GetXDir() < 1)
    {
     continue;
    }

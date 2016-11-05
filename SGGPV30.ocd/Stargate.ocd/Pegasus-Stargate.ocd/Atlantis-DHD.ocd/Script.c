@@ -12,7 +12,7 @@ public func FindStargate()
 {
 	return(FindObject([C4FO_Func, "IsStargate"],[C4FO_Func, "IsPegasusGate"],Find_Distance(1000),Sort_Distance()));
 }
-
+    
 public func IsMilkywayDHD()	{return false;}
 public func IsPegasusDHD()	{return true;}
 public func IsDestinyDHD()	{return false;}

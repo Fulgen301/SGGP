@@ -16,8 +16,6 @@ Mass=500
 Components=ROCK=2;CRYS=3;METL=5;
 Picture=0,0,60,50
 Construction=1
-Timer=1
-TimerCall=Timer
 Grab=2
 LineConnect=C4D_PowerInput|C4D_PowerOutput|C4D_PowerConsumer
 

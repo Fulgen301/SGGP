@@ -1,2 +1,0 @@
-DE:Hand-Aktivator
-US:Hand-Activator

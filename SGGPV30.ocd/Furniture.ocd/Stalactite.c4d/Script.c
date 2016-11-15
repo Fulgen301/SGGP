@@ -1,6 +1,6 @@
 /*-- Stalaktit --*/
 
-#strict
+
 
 local phase, y;
 

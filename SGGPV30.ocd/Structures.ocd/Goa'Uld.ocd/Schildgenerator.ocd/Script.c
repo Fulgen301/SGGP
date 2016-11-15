@@ -1,6 +1,6 @@
 /*-- Shieldemitter --*/
 
-#strict
+
 #include BAS3
 
 local on;

@@ -1,6 +1,6 @@
 /*-- Infoding --*/
 
-#strict
+
 
 local pAttacher;
 

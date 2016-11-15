@@ -1,4 +1,4 @@
-#strict
+
 
 public func Initialize()
 {

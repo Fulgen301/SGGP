@@ -1,6 +1,6 @@
 /*-- Schalter --*/
 
-#strict
+
 
 protected func Initialize()
   {

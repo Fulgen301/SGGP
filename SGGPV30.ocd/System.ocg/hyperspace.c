@@ -1,6 +1,6 @@
 /*-- Hyperspace --*/
 
-#strict 2
+
 
 global func TravelInHyperspace(object pObj, int x, int y, int delay)
 {
@@ -9,8 +9,8 @@ global func TravelInHyperspace(object pObj, int x, int y, int delay)
 	
 	var hyperspace = CreateObject(HPRS);
 	SetObjectLayer(hyperspace, pObj);
-	Schedule(Format("Object(%d)->SetPosition(%d,%d)",ObjectNumber(pObj), x, y),delay);
-	Schedule(Format("SetObjectLayer(0,Object(%d))",ObjectNumber(pObj)),delay);
+	Schedule(nil, Format("Object(%d)->SetPosition(%d,%d)",pObj->ObjectNumber(), x, y,delay));
+	Schedule(nil, Format("SetObjectLayer(0,Object(%d))",pObj->ObjectNumber()),delay);
 	RemoveObject(hyperspace);
 	return pObj;
 }

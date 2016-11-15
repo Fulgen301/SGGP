@@ -1,6 +1,6 @@
 /*-- P90 --*/
 
-#strict
+
 
 #include WEPN
 

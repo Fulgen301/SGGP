@@ -1,4 +1,4 @@
-#strict
+
 local TimeToLive;
 func Initialize()
 {

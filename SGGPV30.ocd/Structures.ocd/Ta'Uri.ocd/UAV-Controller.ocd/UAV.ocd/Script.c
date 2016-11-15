@@ -1,6 +1,6 @@
 /*-- UAV --*/
 
-#strict
+
 
 local on;
 local dir;

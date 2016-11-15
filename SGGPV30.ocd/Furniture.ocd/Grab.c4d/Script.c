@@ -1,4 +1,4 @@
-#strict
+
 local Can,Zahl;
 func Initialize() 
 {

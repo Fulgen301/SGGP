@@ -1,4 +1,4 @@
-#strict
+
 #include GEAR
 local User,targets,Follow,pTarg;
 func Initialize()

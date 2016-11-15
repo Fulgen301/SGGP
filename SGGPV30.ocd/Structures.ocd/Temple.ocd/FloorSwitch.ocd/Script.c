@@ -1,6 +1,6 @@
 /*-- Bodenschalter --*/
 
-#strict
+
 
 static const _FLS_NeededWeight = 20;
 static const _FLS_DownPos      = 4;

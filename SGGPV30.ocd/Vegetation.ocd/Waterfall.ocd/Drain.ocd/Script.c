@@ -1,6 +1,6 @@
 /*-- Drain --*/
 
-#strict
+
 
 protected func Initialize()
 {

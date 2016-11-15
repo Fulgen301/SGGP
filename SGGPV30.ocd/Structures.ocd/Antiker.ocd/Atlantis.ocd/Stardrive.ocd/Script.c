@@ -2,7 +2,7 @@
 
 // Stellt die Grundfunktionalität für alle Burgbauteile bereit
 
-#strict 2
+
 #include ALW2
 
 local targets;

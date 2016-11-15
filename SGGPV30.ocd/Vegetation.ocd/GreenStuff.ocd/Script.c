@@ -2,7 +2,7 @@
 
 // #include TREE - nope
 
-#strict
+
 
 protected func Initialize()
   {

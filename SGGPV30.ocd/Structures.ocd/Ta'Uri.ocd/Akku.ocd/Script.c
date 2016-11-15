@@ -1,4 +1,4 @@
-#strict
+
 #include BAS2
 local EnergieStand,InfoOn;
 

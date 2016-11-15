@@ -1,6 +1,6 @@
 /* Display Upgradet */
 
-#strict
+
 
 local alpha;
 local starget;

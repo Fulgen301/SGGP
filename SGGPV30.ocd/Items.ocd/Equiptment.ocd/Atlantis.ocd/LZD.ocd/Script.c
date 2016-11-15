@@ -1,6 +1,6 @@
 /*-- LZD --*/
 
-#strict
+
 
 local on;
 local target;

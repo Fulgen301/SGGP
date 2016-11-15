@@ -1,6 +1,6 @@
 /*-- Laserturm --*/
 
-#strict
+
 
 local on;
 local dist;

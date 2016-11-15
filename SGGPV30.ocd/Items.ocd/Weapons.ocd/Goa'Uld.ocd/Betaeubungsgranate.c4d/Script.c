@@ -1,5 +1,5 @@
 /*-- Betäubungsgranate --*/
-#strict
+
 local Target;
 local pStructure;
 

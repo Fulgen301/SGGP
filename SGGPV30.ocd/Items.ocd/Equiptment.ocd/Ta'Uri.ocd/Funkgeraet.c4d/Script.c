@@ -1,6 +1,6 @@
 /*-- Funkgerät --*/
 
-#strict
+
 
 local chnl;
 local User;

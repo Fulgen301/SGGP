@@ -1,6 +1,6 @@
 /*--- Radioactive Waste ---*/
 
-#strict
+
 
 local size;
 local strange;

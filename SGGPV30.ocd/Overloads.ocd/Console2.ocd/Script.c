@@ -1,6 +1,6 @@
 /*-- Konsole2 --*/
 
-#strict
+
 #include CONS
 
 func IsMachine() { return(false); }

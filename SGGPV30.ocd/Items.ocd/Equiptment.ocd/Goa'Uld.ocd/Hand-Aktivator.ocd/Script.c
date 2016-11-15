@@ -1,6 +1,6 @@
 /*-- Hand-Activator --*/
 
-#strict
+
 
 local pUser;
 local next;

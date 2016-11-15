@@ -1,7 +1,7 @@
 //*-- Der Ringtransporter --*//
   //*--    BAUOBJEKT   --*//
   
-#strict
+
 
 public func Initialize()
 {

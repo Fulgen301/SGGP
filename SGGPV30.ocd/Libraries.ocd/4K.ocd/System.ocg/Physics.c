@@ -1,4 +1,4 @@
-#strict
+
 
 global func AccelerateX4K(int iX,int iPrec,object pObject)
 {

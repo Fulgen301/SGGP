@@ -1,4 +1,4 @@
-#strict
+
 #include CLNK
 
 local life;

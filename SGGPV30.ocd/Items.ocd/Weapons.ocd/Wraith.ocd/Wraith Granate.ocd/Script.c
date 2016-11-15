@@ -1,6 +1,6 @@
 /*-- Wraith Granate --*/
 
-#strict
+
 
 local Active;
 

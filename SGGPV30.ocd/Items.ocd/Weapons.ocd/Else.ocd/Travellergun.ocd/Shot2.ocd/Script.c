@@ -1,4 +1,4 @@
-#strict
+
 #include SH7X
 
 public func BulletStrike(object pObj) 

@@ -1,4 +1,4 @@
-#strict
+
 
 local pX, pY;
 local pUser;

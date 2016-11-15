@@ -1,4 +1,4 @@
-#strict
+
 local isOn,Dir,Speed,pOther,pOtherRight;
 func Initialize()
 {

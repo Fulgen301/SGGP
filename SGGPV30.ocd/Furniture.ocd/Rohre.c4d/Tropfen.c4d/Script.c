@@ -1,4 +1,4 @@
-#strict
+
 
 Launch:
   SetAction(Par(0));

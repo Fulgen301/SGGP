@@ -1,6 +1,6 @@
 /*-- Nachrichtenzeiger --*/
 
-#strict
+
 
 local text,icon,color,alpha;
 

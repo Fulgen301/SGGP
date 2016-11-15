@@ -1,4 +1,4 @@
-#strict
+
 local pId,idDef,HasEnrg,InfoOn,X,Y,User,Wait;
 func Initialize()
 {

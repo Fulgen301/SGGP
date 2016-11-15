@@ -1,6 +1,6 @@
 /*-- Bruchteil eines Stalaktiten --*/
 
-#strict
+
 
 local alpha;
 

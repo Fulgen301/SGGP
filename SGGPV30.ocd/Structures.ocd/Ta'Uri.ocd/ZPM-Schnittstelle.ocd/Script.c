@@ -1,4 +1,4 @@
-#strict 
+ 
 local HasZPM,Activ,Info,User,En,Damg;
 func Initialize()
 {
@@ -93,7 +93,7 @@ func Give()
 	var ZPM;
 	ZPM = FindContents(ZPM_,User); 
 	Exit(ZPM);
-	Enter(this(0),ZPM);
+	this->Enter(ZPM);
 	HasZPM = "ZPM";
 	if(ZPM -> Depledet()) HasZPM = "ZPMEmpty";
 	SetAction(Format("StandOpen%s",HasZPM));

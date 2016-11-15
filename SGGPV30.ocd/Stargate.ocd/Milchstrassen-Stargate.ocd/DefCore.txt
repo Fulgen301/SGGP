@@ -1,5 +1,5 @@
 [DefCore]
-id=STGT
+id=Stargate_Milkyway
 Version=4,9,5
 Category=2
 Components=NAQU=20;METL=2
@@ -8,8 +8,6 @@ Height=80
 Mass=50000
 Picture=0,0,110,80
 Construction=1
-Timer=1
-TimerCall=Check
 LineConnect=C4D_PowerInput|C4D_PowerOutput|C4D_PowerConsumer
 Vertices=8
 VertexX=55,86,103,46,56,76,100,108

@@ -1,4 +1,4 @@
-#strict
+
 
 Completion:
   SetAction("Scroll");

@@ -1,4 +1,4 @@
-#strict
+
 #include SHT1
 
 local glow;

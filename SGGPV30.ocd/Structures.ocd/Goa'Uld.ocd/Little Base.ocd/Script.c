@@ -1,6 +1,6 @@
 /*-- Kleine Basis --*/
 
-#strict
+
 
 #include DOOR
 #include BAS9

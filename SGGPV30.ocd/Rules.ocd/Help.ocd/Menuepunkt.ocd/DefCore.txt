@@ -1,6 +1,6 @@
 [DefCore]
-id=MEPU
-Version=4,9,8
+id=Icon_MenuPoint
+Version=7,0
 Category=C4D_StaticBack
 Width=1
 Height=1

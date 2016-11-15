@@ -1,6 +1,6 @@
 /*--- Bohrkopf ---*/
 
-#strict
+
 
 protected func DestructCheck()
 {

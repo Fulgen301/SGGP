@@ -1,6 +1,6 @@
 /*-- Rüstung --*/
 
-#strict
+
 #include GEAR
 
 local pTarget;

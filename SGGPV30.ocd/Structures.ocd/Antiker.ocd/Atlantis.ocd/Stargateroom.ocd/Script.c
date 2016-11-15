@@ -1,6 +1,6 @@
 /*-- Stargateraum --*/
 
-#strict
+
 
 #include ALW2 // Burgteilfunktion
 

@@ -1,6 +1,6 @@
 /*-- Hängebrücke --*/
 
-#strict 2
+
 
 local aParts;
 local aWeight;

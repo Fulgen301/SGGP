@@ -1,6 +1,6 @@
 /*-- Liane --*/
 
-#strict 2
+
 
 protected func Construction()
 {

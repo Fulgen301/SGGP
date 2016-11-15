@@ -1,6 +1,6 @@
 /*-- Konsole --*/
 
-#strict
+
 
 local smashed, target;
 

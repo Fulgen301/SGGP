@@ -1,6 +1,6 @@
 /*-- Kochtopf --*/
 
-#strict
+
 
 local pFire;
 

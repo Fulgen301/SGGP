@@ -1,4 +1,4 @@
-#strict 2
+
 func Activate(int iPlayer)
 {
 	MessageWindow(GetDesc(),iPlayer);

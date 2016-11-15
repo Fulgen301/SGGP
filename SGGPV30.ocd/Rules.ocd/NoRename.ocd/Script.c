@@ -1,4 +1,4 @@
-#strict
+
 func Activate(int iPlayer)
 {
 	MessageWindow("Umbenennen verboten!",iPlayer);

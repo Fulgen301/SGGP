@@ -1,6 +1,6 @@
 /*-- Fahrstuhl --*/
 
-#strict
+
 
 #include ELEV
 local ActMap = {

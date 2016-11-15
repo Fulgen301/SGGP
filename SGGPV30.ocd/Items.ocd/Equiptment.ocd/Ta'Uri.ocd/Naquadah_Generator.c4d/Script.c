@@ -1,6 +1,6 @@
 /*-- Naquadah Generator --*/
 
-#strict
+
 
 local produce;
 local heat;

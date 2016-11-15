@@ -1,6 +1,6 @@
 /*-- Neues Objekt --*/
 
-#strict
+
 local Enabled;
 func Initialize() 
 {

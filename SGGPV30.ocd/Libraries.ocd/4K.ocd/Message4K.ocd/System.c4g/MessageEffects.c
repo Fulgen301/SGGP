@@ -1,6 +1,6 @@
 /*-- toll fadende und bunte Nachrichten --*/
 
-#strict
+
 
 global func Message4K(pObject,szText,iFrames,dwRGBa_1,dwRGBa_2)
 {

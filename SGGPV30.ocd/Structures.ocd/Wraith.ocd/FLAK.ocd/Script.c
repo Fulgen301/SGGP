@@ -1,6 +1,6 @@
 /*-- FLAK Geschutz --*/
 
-#strict
+
 #include BAS4
 
 local pTarget;

@@ -1,6 +1,6 @@
 /*-- Sarkophag --*/
 
-#strict
+
 
 #include DOOR
 

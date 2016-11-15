@@ -1,6 +1,6 @@
 /*-- Wand --*/
 
-#strict
+
 
 #include ALW2
 

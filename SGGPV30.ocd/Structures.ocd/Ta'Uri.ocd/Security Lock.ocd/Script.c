@@ -1,6 +1,6 @@
 /*-- Sicherheits Luftschläuse --*/
 
-#strict
+
 
 local Lock;
 local secure;

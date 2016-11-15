@@ -46,7 +46,7 @@ protected func ControlUpDouble(pCaller)
   ChevronSound();
   if(!FindStargate())
   {
-   Message("<c ff0000>Kein Gate in Reichweite!</c>",this;
+   this->Message("<c ff0000>Kein Gate in Reichweite!</c>");
    return;
   }
   else
@@ -86,34 +86,33 @@ protected func ControlRightDouble(pCaller)
   }
 
   pUser = pCaller;
-  CreateMenu(GetID(),pUser, 0, 0, FindStargate()->GetName(), 0, 1);
+  CreateMenu(GetID(),pUser, 0, FindStargate()->GetName(), 0, 1);
   if(!FindObject(UMBE))
   {
-   AddMenuItem("Gate umbenennen","Rename",MEPU,pUser);
+   pUser->AddMenuItem("Gate umbenennen","Rename",Icon_MenuPoint);
   }
   
   if(!FindObject(NOKR))
   {
-   AddMenuItem("DHD manipulieren","CrystChange",MEPU,pUser);
+   pUser->AddMenuItem("DHD manipulieren","CrystChange",Icon_MenuPoint);
   }
-  if(FindObject(Find_ID(NOMA))) return(1);
-  if(FindStargate().outgoing)
+/*  if(FindStargate().outgoing)
   {
-	  AddMenuItem("Ausgehende Wurmlï¿½cher erlauben","ChangeOutgoingState",MEPU,pUser,0,true);
+	  AddMenuItem("Ausgehende Wurmlöcher erlauben","ChangeOutgoingState",Icon_MenuPoint,pUser,0,true);
   }
-  else AddMenuItem("Ausgehende Wurmlï¿½cher verbieten","ChangeOutgoingState",MEPU,pUser,0,false);
+  else AddMenuItem("Ausgehende Wurmlöcher verbieten","ChangeOutgoingState",Icon_MenuPoint,pUser,0,false);
   
   if(FindStargate().incoming)
   {
-	  AddMenuItem("Eingehende Wurmlï¿½cher erlauben","ChangeIncomingState",MEPU,pUser,0,true);
+	  AddMenuItem("Eingehende Wurmlöcher erlauben","ChangeIncomingState",Icon_MenuPoint,pUser,0,true);
   }
-  else AddMenuItem("Eingehende Wurmlï¿½cher verbieten","ChangeIncomingState",MEPU,pUser,0,false);
+  else AddMenuItem("Eingehende Wurmlï¿½cher verbieten","ChangeIncomingState",Icon_MenuPoint,pUser,0,false);
   
   if(FindStargate().forwarding)
   {
-	  AddMenuItem("Weiterleitung einrichten","ChangeForwardingState",MEPU,pUser,0,true);
+	  AddMenuItem("Weiterleitung einrichten","ChangeForwardingState",Icon_MenuPoint,pUser,0,true);
   }
-  else AddMenuItem("Weiterleitung entfernen","ChangeForwardingState",MEPU,pUser,0,false);
+  else AddMenuItem("Weiterleitung entfernen","ChangeForwardingState",Icon_MenuPoint,pUser,0,false);*/
   return true;
 }
 
@@ -163,16 +162,16 @@ protected func CrystChange()
 {
   if(!ready)
   {
-   if(pUser->FindContents(DHDK))
+   if(pUser->FindContents(DHD_Crystal))
    {
-    if(pUser->FindContents(DHDK).Damaged = 1)
+    if(pUser->FindContents(DHD_Crystal).Damaged = 1)
     {
      Message("<c ff0000>Der Kristall ist kaputt!</c>",this);
      Sound("Error");
      return;
     }
     
-    pUser->FindContents(DHDK)->RemoveObject();
+    pUser->FindContents(DHD_Crystal)->RemoveObject();
     ready = 1;
     ChevronSound();
     return;
@@ -182,16 +181,13 @@ protected func CrystChange()
     Message("<c ff0000>Kein Kontrollkristall vorhanden!</c>",this);
     return;
    }
-   Sound("start");
-   return;
   }
   else
   {
-   pUser->CreateContents(DHDK);
+   pUser->CreateContents(DHD_Crystal);
    ready = 0;
    return true;
   }
-  return true;
 }
 
 protected func InputCallback(string pGate)
@@ -225,9 +221,9 @@ protected func InputCallback(string pGate)
 		return(1);
 	  }
 	  var Gate;
-	  for(Gate in FindObjects([C4FO_Func, "IsStargate"])
+	  for(Gate in FindObjects([C4FO_Func, "IsStargate"]))
 	  {
-		if (Gate != FindStargate())
+		if(Gate != FindStargate())
 		{
 			var szName;
 			szName = Gate ->GetName();
@@ -255,7 +251,6 @@ protected func InputCallback(string pGate)
    FindStargate()->Dial(pGate);
    return(1);
   }
-  return(1);
 }
 
 protected func Check()
@@ -268,6 +263,8 @@ protected func Check()
 	}
 	return(1);
 }
+
+private func ChevronSound() {Sound("DHDChevron");}
 
 public func FindStargate()
 {

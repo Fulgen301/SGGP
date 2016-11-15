@@ -1,4 +1,4 @@
-#strict
+
 local unlook,x,y;
 
 Initialize:

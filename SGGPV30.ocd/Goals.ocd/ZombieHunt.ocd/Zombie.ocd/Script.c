@@ -1,7 +1,7 @@
 // Zombie Clonk
 // Author: Jeason
 
-#strict
+
 
 #include CLNK
 

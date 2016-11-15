@@ -1,4 +1,4 @@
-#strict
+
 local User,iUser,X,Y,Number,Incom,Next,nX,nY,ChangePW,Password,iWdt,Enr,Damg,Proz,Brauch,HasGot;
 local Dis;
 func Initialize() 

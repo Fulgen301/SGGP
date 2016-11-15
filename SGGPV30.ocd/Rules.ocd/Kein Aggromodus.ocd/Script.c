@@ -1,4 +1,4 @@
-#strict
+
 func Activate(int iPlayer)
 {
 	MessageWindow(Format("Replikatopren sind ganz friedlich",RepliLimit),iPlayer);

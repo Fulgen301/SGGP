@@ -1,4 +1,4 @@
-#strict
+
 
 /* Unstuck-Effect */
 /*Effekt der Objekte augenfreundlich aus Materialien herauszieht.*/

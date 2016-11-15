@@ -1,4 +1,4 @@
-#strict
+
 
 local User, Keks, HasEnrg, InfoOn, menu, on;
 

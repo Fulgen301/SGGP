@@ -1,6 +1,6 @@
 [DefCore]
-id=SGIR
-Version=4,9,8
+id=Stargate_Iris
+Version=7,0
 Category=2
 Width=110
 Height=80

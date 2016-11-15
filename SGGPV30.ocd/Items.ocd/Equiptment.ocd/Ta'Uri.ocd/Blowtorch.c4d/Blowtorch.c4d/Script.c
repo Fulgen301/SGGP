@@ -1,6 +1,6 @@
 /*-- Schweiﬂger‰t --*/
 
-#strict
+
 
 #include WEPN
 

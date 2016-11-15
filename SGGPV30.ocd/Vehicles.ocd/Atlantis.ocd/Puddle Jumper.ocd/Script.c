@@ -1,6 +1,6 @@
 /*--- Puddle Jumper ---*/
 
-#strict
+
 
 local iExtra;
 local Gate;

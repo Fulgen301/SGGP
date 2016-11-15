@@ -1,6 +1,6 @@
 /*-- Generator --*/
 
-#strict
+
 
 local trash;
 

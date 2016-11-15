@@ -1,4 +1,4 @@
-#strict
+
 
 //#include BA15
 

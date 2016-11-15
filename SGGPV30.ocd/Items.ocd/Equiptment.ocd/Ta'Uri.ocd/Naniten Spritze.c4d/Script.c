@@ -1,6 +1,6 @@
 /*-- Naniten Spritze --*/
 
-#strict
+
 
 local target;
 local targetname;

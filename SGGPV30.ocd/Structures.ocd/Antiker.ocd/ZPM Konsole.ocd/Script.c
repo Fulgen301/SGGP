@@ -1,4 +1,4 @@
-#strict
+
 #include BAS3
 
 local zpm1, zpm2, zpm3;

@@ -1,6 +1,6 @@
 /*-- Fackel --*/
 
-#strict
+
 
 local light;
 

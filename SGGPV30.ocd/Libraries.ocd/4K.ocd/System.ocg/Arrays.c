@@ -1,4 +1,4 @@
-#strict
+
 
 //Gibt einen zufälligen Eintrag eines Arrays zurück.
 global func RandomIndex4K(array ids)

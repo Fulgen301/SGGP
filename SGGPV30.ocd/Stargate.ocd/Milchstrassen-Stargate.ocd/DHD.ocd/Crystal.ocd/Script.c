@@ -1,6 +1,6 @@
 /*-- DHD Kristall --*/
 
-#strict
+
 
 local Damaged;
 
@@ -20,8 +20,8 @@ func Hit()
 func Activate(object pUser)
 {
   Sound("CommadFailure1");
-  if (Damaged == 1) Message("<c ff0000>$Damaged$</c>",pUser);
-  if (Damaged == 0) Message("<c 00ff00>$NotDamaged$</c>",pUser);
+  if (Damaged == 1) pUser->Message("<c ff0000>$Damaged$</c>");
+  if (Damaged == 0) pUser->Message("<c 00ff00>$NotDamaged$</c>");
   return(1);
 }
 

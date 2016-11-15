@@ -1,1 +1,0 @@
-Fires a Wafe, that kills all Replicators it hits.

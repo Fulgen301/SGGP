@@ -1,6 +1,6 @@
 /*-- Pistole --*/
 
-#strict
+
 
 #include WEPN
 

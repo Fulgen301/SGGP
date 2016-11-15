@@ -1,6 +1,6 @@
 /*-- Groﬂer Stein --*/
 
-#strict
+
 
 protected func Initialize() 
 {

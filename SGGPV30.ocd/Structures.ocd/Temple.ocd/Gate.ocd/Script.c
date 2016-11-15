@@ -1,6 +1,6 @@
 /*-- Steintor --*/
 
-#strict
+
 
 local iSwitchDir;
 

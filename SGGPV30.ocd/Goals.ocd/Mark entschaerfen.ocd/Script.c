@@ -1,4 +1,4 @@
-#strict
+
 #include GOAL   
 func ZPMCheck()
 {

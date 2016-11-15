@@ -1,6 +1,6 @@
 /*-- Groﬂer roter Stein --*/
 
-#strict
+
 
 protected func Initialize() 
 {

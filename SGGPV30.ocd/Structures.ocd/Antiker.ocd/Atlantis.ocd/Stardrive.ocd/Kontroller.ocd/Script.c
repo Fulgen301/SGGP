@@ -1,6 +1,6 @@
 /*-- Sternenantrieb-Kontroller --*/
 
-#strict 2
+
 
 local buildings;
 local targets;

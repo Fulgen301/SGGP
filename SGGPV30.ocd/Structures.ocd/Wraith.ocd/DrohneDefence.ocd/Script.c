@@ -1,6 +1,6 @@
 /*-- Drohnedefence --*/
 
-#strict
+
 
 local target;
 local dist;

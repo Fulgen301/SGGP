@@ -1,6 +1,6 @@
 /*-- Drachenfels-Truhe --*/
 
-#strict
+
 
 #include CHST
 

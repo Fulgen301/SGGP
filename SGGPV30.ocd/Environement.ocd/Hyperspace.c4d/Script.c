@@ -1,6 +1,6 @@
 /*-- Hyperspace --*/
 
-#strict 2
+
 
 protected func Initialize()
 {

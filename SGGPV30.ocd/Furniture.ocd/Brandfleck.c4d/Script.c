@@ -1,4 +1,4 @@
-#strict
+
 
 SetSize:
   DoCon(Sub(Div(Mul(Par(0),100),100),100));

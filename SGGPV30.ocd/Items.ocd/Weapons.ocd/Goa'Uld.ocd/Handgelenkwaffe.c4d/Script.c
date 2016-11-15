@@ -1,6 +1,6 @@
 /*-- Kull Handgelekswaffe --*/
 
-#strict
+
 
 #include WEPN
 

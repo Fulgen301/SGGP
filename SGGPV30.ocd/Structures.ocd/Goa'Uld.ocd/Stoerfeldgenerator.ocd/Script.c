@@ -1,4 +1,4 @@
-#strict
+
 #include BAS3
 
 local Damg,Dis,Aktiv,Enr,Config;

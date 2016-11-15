@@ -1,6 +1,6 @@
 /*-- UAV-Kontrollstation --*/
 
-#strict
+
 #include BAS3
 
 local target;

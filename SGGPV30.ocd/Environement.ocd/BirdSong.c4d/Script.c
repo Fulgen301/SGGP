@@ -1,6 +1,6 @@
 /*-- Vogelgezwitscher --*/
 
-#strict
+
 
 protected func Initialize()
 {

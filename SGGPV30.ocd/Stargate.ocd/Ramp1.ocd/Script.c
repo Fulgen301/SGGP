@@ -6,25 +6,16 @@ local type;
 
 func Initialize() 
 {
-  var hlp;
-  while(FindObject(0,-1*(GetDefCoreVal("Width", "DefCore")/2),-12,GetDefCoreVal("Width", "DefCore"),22))
-  {
-   var hlp = FindObject(0,-1*(GetDefCoreVal("Width", "DefCore")/2),-12,GetDefCoreVal("Width", "DefCore"),22);
-   hlp->SetPosition(GetX(),GetY()-25);
-  }
   var own;
   own = GetCursor(GetOwner());
-  CreateMenu(GetID(),own,0,0,"Welches Gate?",0,1);
+  CreateMenu(GetID(),own,0,"Welches Gate?",0,1);
   for(var i = 0, Def; Def = GetDefinition(i); i++)
   {
 	  if(Def->~IsStargate() && Def != Stargate)
 	  {
-		  AddMenuItem(Def->GetName(), "PlaceGate", Def, own);
+		  own->AddMenuItem(Def->GetName(), "PlaceGate", Def);
 	  }
   }
-  /*AddMenuItem("Milchstra�en-Gate","PlaceGate",STGT,own);
-  AddMenuItem("Pegasus-Gate","PlaceGate",SGAG,own);
-  AddMenuItem("Destiny-Gate", "PlaceGate", SGDG, own);*/
   return(1);
 }
 

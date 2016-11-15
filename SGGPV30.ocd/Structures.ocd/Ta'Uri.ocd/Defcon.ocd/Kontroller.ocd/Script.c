@@ -1,6 +1,6 @@
 /*-- Neues Objekt --*/
 
-#strict
+
 
 func Initialize() {
    

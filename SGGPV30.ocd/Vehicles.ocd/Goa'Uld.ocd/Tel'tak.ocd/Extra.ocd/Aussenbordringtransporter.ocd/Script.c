@@ -1,7 +1,7 @@
 //*-- Der Ringtransporter --*//
   //*--   AUSSENBORD   --*//
 
-#strict
+
 
 local ring;
 local put;

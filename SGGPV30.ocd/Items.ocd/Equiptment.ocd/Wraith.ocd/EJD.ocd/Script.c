@@ -1,6 +1,6 @@
 /*-- EJD --*/
 
-#strict
+
 
 local range;
 local timer;

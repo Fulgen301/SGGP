@@ -1,4 +1,4 @@
-#strict
+
 local Lev;
 
 func FxFlashPlayersStart(object pTarget, int iEffectNumber) 

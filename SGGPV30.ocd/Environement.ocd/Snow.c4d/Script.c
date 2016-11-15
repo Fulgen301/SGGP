@@ -1,6 +1,6 @@
 /*-- Schneien --*/
 
-#strict
+
 
 protected func Initialize() {
   if(!IsNewgfx()) RemoveObject();

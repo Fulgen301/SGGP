@@ -1,5 +1,5 @@
 /*-- SGGP --*/
-#strict 2
+
 
 static const SGGP_Version = 30;
 

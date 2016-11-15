@@ -1,6 +1,6 @@
 /*-- Autobau --*/
 
-#strict
+
 
 local obj;
 

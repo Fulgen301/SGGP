@@ -1,6 +1,6 @@
 /*-- Schockwelle --*/
 
-#strict
+
 
 local iR, iMax;
 

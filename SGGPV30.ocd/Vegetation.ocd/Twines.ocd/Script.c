@@ -1,6 +1,6 @@
 /*-- Ranken --*/
 
-#strict 2
+
 
 protected func Initialize() {
   SetAction("Be");

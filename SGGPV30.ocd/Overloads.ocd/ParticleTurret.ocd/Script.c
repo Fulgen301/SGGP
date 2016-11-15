@@ -1,6 +1,6 @@
 /*-- Particle Cannon --*/
 
-#strict 2
+
 #include FLAK
 
 private func CalculateRifle(&oX, &oY)

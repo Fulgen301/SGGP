@@ -1,4 +1,4 @@
-#strict
+
 
 global func PathFreeAngle4K(int iX, int iY, int iAngle, int iDistance, int iPrec, int iAnglePrec)
 {

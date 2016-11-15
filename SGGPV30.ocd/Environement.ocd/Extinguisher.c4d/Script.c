@@ -1,6 +1,6 @@
 /*-- Löscher --*/
 
-#strict
+
 
 func Initialize() 
 {

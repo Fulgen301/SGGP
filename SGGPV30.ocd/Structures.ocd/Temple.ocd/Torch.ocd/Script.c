@@ -1,6 +1,6 @@
 /*-- Fackel --*/
 
-#strict 2
+
 
 public func Activate()
 {

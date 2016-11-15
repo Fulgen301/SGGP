@@ -1,6 +1,6 @@
 /* Biomap */
 
-#strict
+
 
 local alpha;
 local jumper;

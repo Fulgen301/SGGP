@@ -1,6 +1,6 @@
 /*-- Klotz --*/
 
-#strict
+
 
 local iXDir,iYDir;
 

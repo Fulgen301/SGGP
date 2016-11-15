@@ -1,4 +1,4 @@
-#strict
+
 #include BAS9
 #include DOOR
 local VOn,EOn,pUser,Owner,Counter;

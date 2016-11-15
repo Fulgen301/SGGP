@@ -1,6 +1,6 @@
 /*-- Flintwerfer --*/
 
-#strict
+
 
 local idProjectile;
 local iOutSpeed;

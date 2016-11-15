@@ -1,6 +1,6 @@
 /*-- FoW-Generator --*/
 
-#strict
+
 
 local w,h; // Breite/Höhe des Objektes
 local search_x, search_y, search_w, search_h; // Suchrechteck für Clonks - x/y ist Offset zur Position!

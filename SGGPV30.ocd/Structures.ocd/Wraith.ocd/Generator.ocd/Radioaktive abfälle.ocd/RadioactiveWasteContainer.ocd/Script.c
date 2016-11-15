@@ -1,6 +1,6 @@
 /*-- Atommüllcontainer --*/
 
-#strict
+
 
 local closed;
 local pUser;

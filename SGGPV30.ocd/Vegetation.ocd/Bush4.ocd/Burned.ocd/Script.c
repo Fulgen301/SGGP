@@ -1,6 +1,6 @@
 /*-- Verbrannter Busch --*/
 
-#strict
+
  
 #include TREE
 

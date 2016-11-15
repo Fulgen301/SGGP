@@ -2,7 +2,7 @@
 
 // Stellt die Grundfunktionalität für alle Burgbauteile bereit
 
-#strict
+
 
 /* Initialisierung */
 

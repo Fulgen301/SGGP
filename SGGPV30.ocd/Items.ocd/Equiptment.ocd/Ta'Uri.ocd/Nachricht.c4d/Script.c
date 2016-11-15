@@ -1,6 +1,6 @@
 /*-- Nachricht --*/
 
-#strict
+
 
 local Nachricht;
 

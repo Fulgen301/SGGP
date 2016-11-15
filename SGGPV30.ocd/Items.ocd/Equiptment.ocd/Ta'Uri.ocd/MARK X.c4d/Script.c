@@ -1,6 +1,6 @@
 /*-- MARK --*/
 
-#strict
+
 
 local pUser;
 local timer;

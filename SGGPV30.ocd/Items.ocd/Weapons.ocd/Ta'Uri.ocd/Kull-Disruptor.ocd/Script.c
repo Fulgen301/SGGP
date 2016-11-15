@@ -1,6 +1,6 @@
 /*-- Kull-Disruptor --*/
 
-#strict
+
 
 #include WEPN
 

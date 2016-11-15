@@ -1,6 +1,6 @@
 /* Zielscheibe */
 
-#strict
+
 
 
 protected func Initialize()

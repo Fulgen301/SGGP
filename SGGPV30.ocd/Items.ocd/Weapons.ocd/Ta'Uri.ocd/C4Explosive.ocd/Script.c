@@ -1,4 +1,4 @@
-#strict
+
 local User,Collectible,Attatched,Time,Wand,Activ,x,y;
 
 public func GetRace()	{ return SG1_StargateCenter; }

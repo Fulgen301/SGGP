@@ -1,6 +1,6 @@
 /* Stabwaffen-Kristall */
 
-#strict 2
+
 
 protected func Activate(pCaller)
 {

@@ -1,5 +1,5 @@
 [DefCore]
-id=DHDK
+id=DHD_Crystal
 Version=4,9,5
 Category=3600
 MaxUserSelect=2

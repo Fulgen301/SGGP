@@ -1,6 +1,6 @@
 /*-- Gefundener Schlüssel --*/
 
-#strict
+
 
 local iKeyIndex, fPerma;
 

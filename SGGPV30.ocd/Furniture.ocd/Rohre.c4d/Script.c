@@ -1,4 +1,4 @@
-#strict
+
 
 SetLeck:
 //Par(0)=Farbe der Flüssigkeit

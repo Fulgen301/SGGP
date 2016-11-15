@@ -1,6 +1,6 @@
 /*-- Iris --*/
 
-#strict
+
 
 local open;
 local target;
@@ -28,9 +28,9 @@ func Update(object gate)
 func GDOControl(pwget)
 {
   var cmp;
-  if(cmp = FindObject2(Find_Distance(1000),Find_ID(STWA),Sort_Distance()))
+  if(cmp = FindObject(Find_Distance(1000),Find_ID(STWA),Sort_Distance()))
   {
-   if(LocalN("password",cmp) eq pwget)
+   if(cmp.password == pwget)
    {
     Switch();
     return(1);
@@ -50,7 +50,7 @@ func Switch()
     var phase = GetPhase();
   if(open)
   {
-   if(GetAction() eq "Open")
+   if(GetAction() == "Open")
    {
     open = 0;
     SetAction("Closes");
@@ -61,7 +61,7 @@ func Switch()
     }
 	else Sound("luke1");
    }
-   if(GetAction() eq "Opens")
+   if(GetAction() == "Opens")
    {
     open = 0;
     SetAction("Closes");
@@ -73,26 +73,26 @@ func Switch()
 	else Sound("luke1");
     SetPhase(20-phase);
    }
-   if(GetAction() eq "Closes")
+   if(GetAction() == "Closes")
    {
     return(1);
    }
-   if(GetAction() eq "Close")
+   if(GetAction() == "Close")
    {
     return(1);
    }
   }
   else
   {
-   if(GetAction() eq "Open")
+   if(GetAction() == "Open")
    {
     return(1);
    }
-   if(GetAction() eq "Opens")
+   if(GetAction() == "Opens")
    {
     return(1);
    }
-   if(GetAction() eq "Closes")
+   if(GetAction() == "Closes")
    {
     open = 1;
     SetAction("Opens");
@@ -104,7 +104,7 @@ func Switch()
 	else Sound("luke1");
     SetPhase(20 - phase);
    }
-   if(GetAction() eq "Close")
+   if(GetAction() == "Close")
    {
     open = 1;
     SetAction("Opens");
@@ -148,7 +148,7 @@ func Check()
     Break();
    }
   }
-  SetPosition(GetX(target)+55,GetY(target)+40);
+  SetPosition(target->GetX()+55,target->GetY()+40);
   if(target->~IsPegasusGate() && !update)
   {
   	Update();

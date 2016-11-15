@@ -1,4 +1,4 @@
-#strict
+
 local pBeamer,pBef,Frame;
 func Initialize()
 {

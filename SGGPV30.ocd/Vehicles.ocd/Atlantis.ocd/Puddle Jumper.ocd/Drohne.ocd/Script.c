@@ -1,4 +1,4 @@
-#strict
+
 
 local target;
 local iX;

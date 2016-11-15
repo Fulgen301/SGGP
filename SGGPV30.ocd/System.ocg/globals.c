@@ -1,7 +1,5 @@
 /*-- Globale Funktionen --*/
 
-#strict 2
-
 static EXTENDED_MODE;
 
 global func CreateObjects(id ID, int x, int y, int owner, int amount)
@@ -66,7 +64,7 @@ global func SHA1m(string s)
   i=0;
   while (i<sal)
   {
-    for (j=0;j<16;++j) sat[j]=CastInt(sa[i+j]); //C4Script erfindet C4IDs...
+//    for (j=0;j<16;++j) sat[j]=CastInt(sa[i+j]); //C4Script erfindet C4IDs...
     for (;j<80;++j)
     {
       k = sat[j-3]^sat[j-8]^sat[j-14]^sat[j-16];
@@ -132,11 +130,7 @@ global func GetIDsByName(string name, int category) // WARNING: desyncs between 
 
 global func GivePlrAllKnowledge(int iPlr)
 {
-	var i, j, Def;
-	while(Def = GetDefinition(i++,C4D_Magic))
-	{
-		SetPlrMagic(iPlr, Def);
-	}
+	var j, Def;
 	
 	while(Def = GetDefinition(j++,C4D_Structure))
 	{
@@ -146,23 +140,23 @@ global func GivePlrAllKnowledge(int iPlr)
 		}
 	}
 		
-	return i + j;
+	return j;
 }
 
 /** ParseInt
 	@author DerTod
 */
 
-global func ParseInt(string int)
+global func ParseInt(string number)
 {
-	if(GetLength(int) == 0)
+	if(GetLength(number) == 0)
 	{
 		return "";
 	}
 	var ret = 0, neg = false;
-	for(var i = 0; i < GetLength(int); ++i)
+	for(var i = 0; i < GetLength(number); ++i)
 	{
-		var c = GetChar(int, i);
+		var c = GetChar(number, i);
 		if(i == 0)
 		{
 			if(c == 45) // "-"
@@ -196,4 +190,11 @@ global func assert(string sz)
 	{
 		return FatalError(Format("AssertionError: %s", sz));
 	}
+}
+
+global func SetVisibility(int vis, object pObj)
+{
+	if(!pObj && !(pObj = this)) return;
+	pObj.Visibility = vis;
+	return true;
 }

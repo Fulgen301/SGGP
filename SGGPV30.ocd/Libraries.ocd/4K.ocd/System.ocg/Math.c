@@ -1,4 +1,4 @@
-#strict
+
 
 //Interpoliert einen Wert.
 global func Interpolate4K(y1,y2,x1,x2,x3)

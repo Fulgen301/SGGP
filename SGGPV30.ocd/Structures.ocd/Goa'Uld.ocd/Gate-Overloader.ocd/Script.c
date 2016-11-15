@@ -1,6 +1,6 @@
 /*-- Gate-Overloader --*/
 
-#strict
+
 
 #include BAS9
 

@@ -1,6 +1,6 @@
 /*-- Tretmine --*/
 
-#strict
+
 
 public func Activate()
 { 

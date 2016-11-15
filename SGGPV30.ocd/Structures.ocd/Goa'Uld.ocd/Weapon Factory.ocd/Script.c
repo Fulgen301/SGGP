@@ -1,6 +1,6 @@
 /*-- Goa'Uld Waffenfabrik --*/
 
-#strict
+
 
 /* Nutzt die Grundfunktionalität der Werkstatt. */
 

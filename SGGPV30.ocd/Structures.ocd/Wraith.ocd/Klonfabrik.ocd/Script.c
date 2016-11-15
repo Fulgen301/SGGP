@@ -1,6 +1,6 @@
 /*-- Basis --*/
 
-#strict 2
+
 
 #include DOOR
 //#include BA15

@@ -1,6 +1,6 @@
 /*-- Speer --*/
 
-#strict
+
 
 /* Status */
 public func IsSpear() 

@@ -1,6 +1,6 @@
 /*-- Glüheffekt --*/
 
-#strict
+
 
 local step;
 

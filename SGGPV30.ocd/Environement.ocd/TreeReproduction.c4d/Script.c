@@ -1,6 +1,6 @@
 /*-- Baumbestand --*/
 
-#strict
+
 
 #appendto TREE
 

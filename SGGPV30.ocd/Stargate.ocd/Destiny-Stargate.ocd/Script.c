@@ -30,8 +30,8 @@ protected func SmokeEffect()
 	{
 		for(var i = 0; i < 20; i++)
 		{
-			CreateParticle("Smoke", 58, 59, 0, 0, 100, RGB(0,0,0), ramp);
-			CreateParticle("Smoke", 98, 59, 0, 0, 100, RGB(0,0,0), ramp);
+			CreateParticle("Smoke", 58, 59, 0, 0, 100);
+			CreateParticle("Smoke", 98, 59, 0, 0, 100);
 		}
 	}
 }

@@ -1,4 +1,4 @@
-#strict
+
 
 local fRemove, iSpeed, pShot, w, l, r, x, y;
 

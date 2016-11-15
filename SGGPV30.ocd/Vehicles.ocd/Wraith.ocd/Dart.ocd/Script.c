@@ -1,6 +1,6 @@
 /*--- Dart ---*/
 
-#strict
+
 
 local iEnergy; //Sowas ist eigentlich recht unwichtig...
 local pUser;   //Ey, wer fliegt mich?

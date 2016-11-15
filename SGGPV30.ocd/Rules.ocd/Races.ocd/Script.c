@@ -1,4 +1,4 @@
-#strict 2
+
 
 //No race
 static const SG_All = 0;

@@ -1,6 +1,6 @@
 /*-- Hoch Explosive Granate --*/
 
-#strict
+
 
 public func Activate()
 { 

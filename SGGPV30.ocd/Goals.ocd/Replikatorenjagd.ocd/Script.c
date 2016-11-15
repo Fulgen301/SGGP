@@ -1,4 +1,4 @@
-#strict 2
+
 #include GOAL   
 //#include TEAM
 

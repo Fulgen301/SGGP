@@ -1,6 +1,6 @@
 /*-- Zero Point Modul --*/
 
-#strict
+
 
 local timer;
 

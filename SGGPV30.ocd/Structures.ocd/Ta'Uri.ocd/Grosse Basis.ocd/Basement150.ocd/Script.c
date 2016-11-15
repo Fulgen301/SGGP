@@ -1,6 +1,6 @@
 /*-- Fundament --*/
 
-#strict
+
 
 /* Alle Fundamente leiten ihre Grundfunktionalität von BAS7 ab */
 

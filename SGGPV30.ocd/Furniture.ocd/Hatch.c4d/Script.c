@@ -1,4 +1,4 @@
-#strict
+
 
 Initialize:
   PutSolidMask();

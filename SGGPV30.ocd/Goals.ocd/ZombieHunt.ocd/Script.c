@@ -1,7 +1,7 @@
 /*-- ZombieJagt --*/
 //Benötigt 4K-Lib.
 
-#strict
+
 
 /* Spielziel -.- */
 

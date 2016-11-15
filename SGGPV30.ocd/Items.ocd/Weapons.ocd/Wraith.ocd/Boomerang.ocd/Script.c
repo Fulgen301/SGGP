@@ -1,4 +1,4 @@
-#strict
+
 
 local iXDir,iYDir,thrower,disable;
 

@@ -1,6 +1,6 @@
 /*-- Lagerfeuer --*/
 
-#strict
+
 
 protected func Initialize() {
   CreateContents(WOOD);

@@ -16,12 +16,12 @@ local fGate;
 local chevroncount;
 local fake;
 
-public func IsTeltakGate()
+public func & IsTeltakGate()
 {
     return teltak;
 }
 
-public func HasDestiny()
+public func & HasDestiny()
 {
     return destiny;
 }
@@ -64,9 +64,8 @@ func HasIris()
 //Nein? Dann müssen wir eine Installieren:
 func InstallIris()
 {
-  iris = CreateObject(SGIR);
-  SetObjectOrder(this,iris);
-  LocalN("target",iris) = this;
+  iris = CreateObject(Stargate_Iris);
+  iris.target = this;
   return(1);
 }
 
@@ -120,8 +119,8 @@ public func GDOControlIris(passw)
 protected func KawooshKill()
 {
    var xobj;
-   FreeRect(GetX() - GetID()->GetDefOffset(0), GetY() - GetID()->GetDefOffset(1), GetID()->GetDefWidth(), GetID()->GetDefHeight();
-   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Or(Find_OCF(OCF_Living),Find_OCF(OCF_Collectible))))
+   FreeRect(GetX() - GetID()->GetDefOffset(0), GetY() - GetID()->GetDefOffset(1), GetID()->GetDefWidth(), GetID()->GetDefHeight());
+   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Or(Find_OCF(OCF_Living),Find_OCF(OCF_Collectible), Find_Category(C4D_Vehicle))))
    {
     if(!IsTeltakGate())
    	{
@@ -129,23 +128,11 @@ protected func KawooshKill()
    	}
 	else
 	{
-		if(xobj && !Contained(xobj))
+		if(xobj && !xobj->Contained(xobj) && !xobj->Teltak())
 		{
 			xobj->RemoveObject();
 		}
 	}
-   }
-   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Category(C4D_Vehicle)))
-   {
-    if(IsTeltakGate())
-   	{
-		if(xobj && !xobj->~Teltak())
-		{
-			xobj->DoDamage(1000);
-		}
-   	}
-	else
-		if(xobj) xobj->DoDamage(1000);
    }
   return true;
 }
@@ -299,7 +286,7 @@ public func Dial(string gate)
 
 //ENDE: Anwählen
 
-protected func FxIntCheckTimer(object pTarget, proplist pEffect)
+protected func FxIntCheckTimer(object pTarget, proplist pEffect, int time)
 {
   if(energy <= 1000000)
   {

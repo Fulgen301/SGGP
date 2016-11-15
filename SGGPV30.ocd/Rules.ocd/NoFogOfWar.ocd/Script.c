@@ -1,4 +1,4 @@
-#strict 2
+
 
 
 protected func Activate(int iPlayer)

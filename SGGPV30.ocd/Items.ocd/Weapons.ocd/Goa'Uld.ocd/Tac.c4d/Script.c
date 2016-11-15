@@ -1,5 +1,5 @@
 /*-- Tac --*/
-#strict
+
 
 local on;
 local target;

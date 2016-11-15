@@ -1,6 +1,6 @@
 /*--- Die Stargaterampe (SGU) ---*/
 
-#strict
+
 #include SGR1
 
 func Holde()

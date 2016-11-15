@@ -1,4 +1,4 @@
-#strict
+
 #include BAS5
 local aWeapons,User,Weaponid,Zahl,Richtung;
 func Initialize()

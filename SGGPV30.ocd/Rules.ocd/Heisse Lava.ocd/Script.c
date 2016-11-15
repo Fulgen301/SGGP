@@ -1,4 +1,4 @@
-#strict
+
 
 local obj;
 local aArray;

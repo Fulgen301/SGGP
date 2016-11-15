@@ -1,6 +1,6 @@
 /* Zielscheibenteil */
 
-#strict
+
 
 local i;
 

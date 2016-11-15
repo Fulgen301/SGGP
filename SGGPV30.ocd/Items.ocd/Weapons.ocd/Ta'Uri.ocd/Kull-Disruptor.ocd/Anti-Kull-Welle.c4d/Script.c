@@ -1,6 +1,6 @@
 /* ARW-Welle */
 
-#strict
+
 #include SHT1
 
 local Speed, Power, Ang, Weite;

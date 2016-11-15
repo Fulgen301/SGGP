@@ -1,6 +1,6 @@
 /*-- Grass --*/
 
-#strict
+
 #include GRAS
 local ActMap = {
 Grass = {

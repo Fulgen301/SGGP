@@ -1,6 +1,6 @@
 /*-- Groﬂe Luftschl‰use --*/
 
-#strict
+
 
 local Lock1;
 local Lock2;

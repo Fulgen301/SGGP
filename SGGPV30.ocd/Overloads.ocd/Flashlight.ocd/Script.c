@@ -1,6 +1,6 @@
 /*-- Flashlight --*/
 
-#strict
+
 #include GEAR
 
 local light;

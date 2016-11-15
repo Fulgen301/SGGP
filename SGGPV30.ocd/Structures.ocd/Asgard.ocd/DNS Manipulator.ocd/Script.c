@@ -1,4 +1,4 @@
-#strict
+
 local pClonk,User,Kern;
 func Initialize()
 {	

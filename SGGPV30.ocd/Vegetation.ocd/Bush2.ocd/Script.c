@@ -1,6 +1,6 @@
 /*-- Busch --*/
 
-#strict
+
 
 #include TREE
 

@@ -1,6 +1,6 @@
 /* Warp */
 
-#strict
+
 
 public func Activate(caster) {
   // Zaubernden Clonk finden
@@ -8,7 +8,7 @@ public func Activate(caster) {
     
   if (Contained(clonk))
     if (Contained(clonk)->~IsGolem())
-      clonk = Contained(clonk);
+      clonk = clonk->Contained();
 
   // Und warpen.
   return(Warp(clonk));
@@ -18,10 +18,12 @@ private func Warp(clonk)
 { 
   // Warpposition finden
   var ox, oy;
-  GetWarpPosition(ox, oy);
+  var pos = GetWarpPosition();
+  ox = pos[0];
+  oy = pos[1];
   
   // Keine passende Warpposition
-  if(ox == -1 && oy == -1) return(0, Message("$TxtNoPlace$",clonk) );
+  if(ox == -1 && oy == -1) return clonk->Message("$TxtNoPlace$");
 
   // Objekt wird vorsichtshalber nach draußen versetzt
 //  Exit(clonk);
@@ -31,24 +33,24 @@ private func Warp(clonk)
   
   // Richtungsfaktor ermitteln
   var dir = GetDir(clonk);
-  if(dir == DIR_Left() ) dir = -1;
+  if(dir == DIR_Left ) dir = -1;
   
   // Warplöcher erzeugen
-  var startwarp = CreateObject(WARP, BoundBy(65 * dir, -GetX(), LandscapeWidth() - GetX()), 10, -1);
-  var helper = CreateObject(ROCK,AbsX(ox), AbsY(oy), -1);
-  helper->SetVisibility(VIS_None);
+  var startwarp = CreateObject(Warp, BoundBy(65 * dir, -GetX(), LandscapeWidth() - GetX()), 10, -1);
+  var helper = CreateObject(Rock,AbsX(ox), AbsY(oy), -1);
+  helper.Visibility = VIS_None;
   
-  var stargate = helper->FindObject2(Find_Func("IsStargate"), Find_Not(Find_Func("IsBusy")), helper->Find_Distance(200));
+  var stargate = helper->FindObject(Find_Func("IsStargate"), Find_Not(Find_Func("IsBusy")), helper->Find_Distance(200));
   if(stargate)
   {
-	  startwarp->WARP::Connect(stargate);
+	  startwarp->Connect(stargate);
   }
   else
   {
-	var endwarp = CreateObject(WARP, AbsX(ox), AbsY(oy), -1);
+	var endwarp = CreateObject(Warp, AbsX(ox), AbsY(oy), -1);
   
 	// Warplöcher verbinden
-	startwarp->WARP::Connect(endwarp);
+	startwarp->Connect(endwarp);
   }
   if(helper) helper->RemoveObject();
  
@@ -57,22 +59,25 @@ private func Warp(clonk)
   return(1);
 }
 
-private func GetWarpPosition(&x, &y)
+private func GetWarpPosition()
 {
+  var x, y;
   var i;
   while(1)
   {
-    var obj = PlaceAnimal(WIPF);
+    var obj = PlaceAnimal(Wipf);
     if(!obj)
       x = y = -1;
     else
-      { x = GetX(obj); y = GetY(obj); }
+      { x = obj->GetX(); y = obj->GetY(); }
     var n = (ObjectDistance(obj) < 100) && ((i++) < 100);
-    RemoveObject(obj);
+    obj->RemoveObject();
     if(!n) break;
   }
+  
+  return [x, y];
 }
 
-public func GetSpellClass(object pMage) { return(AIR1); }
+public func GetSpellClass(object pMage) { return; }
 public func GetSpellCombo(pMage) { return ("144"); } // (1: Backward; 2: Down; 3: Forward; 4: Throw; 5: Jump; 6: Dig)
 local Name = "$Name$";

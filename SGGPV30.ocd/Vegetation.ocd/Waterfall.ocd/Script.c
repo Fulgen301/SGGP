@@ -1,6 +1,6 @@
 /*-- Drain --*/
 
-#strict
+
 
 local amount;
 local drain;

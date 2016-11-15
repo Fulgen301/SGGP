@@ -1,6 +1,6 @@
 /*-- Kontor --*/
 
-#strict
+
 
 #include ALW2 // Burgteilfunktion
 #include DOOR // Tuersteuerung

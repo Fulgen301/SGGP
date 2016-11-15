@@ -1,6 +1,6 @@
 /*-- Defcon --*/
 
-#strict
+
 
 local light,controller;
 

@@ -1,6 +1,6 @@
 /*--Ambiente--*/
 
-#strict
+
 
 local stNameOfTitel;
 local RndDelay;

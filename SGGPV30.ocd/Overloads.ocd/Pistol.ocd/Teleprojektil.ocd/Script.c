@@ -1,6 +1,6 @@
 /*-- Teleprojektil --*/
 
-#strict
+
 
 local iRemoveTimer;
 local user;

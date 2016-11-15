@@ -1,6 +1,6 @@
 /*-- Drohnenabschussrampe --*/
 
-#strict 2
+
 
 local pDrone;
 local pTarget;

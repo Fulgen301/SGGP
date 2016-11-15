@@ -1,6 +1,6 @@
 /* Marke */
 
-#strict
+
 
 local time;
 

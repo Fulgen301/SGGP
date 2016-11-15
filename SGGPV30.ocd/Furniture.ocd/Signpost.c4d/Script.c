@@ -1,6 +1,6 @@
 /*-- Wandnachricht --*/
 
-#strict
+
 
 local sText; // Text string
 

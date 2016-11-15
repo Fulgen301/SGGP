@@ -1,5 +1,5 @@
 /*--- Tel'tak ---*/
-#strict
+
 
 local target;
 

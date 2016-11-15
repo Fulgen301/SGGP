@@ -1,6 +1,6 @@
 /*-- Objekte entfernen --*/
 
-#strict
+
 #include GOAL
 local Type;
   

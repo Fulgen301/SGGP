@@ -1,7 +1,7 @@
 //*-- Der Ringtransporter --*//
   //*--      NORMAL     --*//
 
-#strict
+
 
 local ring;
 local name;

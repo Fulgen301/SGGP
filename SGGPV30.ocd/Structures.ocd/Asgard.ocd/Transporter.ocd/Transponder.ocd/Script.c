@@ -1,4 +1,4 @@
-#strict
+
 #include GEAR
 local User,Transporter,aTrans,aNames;
 func Initialize() 

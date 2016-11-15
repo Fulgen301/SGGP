@@ -1,4 +1,4 @@
-#strict
+
 
 protected func CastSparks() {
   // Ab und zu mal

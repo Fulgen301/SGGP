@@ -1,6 +1,6 @@
 /*-- Transportkern --*/
 
-#strict
+
 
 local target;
 local signs;

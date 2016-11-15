@@ -1,6 +1,6 @@
 /*--- Steuerkristall ---*/
 
-#strict
+
 
 func Hit () 
 {

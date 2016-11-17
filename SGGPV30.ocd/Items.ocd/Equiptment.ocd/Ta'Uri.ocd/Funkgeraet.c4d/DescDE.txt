@@ -1,4 +1,0 @@
-Ein Funkgerät, wie es auch im SGC benutzt wird. Es hat 5 verschiedene Kanäle.
-
-[Achtung]:
-Es ist ein Sinnloses Objekt, fangt garnicht erst an, nach dem Sinn zu suchen...

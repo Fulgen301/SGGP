@@ -1,3 +1,0 @@
-Standard=Single shots
-Menu=Staff
-Name=Staffweapon

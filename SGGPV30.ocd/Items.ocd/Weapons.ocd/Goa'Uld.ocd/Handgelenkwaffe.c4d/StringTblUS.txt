@@ -1,2 +1,0 @@
-Standard=Fast fire
-Name=Handweapon

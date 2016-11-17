@@ -1,2 +1,0 @@
-DE:Andere
-US:Else

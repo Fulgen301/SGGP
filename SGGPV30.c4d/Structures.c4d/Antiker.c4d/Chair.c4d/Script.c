@@ -15,13 +15,6 @@ protected func Construction()
 	AddEffect("Timer", this, 1, 1, this);
 }
 
-/* Initialisierung */
-protected func Initialize()
-  {
-  UpdateState();
-  return true;
-  }
-
 private func IsOccupied()
   {
   return FindObject2(Find_OCF(OCF_CrewMember), Find_Container(this));
@@ -45,7 +38,6 @@ private func OnEntrance(pObj)
   if (IsOccupied()) return;
   // Betreten
   pObj->Enter(this);
-  Sound("ThroneEnter");
   SetOwner(pObj->GetOwner());
   SetColorDw(pObj->GetColorDw());
   SetAction("Occupied");

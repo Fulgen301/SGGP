@@ -16,14 +16,34 @@ local fGate;
 local chevroncount;
 local fake;
 
-public func & IsTeltakGate()
+public func IsTeltakGate()
 {
     return teltak;
 }
 
-public func & HasDestiny()
+public func HasDestiny()
 {
     return destiny;
+}
+
+public func SetTeltak(object obj)
+{
+	if(obj && obj->~Teltak())
+	{
+		teltak = obj;
+	}
+	
+	return this;
+}
+
+public func SetDestiny(object obj)
+{
+	if(obj && obj->~IsDestiny())
+	{
+		destiny = obj;
+	}
+	
+	return this;
 }
 
 protected func Construction()

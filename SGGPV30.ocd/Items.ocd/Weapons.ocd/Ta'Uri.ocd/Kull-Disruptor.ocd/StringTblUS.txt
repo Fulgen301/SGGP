@@ -1,2 +1,0 @@
-Shockwave=Shockwave
-Name=Kull Disruptor

@@ -1,9 +1,0 @@
-Titel=Options
-Off=Deactivate
-On=Activate
-Stickon=Attach
-Stickonwhat=Attach on...
-Activated=<c 00d600>Activated
-Deactivated=<c d60000>Deactivated
-accessdenied=<c d60000>Access denied
-Name=C4 Pack

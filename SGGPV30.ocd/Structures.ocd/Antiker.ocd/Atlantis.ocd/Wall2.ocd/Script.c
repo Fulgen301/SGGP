@@ -202,7 +202,7 @@ global func UpdateAllCastleParts()
   {
   // Globaler Temporäreffekt, wenn nicht schon vorhanden
   if (!GetEffect("IntCPW2CastleChange")) 
-  	AddEffect("IntCPW2CastleChange", 0, 1, 2, 0, ALW2);
+  	AddEffect("IntCPW2CastleChange", nil, 1, 2, nil, ALW2);
   return(1);
   }
   

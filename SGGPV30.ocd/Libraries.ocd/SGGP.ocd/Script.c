@@ -23,11 +23,11 @@ protected func Initialize()
 	if(!FindObject(HELP))
 		CreateObject(HELP);
 	
-	AddEffect("IntTeamDisplay",0,1,5);
+//	AddEffect("IntTeamDisplay",this,1,5);
 	return(1);
 }
 
-global func FxIntTeamDisplayTimer(object pTarget, int iEffectNumber, int iEffectTime)
+/*global func FxIntTeamDisplayTimer(object pTarget, int iEffectNumber, int iEffectTime)
 {
   var i, j, iPlr, iCount, szText, szPortrait, pClonk;
   var aIndex, aMessages;
@@ -35,10 +35,10 @@ global func FxIntTeamDisplayTimer(object pTarget, int iEffectNumber, int iEffect
   aIndex = aMessages = [];
   for(i = 0; i < iCount; i++) {
     aIndex[ i] = GetPlayerByIndex(i);
-    CustomMessage("",0,aIndex[ i],0,0,0,0,0,MSG_Top|MSG_Left);
+    CustomMessage("",this,aIndex[ i],0,0,0,0,0,MSG_Top|MSG_Left);
   }
   
-  if(FindObject(MS4K) || FindObject(EI4K)) return;
+  //if(FindObject(MS4K) || FindObject(EI4K)) return;
   
   for(i = 0; i < iCount; i++) {
     iPlr = aIndex[ i];
@@ -47,15 +47,14 @@ global func FxIntTeamDisplayTimer(object pTarget, int iEffectNumber, int iEffect
         GetPlayerName(iPlr),
 		GetEnergy(pClonk),GetPhysical("Energy",0,pClonk)/1000,
 		BoundBy(GetPlrExtraData(iPlr, "SGGP_Points"), 0, 0x7FFFFFFF));
-    szPortrait = Format("Portrait:%i::%x::%s",GetPortrait(pClonk,true),GetColorDw(pClonk),GetPortrait(pClonk,false));
     for(j = 0; j < iCount; j++) {
       if(Hostile(iPlr,aIndex[j]))
         continue;
-      CustomMessage(szText,0,aIndex[j],25+240*(aMessages[j]++),125,0,0,szPortrait,MSG_Top|MSG_Left|MSG_Multiple);
+      CustomMessage(szText,this,aIndex[j],25+240*(aMessages[j]++),125,0,0,nil,MSG_Top|MSG_Left|MSG_Multiple);
     }
   }
   return true;
-}
+}*/
 
 /*Points*/
 static const SGGP_KillPoints = 1;
@@ -78,14 +77,14 @@ global func DoPoints(int iPlr, int iAmount, int iType)
 		if(GetCursor(iPlr))
 		{
 			//CustomMessage(Format("{{MEPU:2}} -%d", points), GetCursor(iPlr), 10, 0, RGB(255, 0, 0));
-			Message("{{MEPU:2}} <c ff0000>-%d</c>", GetCursor(iPlr), iAmount);
+			 GetCursor(iPlr)->Message("{{MEPU:2}} <c ff0000>-%d</c>", iAmount);
 		}
 	}
 	else
 	{
 		points += iAmount;
 		//CustomMessage(Format("{{MEPU:1}} +%d", points), GetCursor(iPlr), 10, 0, RGB(0, 150, 0));
-		Message("{{MEPU:1}} <c 009600>%d</c>",GetCursor(iPlr), iAmount);
+		GetCursor(iPlr)->Message("{{MEPU:1}} <c 009600>%d</c>", iAmount);
 	}
 	SetPlrExtraData(iPlr, "SGGP_Points", points);
 	return points;

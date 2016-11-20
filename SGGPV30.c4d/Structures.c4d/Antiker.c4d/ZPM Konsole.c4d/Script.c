@@ -223,19 +223,25 @@ func Free()
 
 func HasZpm()
 {
+	var i;
   if(zpm1->GetZpm() != 0)
   {
-   return(1);
+   i++;
   }
   if(zpm2->GetZpm() != 0)
   {
-   return(1);
+   i++;
   }
   if(zpm3->GetZpm() != 0)
   {
-   return(1);
+   i++;
   }
-  return(0);
+  return i;
+}
+
+public func GetAllZPMs()
+{
+	return [zpm1, zpm2, zpm3];
 }
 
 func ControlDigDouble(pCaller)

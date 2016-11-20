@@ -1,0 +1,2 @@
+Die Nanitenspritze aktiviert tausende kleine Nanozellen, welche den Selbstheilungsprozess des Clonks beschläunigen und ihn dadurch langsam Heilen.
+Leider sind diese Zellen sehr anfällig für jegliche Elektrische Impulse und werden bei schwankungen zerstört.

@@ -54,7 +54,7 @@ private func OnExit(pObj)
 protected func ContainedDigDouble(object pClonk)
 {
 	CreateMenu(GetID(), pClonk, 0,0, GetName(), 0, 1);
-	for(var obj in FindObjects(Find_Func("IsAntiker"), Find_Or(Find_Distance(400), Find_ID(ALSK))))
+	for(var obj in FindObjects(Find_Or(Find_Func("IsAntiker"), Find_Func("IsAsgard")), Find_Or(Find_Distance(400), Find_ID(ALSK))))
 	{
 		AddMenuItem(obj->GetName(), Format("Control(Object(%d), Object(%d))", obj->ObjectNumber(), pClonk->ObjectNumber()), obj->GetID(), pClonk);
 	}

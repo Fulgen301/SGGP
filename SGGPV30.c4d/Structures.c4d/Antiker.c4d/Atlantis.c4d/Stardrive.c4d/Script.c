@@ -35,6 +35,7 @@ public func ControlUp(pCaller)
 		if(obj)
 			obj->SetPosition(GetX(obj),GetY(obj)-1);
 	}
+	Sound("engine");
 	return(1);
 }
 
@@ -44,6 +45,7 @@ public func ControlDown(pCaller)
 		{
 			obj->SetPosition(GetX(obj),GetY(obj)+1);
 		}
+		Sound("engine");
 	return(1);
 }
 
@@ -53,6 +55,7 @@ public func ControlLeft(pCaller)
 		{
 			obj->SetPosition(GetX(obj)-1,GetY(obj));
 		}
+		Sound("engine");
 	return(1);
 }
 
@@ -62,5 +65,6 @@ public func ControlRight(pCaller)
 		{
 			obj->SetPosition(GetX(obj)+1,GetY(obj));
 		}
+		Sound("engine");
 	return(1);
 }

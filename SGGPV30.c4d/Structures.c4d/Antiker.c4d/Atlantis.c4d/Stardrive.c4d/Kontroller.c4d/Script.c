@@ -99,7 +99,7 @@ protected func FxIntStardriveTimer(object pTarget, int iEffect, int time)
 	if(EffectVar(2, pTarget, iEffect))
 	{
 		var zpmGenerator = EffectVar(2, pTarget, iEffect)->GetZPMGenerator();
-		if(zpmGenerator && zpmGenerator->HasZpm() >= 2 && GetType(zpmGenerator->GetAllZPMs()) == C4V_Array)
+		if(zpmGenerator && zpmGenerator->GetActiveZPMCount() >= 2 && GetType(zpmGenerator->GetAllZPMs()) == C4V_Array)
 		{
 			for(var zpm in zpmGenerator->GetAllZPMs())
 			{

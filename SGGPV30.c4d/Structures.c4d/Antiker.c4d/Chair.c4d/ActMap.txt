@@ -1,19 +1,13 @@
 [Action]
-Name=Empty
-Procedure=NONE
-Directions=2
+Name=Stand
 Length=1
-Delay=100
-Facet=0,0,20,22,0,0
-FacetBase=0
+Delay=1
+Facet=0,0,30,19
 NextAction=Hold
 
 [Action]
-Name=Occupied
-Procedure=NONE
-Directions=2
+Name=StandClonk
 Length=1
-Delay=50
-Facet=20,0,20,22,0,0
-FacetBase=0
-NextAction=Occupied
+Delay=1
+Facet=30,0,30,19
+NextAction=StandClonk

@@ -1,4 +1,4 @@
-#strict
+#strict 2
 #include BAS3
 
 local zpm1, zpm2, zpm3;
@@ -11,9 +11,9 @@ func Initialize()
   zpm1 = CreateObject(ZPM2);
   zpm2 = CreateObject(ZPM2);
   zpm3 = CreateObject(ZPM2);
-  SetObjectOrder(zpm1,this());
-  SetObjectOrder(zpm2,this());
-  SetObjectOrder(zpm3,this());
+  SetObjectOrder(zpm1,this);
+  SetObjectOrder(zpm2,this);
+  SetObjectOrder(zpm3,this);
   return(1);
 }
 
@@ -41,17 +41,17 @@ func ZpmA()
    return("1.ZPM:<c ff0000> Nicht vorhanden</c>");
   }
 
-  if(GetAction(zpm1) eq "Depledet")
+  if(GetAction(zpm1) == "Depledet")
   {
    return("1.ZPM:<c 000000> Erschöpft</c>");
   }
   
-  if(GetAction(zpm1) eq "Activen")
+  if(GetAction(zpm1) == "Activen")
   {
    return("1.ZPM:<c 00ff00> Aktiv</c>");
   }
   
-  if(GetAction(zpm1) eq "Inactive")
+  if(GetAction(zpm1) == "Inactive")
   {
    return("1.ZPM:<c 0000ff> Inaktiv</c>");
   }
@@ -65,17 +65,17 @@ func ZpmB()
    return("2.ZPM:<c ff0000> Nicht vorhanden</c>");
   }
 
-  if(GetAction(zpm2) eq "Depledet")
+  if(GetAction(zpm2) == "Depledet")
   {
    return("2.ZPM:<c 000000> Erschöpft</c>");
   }
   
-  if(GetAction(zpm2) eq "Activen")
+  if(GetAction(zpm2) == "Activen")
   {
    return("2.ZPM:<c 00ff00> Aktiv</c>");
   }
   
-  if(GetAction(zpm2) eq "Inactive")
+  if(GetAction(zpm2) == "Inactive")
   {
    return("2.ZPM:<c 0000ff> Inaktiv</c>");
   }
@@ -89,17 +89,17 @@ func ZpmC()
    return("3.ZPM:<c ff0000> Nicht vorhanden</c>");
   }
 
-  if(GetAction(zpm3) eq "Depledet")
+  if(GetAction(zpm3) == "Depledet")
   {
    return("3.ZPM:<c 000000> Erschöpft</c>");
   }
   
-  if(GetAction(zpm3) eq "Activen")
+  if(GetAction(zpm3) == "Activen")
   {
    return("3.ZPM:<c 00ff00> Aktiv</c>");
   }
   
-  if(GetAction(zpm3) eq "Inactive")
+  if(GetAction(zpm3) == "Inactive")
   {
    return("3.ZPM:<c 0000ff> Inaktiv</c>");
   }
@@ -164,7 +164,7 @@ func Check()
   }
   if(info)
   {
-   Message(Format("%v (%v%)|%v (%v%)|%v (%v%)",ZpmA(),EnrgA(),ZpmB(),EnrgB(),ZpmC(),EnrgC()),this());
+   Message(Format("%v (%v%)|%v (%v%)|%v (%v%)",ZpmA(),EnrgA(),ZpmB(),EnrgB(),ZpmC(),EnrgC()),this);
   }
   else Message("");
   return(1);
@@ -174,7 +174,7 @@ func GiveEnerg()
 {
   if(zpm1->GetZpm() != 0)
   {
-   if(GetAction(zpm1) eq "Activen")
+   if(GetAction(zpm1) == "Activen")
    {
     zpm1->Minus();
     DoEnergy(10000);
@@ -184,7 +184,7 @@ func GiveEnerg()
   
   if(zpm2->GetZpm() != 0)
   {
-   if(GetAction(zpm2) eq "Activen")
+   if(GetAction(zpm2) == "Activen")
    {
     zpm2->Minus();
     DoEnergy(10000);
@@ -194,7 +194,7 @@ func GiveEnerg()
   
   if(zpm3->GetZpm() != 0)
   {
-   if(GetAction(zpm3) eq "Activen")
+   if(GetAction(zpm3) == "Activen")
    {
     zpm3->Minus();
     DoEnergy(10000);
@@ -221,22 +221,30 @@ func Free()
   return(0);
 }
 
-func HasZpm()
+func HasZpm(bool active)
 {
 	var i;
   if(zpm1->GetZpm() != 0)
   {
-   i++;
+   if(!active) i++;
+   else if(zpm1->GetZpm()->GetAction() == "Activen") i++;
   }
   if(zpm2->GetZpm() != 0)
   {
-   i++;
+   if(!active) i++;
+   else if(zpm2->GetZpm()->GetAction() == "Activen") i++;
   }
   if(zpm3->GetZpm() != 0)
   {
-   i++;
+   if(!active) i++;
+   else if(zpm3->GetZpm()->GetAction() == "Activen") i++;
   }
   return i;
+}
+
+public func GetActiveZPMCount()
+{
+	return HasZpm(true);
 }
 
 public func GetAllZPMs()
@@ -262,29 +270,29 @@ func ControlDigDouble(pCaller)
   }
   
   
-  if(ZpmA() eq "1.ZPM:<c 00ff00> Aktiv</c>")
+  if(ZpmA() == "1.ZPM:<c 00ff00> Aktiv</c>")
   {
    AddMenuItem("1.ZPM Deaktivieren","SwtZpmA",MEPU,User);
   }
-  if(ZpmA() eq "1.ZPM:<c 0000ff> Inaktiv</c>")
+  if(ZpmA() == "1.ZPM:<c 0000ff> Inaktiv</c>")
   {
    AddMenuItem("1.ZPM Aktivieren","SwtZpmA",MEPU,User);
   }
   
-  if(ZpmB() eq "2.ZPM:<c 00ff00> Aktiv</c>")
+  if(ZpmB() == "2.ZPM:<c 00ff00> Aktiv</c>")
   {
    AddMenuItem("2.ZPM Deaktivieren","SwtZpmB",MEPU,User);
   }
-  if(ZpmB() eq "2.ZPM:<c 0000ff> Inaktiv</c>")
+  if(ZpmB() == "2.ZPM:<c 0000ff> Inaktiv</c>")
   {
    AddMenuItem("2.ZPM Aktivieren","SwtZpmB",MEPU,User);
   }
   
-  if(ZpmC() eq "3.ZPM:<c 00ff00> Aktiv</c>")
+  if(ZpmC() == "3.ZPM:<c 00ff00> Aktiv</c>")
   {
    AddMenuItem("3.ZPM Deaktivieren","SwtZpmC",MEPU,User);
   }
-  if(ZpmC() eq "3.ZPM:<c 0000ff> Inaktiv</c>")
+  if(ZpmC() == "3.ZPM:<c 0000ff> Inaktiv</c>")
   {
    AddMenuItem("3.ZPM Aktivieren","SwtZpmC",MEPU,User);
   }
@@ -293,7 +301,7 @@ func ControlDigDouble(pCaller)
 
 func SwtZpmA()
 {
-  if(GetAction(FindContents(ZPM_,zpm1)) eq "Activen")
+  if(GetAction(FindContents(ZPM_,zpm1)) == "Activen")
   {
    FindContents(ZPM_,zpm1)->SetAction("Inactive");
   }
@@ -306,7 +314,7 @@ func SwtZpmA()
 
 func SwtZpmB()
 {
-  if(GetAction(FindContents(ZPM_,zpm2)) eq "Activen")
+  if(GetAction(FindContents(ZPM_,zpm2)) == "Activen")
   {
    FindContents(ZPM_,zpm2)->SetAction("Inactive");
   }
@@ -319,7 +327,7 @@ func SwtZpmB()
 
 func SwtZpmC()
 {
-  if(GetAction(FindContents(ZPM_,zpm3)) eq "Activen")
+  if(GetAction(FindContents(ZPM_,zpm3)) == "Activen")
   {
    FindContents(ZPM_,zpm3)->SetAction("Inactive");
   }

@@ -1,3 +1,1 @@
-Eine Rampe wie man sie in SGU auf jedem Planeten findet. Aus erstem Antikerdesign.
-
-Beim bau der Rampe wird sofort ein Gate miterstellt und positioniert.
+Eine Rampe von dem Typ, den die Destiny platziert. Aus erstem Antikerdesign. Beim Bau der Rampe kann man den zu errichtenden Stargatetyp auswählen.

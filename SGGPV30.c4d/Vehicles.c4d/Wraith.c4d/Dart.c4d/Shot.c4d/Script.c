@@ -80,3 +80,4 @@ private func GlowColor(int iATime) {
 }
 
 public func TrailColor(int iATime) { return(Color(iATime)); }
+public func ShieldDamage() { return 2; }

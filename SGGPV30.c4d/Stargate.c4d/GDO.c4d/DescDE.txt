@@ -1,2 +1,1 @@
-Eine Fernbedienung mit der man die Iris eines Gates öffnen kann, ohne selber den Wahlcomputer zu bedienen. Allerdings braucht man nachwievor das Passwort des Wahlcomputers. 
-GDO steht übrigens für "Garage Door Opener", was frei übersetzt soviel bedeutet wie Irisöffner.
+Eine Fernbedienung, mit der man die Iris eines Gates öffnen kann, ohne selber den Wahlcomputer zu bedienen. Allerdings braucht man nach wie vor das Passwort des Wahlcomputers.

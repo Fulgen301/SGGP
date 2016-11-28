@@ -114,6 +114,11 @@ public func Hit()
   return(1);
 }
 
+public func ShieldDamage()
+{
+	return 5;
+}
+
 
 func IsMachine() 		{ return(1); }
 func IsBulletTarget()    { return(1); }

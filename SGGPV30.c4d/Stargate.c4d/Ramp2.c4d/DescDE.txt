@@ -1,2 +1,1 @@
-Eine Rampe, wie man sie auf jedem x-beliebigen Planeten mit Stargate findet.
-Beim Bau der Rampe wird sofort ein Gate miterstellt und positioniert.
+Eine Rampe, wie man sie auf jedem Planeten mit Stargate in der Milchstraße findet. Beim Bau der Rampe kann man den zu errichtenden Stargatetyp auswählen.

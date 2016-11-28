@@ -27,6 +27,7 @@ ADD:
 -Punktesystem
 -Hyperraum
 -Wurmlöcher (Zauber) berücksichtigen Stargates.
+-Baubares Atlantis
 
 FIX:
 -Pegasus-Gate-Bugfix, der das Überladen mittels Stargate-Overloader ermöglicht. (Danksagung an Der Tod für seine Hilfe!)

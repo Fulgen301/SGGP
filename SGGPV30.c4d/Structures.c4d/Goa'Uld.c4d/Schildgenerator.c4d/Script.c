@@ -148,7 +148,7 @@ public func Switch()
   SetAction("On");
   this->Message("<c 00ff00>An</c>");
   shield = this->CreateShield(radius, GetOwner());
-  
+  //shield->SetVisibility(VIS_None);
   return true;
 }
 
@@ -160,6 +160,7 @@ protected func RadiusChanged()
 		var newshield = this->CreateShield(radius, GetOwner());
 		shield->RemoveObject();
 		shield = newshield;
+		//shield->SetVisibility(VIS_None);
 		return true;
 	}
 }
@@ -173,7 +174,7 @@ global func CreateShield(int iRadius, int iOwner, object pObj)
 	if(!shield) return;
 	
 	shield->SetAction("Field", this);
-	shield->SetColorDw(GetPlrColorDw(pObj->GetOwner()));
+	shield->SetClrModulation(GetPlrColorDw(pObj->GetOwner()));
 	return shield;
 }
 
@@ -235,6 +236,22 @@ protected func Check()
 	  time++;
 	  if(time % 50 == 0)
 		  energy--;
+	return;
+	     //Effektbearbeitung
+   help += 10;
+   var pX;
+   var pY;
+   var i;
+   var lX, lY;
+   lX = 0;
+   lY = 0;
+   pX = Cos(help,radius);
+   pY = Sin(help,radius);
+   CreateParticle("PSpark",pX,pY,RandomX(-10,10),RandomX(-10,-20),RandomX(40,60),GetPlrColorDw(GetOwner()));
+   pX = Cos(help+180,radius);
+   pY = Sin(help+180,radius);
+   CreateParticle("PSpark",pX,pY,RandomX(-10,10),RandomX(-10,-20),RandomX(40,60),GetPlrColorDw(GetOwner()));
+
   }
   
   return true;

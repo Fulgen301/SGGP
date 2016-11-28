@@ -1,1 +1,1 @@
-A kind of Remotecontrol by that you are abled to open the Iris without the Dialingcomputer. You still need the password of the dialingcomputer. GDO means "Garage Door Opener"
+A kind of remotecontrol which you can open the iris with without having access to the dialing computer. You still need the password of the dialing computer.

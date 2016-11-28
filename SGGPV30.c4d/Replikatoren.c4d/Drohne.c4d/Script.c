@@ -60,3 +60,4 @@ func Damage(int iLevel)
 }
 
 func IsBulletTarget()    { return(1); }
+public func ShieldDamage() { return 5; }

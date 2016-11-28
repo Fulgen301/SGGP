@@ -11,7 +11,7 @@ private func CreateTrail(int iSize, int iTrail) {
   
   pTrail = CreateObject(TRAI,0,0,-1);
   if(pTrail) {
-    pTrail->Set(iSize+2,iTrail,this());
+    pTrail->Set(iSize+2,iTrail,this);
     pTrail->SetAction("Travel2");
     SetObjectBlitMode(GetObjectBlitMode(),pTrail);
   }
@@ -36,9 +36,9 @@ private func HitObject(object pObject) {
   }
 }
 
-public func BulletStrike(object pObj) 
+public func BulletStrike(object pObj)
 {
-  if(pObj)
+  if(pObj && pObj != shooter)
   {
    pObj->~Zated();
   }

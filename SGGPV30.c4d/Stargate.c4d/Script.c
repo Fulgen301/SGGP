@@ -603,7 +603,7 @@ func Transport()
    var hY;
    hX = GetX(obj)-GetX();
    hY = GetY(obj)-GetY();
-   SetPosition(GetX(pTo)+hX,GetY(pTo)+hY,obj);
+   obj->SetPosition(GetX(pTo)+hX,GetY(pTo)+hY);
    obj->SetDir(0);
    SetComDir(COMD_Left,obj);
    SetDir(DIR_Left,obj);

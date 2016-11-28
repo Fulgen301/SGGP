@@ -84,7 +84,6 @@ public func Fire1()    // Projektilschuss
 
   // Sound
   Sound("zat_shot1",0,ammo);
-  Reload();
 }
 
 

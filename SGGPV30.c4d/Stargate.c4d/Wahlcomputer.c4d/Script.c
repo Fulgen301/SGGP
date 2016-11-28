@@ -120,33 +120,33 @@ func InputCallback(string pw)
 
 func MakeMenu()
 {
-  CreateMenu(STWA,user, 0, 0, "Wahlcomputer", 0, 1);
-  if(FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Find_Func("IsBusy"),Sort_Distance()))
-  AddMenuItem("Gate abschalten","Deactivate",MEPU,user);
-  AddMenuItem("Gate anwählen","Dial",MEPU,user);
-  AddMenuItem("Gatenamen abfragen","GetGateName",MEPU,user);
+	if(!FindStargate()) return;
+  CreateMenu(STWA,user, 0, 0, FindStargate()->GetName(), 0, 1, true);
+  if(FindStargate() && FindStargate()->IsBusy())
+	AddMenuItem("$ShutdownGate$","Deactivate",MEPU,user);
+  AddMenuItem("$DialGate$","Dial",MEPU,user);
   if(!FindObject(UMBE))
   {
-   AddMenuItem("Gate umbenennen","Rename",MEPU,user);
+   AddMenuItem("$RenameGate$","Rename",MEPU,user);
   }
   if(!FindObject(NOPW))
   {
-   AddMenuItem("Passwort ändern","ChangePass",MEPU,user);
+   AddMenuItem("$ChangePassword$","ChangePass",MEPU,user);
   }
   if(!FindObject(NOIR))
   {
    if(FindStargate())
    {
-     AddMenuItem("Iris bedienen","Iris",MEPU,user);
+     AddMenuItem("$ToggleIris$","Iris",MEPU,user);
    }
   }
-  AddMenuItem("Energieanzeige des Gates","GateEnergy",MEPU,user);
+  AddMenuItem("$GateEnergy$","GateEnergy",MEPU,user);
   if(FindObject2(Find_ID(NOMA))) return(1);
   if(!LocalN("outgoing",FindStargate()))
   {
-	  AddMenuItem("Ausgehende Wurmlöcher erlauben","ChangeOutgoingState",MEPU,user,0,true);
+	  AddMenuItem("$EnableOutgoingWormholes$","ChangeOutgoingState",MEPU,user,0,true);
   }
-  else AddMenuItem("Ausgehende Wurmlöcher verbieten","ChangeOutgoingState",MEPU,user,0,false);
+  else AddMenuItem("$DisableOutgoingWormholes$","ChangeOutgoingState",MEPU,user,0,false);
   
   if(!LocalN("incoming",FindStargate()))
   {

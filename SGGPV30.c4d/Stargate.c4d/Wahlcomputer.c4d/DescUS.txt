@@ -1,1 +1,1 @@
-The Dialing Computer of the Stargatecenter. With this you can close and open the Iris of the Gate. You can only use it with an correct Password.
+The dialing computer of the Stargate-Center. With that device, you can close and open the iris of the gate. You can only use it with a correct password.

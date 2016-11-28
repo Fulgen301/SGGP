@@ -1,0 +1,9 @@
+#Menu
+ShutdownGate=Stargate abschalten
+DialGate=Gate anwählen
+RenameGate=Gate umbenennen
+ChangePassword=Passwort ändern
+ToggleIris=Iris bedienen
+GateEnergy=Energieanzeige des Gates
+EnableOutgoingWormholes=Ausgehende Wurmlöcher erlauben
+DisableOutgoingWormholes=Ausgehende Wurmlöcher verbieten

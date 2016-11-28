@@ -1,4 +1,4 @@
-/*-- Wriath Stunner --*/
+/*-- Wraith Stunner --*/
 
 #strict
 
@@ -47,5 +47,4 @@ public func Fire1()    // Projektilschuss
 
   // Sound
   Sound("wr_pistolfire",0,ammo);
-  Reload();
 }

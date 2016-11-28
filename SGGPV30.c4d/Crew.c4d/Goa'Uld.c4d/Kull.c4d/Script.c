@@ -41,3 +41,8 @@ func UpdateCharge()
 }
 
 public func GetRace()	{ return SG1_Goauld; }
+
+public func Zated()
+{
+	return;
+}

@@ -108,7 +108,6 @@ public func Fire1()    // Projektilschuss
 
   // Sound
   Sound("ronongun",0,ammo);
-  Reload();
 }
 
 
@@ -127,5 +126,4 @@ public func Fire2()    // Projektilschuss
 
   // Sound
   Sound("ronongun",0,ammo);
-  Reload();
 }

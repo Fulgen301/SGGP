@@ -18,8 +18,8 @@ private func ExplodeSize()	{return 75;}
 
 protected func Initialize()
 {
-	CreateObject(ALSK,0,0,GetOwner());
-	return(_inherited());
+	_inherited();
+	FindObject2(Find_ID(ALOS),Find_Owner(GetOwner()))->RegisterStructure(CreateObject(ALSK,0,0,GetOwner()));
 }
 
 protected func Check()

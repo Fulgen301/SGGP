@@ -273,3 +273,9 @@ public func Atlantis()
 {
 	return(1);
 }
+
+protected func Destruction()
+{
+	if(shield) shield->RemoveObject();
+	return _inherited();
+}

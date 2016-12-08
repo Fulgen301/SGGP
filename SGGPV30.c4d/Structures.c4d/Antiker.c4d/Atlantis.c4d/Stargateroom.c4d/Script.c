@@ -13,9 +13,9 @@ public func CastlePartBasement() { return(BC16); }
 
 protected func Initialize()
 {
-	CreateGate(SGR1,SGAG,23,68,-1,"Atlantis");
-	CreateObject(STWA,-57,68,GetOwner());
-	return(_inherited());
+	_inherited();
+	FindObject2(Find_ID(ALOS),Find_Owner(GetOwner()))->RegisterStructure(CreateGate(SGR1,SGAG,23,68,-1,"Atlantis"));
+	FindObject2(Find_ID(ALOS),Find_Owner(GetOwner()))->RegisterStructure(CreateObject(STWA,-57,68,GetOwner()));
 }
 /* Forschung */
 

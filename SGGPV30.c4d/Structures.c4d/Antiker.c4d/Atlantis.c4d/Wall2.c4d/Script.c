@@ -16,6 +16,9 @@ protected func Initialize()
   // Objekte im Umkreis ihre Überprüfungen durchführen lassen
   CastlePartInitialize();
   // Fertig
+  var os;
+  if(!(os = FindObject2(Find_ID(ALOS), Find_Owner(GetOwner())))) os = CreateObject(ALOS,0,0,GetOwner());
+  os->RegisterStructure(this);
   return(1);
 }
 

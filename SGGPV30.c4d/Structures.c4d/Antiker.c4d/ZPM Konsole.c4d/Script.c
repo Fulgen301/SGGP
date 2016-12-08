@@ -31,7 +31,7 @@ func Destruction()
   if(zpm1) zpm1->RemoveObject();
   if(zpm2) zpm2->RemoveObject();
   if(zpm3) zpm3->RemoveObject();
-  return(1);
+  return _inherited();
 }
 
 func ZpmA()
@@ -454,4 +454,14 @@ protected func FxIntEnergyTimer(object pTarget, int iEffect)
 			}
 		}
 	}
+}
+
+public func AtlantisOSFunc()
+{
+	return "AtlantisFunc";
+}
+
+public func AtlantisFunc()
+{
+	return ATLANTISOS_QUARANTINE;
 }

@@ -458,10 +458,5 @@ protected func FxIntEnergyTimer(object pTarget, int iEffect)
 
 public func AtlantisOSFunc()
 {
-	return "AtlantisFunc";
-}
-
-public func AtlantisFunc()
-{
-	return ATLANTISOS_QUARANTINE;
+	return;
 }

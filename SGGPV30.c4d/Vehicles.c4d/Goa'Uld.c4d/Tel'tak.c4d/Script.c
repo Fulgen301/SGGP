@@ -407,7 +407,7 @@ if(GetCon() < 100) return;
   
   for(obj in FindObjects(Find_Category(C4D_Vehicle),Find_Container(this)))
   {
-	  if(obj) obj->Exit();
+	  if(obj) Exit(obj);
   }
 }
 

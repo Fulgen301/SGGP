@@ -228,6 +228,11 @@ public func Atlantis()
 	return(1);
 }
 
+public func IsPartOfAtlantis()
+{
+	return true;
+}
+
 protected func Damage()
 {
 	if(GetDamage() > 400)

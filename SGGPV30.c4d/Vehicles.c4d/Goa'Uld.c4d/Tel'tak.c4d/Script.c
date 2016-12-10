@@ -21,7 +21,7 @@ local chosen,chosen_timer;                           //Aktueller User
 //### RINGTRANSPORTER ###
 //#######################
 local ring1; //Innenbordringtransporter
-local ring2; //Außenbordringtransporter
+//local ring2; //Außenbordringtransporter
 local ringc; //RingtansporterBedinung
 
 //################
@@ -76,7 +76,8 @@ public func Initialize()
 //### RINGTRANSPORTER ###
 //#######################
   ring1 = CreateObject(RIG1);  //Ringtransporter
-  ring2 = CreateObject(RIG3);  //Außenbordringtransporter
+  if(ring1->LocalN("ring2")) ring1->LocalN("ring2")->LocalN("target") = this;
+  //ring2 = ring1->LocalN("ring2");  //Außenbordringtransporter
   ringc = CreateObject(RIG2);  //Ringtransportersteuerung
   LocalN("nobase",ringc) = 1;
   SetCategory(C4D_Vehicle,ringc);
@@ -139,7 +140,7 @@ func Gate()
 {
 	chosen=1;
 	if(ring1) RemoveObject(ring1);
-	if(ring2) RemoveObject(ring2);
+	//if(ring2) RemoveObject(ring2);
 	if(ringc) RemoveObject(ringc);
 	ring1=CreateObject(STGT);
 	ring1->SetTeltak(this());
@@ -202,8 +203,8 @@ public func Destroy()
 {
   if(ring1)
   ring1-> RemoveObject();
-  if(ring2)
-  ring2-> RemoveObject();
+  /*if(ring2)
+  ring2-> RemoveObject();*/
   if(ringc)
   ringc->RemoveObject();
   if(luke1)
@@ -1100,3 +1101,4 @@ func Shield()
 }
 func IsBulletTarget() 	{ return(1); }
 func IsMachine() 		{ return(1); }
+public func Teltak()	{ return true; }

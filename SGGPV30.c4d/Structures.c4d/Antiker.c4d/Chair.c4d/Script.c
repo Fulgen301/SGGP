@@ -20,10 +20,16 @@ protected func Initialize()
 	SetAction("Stand");
 }
 
+protected func ContainedUp(object pClonk)
+{
+	//Status
+	return EffectCall(GetALOS(pClonk->GetOwner()),GetEffect("IntAtlantisOS",GetALOS(pClonk->GetOwner())), "Status", this);
+}
+
 protected func ContainedDigDouble(object pClonk)
 {
 	CreateMenu(GetID(), pClonk, 0,0, GetName(), 0, 1);
-	for(var obj in FindObjects(Find_Or(Find_Func("IsAntiker"), Find_Func("IsAsgard")), Find_Or(Find_Distance(400), Find_ID(ALSK))))
+	for(var obj in FindObjects(Find_Or(Find_Func("IsAntiker"), Find_Func("IsAsgard"),Find_Func("IsConsoleTarget")), Find_Or(Find_Distance(400), Find_ID(ALSK))))
 	{
 		AddMenuItem(obj->GetName(), Format("Control(Object(%d), Object(%d))", obj->ObjectNumber(), pClonk->ObjectNumber()), obj->GetID(), pClonk);
 	}
@@ -32,7 +38,15 @@ protected func ContainedDigDouble(object pClonk)
 
 private func Control(object obj, object pClonk)
 {
-	return obj->~ControlDigDouble(pClonk);
+	if(obj->~IsConsoleTarget())
+	{
+		CreateMenu(obj->GetID(), pClonk, obj, 0, Format("$Control$: %s", obj->GetName()), 0, 1);
+		for(var i = 1, desc ; desc = obj->~ConsoleControl(i) ; i++)
+		{
+			AddMenuItem(desc, Format("ConsoleControlled(%d, %d, %d)", i, pClonk->ObjectNumber(), this->ObjectNumber()), GetID(), pClonk, 0, 0, "$Control$");
+		}
+	}
+	else return obj->~ControlDigDouble(pClonk);
 }
 
 private func IsOccupied()

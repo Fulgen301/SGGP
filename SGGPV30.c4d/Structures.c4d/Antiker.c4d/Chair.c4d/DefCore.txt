@@ -19,4 +19,3 @@ Entrance=-12,-12,24,25
 BurnTo=NONE
 Construction=1
 ConstructTo=NONE
-Grab=2

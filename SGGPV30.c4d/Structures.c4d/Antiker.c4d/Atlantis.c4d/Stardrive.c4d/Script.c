@@ -32,7 +32,7 @@ public func ControlUp(pCaller)
 {
 	for(obj in FindObjects(Find_InRect(-40,AbsY(0),80,Height()),Find_Or(Find_Owner(GetOwner()),Find_Owner(NO_OWNER))))
 	{
-		if(obj)
+		if(obj && (FindObject2(obj->Find_AtPoint(), Find_Func("IsPartOfAtlantis")) || GetIndexOf(obj, GetALOS()->GetStructures(EffectVar(0, GetALOS(), GetEffect("IntAtlantisOS", GetALOS()))) != -1)))
 			obj->SetPosition(GetX(obj),GetY(obj)-1);
 	}
 	Sound("engine");
@@ -43,7 +43,8 @@ public func ControlDown(pCaller)
 {
 		for(obj in FindObjects(Find_InRect(-40,AbsY(0),80,Height()),Find_Or(Find_Owner(GetOwner()),Find_Owner(NO_OWNER))))
 		{
-			obj->SetPosition(GetX(obj),GetY(obj)+1);
+			if(obj && (FindObject2(obj->Find_AtPoint(), Find_Func("IsPartOfAtlantis")) || GetIndexOf(obj, GetALOS()->GetStructures(EffectVar(0, GetALOS(), GetEffect("IntAtlantisOS", GetALOS())))) != -1))
+				obj->SetPosition(GetX(obj),GetY(obj)+1);
 		}
 		Sound("engine");
 	return(1);
@@ -53,7 +54,8 @@ public func ControlLeft(pCaller)
 {
 		for(obj in FindObjects(Find_InRect(-40,AbsY(0),80,Height()),Find_Or(Find_Owner(GetOwner()),Find_Owner(NO_OWNER))))
 		{
-			obj->SetPosition(GetX(obj)-1,GetY(obj));
+			if(obj && (FindObject2(obj->Find_AtPoint(), Find_Func("IsPartOfAtlantis")) || GetIndexOf(obj, GetALOS()->GetStructures(EffectVar(0, GetALOS(), GetEffect("IntAtlantisOS", GetALOS())))) != -1))
+				obj->SetPosition(GetX(obj)-1,GetY(obj));
 		}
 		Sound("engine");
 	return(1);
@@ -63,7 +65,8 @@ public func ControlRight(pCaller)
 {
 		for(obj in FindObjects(Find_InRect(-40,AbsY(0),80,Height()),Find_Or(Find_Owner(GetOwner()),Find_Owner(NO_OWNER))))
 		{
-			obj->SetPosition(GetX(obj)+1,GetY(obj));
+			if(obj && (FindObject2(obj->Find_AtPoint(), Find_Func("IsPartOfAtlantis")) || GetIndexOf(obj, GetALOS()->GetStructures(EffectVar(0, GetALOS(), GetEffect("IntAtlantisOS", GetALOS())))) != -1))
+				obj->SetPosition(GetX(obj)+1,GetY(obj));
 		}
 		Sound("engine");
 	return(1);

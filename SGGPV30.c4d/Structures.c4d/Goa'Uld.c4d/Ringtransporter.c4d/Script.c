@@ -4,6 +4,7 @@
 #strict
 
 local ring;
+local ring2;
 local name;
 local put;
 local nobase;
@@ -13,8 +14,11 @@ local Array2;
 //Automatische Namenssetzung des Transporters
 public func Initialize()
 {
-  ScheduleCall(0,"Telset",5);
+//  ScheduleCall(0,"Telset",5);
+  nobase = 1;
   name = Format("Transporter %v",ObjectCount(GetID(this())) + 1);
+  ring2 = CreateObject(RIG3);
+  ring2->LocalN("target") = this;
   return(1);
 }
 
@@ -232,4 +236,10 @@ public func SolidDown()
   help = 1500 - (phas*100);
   SetSolidMask(help,200,100,100);
   return(1);
+}
+
+protected func Destruction()
+{
+	if(ring2) ring2->RemoveObject();
+	return _inherited(...);
 }

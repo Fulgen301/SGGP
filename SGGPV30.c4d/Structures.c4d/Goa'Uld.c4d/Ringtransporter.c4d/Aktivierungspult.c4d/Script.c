@@ -10,6 +10,7 @@ public func Initialize()
 {
   pX = GetX();
   pY = GetY();
+  nobase = 1;
   return(1);
 }
 
@@ -46,7 +47,7 @@ public func ControlDigDouble(pCaller)
   }
   else
   {
-   Message("Kein Ringtransporter in der nähe!",this());
+   Message("Kein Ringtransporter in der Nähe!",this());
    Sound("Error");
    return(1);
   }
@@ -127,7 +128,7 @@ public func FuseEnd2()
 {
   if(nobase)
   {
-   FindObject(RIG1,-150,-150,300,300) -> Activate(LocalN("ring2",FindObject(TEL_,0,0,-1,-1)));
+   if(FindObject(RIG1,-150,-150,300,300)) FindObject(RIG1,-150,-150,300,300) -> Activate(FindObject(RIG1,-150,-150,300,300)->LocalN("ring2"));
    return(1);
   }
   return(1);

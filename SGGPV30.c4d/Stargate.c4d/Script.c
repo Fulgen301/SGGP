@@ -505,59 +505,28 @@ func ShutDelay()
   return(1);
 }
 
-//Das Gate schaltet sicht ab:
-func Deactivate(all)
+public func Deactivate()
 {
-  if(!all)
-  {
-   if(pTo == 0)
-   {
-    if(pFrom != 0)
-    {
-     return(1);
-    }
-   }
-  }
-  
-  if(pTo)
-  {
-   LocalN("pTo",pTo) = 0;
-   LocalN("pFrom",pTo) = 0;
-   pTo -> Deactivate(1);
-   pTo = 0;
-  }
-  
-  if(pFrom)
-  {
-   LocalN("pTo",pFrom) = 0;
-   LocalN("pFrom",pFrom) = 0;
-   pFrom -> Deactivate(1);
-   pFrom = 0;
-  }
-  if(fake) fake = false;
-  
-  if(GetAction() == "Outgoing1")
-  {
-   FailSound();
-   SetAction("Idle");
-   return(1);
-  }
-  
-  if(GetAction() == "Income1")
-  {
-   FailSound();
-   SetAction("Idle");
-   return(1);
-  }
-  
-  if(GetAction() != "Off")
-  {
-   if(GetAction() != "Idle")
-   {
-    SetAction("Off");
-   }
-  }
-  return(1);
+	if(pTo)
+	{
+		pTo->LocalN("pFrom") = 0;
+		pTo->LocalN("pTo") = 0;
+	}
+	if(pFrom)
+	{
+		pFrom->LocalN("pFrom") = 0;
+		pFrom->LocalN("pTo") = 0;
+	}
+	pFrom = 0;
+	pTo = 0;
+	
+	if(WildcardMatch(GetAction(), "*1"))
+	{
+		FailSound();
+		SetAction("Idle");
+	}
+	if(GetState()) SetAction("Off");
+	return true;
 }
 
 

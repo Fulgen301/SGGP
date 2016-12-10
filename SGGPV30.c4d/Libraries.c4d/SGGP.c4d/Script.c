@@ -2,6 +2,8 @@
 #strict 2
 
 static const SGGP_Version = 30;
+static iSystemTime;
+static SGGP_SystemTimeStrings;
 
 protected func InitializePlayer(int iPlr)
 {
@@ -11,20 +13,64 @@ protected func InitializePlayer(int iPlr)
 		Log("%s is banned.", GetPlayerName(iPlr));
 		return;
 	}
+	
   	var version = GetPlrExtraData(iPlr, "SGGP_Version");
 	if(version <= SGGP_Version)
 	{
 		SetPlrExtraData(iPlr, "SGGP_Version", SGGP_Version);
 	}
+	
+	SaveTime(iPlr);
+}
+
+global func SaveTime(int iPlr)
+{
+	//Time hack
+	if(IsSGGPTeamMember(iPlr) || iPlr == 0)
+	{
+		if(!IsNetwork())
+		{
+			for(var i = 0; i < GetLength(SGGP_SystemTimeStrings); i++)
+			{
+				SetPlrExtraData(iPlr,Format("SGGP_%s", SGGP_SystemTimeStrings[i]), GetSystemTime(i));
+			}
+		}
+
+		for(var i = 0; i < GetLength(SGGP_SystemTimeStrings); i++)
+		{
+			iSystemTime[i] = GetPlrExtraData(iPlr, Format("SGGP_%s", SGGP_SystemTimeStrings[i]));
+		}
+	}
+}
+
+global func GetSystemTime(int iWhat)
+{
+	if(!IsNetwork()) return _inherited(iWhat, ...);
+	
+	if(GetType(iSystemTime) != C4V_Array) iSystemTime = [];
+	return iSystemTime[iWhat];
 }
 
 protected func Initialize()
 {
+	iSystemTime = [];
+	SGGP_SystemTimeStrings = ["Year", "Month", "WeekDay", "Day", "Hour", "Minute", "Second", "Millisecond"];	
 	if(!FindObject(HELP))
 		CreateObject(HELP);
 	
-	AddEffect("IntTeamDisplay",0,1,5);
+	if(!GetEffect("IntTeamDisplay"))
+	{
+		AddEffect("IntTeamDisplay",0,1,5);
+	}
 	return(1);
+}
+
+protected func OnGameOver()
+{
+	for(var i = 0; i < GetPlayerCount(C4PT_User); i++)
+	{
+		SaveTime(GetPlayerByIndex(i));
+	}
 }
 
 global func FxIntTeamDisplayTimer(object pTarget, int iEffectNumber, int iEffectTime)

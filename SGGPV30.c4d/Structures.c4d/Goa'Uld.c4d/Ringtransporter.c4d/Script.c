@@ -17,7 +17,7 @@ public func Initialize()
 //  ScheduleCall(0,"Telset",5);
   nobase = 1;
   name = Format("Transporter %v",ObjectCount(GetID(this())) + 1);
-  ring2 = CreateObject(RIG3);
+  ring2 = CreateObject(RIG3,0,0,GetOwner());
   ring2->LocalN("target") = this;
   return(1);
 }

@@ -5,7 +5,6 @@
 local chnl;
 local User;
 local status;
-local spam;
 
 func Initialize()
 {
@@ -28,39 +27,27 @@ func Damage()
   return(1);
 }
 
-func Check()
-{
-  if(spam >= 10)
-  {
-   Log("<c ff0000>%s hat sein Funkgerät geschrottet HAHA!</c>",GetPlayerName(GetOwner()));
-   Explode(20);
-  }
-  spam--;
-  return(1);
-}
 
 func Activate()
 {
-  spam++;
   User = Contained();
-  CreateMenu(GetID(),User,0,0,0,0,1,0);
-  AddMenuItem("Fragen","Ask",GetID(User),User);
-  AddMenuItem("Antworten","Info",GetID(User),User);
-  AddMenuItem("Selbst Formulieren","Output",GetID(),User);
-  AddMenuItem("Kanal","Chnll",GetID(),User);
+  CreateMenu(GetID(),User,0,nil,0,0,1);
+  User->AddMenuItem("Fragen","Ask",User->GetID());
+  User->AddMenuItem("Antworten","Info",User->GetID());
+  User->AddMenuItem("Selbst Formulieren","Output",User->GetID());
+  User->AddMenuItem("Kanal","Chnll",GetID());
   return(1);
 }
 
 func Output()
 {
   var form;
-  form = CallMessageBoard(0, false, "Ausgeben", GetOwner(User));
+  form = CallMessageBoard(this, false, "Ausgeben", User->GetOwner());
 }
 
 func InputCallback(string form)
 {
   var obj;
-  var status;
   while(obj = FindObject(GetID(),0,0,0,0,0,0,0,0,obj))
   {
    status = Format("%v",form);
@@ -72,53 +59,42 @@ func InputCallback(string form)
 
 func Info()
 {
-  CreateMenu(GetID(),User,0,0,0,0,1,0);
-  AddMenuItem("Ja","Yes",GetID(),User);
-  AddMenuItem("Nein","No",GetID(),User);
-  AddMenuItem("Verstärkung","Help",GetID(),User);
-  AddMenuItem("Position","Pos",GetID(),User);
-  AddMenuItem("Personaldaten","Perso",GetID(User),User);
-  AddMenuItem("Wiederholen bitte","Ret",GetID(),User);
-  Sound("Funk");
+  CreateMenu(GetID(),User,0,nil,0,0,1);
+  User->AddMenuItem("Ja","Yes",GetID());
+  User->AddMenuItem("Nein","No",GetID());
+  User->AddMenuItem("Verstärkung","Help",GetID());
+  User->AddMenuItem("Position","Pos",GetID());
+  User->AddMenuItem("Personaldaten","Perso",User->GetID());
+  User->AddMenuItem("Wiederholen bitte","Ret",User->GetID());
+  User->Sound("Funk");
   return(1);
 }
 
 func Ask()
 {
-  CreateMenu(GetID(),User,0,0,0,0,1,0);
-  AddMenuItem("Wo bist du?","Where",GetID(),User);
-  AddMenuItem("Wer bist du?","Who",GetID(),User);
-  Sound("Funk");
-  return(1);
-}
-
-
-func Info()
-{
-  CreateMenu(GetID(),User,0,0,0,0,1,0);
-  AddMenuItem("Verstärkung","Help",GetID(),User);
-  AddMenuItem("Position","Pos",GetID(),User);
-  AddMenuItem("Personaldaten","Perso",GetID(User),User);
+  CreateMenu(GetID(),User,0,nil,0,0,1);
+  AddMenuItem("Wo bist du?","Where",GetID());
+  AddMenuItem("Wer bist du?","Who",GetID());
   Sound("Funk");
   return(1);
 }
 
 func Chnll()
 {
-  CreateMenu(GetID(),User,0,0,"Kanal einstellen",0,1,1);
-  AddMenuItem("Setzen","SetChnl",SNB1,Contained(),0,1);
-  AddMenuItem("Setzen","SetChnl",SNB2,Contained(),0,2);
-  AddMenuItem("Setzen","SetChnl",SNB3,Contained(),0,3);
-  AddMenuItem("Setzen","SetChnl",SNB4,Contained(),0,4);
-  AddMenuItem("Setzen","SetChnl",SNB5,Contained(),0,5);
-  Message("Kanal: %d",this(),chnl);
+  CreateMenu(GetID(),User,0,"Kanal einstellen",0,1,1);
+  User->AddMenuItem("1","SetChnl",Icon_MenuPoint,0,1);
+  User->AddMenuItem("2","SetChnl",Icon_MenuPoint,0,2);
+  User->AddMenuItem("3","SetChnl",Icon_MenuPoint,0,3);
+  User->AddMenuItem("4","SetChnl",Icon_MenuPoint,0,4);
+  User->AddMenuItem("5","SetChnl",Icon_MenuPoint,0,5);
+  this->Message("Kanal: %d",chnl);
   return(1);
 }
 
 func SetChnl(trash,chnlsetted)
 {
   chnl = chnlsetted;
-  Message("Kanal: %d",this(),chnl);
+  this->Message("Kanal: %d",chnl);
   Sound("Ding");
   return(1);
 }
@@ -130,22 +106,14 @@ func SetChnl(trash,chnlsetted)
 
 func Ret()
 {
-  var obj;
-  var status;
-  while(obj = FindObject(GetID(),0,0,0,0,0,0,0,0,obj))
-  {
-   status = "Könntest du das wiederholen?";
-   obj->Funkout(chnl,status);
-  }
+ 
   Sound("Funk");
   return(1);
 }
 
 func Who()
 {
-  var obj;
-  var status;
-  while(obj = FindObject(GetID(),0,0,0,0,0,0,0,0,obj))
+ for(var obj in FindObjects(Find_ID(GetID()))
   {
    status = "Wer bist du?";
    obj->Funkout(chnl,status);
@@ -156,9 +124,7 @@ func Who()
 
 func Where()
 {
-  var obj;
-  var status;
-  while(obj = FindObject(GetID(),0,0,0,0,0,0,0,0,obj))
+ for(var obj in FindObjects(Find_ID(GetID()))
   {
    status = "Wo bist du?";
    obj->Funkout(chnl,status);
@@ -169,11 +135,9 @@ func Where()
 
 func Yes()
 {
-  var obj;
-  var status;
-  while(obj = FindObject(GetID(),0,0,0,0,0,0,0,0,obj))
+ for(var obj in FindObjects(Find_ID(GetID())))
   {
-   status = "Positiv";
+   status = "Aye-aye, Sir!";
    obj->Funkout(chnl,status);
   }
   Sound("Funk");

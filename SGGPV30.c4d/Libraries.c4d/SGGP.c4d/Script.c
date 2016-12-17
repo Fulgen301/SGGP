@@ -1,7 +1,7 @@
 /*-- SGGP --*/
 #strict 2
 
-static const SGGP_Version = 30;
+static const SGGP_Version = 301;
 static iSystemTime;
 static SGGP_SystemTimeStrings;
 
@@ -110,6 +110,7 @@ static const SGGP_MinusPoints = 3;
 
 global func DoPoints(int iPlr, int iAmount, int iType)
 {
+	if(iPlr == NO_OWNER) return;
 	var points = BoundBy(GetPlrExtraData(iPlr, "SGGP_Points"), 0, 0x7FFFFFFF);
 	if(iType == SGGP_MinusPoints)
 	{

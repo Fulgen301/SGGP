@@ -17,7 +17,7 @@ func Timer()
 	var pCl;
 	for(pCl in FindObjects(Find_Distance(GetCon()/2),Find_OCF(OCF_Alive)))
 	{
-		SetClrModulation(RGB(128,64,64),pCl);
+		pCl->SetClrModulation(RGB(128,64,64));
 		if(!GetEffect("Genuced",pCl)) AddEffect("Genuced",pCl, 3,40, pCl);
 	}		
 	if(TimeToLive > 254)
@@ -30,14 +30,14 @@ global func FxGenucedTimer(object pTarget)
 {	
 	pTarget -> DoDamage(1);
 	pTarget -> DoEnergy(-1);
-	if(InLiquid(pTarget)) 
+	if(pTarget->InLiquid()) 
 	{
-		SetClrModulation(0,pTarget);
+		pTarget->SetClrModulation(0);
 		return(-1);
 	}
-	if(GetID(Contained(pTarget)) == GOSA) 
+	if(pTarget->Contained() && pTarget->Contained()->GetID() == GOSA) 
 	{
-		SetClrModulation(0,pTarget);
+		pTarget->SetClrModulation(0);
 		return(-1);
 	}
 }

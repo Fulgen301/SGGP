@@ -56,19 +56,19 @@ func Piccheck()
   }
 
 
-  if(GetAction() eq "Inactive")
+  if(GetAction() == "Inactive")
   {
    SetPicture(72,0,70,70);
    return(1);
   }
   
-  if(GetAction() eq "Activen")
+  if(GetAction() == "Activen")
   {
    SetPicture(13,0,70,70);
    return(1);
   }
 
-  if(GetAction() eq "Depledet")
+  if(GetAction() == "Depledet")
   {
    SetPicture(148,0,70,70);
    return(1);
@@ -79,56 +79,56 @@ func Destr()
 {
   Sound("Glass");
   CastParticles("SplinterGlass", 15, 35, RandomX(-20,20), -5, 20, 20, RGBa(216,146,0,0), RGBa(216,146,0,0));
-  RemoveObject(this());
+  RemoveObject();
   return(1);
 }
 
 
 func Activaten()
 {
-  if(GetAction() eq "Activen")
+  if(GetAction() == "Activen")
   {
    SetAction("Inactive");
    Sound("Connect");
-   Message("ZPM ist Inaktiv!",this());
+   this->Message("ZPM ist inaktiv!");
    return(1);
   }
 
-  if(GetAction() eq "Inactive")
+  if(GetAction() == "Inactive")
   {
    SetAction("Activen");
    Sound("Connect");
-   Message("ZPM ist Aktiv!",this());
+   this->Message("ZPM ist aktiv!");
    return(1);
   }
 
-  if(GetAction(this()) eq "Depledet")
+  if(GetAction(this()) == "Depledet")
   {
-   Message("Das ZPM ist erschöpft!",this());
+   this->Message("Das ZPM ist erschöpft!");
    return(1);
   }
 
   SetAction("Activen");
   Sound("Connect");
-  Message("ZPM ist Aktiv!",this());
+  this->Message("ZPM ist aktiv!");
   return(1);
 }
 
 func Inactive()
 {
-  if(GetAction() eq "Inactive") 
+  if(GetAction() == "Inactive") 
   return(1);
 }
 
 func Activen()
 {
-  if(GetAction() eq "Activen") 
+  if(GetAction() == "Activen") 
   return(1);
 }
 
 func Depledet()
 {
-  if(GetAction(this()) eq "Depledet") 
+  if(GetAction() == "Depledet") 
   return(1);
 }
 

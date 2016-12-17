@@ -8,7 +8,7 @@ local timer;
 func Initialize() 
 {
   timer = 300;
-  SetGraphics(0);
+  SetGraphics();
   range = 500;
   return(1);
 }
@@ -18,7 +18,7 @@ func Check()
   if(timer)
   {
    timer --;
-   SetGraphics(0);
+   SetGraphics();
   }
   else
   {

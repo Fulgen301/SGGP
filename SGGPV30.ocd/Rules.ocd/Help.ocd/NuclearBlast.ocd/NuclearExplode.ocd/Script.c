@@ -1,12 +1,12 @@
 
 local Lev;
 
-func FxFlashPlayersStart(object pTarget, int iEffectNumber) 
+func FxFlashPlayersStart(object pTarget, proplist pEffect) 
 {
 	SetGamma(RGB(255,255,255), RGB(255,255,255), RGB(255,255,255), 5);
 }
 
-func FxFlashPlayersTimer(object pTarget, int iEffectNumber, int iEffectTime) 
+func FxFlashPlayersTimer(object pTarget, proplist pEffect, int iEffectTime) 
 {
 	var change = iEffectTime*5;
 	var darkcolors = 255-change;

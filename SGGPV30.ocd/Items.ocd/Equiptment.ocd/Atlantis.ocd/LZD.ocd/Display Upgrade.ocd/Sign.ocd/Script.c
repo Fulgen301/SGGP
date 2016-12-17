@@ -7,14 +7,14 @@ local name;
 
 func Initialize()
 {
-  SetVisibility(VIS_Owner);
+  this.Visibility = VIS_Owner;
   time = 11;
   return(1);
 }
 
 func Disappear()
 {
-  Message("%v",this(),GetName(name));
+  this->Message("%v",,name->GetName());
   
   time --;
   if (time == 0)

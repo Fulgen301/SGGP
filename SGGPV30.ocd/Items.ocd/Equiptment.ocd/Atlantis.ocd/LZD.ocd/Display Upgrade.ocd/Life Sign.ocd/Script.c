@@ -6,7 +6,7 @@ local time;
 
 func Initialize()
 {
-  SetVisibility(VIS_Owner);
+  this.Visibility = VIS_Owner;
   return(1);
 }
 

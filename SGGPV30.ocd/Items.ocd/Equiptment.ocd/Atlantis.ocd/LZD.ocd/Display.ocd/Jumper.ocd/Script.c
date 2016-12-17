@@ -12,7 +12,7 @@ func Initialize()
 
 func Disappear()
 {
-  Message("Jumper",this());
+  this->Message("Jumper");
   time ++;
 
   if (time >= 38)

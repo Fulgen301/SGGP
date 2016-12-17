@@ -13,7 +13,7 @@ local jumpermark;
 
 func Initialize() 
 {
-  ScheduleCall(0,"JumperSet",2);
+  ScheduleCall(this,"JumperSet",2);
   on = 0;
   upgraded = 0;
   return(1);
@@ -21,7 +21,7 @@ func Initialize()
 
 func JumperSet()
 {
-  if(GetID(Contained()) == PUD_)
+  if(Contained() && Contained()->GetID() == PUD_)
   {
    jumper = Contained();
   }
@@ -40,30 +40,30 @@ func Entf()
 func Activate()
 {
   SetOwner(GetOwner(Contained()));
-  CreateMenu(A55B,Contained(),0,0,0,3);
-  AddMenuItem("An/Aus","Switch",LZDS,Contained());
+  CreateMenu(GetID(),Contained(),0,nil,0,3);
+  Contained()->AddMenuItem("An/Aus","Switch",LZDS);
   
   if(upgraded)
   {
-   AddMenuItem("Object Markieren","Select",ARRW,Contained());
+   Contained()->AddMenuItem("Object Markieren","Select",Arrow);
   }
   
   if(starget)
   {
-   AddMenuItem("Markierung löschen","DeSelect",ARRW,Contained());
+   Contained()->AddMenuItem("Markierung löschen","DeSelect",Arrow);
   }
   
   if(jumper)
   {
-   if(LocalN("kindersicherung",jumper))
+   if(jumper.kindersicherung)
    {
-    AddMenuItem("Jumper Tarnen","Cloak",PUD2,Contained());
+    Contained()->AddMenuItem("Jumper Tarnen","Cloak",PUD2);
    }
-   AddMenuItem("Jumperortung","JumperMark",LZD5,Contained());
+   Contained()->AddMenuItem("Jumperortung","JumperMark",LZD5);
    
-   AddMenuItem("Jumper Tarnen","Cloak2",PUD2,Contained());
+   Contained()->AddMenuItem("Jumper Tarnen","Cloak2",PUD2);
  
-   AddMenuItem("Jumper Heckluke","Luke",PUD7,Contained());
+   Contained()->AddMenuItem("Jumper Heckluke","Luke",PUD7);
   }
   return(1);
 }
@@ -76,7 +76,7 @@ func JumperMark()
    Message("Jumperortung ist aus!",this());
    if(target)
    {
-    LocalN("jumper",target)=0;
+    target.jumper = nil;
    }
    return(1);
   }
@@ -84,10 +84,10 @@ func JumperMark()
   if(!jumpermark)
   {
    jumpermark = 1;
-   Message("Jumperortung ist an!",this());
+   this->Message("Jumperortung ist an!");
    if(target)
    {
-    LocalN("jumper",target)=jumper;
+    target.jumper = jumper;
    }
    return(1);
   }
@@ -102,34 +102,34 @@ func Luke()
 
 func Cloak()
 {
-  if(GetAction(jumper) eq "Open")
+  if(jumper->GetAction() == "Open")
   {
    jumper->SetAction("Stand");
   }
   jumper->Cloak();
-  LocalN("pUser",jumper) = Contained();
+  jumper.pUser = Contained();
   jumper->SetOwner(GetOwner());
-  ScheduleCall(0,"CloseJumper",21);
+  ScheduleCall(this,"CloseJumper",21);
   return(1);
 }
 
 func Cloak2()
 {
-  if(GetAction(jumper) eq "Open")
+  if(jumper->GetAction() == "Open")
   {
    jumper->Luke();
-   ScheduleCall(0,"Cloak2",22);
+   ScheduleCall(,"Cloak2",22);
    return(1);
   }
   jumper->Cloak();
-  LocalN("pUser",jumper) = Contained();
+  jumper.pUser = Contained();
   jumper->SetOwner(GetOwner());
   return(1);
 }
 
 func CloseJumper()
 {
-  LocalN("open",jumper) = 0;
+  jumper.open = 0;
   return(1);
 }
 
@@ -144,10 +144,10 @@ func DeSelect()
 
 func Select()
 {
-  CreateMenu(ARRW,Contained(),0,0,0,3);
-  for(next in FindObjects(Find_Or(Find_Category(C4D_Vehicle),Find_OCF(OCF_Collectible()),Find_OCF(OCF_Alive())),Find_Exclude(Contained()),Find_Exclude(this()),Find_Distance(20)))
+  CreateMenu(Arrow,Contained(),0,nil,0,3);
+  for(next in FindObjects(Find_Or(Find_Category(C4D_Vehicle),Find_OCF(OCF_Collectible),Find_OCF(OCF_Alive)),Find_Exclude(Contained()),Find_Exclude(this()),Find_Distance(20)))
   {
-   AddMenuItem("%s Auswählen","Mark",GetID(next),Contained(),0,next);
+   Contained()->AddMenuItem("%s auswählen","Mark",next->GetID(),0,next);
   }
   return(1);
 }
@@ -155,13 +155,13 @@ func Select()
 func Mark(trash,ziel)
 {
   starget = ziel;
-  Message("Zielobjekt: %v",this(),GetName(starget));
+  this->Message("Zielobjekt: %v",this,starget->GetName());
   return(1);
 }
 
 func Switch()
 {
-  SetOwner(GetOwner(Contained()));
+  SetOwner(Contained()->GetOwner());
 
   if(on == 0)
   {
@@ -171,22 +171,22 @@ func Switch()
    {
     target=CreateObject(LZD1);
     target->SetOwner(GetOwner());
-    LocalN("jumper",target)=jumper;
+    target.jumper=jumper;
     
     if(!jumpermark)
     {
-     LocalN("jumper",target)=0;
+     target.jumper = nil;
     }
     return(1);
    }
    
    target=CreateObject(LZDS);
    target->SetOwner(GetOwner());
-   LocalN("jumper",target)=jumper;
+   target.jumper=jumper;
    
    if(!jumpermark)
    {
-    LocalN("jumper",target)=0;
+    target.jumper = nil;
    }
    return(1);
   }
@@ -207,7 +207,7 @@ func Check()
    {
     if(on)
     {
-     LocalN("starget",target) = starget;
+     target.starget = starget;
     }
    }
   }
@@ -235,38 +235,5 @@ func Check()
 
 /* Upgrade */
 
-public func IsUpgradeable(id uid) 
-{
-  if(upgraded == 1)
-  {
-   return();
-  }
-
-  if(uid == KRFL)
-  {
-   return("Aufrüsten");
-  }
-}
-
-public func Upgrade(id uid) 
-{
-  if(on)
-  {
-   Switch();
-  }
-
-  if(upgraded == 1) return();
-
-  if(uid == KRFL) 
-  {
-    upgraded = 1;
-    SetPicture(10,100,130,100);
-    if(on == 1)
-    {
-     Switch();
-    }
-    return(true);
-  }
-}
 local Name = "$Name$";
 local Collectible = 1;

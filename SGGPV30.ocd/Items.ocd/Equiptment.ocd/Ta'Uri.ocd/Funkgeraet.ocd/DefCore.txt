@@ -8,7 +8,7 @@ Height=6
 Offset=-1,-3
 Value=50
 Mass=5
-Components=METL=2;CRYS=1;
+Components=Metal=2;CRYS=1;
 Picture=2,0,19,46
 Vertices=2
 VertexY=-3,3
@@ -16,4 +16,3 @@ VertexFriction=70,70
 Rebuy=1
 ColorByOwner=1
 Rotate=1
-TimerCall=Check

@@ -20,9 +20,9 @@ public func Initialize()
 public func Check()
 {
   SetXDir();
-  if(down != 0)
+  if(down != 0 && target)
   {
-   SetPosition(pX,pY,target);
+   SetPosition(pX,pY);
   }
   
   if(down == 1)
@@ -37,7 +37,7 @@ public func Check()
    return(1);
   }
   
-  if(Teltak())
+  if(Teltak() && target)
   {
 
   if(GetDir(target) == 1)
@@ -50,7 +50,7 @@ public func Check()
    SetPosition(GetX(target) +20,GetY(target)+65);
   }
   }
-  else SetPosition(target->GetX(), target->GetY() + 65);
+  else if(target) SetPosition(target->GetX(), target->GetY() + 65);
   return(1);
 }
 
@@ -77,7 +77,7 @@ public func SolidUp()
   {
    SetPosition(GetX(),GetY()+10);
   }
-  if(Teltak()) target ->~ContainedUpDouble();
+  if(Teltak()&& target) target ->~ContainedUpDouble();
   down = 1;
   phas = GetPhase();
   SetSolidMask(phas*100,200,100,100);
@@ -86,14 +86,14 @@ public func SolidUp()
   
 public func SolidLight()
 {
-  if(Teltak()) target ->~ContainedUpDouble();
+  if(Teltak()&& target) target ->~ContainedUpDouble();
   SetSolidMask(0,300,100,100);
   return(1);
 }
 
 public func SolidDown()
 {
-  if(Teltak()) target ->~ContainedUpDouble();
+  if(Teltak()&& target) target ->~ContainedUpDouble();
   down = -1;
   var phas;
   var help;
@@ -111,7 +111,7 @@ public func Off()
 
 public func Vorb()
 {
-  if(Teltak()) target -> ContainedUpDouble();
+  if(Teltak()&& target) target -> ContainedUpDouble();
   pX = GetX(target);
   pY = GetY(target);
   return(1);
@@ -119,5 +119,5 @@ public func Vorb()
 
 public func Teltak()
 {
-	return target->~Teltak();
+	if(target) target->~Teltak();
 }

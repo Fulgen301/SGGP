@@ -507,6 +507,7 @@ func ShutDelay()
 
 public func Deactivate()
 {
+	if(!WildcardMatch(GetAction(), "Outgoing*")) return;
 	if(pTo)
 	{
 		pTo->LocalN("pFrom") = 0;

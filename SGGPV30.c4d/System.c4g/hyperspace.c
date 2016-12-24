@@ -2,15 +2,13 @@
 
 #strict 2
 
-global func TravelInHyperspace(object pObj, int x, int y, int delay)
+global func HyperdriveWindow(int iX, int iY, int iSize, int iXTo, int iYTo, object pObj)
 {
-	if(!pObj) if(!(pObj = this)) return;
-	if(!delay) delay = 50;
-	
-	var hyperspace = CreateObject(HPRS);
-	SetObjectLayer(hyperspace, pObj);
-	Schedule(Format("Object(%d)->SetPosition(%d,%d)",ObjectNumber(pObj), x, y),delay);
-	Schedule(Format("SetObjectLayer(0,Object(%d))",ObjectNumber(pObj)),delay);
-	RemoveObject(hyperspace);
-	return pObj;
+	if (!pObj)
+		pObj = this;
+	var pWindow;
+	pWindow = pObj->CreateObject(HYFE, iX, iY);
+	pWindow->SetSize(iSize);
+	pWindow->SetPos(iXTo, iYTo, iX + GetX(pObj), iY + GetY(pObj));
+	pWindow->SetObjectDir(pObj);
 }

@@ -1,0 +1,13 @@
+#Menu
+Exit=Aussteigen
+Cloak=Tarnung
+Damage=Schaden
+Shield=Schild
+Energy=Energie
+Hyperspace=Hyperantrieb
+Status=Status
+Heck=Heckluke
+DialGate=%s anwählen
+
+#DialGate
+GateName=Gatename:

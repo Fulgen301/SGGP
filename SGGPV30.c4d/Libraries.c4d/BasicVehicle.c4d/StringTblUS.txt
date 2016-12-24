@@ -1,0 +1,14 @@
+#Menu
+Exit=Exit
+Cloak=Cloak
+Damage=Damage
+Destruction=Self-destruction
+Shield=Shield
+Energy=Energy
+Hyperspace=Hyperdrive
+Status=Status
+DialGate=Dial %s
+Heck=Hatch
+
+#DialGate
+GateName=Gatename:

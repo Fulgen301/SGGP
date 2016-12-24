@@ -13,7 +13,7 @@ local down;
 //Automatische Namenssetzung des Transporters
 public func Initialize()
 {
-  target = FindObject(TEL_,0,0,-1,-1);
+  target = FindObject2(Find_ID(RIG1),Find_Distance(20),Find_Owner(GetOwner()));
   return(1);
 }
 

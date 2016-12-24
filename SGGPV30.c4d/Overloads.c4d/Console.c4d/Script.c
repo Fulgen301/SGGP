@@ -57,7 +57,7 @@ protected func ControlDig(pClonk)
   return(SetTarget(pClonk));
   }
 
-  CreateMenu(GetID(target), pClonk, target, 0, Format("$Control$: %s", GetName(target)), 0, 1);
+  CreateMenu(GetID(target), pClonk, target, 0, Format("$Control$: %s", target->GetName()), 0, 1);
   for(var i = 1, desc ; desc = target->~ConsoleControl(i) ; i++)
   {
     //Aufrufenden Clonk und uns selbst dem Zielobjekt übergeben. Dies kann es in ConsoleController abrufen

@@ -7,13 +7,13 @@
  ---*/
 
 #strict 2
+#include CVHC
 
 //################
 //### SONSTIGE ###
 //################
 local iMaxDamage, iAmmoCount, iExtra;  //Steuerung des Schiffes
 local cloaked;                           //Tarnung
-local pUser;
 local chosen,chosen_timer;                           //Aktueller User
 
 
@@ -53,10 +53,11 @@ public func HasGate()
 //#######################
 //### Arrayerstellung ###
 //#######################
-local aArray;
+local aInventory;
 
 public func Initialize() 
 {
+	_inherited(...);
 	energy = 100;
 	on = 0;
 	mess = 0;
@@ -72,7 +73,19 @@ public func Initialize()
   {
    SetPosition(LandscapeWidth()-160,GetY());
   }
-//#######################
+
+//Heraussetzen aus Gebäuden
+  if(Contained())
+  {
+   Exit();
+  }
+  Choose();
+  return(1);
+}
+
+private func InitializeInventory()
+{
+	//#######################
 //### RINGTRANSPORTER ###
 //#######################
   ring1 = CreateObject(RIG1);  //Ringtransporter
@@ -101,24 +114,7 @@ public func Initialize()
 //#######################
 //### Arrayerstellung ###
 //#######################
-  aArray = CreateArray(9);
-  aArray[0] = ring1;
-  aArray[1] = ringc;
-  aArray[2] = luke1;
-  aArray[3] = lukec;
-  aArray[4] = gen;
-  aArray[5] = pod;
-  aArray[6] = selv;
-  aArray[7] = entr;
-  aArray[8] = crate;
-  Choose();
-
-//Heraussetzen aus Gebäuden
-  if(Contained())
-  {
-   Exit();
-  }
-  return(1);
+  return [ring1, ringc, luke1, lukec, gen, pod, selv, entr, crate];
 }
 
 func Choose()
@@ -147,8 +143,8 @@ func Gate()
 	ringc=CreateObject(DHD_);
 	SetCategory(C4D_Vehicle,ring1);
 	SetCategory(C4D_Vehicle,ringc);
-	aArray[0]=ring1;
-	aArray[1]=ringc;
+	aInventory[0]=ring1;
+	aInventory[1]=ringc;
 	return(1);
 }
 
@@ -157,7 +153,7 @@ func Gate()
 //##########################
 public func Damage()
 {
-  if(GetDamage() > 1000)
+  if(GetDamage() > MaxDamage())
   {
    Call("Destroy");
   }
@@ -221,6 +217,7 @@ public func Destroy()
   entr->RemoveObject();
   if(crate)
   crate->RemoveObject();
+  if(shield) shield->RemoveObject();
   Explode(75);
   return(1);
 }
@@ -320,7 +317,7 @@ if(GetCon() < 100) return;
   }
   
   var x;
-  for(x in aArray)
+  for(x in aInventory)
   {
    x -> SetXDir();
    x -> SetYDir();
@@ -333,7 +330,7 @@ if(GetCon() < 100) return;
 	  {
 		  /SetClrModulation(RGBa(0, 0, 0, 0));
 		  var y;
-		  for (y in aArray)
+		  for (y in aInventory)
 		  {
 			  y->SetClrModulation(RGBa(0, 0, 0, 0));
 		  }
@@ -345,7 +342,7 @@ if(GetCon() < 100) return;
 	  genstate = 1;
 	  SetPhysical("Float", 1100);
 /*	  SetClrModulation(RGBa(0, 0, 255, 233));
-	  for (y in aArray)
+	  for (y in aInventory)
 	  {
 		  y->SetClrModulation(RGBa(0, 0, 255, 233));
 	  }
@@ -395,7 +392,10 @@ if(GetCon() < 100) return;
 //###########################
 //##### SCHILD-STEUERUNG ####
 //###########################
-  Shield();
+  if(energy <= 15 && shield)
+  {
+	  shield->RemoveObject();
+  }
 
 //#############################
 //# ENERGIEANZEIGEN-STEUERUNG #
@@ -422,64 +422,35 @@ public func ContainedUpDouble()
 }
 
 //Menüaufruf
-public func ContainedDig(pCaller)
+public func MakeMenu(pCaller)
 {
-  pUser = pCaller;
-  CreateMenu(TEL_,pUser);
-  AddMenuItem("$Exit$","Exit",GetID(pUser),pUser);
-  if(GetAction() == "Fly")
-  {
-   AddMenuItem("$Cloak$","Cloak",TEM1,pUser);
-  }
-  AddMenuItem("$Heck$","Heck",TEM4,pUser);
-  AddMenuItem("$Damage$","Schaden",TEM5,pUser);
-  AddMenuItem("$Destruction$","Destroy",TEM6,pUser);
-  AddMenuItem("$Shield$", "ToggleShield", GOSG, pUser);
-  AddMenuItem("$Energy$", "ToggleEnergy", GetID(this), pUser);
-  if(energy >= 70) AddMenuItem("$Hyperspace$","Hyperspace",gen->GetID(), pUser, 0, pUser);
+	_inherited(pCaller, ...);
   if(HasGate())
   {
-  	AddMenuItem("$Iris$", "Iris", STGT, pUser);
+  	AddMenuItem("$Iris$", "Iris", STGT, pPilot);
   }
   if(FindObject2(Find_ID(FLAG),Find_ActionTarget(this)))
   {
-	  AddMenuItem("$Buy$","BuyMenu",SPIP,pUser,0,pUser);
-	  AddMenuItem("$Sell$","SellMenu",DPIP,pUser,0,pUser);
+	  AddMenuItem("$Buy$","BuyMenu",SPIP,pPilot,0,pPilot);
+	  AddMenuItem("$Sell$","SellMenu",DPIP,pPilot,0,pPilot);
   }
   return(1);
 }
 
-protected func Hyperspace(id dummy, object pUser)
+protected func BuyMenu()
 {
-	var cursor = CreateObject(CURS);
-	cursor->SetBeamer(this,pUser->GetOwner(),pUser);
-	SetCursor(pUser->GetOwner(), cursor);
-}
-
-public func Okay(int x, int y)
-{
-	Cloaking();
-	gen->SetAction("Active");
-	energy -= 50;
-	TravelInHyperspace(this, x, y, 50);
-	Cloaking();
-	gen->SetAction("Deactive");
-}
-
-protected func BuyMenu(id dummy, object pUser)
-{
-	if(pUser) SetCommand(pUser,"Buy");
+	if(pPilot) SetCommand(pPilot,"Buy");
 	return true;
 }
 
-protected func SellMenu(id dummy, object pUser)
+protected func SellMenu()
 {
-	if(pUser) SetCommand(pUser,"Sell");
+	if(pPilot) SetCommand(pPilot,"Sell");
 }
 
-protected func ActivateMenu(id dummy, object pUser)
+protected func ActivateMenu()
 {
-	if(pUser) SetCommand(pUser,"Activate",this);
+	if(pPilot) SetCommand(pPilot,"Activate",this);
 }
 
 public func EMPShock()
@@ -547,7 +518,7 @@ public func Schaden()
   return(1);
 }
 
-public func Heck()
+public func Hatch()
 {
   if(GetAction(luke1) == "Open")
   {
@@ -606,14 +577,14 @@ func Cloaking()
 public func Visible()
 {
   var x;
-  for(x in aArray)
+  for(x in aInventory)
   {
-   x->SetOwner(GetOwner(pUser));
+   x->SetOwner(GetOwner(pPilot));
    x->SetVisibility(VIS_All);
    x->SetClrModulation(0);
   }
   
-  SetOwner(GetOwner(pUser));
+  SetOwner(GetOwner(pPilot));
   SetVisibility(VIS_All);
   SetClrModulation(0);
   var flag;
@@ -628,14 +599,14 @@ public func Visible()
 public func Invisible()
 {
   var x;
-  for(x in aArray)
+  for(x in aInventory)
   {
-   x->SetOwner(GetOwner(pUser));
+   x->SetOwner(GetOwner(pPilot));
    x->SetVisibility(VIS_Owner);
    x->SetClrModulation(RGBa(0,0,100,100));
   }
 
-  SetOwner(GetOwner(pUser));
+  SetOwner(GetOwner(pPilot));
   SetVisibility(VIS_Owner);
   SetClrModulation(RGBa(0,0,100,100));
   var flag;
@@ -648,18 +619,18 @@ public func Invisible()
 }
 
 
-public func Exit()
+public func ExitPilot()
 {
-  pUser->Exit();
+  pPilot->Exit();
   
   if(GetDir() == 0)
   {
-   pUser->SetPosition(GetX()-100,GetY()+27);
+   pPilot->SetPosition(GetX()-100,GetY()+27);
    return(1);
   }
   
-  pUser->SetAction("Walk");
-  pUser->SetPosition(GetX()+100,GetY()+27);
+  pPilot->SetAction("Walk");
+  pPilot->SetPosition(GetX()+100,GetY()+27);
   return(1);
 }
 
@@ -942,19 +913,10 @@ func Wenden()
   return(true);
 }
 
-func ToggleShield()
+private func ToggleShield()
 {
-	if (!on)
-	{
-		on = 1;
-		Shield();
-		return(1);
-	}
-	if (on)
-	{
-		on = 0;
-		return(1);
-	}
+	_inherited(...);
+	if(shield) shield->SetActionData(256+20);
 }
 
 func Shield()
@@ -1102,3 +1064,7 @@ func Shield()
 func IsBulletTarget() 	{ return(1); }
 func IsMachine() 		{ return(1); }
 public func Teltak()	{ return true; }
+public func HasHyperdrive()	{return GetDamage() < 500 && energy >= 70; }
+public func HasShield()	{ return energy > 15; }
+public func CanCloak()	{ return true; }
+public func MaxDamage() { return 1000; }

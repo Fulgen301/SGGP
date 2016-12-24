@@ -1,7 +1,0 @@
-[DefCore]
-id=HPRS
-Name=Hyerspace
-Category=1
-Width=20
-Height=20
-Picture=0,20,80,150

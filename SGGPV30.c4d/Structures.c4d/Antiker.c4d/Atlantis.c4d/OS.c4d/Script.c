@@ -10,7 +10,7 @@ protected func Construction()
 global func GetALOS(int iPlr)
 {
 	var obj;
-	if(obj = FindObject2(Find_ID(ALOS, Find_Owner(iPlr)))) return obj;
+	if(obj = FindObject2(Find_ID(ALOS), Find_Owner(iPlr))) return obj;
 	else return CreateObject(ALOS,0,0,iPlr);
 }
 /* RegisterStructure */
@@ -40,7 +40,7 @@ public func GetStructures(array& proplist, data)
 			ret[GetLength(ret)] = proplist[i];
 		}
 		
-		else if(GetType(data) == C4V_String && GetType(proplist[i]) == C4V_C4Object && eval(Format("Object(%d)->~%s", proplist[i]->ObjectNumber(), data)) && GetIndexOf(proplist[i], ret) == -1)
+		else if(GetType(data) == C4V_String && GetType(proplist[i]) == C4V_C4Object && eval(Format("Object(%d)->~%s()", proplist[i]->ObjectNumber(), data)) && GetIndexOf(proplist[i], ret) == -1)
 		{
 			ret[GetLength(ret)] = proplist[i];
 		}
@@ -113,10 +113,53 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 	if(status == ATLANTISOS_OK)
 	{
 		interval = 35;
+		
+		var defcon_active = false;
+		
+		for(var gate in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), "IsStargate"))
+		{
+			if(gate)
+			{
+				if(WildcardMatch(gate->GetAction(), "Income*"))
+				{
+					if(gate->GetAction() == "Income1" || gate->GetAction() == "Income2")
+					{
+						if(!(gate->IsClose()))
+						{
+							if(!(gate->HasIris())) gate->InstallIris();
+							gate->~ControlIris();
+						}
+					}
+					else if(gate->IsClose() && gate->GetState() != 2)
+					{
+						gate->ControlIris();
+					}
+				}
+				
+				if(gate->IsBusy())
+				{
+					if(!defcon_active) defcon_active = true;
+				}
+				else if(gate->IsClose()) gate->ControlIris();
+			}
+		}
+	
+		if(pTarget->GetStructures(EffectVar(0, pTarget, iEffect), DEFK) == [] && FindObject2(Find_ID(DEFK), Find_Owner(pTarget->GetOwner()))) GetALOS(pTarget->GetOwner())->RegisterStructure(FindObject2(Find_ID(DEFK), Find_Owner(pTarget->GetOwner())));
+		for(var defcontr in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), DEFK))	
+		{
+			if(defcontr)
+			{
+				defcontr->~ConsoleControlled((defcon_active * 3) + 1);
+			}
+		}
 	}
 	
 	if(status & ATLANTISOS_ZPMLOW)
 	{
+		for(var defc in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), DEFK))
+		{
+			if(defc) defc->ConsoleControlled(5);
+		}
 		// Check if there is a defcon controller; if yes, set it to the highest level;
 		// if submerged and the shield is online, trying to raise the city; 
 		// if we do not have enough power for that,
@@ -127,7 +170,7 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 		
 		/*var struct = [];
 		
-		if(struct = GetStructures(EffectVar(0, pTarget, iEffect), ALZP))
+		if(struct = pTarget->GetStructures(EffectVar(0, pTarget, iEffect), ALZP))
 		{
 			var zpmGenerator = struct[0]->~GetZPMGenerator();
 			var zpm;
@@ -159,7 +202,7 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 	
 	if(status & ATLANTISOS_QUARANTINE)
 	{
-		for(var defcontr in GetStructures(EffectVar(0, pTarget, iEffect), DEFK))	
+		for(var defcontr in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), DEFK))	
 		{
 			if(defcontr)
 			{
@@ -167,7 +210,7 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 			}
 		}
 		
-		for(var gate in GetStructures(EffectVar(0, pTarget, iEffect), "IsStargate"))
+		for(var gate in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), "IsStargate"))
 		{
 			if(gate && !(gate->IsClose()))
 			{

@@ -1,10 +1,18 @@
 /*-- Neues Objekt --*/
 
-#strict
-
+#strict 2
+protected func Construction()
+{
+	AddEffect("IntCheck", this, 1, 1, this);
+}
 func Initialize() {
-   
-  return(1);
+   var chair;
+  if((chair = FindObject2(Find_ID(ANKS), Find_Owner(GetOwner())))) SetPosition(chair->GetX(), chair->GetY());
+}
+
+protected func FxIntCheckTimer(object pTarget, int iEffect, int time)
+{
+	if((EffectVar(0, pTarget, iEffect) = FindObject2(Find_ID(ANKS), Find_Owner(GetOwner())))) SetPosition(EffectVar(0, pTarget, iEffect)->GetX(), EffectVar(0, pTarget, iEffect)->GetY());
 }
 
 func IsConsoleTarget() {return(1);}

@@ -1,6 +1,6 @@
 /*-- Defcon --*/
 
-#strict
+#strict 2
 
 local light,controller;
 
@@ -11,56 +11,51 @@ func Construction()
 }
 
 func Initialize() {
-if(!FindObject(DEFK))
+if(!(controller = FindObject2(Find_ID(DEFK),Find_Owner(GetOwner()))))
 {
-	controller=CreateObject(DEFK);
-}
-else
-{
-	controller=FindObject(DEFK);
+	controller=CreateObject(DEFK,0,0,GetOwner());
 }
   SetAction("Def1");
-  light = AddLight(100,0,this());
+  light = AddLight(100,0,this);
   return(1);
 }
 
 func Check()
 {
-  if(!FindObject(DEFK))
-  {
-	  CreateObject(DEFK);
-   return(1);
-  }
+if(!(controller = FindObject2(Find_ID(DEFK),Find_Owner(GetOwner()))))
+{
+	controller=CreateObject(DEFK,0,0,GetOwner());
+}
 
-  if(GetAction(FindObject(DEFK)) eq "Def1")
+  if(controller && controller->GetAction() == "Def1")
   {
    SetAction("Def1");
    light->ChangeColor(RGB(0,0,255));
    return(1);
   }
   
-  if(GetAction(FindObject(DEFK)) eq "Def2")
+  else if(controller && controller->GetAction() == "Def2")
   {
    SetAction("Def2");
    light->ChangeColor(RGB(0,255,0));
    return(1);
   }
   
-  if(GetAction(FindObject(DEFK)) eq "Def3")
+  else if(controller && controller->GetAction() == "Def3")
   {
    SetAction("Def3");
    light->ChangeColor(RGB(255,255,0));
    return(1);
   }
   
-  if(GetAction(FindObject(DEFK)) eq "Def4")
+  else if(controller && controller->GetAction() == "Def4")
   {
    SetAction("Def4");
    light->ChangeColor(RGB(255,0,0));
    return(1);
   }
   
-  if(GetAction(FindObject(DEFK)) eq "Def5")
+  else if(controller && controller->GetAction() == "Def5")
   {
    SetAction("Def5");
    light->ChangeColor(RGB(0,0,0));

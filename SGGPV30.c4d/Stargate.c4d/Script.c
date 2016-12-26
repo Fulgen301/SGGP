@@ -211,6 +211,7 @@ protected func DialSounds()
   {
 	  if(fake)
 	  {
+		  fake = false;
 		  FailSound();
 		  Deactivate();
 	  }
@@ -457,6 +458,7 @@ func Check()
 	  LocalN("pFrom",fGate) = pFrom;
 	  pFrom = 0;
 	  fGate->SetAction(GetAction());
+	  fGate->SetPhase(GetPhase());
 	  Deactivate();
   }
   if(GetAction() == "Off")
@@ -469,28 +471,8 @@ func Check()
    return(1);
   }
 
-  if(!pFrom)
-  {
-   if(!pTo && !fake)
-   {
+  if((!pFrom && !pTo && !fake) || (pTo && !fake && pTo->GetAction() == "Idle") || (pFrom && pFrom->GetAction() == "Idle"))
     Deactivate();
-   }
-  }
-  if(pTo && !fake)
-  {
-   if(GetAction(pTo) == "Idle")
-   {
-    Deactivate();
-   }
-  }
-  
-  if(pFrom)
-  {
-   if(GetAction(pFrom) == "Idle")
-   {
-    Deactivate();
-   }
-  }
   return(1);
 }
 

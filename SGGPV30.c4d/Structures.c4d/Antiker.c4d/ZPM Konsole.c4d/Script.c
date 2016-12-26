@@ -405,58 +405,16 @@ func IsAntiker()
 	return(1);
 }
 
-public func Set(int value)
-{
-	if(value == 1) return ChangeEnergyMode();
-}
-
-protected func ChangeEnergyMode()
-{
-	if(!iMode)
-	{
-		iMode = 1;
-		return AddEffect("IntEnergy",this,1,1,this);
-	}
-	else
-	{
-		iMode = 0;
-		return RemoveEffect("IntEnergy",this);
-	}
-}
-
-/*
-0: target-Variable des Sternenantrieb-Kontrollers
-1: Objekte, die mit dem Sternenantrieb bewegt werden -> Zugehörigkeit zu Atlantis
-*/
-protected func FxIntEnergyStart(object pTarget, int iEffect)
-{
-	if(!FindObject2(Find_ID(ALSK),Find_Owner(GetOwner()))) return -1;
-	FindObjects(Find_ID(PWRL),Find_ActionTarget(this),Find_Func("RemoveObject"));
-	EffectVar(0,pTarget,iEffect) = LocalN("targets",FindObject2(Find_ID(ALSK),Find_Owner(pTarget->GetOwner())));
-	return true;
-}
-
-protected func FxIntEnergyTimer(object pTarget, int iEffect)
-{
-	EffectVar(1, pTarget,iEffect) = CreateArray();
-	for(drive in EffectVar(0, pTarget, iEffect))
-	{
-		for(obj in drive->FindObjects(Find_InRect(-40,AbsY(0),80,GetY()+20),Find_Or(Find_Owner(pTarget->GetOwner()),Find_Owner(-1))))
-		{
-			if(GetDefCoreVal("LineConnect","DefCore",obj->GetID()) & C4D_PowerConsumer)
-			{
-				GiveEnerg();
-				var energy = GetEnergy(pTarget) / 3;
-				var limit = 100 - GetEnergy(pTarget);
-				energy = Min(Min(energy, limit), 20);
-				DoEnergy(-energy, pTarget);
-				DoEnergy(energy, obj);
-			}
-		}
-	}
-}
-
 public func AtlantisOSFunc()
 {
-	return;
+	var i = 0;
+	for(var zpm in GetAllZPMs())
+	{
+		if(zpm && zpm->GetAction() == "Activen")
+		{
+			i += zpm->Enrg();
+		}
+	}
+	if(i < 10) return ATLANTISOS_ZPMLOW;
+	return ATLANTISOS_OK;
 }

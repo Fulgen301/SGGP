@@ -392,9 +392,19 @@ if(GetCon() < 100) return;
 //###########################
 //##### SCHILD-STEUERUNG ####
 //###########################
-  if(energy <= 15 && shield)
+  if(shield)
   {
-	  shield->RemoveObject();
+	if(energy <= 15)
+	{
+		shield->RemoveObject();
+	}
+	else
+		time++;
+	    if(time % 50 == 0)
+		{
+			energy--;
+			time = 0;
+		}
   }
 
 //#############################

@@ -70,7 +70,7 @@ private func Dial()
   CallMessageBoard(0,false,"$GateName$",pPilot->GetOwner());
 }
 
-private func InputCallback(string szName)
+public func InputCallback(string szName)
 {
 	var pGate = FindObject2(Find_Func("IsStargate"),Find_Distance(800),Sort_Distance());
 	if(pGate) pGate->Dial(szName);
@@ -95,6 +95,7 @@ public func Okay(int iX, int iY)
 {
 	if(GetDir() == DIR_Left) HyperdriveWindow(-100, 0, HyperspaceSize(), iX, iY, this);
 	else HyperdriveWindow(100, 0, HyperspaceSize(), iX, iY, this);
+	energy -= 50;
 }
 
 private func InitializeWeapons() { return []; }

@@ -33,13 +33,13 @@ func ReRise()
 
 protected func ControlDigDouble()
 {
-	if(Contents() || GetEffect("GainKnowledge", this)) return _inherited(...);
+	if(Contents() || (GetAction() == "Push" && GetActionTarget()) || GetEffect("GainKnowledge", this)) return _inherited(...);
 
 	for(var structure in FindObjects(Find_Distance(30)))
 	{
 		if(structure && !GetPlrKnowledge(GetOwner(), structure->GetID()) && (C4D_Structure | C4D_StaticBack | C4D_Object | C4D_Knowledge) & structure->GetCategory())
 		{
-			Log("%v", structure);
+			//Log("%v", structure);
 			var value = BoundBy(GetValue(0, structure->GetID())/100, 1, 50);
 			AddEffect("GainKnowledge", this, 1, value, this, 0, structure, value*100);
 			break;

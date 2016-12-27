@@ -96,7 +96,7 @@ func JumperMark()
   
 func Luke()
 {
-  jumper->Luke();
+  jumper->Hatch();
   return(1);
 }
 
@@ -107,7 +107,7 @@ func Cloak()
    jumper->SetAction("Stand");
   }
   jumper->Cloak();
-  LocalN("pUser",jumper) = Contained();
+  LocalN("pPilot",jumper) = Contained();
   jumper->SetOwner(GetOwner());
   ScheduleCall(0,"CloseJumper",21);
   return(1);
@@ -117,12 +117,12 @@ func Cloak2()
 {
   if(GetAction(jumper) eq "Open")
   {
-   jumper->Luke();
+   jumper->Hatch();
    ScheduleCall(0,"Cloak2",22);
    return(1);
   }
   jumper->Cloak();
-  LocalN("pUser",jumper) = Contained();
+  LocalN("pPilot",jumper) = Contained();
   jumper->SetOwner(GetOwner());
   return(1);
 }

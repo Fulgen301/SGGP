@@ -8,7 +8,7 @@ TeamColors=1
 	[Team]
 	id=1
 	Name=$TeamOne$
-	PlrStartIndex=1
+	PlrStartIndex=4
 	Color=1515
 
 	[Team]
@@ -22,3 +22,9 @@ TeamColors=1
 	Name=$TeamThree$
 	PlrStartIndex=3
 	Color=65280
+	
+	[Team]
+	id=4
+	Name=$TeamFour$
+	PlrStartIndex=1
+	Color=255

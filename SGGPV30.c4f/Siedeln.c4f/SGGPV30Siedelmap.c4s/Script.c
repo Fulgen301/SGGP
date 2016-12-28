@@ -6,19 +6,20 @@ func Initialize()
 {
 	_inherited(...);
 	SetSkyParallax(1, 20,20, 20,0,0,0);
+	ScriptGo(1);
 	return(1);
 }
 
-protected func InitializePlayer(int iPlr)
+func Script10()
 {
-	if(iPlr) return;
-		CreateMenu(MEPU, GetCursor(iPlr), 0, 0,"Geldeinstellungen", 0, 1,1,17);
+		CreateMenu(MEPU, GC(), 0, 0,"Geldeinstellungen", 0, 1,1,17);
 		CanClose = 0;
-		AddMenuItem("100 Clunker", Format("Geld(%d)",100),MEPU, GetCursor(iPlr));
-		AddMenuItem("200 Clunker", Format("Geld(%d)",200),MEPU, GetCursor(iPlr));
-		AddMenuItem("500 Clunker", Format("Geld(%d)",500),MEPU, GetCursor(iPlr));
-		AddMenuItem("1000 Clunker", Format("Geld(%d)",1000),MEPU, GetCursor(iPlr));
-		AddMenuItem("2000 Clunker", Format("Geld(%d)",2000),MEPU, GetCursor(iPlr));
+		AddMenuItem("100 Clunker", Format("Geld(%d)",100),MEPU, GC());
+		AddMenuItem("200 Clunker", Format("Geld(%d)",200),MEPU, GC());
+		AddMenuItem("500 Clunker", Format("Geld(%d)",500),MEPU, GC());
+		AddMenuItem("1000 Clunker", Format("Geld(%d)",1000),MEPU, GC());
+		AddMenuItem("2000 Clunker", Format("Geld(%d)",2000),MEPU, GC());
+	ScriptGo();
 }
 
 func Geld(int iGeld)

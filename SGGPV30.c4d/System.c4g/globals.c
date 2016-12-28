@@ -197,3 +197,113 @@ global func assert(string sz)
 		return FatalError(Format("AssertionError: %s", sz));
 	}
 }
+
+/** GetIndexOf2
+	@author DerTod
+	@par val value to search in arr (by value not by pointer as in GetIndexOf)
+	@par arr array where to search in
+*/
+
+global func GetIndexOf2(val, array arr) // Because GetIndexOf doesn't find Format("%c", GetChar("a", 0)) in ["a"]
+{
+	var i = 0;
+	for(var value in arr)
+	{
+		if(val == value) return i;
+		++i;
+	}
+	return -1;
+}
+
+/** FormatN
+	@author DerTod
+	@par format format specification
+	@par placeholders Either the order of supplied items' placeholders' names or pairs of name and item
+	@par items 0 or list of items to be substituted for the placeholders in the same order as placeholders
+*/
+
+global func FormatN(string format, array placeholders, array items)
+{
+	if(!items && GetType(placeholders[0]) == C4V_Array)
+	{
+		items = CreateArray(GetLength(placeholders));
+		for(var i = 0; i < GetLength(placeholders); ++i)
+		{
+			items[i] = placeholders[i][1];
+			placeholders[i] = placeholders[i][0];
+		}
+	}
+
+	var ret = "";
+
+	var inPlaceholder = 0;
+	var placeholderType = "";
+	var placeholderPart = "";
+
+	for(var i = 0; i < GetLength(format); ++i)
+	{
+		var c = GetChar(format, i);
+		if(c == 37) // %
+		{
+			if(inPlaceholder == 0)
+			{
+				inPlaceholder = 1;
+			}
+			else if(inPlaceholder == 1)
+			{
+				if(c == 37 && GetLength(placeholderType) == 0) // %
+				{
+					ret = Format("%s%%", ret);
+					inPlaceholder = 0;
+				}
+				else
+				{
+					inPlaceholder = 2;
+				}
+			}
+			else if(inPlaceholder == 2)
+			{
+				var index = GetIndexOf2(placeholderPart, placeholders);
+				if(index == -1)
+				{
+					FatalError(Format("FormatN: Unkown placeholder \"%s\"", placeholderPart));
+					return 0;
+				}
+
+				ret = Format(Format("%%s%%%s", placeholderType), ret, items[index]);
+
+				inPlaceholder = 0;
+				placeholderType = "";
+				placeholderPart = "";
+			}
+		}
+		else
+		{
+			if(inPlaceholder == 0)
+			{
+				ret = Format("%s%c", ret, c);
+			}
+			else if(inPlaceholder == 1)
+			{
+				placeholderType = Format("%s%c", placeholderType, c);
+			}
+			else if(inPlaceholder == 2)
+			{
+				placeholderPart = Format("%s%c", placeholderPart, c);
+			}
+		}
+	}
+
+	if(inPlaceholder == 1)
+	{
+		FatalError(Format("FormatN: Placeholder not finished at end of format-string: \"%%%s\"", placeholderType));
+		return 0;
+	}
+	else if(inPlaceholder == 2)
+	{
+		FatalError(Format("FormatN: Placeholder not finished at end of format-string: \"%%%s%%%s\"", placeholderType, placeholderPart));
+		return 0;
+	}
+
+	return ret;
+}

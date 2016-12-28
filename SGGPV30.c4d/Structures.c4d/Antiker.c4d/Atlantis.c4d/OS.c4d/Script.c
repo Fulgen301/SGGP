@@ -118,7 +118,7 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 		
 		for(var gate in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), "IsStargate"))
 		{
-			if(gate)
+			if(gate && !gate->IsSpaceGate())
 			{
 				if(WildcardMatch(gate->GetAction(), "Income*"))
 				{

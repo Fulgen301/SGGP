@@ -61,7 +61,7 @@ protected func FxGainKnowledgeTimer(object pTarget, int iEffect)
 {
 	if(GetPlrKnowledge(pTarget->GetOwner(), EffectVar(0, pTarget, iEffect)->GetID())) return -1;
 	EffectVar(2, pTarget, iEffect)++;
-	PlayerMessage(pTarget->GetOwner(), "@%d%%", pTarget, EffectVar(2, pTarget, iEffect));
+	PlayerMessage(pTarget->GetOwner(), "@{{%i}} %d%%", pTarget, EffectVar(0, pTarget, iEffect)->GetID(), EffectVar(2, pTarget, iEffect));
 	
 	if(EffectVar(2, pTarget, iEffect) == 100)
 	{

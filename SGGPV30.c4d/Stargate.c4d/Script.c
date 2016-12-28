@@ -653,7 +653,7 @@ public func IsConsoleTarget()
 
 public func IsSpaceGate()
 {
-	return !ramp;
+	return (!ramp && !IsTeltakGate());
 }
 
 public func Energy()

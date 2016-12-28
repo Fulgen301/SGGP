@@ -1071,10 +1071,16 @@ func Shield()
   
   return(1);
 }
-func IsBulletTarget() 	{ return(1); }
-func IsMachine() 		{ return(1); }
-public func Teltak()	{ return true; }
-public func HasHyperdrive()	{return GetDamage() < 500 && energy >= 70; }
-public func HasShield()	{ return energy > 15; }
-public func CanCloak()	{ return true; }
-public func MaxDamage() { return 1000; }
+public func IsBulletTarget(id idBullet, object pBullet, object pShooter)
+{
+	if(pBullet && pBullet->GetOwner() != GetOwner() && Hostile(pBullet->GetOwner(), GetOwner()))
+		return true;
+	
+	return false;
+}
+public func IsMachine() 		{ return(1); }
+public func Teltak()			{ return true; }
+public func HasHyperdrive()		{ return GetDamage() < 500 && energy >= 70; }
+public func HasShield()			{ return energy > 15; }
+public func CanCloak()			{ return true; }
+public func MaxDamage() 		{ return 1000; }

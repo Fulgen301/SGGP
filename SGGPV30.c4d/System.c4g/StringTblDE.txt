@@ -1,1 +1,2 @@
 HelpRule=Hilfsregel
+GainKnowledge=Bauplan erhalten

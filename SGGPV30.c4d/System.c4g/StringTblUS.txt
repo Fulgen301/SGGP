@@ -1,1 +1,2 @@
 HelpRule=Helprule
+GainKnowledge=Gain knowledge

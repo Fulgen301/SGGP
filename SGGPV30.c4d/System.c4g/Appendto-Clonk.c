@@ -31,22 +31,19 @@ func ReRise()
 	SetAction("FlatUp", 0,0, true); 
 }
 
-protected func ControlDigDouble()
+protected func ContextGainKnowledge(object pCaller)
 {
-	if(Contents() || (GetAction() == "Push" && GetActionTarget()) || GetEffect("GainKnowledge", this)) return _inherited(...);
-
+	[$GainKnowledge$|Image=SGGP]
 	for(var structure in FindObjects(Find_Distance(30)))
 	{
 		if(structure && !GetPlrKnowledge(GetOwner(), structure->GetID()) && (C4D_Structure | C4D_StaticBack | C4D_Object | C4D_Knowledge) & structure->GetCategory())
 		{
-			//Log("%v", structure);
 			var value = BoundBy(GetValue(0, structure->GetID())/100, 1, 50);
 			AddEffect("GainKnowledge", this, 1, value, this, 0, structure, value*100);
 			break;
 		}
 	}
 	
-	return _inherited(...);
 }
 
 protected func FxGainKnowledgeStart(object pTarget, int iEffect, int iTemp, object pStructure, int iValue)

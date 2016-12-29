@@ -1,4 +1,4 @@
-	/*--Das Stargate --*/
+/*--Das Stargate --*/
 
 #strict 2
 
@@ -516,6 +516,7 @@ public func Deactivate()
 //Überbringung des Ziels:
 func Transport()
 {
+	if(!pTo) return;
   var obj;
   for(obj in FindObjects(Find_InRect(70,0,25,80)))
   {

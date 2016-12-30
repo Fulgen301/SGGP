@@ -6,23 +6,46 @@ local iEnergie;
 
 func Initialize() 
 {
+local timer = new timer {
+minus = 50,
+plus = 50
+};
   SetAction("Inactive");
   iEnergie = 1000;
   return(1);
 }
 
-func Minus()
+func Minus(bool exact)
 {
+if(exact)
   iEnergie --;
-  return(1);
-}
-
-func Plus()
+else
 {
-  iEnergie ++;
+	timer.minus--;
+	if(timer.minus == 0)
+	{
+		timer.minus = 50;
+		iEnergie--;
+	}
+}
   return(1);
 }
 
+func Plus(bool exact)
+{
+if(exact)
+  iEnergie --;
+else
+{
+	timer.plus--;
+	if(timer.plus == 0)
+	{
+		timer.plus = 50;
+		iEnergie--;
+	}
+}
+  return(1);
+}
 func CalcValue()
 {
   return(iEnergie);
@@ -40,7 +63,7 @@ func Piccheck()
    iEnergie = 1000;
   }
 
-  if(GetDamage(this()) >= 100)
+  if(GetDamage() >= 100)
   {
    Call("Destr");
   }
@@ -102,7 +125,7 @@ func Activaten()
    return(1);
   }
 
-  if(GetAction(this()) == "Depledet")
+  if(GetAction() == "Depledet")
   {
    this->Message("Das ZPM ist erschöpft!");
    return(1);
@@ -136,3 +159,78 @@ func Depledet()
 public func IsAnvilProduct() { return(1); }
 local Name = "$Name$";
 local Collectible = 1;
+local ActMap = {
+
+Inactive = {
+
+Prototype = Action,
+
+Name = "Inactive",
+
+Delay = 1,
+
+Length = 1,
+
+X = 0,
+
+Y = 0,
+
+Wdt = 4,
+
+Hgt = 7,
+
+PhaseCall = "Inactive",
+
+NextAction = "Inactive",
+
+},
+
+Activen = {
+
+Prototype = Action,
+
+Name = "Activen",
+
+Delay = 1,
+
+Length = 1,
+
+X = 4,
+
+Y = 0,
+
+Wdt = 4,
+
+Hgt = 7,
+
+PhaseCall = "Activen",
+
+NextAction = "Activen",
+
+EnergyUsage = -1000000,
+
+},
+
+Depledet = {
+
+Prototype = Action,
+
+Name = "Depledet",
+
+Delay = 1,
+
+Length = 1,
+
+X = 8,
+
+Y = 0,
+
+Wdt = 4,
+
+Hgt = 7,
+
+PhaseCall = "Depledet",
+
+NextAction = "Depledet",
+
+},  };

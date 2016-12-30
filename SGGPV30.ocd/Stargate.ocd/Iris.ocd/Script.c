@@ -28,7 +28,7 @@ func Update(object gate)
 func GDOControl(pwget)
 {
   var cmp;
-  if(cmp = FindObject(Find_Distance(1000),Find_ID(STWA),Sort_Distance()))
+  if(cmp = FindObject(Find_Distance(1000),Find_ID(Stargate_DialPC),Sort_Distance()))
   {
    if(cmp.password == pwget)
    {

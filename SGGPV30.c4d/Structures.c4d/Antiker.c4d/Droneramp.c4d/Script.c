@@ -4,6 +4,7 @@
 
 local pDrone;
 local pTarget;
+local fire;
 
 protected func Initialize()
 {
@@ -12,7 +13,7 @@ protected func Initialize()
 
 protected func Check()
 {
-	return EnergyCheck(1000);
+	if(fire) return Fire();
 }
 
 protected func Damage()
@@ -27,16 +28,24 @@ protected func Damage()
 public func ControlDigDouble(object pCaller)
 {
 	SetOwner(pCaller->GetOwner());
-	CreateMenu(GetID(),pCaller,0,0,GetName(),0,1,1);
-	AddMenuItem("$Fire$","Fire",PUDD,pCaller);
+	//CreateMenu(GetID(),pCaller,0,0,GetName(),0,1,1);
+	//AddMenuItem("$Fire$","Fire",PUDD,pCaller);
+	
+	CreateNewMenu([
+	Menu_Style_Context(),
+	Menu_Symbol(GetID()),
+	Menu_Object(pCaller),
+	Menu_Caption(GetName()),
+	Menu_Adaptor([Menu_Adaptor_Caption("$Fire$"), Menu_Adaptor_Symbol(PUDD), Menu_Adaptor_Callbacks([ObjectCallback("Fire",this)])])
+	]);
 }
 
-protected func Fire(id type)
+protected func Fire()
 {
 	if(EnergyCheck(1000))
 	{
 		DoEnergy(-1000);
-		pDrone = CreateObject(type, 0, 0, this->GetOwner());
+		pDrone = CreateObject(PUDD, 0, 0, this->GetOwner());
 		pDrone->SetYDir(-100);
 		
 		var random = RandomX(-10,10);
@@ -46,16 +55,11 @@ protected func Fire(id type)
 		if(pTarget) pDrone->LocalN("target") = pTarget;
 		return true;
 	}
-	else
-	{
-		return Message("$NotEnoughEnergy$",this);
-	}
 }
 
 public func SetTarget(object pObj)
 {
-	if(!pObj) return;
-	pTarget = pObj;
+	if(pObj) pTarget = pObj;
 	return this;
 }
 

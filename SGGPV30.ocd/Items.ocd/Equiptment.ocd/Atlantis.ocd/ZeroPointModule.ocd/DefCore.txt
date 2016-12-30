@@ -1,5 +1,5 @@
 [DefCore]
-id=ZPM_
+id=ZPM
 Version=4,9,5
 Category=C4D_Vehicle|C4D_SelectHomebase|C4D_SelectKnowledge
 MaxUserSelect=1

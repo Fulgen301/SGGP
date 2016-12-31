@@ -1,0 +1,15 @@
+BRDG_Lock=Lock
+BRDG_Release=Release
+BRDG_Toggle=Lock/Release
+
+CTW0_DirectShoot=Shoot
+
+TWR2_LeftGate=Left Gate
+TWR2_RightGate=Right Gate
+TWR2_GateOpen=Open %s
+TWR2_GateClose=Close %s
+TWR2_GateOpenClose=Open/Close %s
+
+TWR2_DrawBridgeUp=Draw bridge up
+TWR2_DrawBridgeDown=Draw bridge down
+TWR2_DrawBridgeUpDown=Draw bridge up/down

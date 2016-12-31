@@ -1,0 +1,7 @@
+TxtConnectline=Rohr anschließen
+TxtNoNewLine=Neues Rohr hier|nicht möglich.
+TxtLineRemoval=%s abgenommen.
+TxtNewLine=Konstruktion|%s.
+TxtNoConnectType=%s kann nicht an|%s angeschlossen werden.
+TxtConnect=%s an|%s angeschlossen
+SelectTarget=Rohrziel wählen

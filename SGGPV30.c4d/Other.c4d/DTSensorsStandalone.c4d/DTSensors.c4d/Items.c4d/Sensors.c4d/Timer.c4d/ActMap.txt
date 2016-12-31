@@ -1,0 +1,7 @@
+[Action]
+Name=On
+Facet=0,0,10,5
+Length=2
+Delay=35
+NextAction=On
+Reverse=1

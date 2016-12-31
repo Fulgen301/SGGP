@@ -1,0 +1,3 @@
+ENEMYS=Feinde
+ALLIED=Verbündete
+ANIMALS=Tiere

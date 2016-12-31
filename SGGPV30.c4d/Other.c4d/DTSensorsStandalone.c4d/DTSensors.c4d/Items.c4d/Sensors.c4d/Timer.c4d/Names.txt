@@ -1,0 +1,2 @@
+DE:Zeitgeber
+US:Timer

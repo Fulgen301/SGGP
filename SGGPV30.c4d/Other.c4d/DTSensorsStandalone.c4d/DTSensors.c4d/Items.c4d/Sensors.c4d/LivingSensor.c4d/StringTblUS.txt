@@ -1,0 +1,7 @@
+AnimalTrigger=Animal detected
+NoAnimalTrigger=Animal removed
+AlliedTrigger=Allied detected
+NoAlliedTrigger=Allied removed
+HostileTrigger=Enemy detected
+NoHostileTrigger=Enemy removed
+Range=Range: %d pixels

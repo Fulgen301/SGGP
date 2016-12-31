@@ -1,0 +1,7 @@
+AnimalTrigger=Tier erkannt
+NoAnimalTrigger=Tier entfernt
+AlliedTrigger=Verbündeter erkannt
+NoAlliedTrigger=Verbündeter entfernt
+HostileTrigger=Feind erkannt
+NoHostileTrigger=Feind entfernt
+Range=Reichweite: %d Pixel

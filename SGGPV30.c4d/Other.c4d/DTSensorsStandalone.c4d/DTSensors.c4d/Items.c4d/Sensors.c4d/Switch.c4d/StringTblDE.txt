@@ -1,0 +1,4 @@
+On=Einschalten
+Off=Ausschalten
+Switch=Schalten
+Retrigger=Erneut aktivieren

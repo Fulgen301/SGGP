@@ -1,0 +1,19 @@
+Allgemein:
+
+Mit Sensoren kann man eben (wie mit der Konsole von Hazard) bei anderen Objekten Aktionen auslösen.
+Sensoren können z.B. auf Wasser oder auch auf Lebewesen reagieren.
+Aber auch Knöpfe und Sicherheitssysteme zählen zu Sensoren.
+
+Damit kann man sich dann z.B. eine durch einen Code gesicherte Basis bauen. (ganz einfach)
+
+
+Anleitung:
+
+1. mit Doppel-Graben das Menü öffnen
+2. neues Ziel einfügen:
+3. Ziel auswählen (Ziele die in der Nähe sind)
+4. Auszuführende Aktion des Zieles auswählen
+5. Aktivierungs-Status einstellen:
+   Schwarz: wird nicht berücksichtigt
+   Grün:    wenn Sensor aktiviert wurde
+   Rot:     wenn Sensor inaktiv ist

@@ -90,8 +90,11 @@ global func FxIntTeamDisplayTimer(object pTarget, int iEffectNumber, int iEffect
   for(i = 0; i < iCount; i++) {
     iPlr = aIndex[ i];
     pClonk = GetCursor(iPlr);
+	var iPlrName = GetPlayerName(iPlr);
+	if(IsSGGPTeamMember(iPlr)) iPlrName = Format("<c ffffff>{{SGGP}}</c> %s", iPlrName);
+	
     szText = Format("@<c e000ff00>%s</c>|<c e0ff0000> %3d/%d Energy</c>|<c e00080ff> %3d Points</c>",
-        GetPlayerName(iPlr),
+        iPlrName,
 		GetEnergy(pClonk),GetPhysical("Energy",0,pClonk)/1000,
 		BoundBy(GetPlrExtraData(iPlr, "SGGP_Points"), 0, 0x7FFFFFFF));
     szPortrait = Format("Portrait:%i::%x::%s",GetPortrait(pClonk,true),GetColorDw(pClonk),GetPortrait(pClonk,false));

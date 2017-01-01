@@ -30,7 +30,7 @@ func Create()
 
 func InputCallback(string szString)
 {
-	if(HasEnrg < 100000) return Message("<c ff0000>Nicht genug Energie!</c>",this);
+	if(HasEnrg < 100000) return;
 	var category = C4D_Object;
 	var id = C4Id(szString);
 	if(!id || !FindDefinition(id))

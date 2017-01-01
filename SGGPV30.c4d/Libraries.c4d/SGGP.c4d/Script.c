@@ -46,7 +46,6 @@ global func SaveTime(int iPlr)
 global func GetSystemTime(int iWhat)
 {
 	if(!IsNetwork()) return _inherited(iWhat, ...);
-	RequestHostFeature("ContinuousHostTime");
 	
 	if(GetType(iSystemTime) != C4V_Array) iSystemTime = [];
 	return iSystemTime[iWhat];

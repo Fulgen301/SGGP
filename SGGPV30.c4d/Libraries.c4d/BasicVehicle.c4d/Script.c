@@ -44,6 +44,7 @@ protected func ContainedDig(object pCaller)
 protected func MakeMenu(object pCaller)
 {
 	pPilot = pCaller;
+	SetOwner(GetOwner(pPilot));
 	CreateMenu(GetID(), pPilot, this, C4MN_Extra_None, FormatN("$DateTimeFormat$", ["Y", "M", "D", "h", "m", "s"], [GetSystemTime(0), GetSystemTime(1), GetSystemTime(3), GetSystemTime(4), GetSystemTime(5), GetSystemTime(6)]), 0, C4MN_Style_Dialog);
 	AddMenuItem("$Status$", 0, NONE, pPilot);
 	AddMenuItem(Format("$Damage$: %v/%v", GetDamage(), MaxDamage()), 0, MEPU, pPilot);

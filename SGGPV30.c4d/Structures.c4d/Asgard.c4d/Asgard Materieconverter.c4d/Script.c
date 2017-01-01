@@ -1,4 +1,4 @@
-#strict
+#strict 2
 local pId,idDef,HasEnrg,InfoOn,X,Y,User,Wait;
 func Initialize()
 {
@@ -17,7 +17,7 @@ func Damage()
 func ControlDigDouble(object pUser)
 {
 	User = pUser;
-	CreateMenu(GetID(this()), pUser, 0,0, "Asgard Materie Konverter", 0, 1);
+	CreateMenu(GetID(this), pUser, 0,0, "Asgard Materie Konverter", 0, 1);
 	if(!pId) if(HasEnrg >= 100000) AddMenuItem("Objekt erzeugen", Format("Create(%d)",pUser),MEPU,pUser);
 	if(pId) AddMenuItem("Antigravitationsfeld abschalten", "Off",MEPU,pUser);
 	AddMenuItem("Info An/Aus", "Info",MEPU,pUser);
@@ -30,6 +30,7 @@ func Create()
 
 func InputCallback(string szString)
 {
+	if(HasEnrg < 100000) return Message("<c ff0000>Nicht genug Energie!</c>",this);
 	var category = C4D_Object;
 	var id = C4Id(szString);
 	if(!id || !FindDefinition(id))
@@ -120,12 +121,12 @@ func Timer()
 	}
 	if(!pId)
 	{
-	 if(GetAction() eq "Wait")
+	 if(GetAction() == "Wait")
 	 {
 		SetAction("Stand");
 	 }
 	 
-	 if(GetAction() eq "WaitRev")
+	 if(GetAction() == "WaitRev")
 	 {
 		SetAction("Stand");
 	 }
@@ -138,7 +139,7 @@ func Timer()
 	}
 	var EnrgProz;
 	EnrgProz = HasEnrg / 1000;
-	if(!Wait) if(InfoOn) Message("<c %x> %d%</c>",this(),RGB(200 - EnrgProz * 2,EnrgProz*2),EnrgProz);
+	if(!Wait) if(InfoOn) Message("<c %x> %d%</c>",this,RGB(200 - EnrgProz * 2,EnrgProz*2),EnrgProz);
 }
 
 func Info()
@@ -146,10 +147,22 @@ func Info()
 	if(InfoOn)
 	{
 		InfoOn = 0;
-		Message(" ",this());
+		Message(" ",this);
 	}
 	else
 	{
 		InfoOn = 1;
 	}
+}
+
+public func SensorCallbacks(object pSensor)
+{
+	return [["Objekt erzeugen", BindCallback("SensorControl", [Bind(pSensor)])]];
+}
+
+public func SensorControl(object pSensor)
+{
+	if(!pSensor) return;
+	return InputCallback(LocalN("desc", pSensor));
+	
 }

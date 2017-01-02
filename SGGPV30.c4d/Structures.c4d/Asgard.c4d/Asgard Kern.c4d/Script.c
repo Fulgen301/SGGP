@@ -2,6 +2,10 @@
 
 local User, Keks, HasEnrg, InfoOn, menu, on;
 
+protected func Construction()
+{
+	AddEffect("IntTimer", this, 1, 1, this);
+}
 func Initialize()
 {
 	menu = [];
@@ -53,7 +57,7 @@ func Control(Trash,Obj)
 	}
 }
 
-func Timer()
+func FxIntTimerTimer()
 {
 	if(FindObject(ENRG))
 	{

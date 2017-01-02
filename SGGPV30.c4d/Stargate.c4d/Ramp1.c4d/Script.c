@@ -16,6 +16,7 @@ func Initialize()
   }
   var own;
   own = GetCursor(GetOwner());
+  CloseMenu(own);
   CreateMenu(SGR1,own,0,0,"Welches Gate?",0,1);
   for(var i = 0, Def; Def = GetDefinition(i); i++)
   {

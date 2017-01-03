@@ -12,28 +12,28 @@ func Initialize()
 
 func Script10()
 {
-	CreateMenu(MEPU, GC(), 0, 0,"Regeneinstellungen", 0, 1,1,17);
+	CreateMenu(MEPU, GetCursor(), 0, 0,"Regeneinstellungen", 0, 1,1,17);
 	CanClose = 0;
-	AddMenuItem("S‰ure", Format("bRegen(%d)",1),MEPU, GC());
-	AddMenuItem("Lava", Format("bRegen(%d)",2),MEPU, GC());
-	AddMenuItem("Wasser", Format("bRegen(%d)",3),MEPU, GC());
+	AddMenuItem("S‰ure", Format("bRegen(%d)",1),MEPU, GetCursor());
+	AddMenuItem("Lava", Format("bRegen(%d)",2),MEPU, GetCursor());
+	AddMenuItem("Wasser", Format("bRegen(%d)",3),MEPU, GetCursor());
 	ScriptGo();
 }
 
 func bRegen(int iRegen)
 {
 	CanClose = 1;
-	CloseMenu(GC());
+	CloseMenu(GetCursor());
 	Regen = iRegen;
 	if(iRegen == 1) Log("<c ffcc00>Es regnet S‰ure</c>");
 	if(iRegen == 2) Log("<c ffcc00>Es regnet Lava</c>");
 	if(iRegen == 3) Log("<c ffcc00>Es regnet Wasser</c>");
 	if(iRegen == 2)
 	{
-		CreateMenu(MEPU, GC(), 0, 0,"Lavaeinstellungen", 0, 1,1,17);
+		CreateMenu(MEPU, GetCursor(), 0, 0,"Lavaeinstellungen", 0, 1,1,17);
 		CanClose = 0;
-		AddMenuItem("Heiﬂe Lave", Format("bLava(%d)",1),MEPU, GC());
-		AddMenuItem("Normale Lava", Format("bLava(%d)",2),MEPU, GC());
+		AddMenuItem("Heiﬂe Lave", Format("bLava(%d)",1),MEPU, GetCursor());
+		AddMenuItem("Normale Lava", Format("bLava(%d)",2),MEPU, GetCursor());
 	}
 	else
 	{
@@ -44,43 +44,43 @@ func bRegen(int iRegen)
 func bLava(int iLava)
 {
 	CanClose = 1;
-	CloseMenu(GC());
+	CloseMenu(GetCursor());
 	if(iLava == 1)
 	{
 		Log("<c ffcc00>Lava ist heiﬂ</c>");
 		CreateObject(HLAV);
 	}
-	CreateMenu(MEPU, GC(), 0, 0,"Zeiteinstellungen", 0, 1,1,17);
+	CreateMenu(MEPU, GetCursor(), 0, 0,"Zeiteinstellungen", 0, 1,1,17);
 	CanClose = 0;
-	AddMenuItem("1 Minuten", Format("Zeit(%d)",1),MEPU, GC());
-	AddMenuItem("2 Minuten", Format("Zeit(%d)",2),MEPU, GC());
-	AddMenuItem("5 Minuten", Format("Zeit(%d)",5),MEPU, GC());
-	AddMenuItem("10 Minuten", Format("Zeit(%d)",10),MEPU, GC());
-	AddMenuItem("15 Minuten", Format("Zeit(%d)",15),MEPU, GC());
-	AddMenuItem("20 Minuten", Format("Zeit(%d)",20),MEPU, GC());
-	AddMenuItem("30 Minuten", Format("Zeit(%d)",30),MEPU, GC());
-	AddMenuItem("40 Minuten", Format("Zeit(%d)",40),MEPU, GC());
+	AddMenuItem("1 Minuten", Format("Zeit(%d)",1),MEPU, GetCursor());
+	AddMenuItem("2 Minuten", Format("Zeit(%d)",2),MEPU, GetCursor());
+	AddMenuItem("5 Minuten", Format("Zeit(%d)",5),MEPU, GetCursor());
+	AddMenuItem("10 Minuten", Format("Zeit(%d)",10),MEPU, GetCursor());
+	AddMenuItem("15 Minuten", Format("Zeit(%d)",15),MEPU, GetCursor());
+	AddMenuItem("20 Minuten", Format("Zeit(%d)",20),MEPU, GetCursor());
+	AddMenuItem("30 Minuten", Format("Zeit(%d)",30),MEPU, GetCursor());
+	AddMenuItem("40 Minuten", Format("Zeit(%d)",40),MEPU, GetCursor());
 }
 
 func Zeit(int iZeit)
 {
 	CanClose = 1;
-	CloseMenu(GC());
+	CloseMenu(GetCursor());
 	Log("<c ffcc00>%d Minuten Aufbauzeit</c>",iZeit);
 	SetTime(iZeit,0);
-	CreateMenu(MEPU, GC(), 0, 0,"Geldeinstellungen", 0, 1,1,17);
+	CreateMenu(MEPU, GetCursor(), 0, 0,"Geldeinstellungen", 0, 1,1,17);
 	CanClose = 0;
-	AddMenuItem("100 Clunker", Format("Geld(%d)",100),MEPU, GC());
-	AddMenuItem("200 Clunker", Format("Geld(%d)",200),MEPU, GC());
-	AddMenuItem("500 Clunker", Format("Geld(%d)",500),MEPU, GC());
-	AddMenuItem("1000 Clunker", Format("Geld(%d)",1000),MEPU, GC());
-	AddMenuItem("2000 Clunker", Format("Geld(%d)",2000),MEPU, GC());
+	AddMenuItem("100 Clunker", Format("Geld(%d)",100),MEPU, GetCursor());
+	AddMenuItem("200 Clunker", Format("Geld(%d)",200),MEPU, GetCursor());
+	AddMenuItem("500 Clunker", Format("Geld(%d)",500),MEPU, GetCursor());
+	AddMenuItem("1000 Clunker", Format("Geld(%d)",1000),MEPU, GetCursor());
+	AddMenuItem("2000 Clunker", Format("Geld(%d)",2000),MEPU, GetCursor());
 }
 
 func Geld(iGeld)
 {
 	CanClose = 1;
-	CloseMenu(GC());
+	CloseMenu(GetCursor());
 	Log("<c ffcc00>%d Clunker Geld</c>",iGeld);
 	var i;
 	while(i < GetPlayerCount())

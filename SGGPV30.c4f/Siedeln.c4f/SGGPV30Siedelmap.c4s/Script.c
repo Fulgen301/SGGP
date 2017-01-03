@@ -12,20 +12,20 @@ func Initialize()
 
 func Script10()
 {
-		CreateMenu(MEPU, GC(), 0, 0,"Geldeinstellungen", 0, 1,1,17);
+		CreateMenu(MEPU, GetCursor(), 0, 0,"Geldeinstellungen", 0, 1,1,17);
 		CanClose = 0;
-		AddMenuItem("100 Clunker", Format("Geld(%d)",100),MEPU, GC());
-		AddMenuItem("200 Clunker", Format("Geld(%d)",200),MEPU, GC());
-		AddMenuItem("500 Clunker", Format("Geld(%d)",500),MEPU, GC());
-		AddMenuItem("1000 Clunker", Format("Geld(%d)",1000),MEPU, GC());
-		AddMenuItem("2000 Clunker", Format("Geld(%d)",2000),MEPU, GC());
+		AddMenuItem("100 Clunker", Format("Geld(%d)",100),MEPU, GetCursor());
+		AddMenuItem("200 Clunker", Format("Geld(%d)",200),MEPU, GetCursor());
+		AddMenuItem("500 Clunker", Format("Geld(%d)",500),MEPU, GetCursor());
+		AddMenuItem("1000 Clunker", Format("Geld(%d)",1000),MEPU, GetCursor());
+		AddMenuItem("2000 Clunker", Format("Geld(%d)",2000),MEPU, GetCursor());
 	ScriptGo();
 }
 
 func Geld(int iGeld)
 {
 	CanClose = 1;
-	CloseMenu(GC());
+	CloseMenu(GetCursor());
 	Log("<c ffcc00>%d Clunker Geld</c>",iGeld);
 	var i;
 	while(i < GetPlayerCount())

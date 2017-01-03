@@ -14,7 +14,7 @@ func Timer()
 {
   if(InfoOn)
   {
-   Message("<c %x>%d%</c>",this(),RGB(2000-EnergieStand / 200,EnergieStand / 200,0),(EnergieStand / 800)*2);
+   Message("<c %x>%d%</c>",this(),RGB(2000-EnergieStand / 200,EnergieStand / 200,0),EnergieStand / 400);
   }
   var iNeed;
   iNeed = 50-GetEnergy();

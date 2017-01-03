@@ -375,9 +375,13 @@ func RemoveLineEntry(id id, int pos)
 	return true;
 }
 
-func ControlDigDouble(target, overloaded)
+func ControlDigDouble()
 {
-	var ret = _inherited(target, true, ...);
+	static DT_SelectionContext_ControlDigDouble_overloaded;
+	var overloaded = DT_SelectionContext_ControlDigDouble_overloaded;
+	DT_SelectionContext_ControlDigDouble_overloaded = true;
+	var ret = _inherited(...);
+	DT_SelectionContext_ControlDigDouble_overloaded = overloaded;
 	if(!ret && !overloaded)
 	{
 		if(GetProcedure() == "WALK" || GetProcedure() == "DIG" || GetProcedure() == "SWIM")

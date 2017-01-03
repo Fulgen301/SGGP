@@ -8,6 +8,7 @@ static ScriptOn;
 
 func Initialize() 
 {
+	RequestHostFeature("ContinuousHostTime");
 	CreateObject(TIME);
 	aBann = CreateArray(5);
 	aMoney = CreateArray(GetPlayerCount(0));
@@ -625,4 +626,9 @@ public func OnClonkDeath(object pClonk, int iKiller)
 		}
 	}
 	return true;
+}
+
+func UpdateTransferZone()
+{
+	Schedule("ReRequestHostFeatures()", 1);
 }

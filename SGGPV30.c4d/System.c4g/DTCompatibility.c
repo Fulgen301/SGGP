@@ -7,7 +7,7 @@ static hostTime;
 
 global func SetGameComment() { return _inherited(...); }
 global func IsHost() { return _inherited(...); }
-global func RequestHostFeature(string feature) { if(!HaveHostFeature(feature) || feature == "HostTime" || feature == "ContinuousHostTime") return _inherited(feature, ...); }
+global func RequestHostFeature(string feature) { if(!HaveHostFeature(feature) || feature == "HostTime") return _inherited(feature, ...); }
 
 global func AnnounceHostFeature(string feature)
 {
@@ -21,6 +21,23 @@ global func HaveHostFeature(string feature)
 	return GetIndexOf(feature, hostFeatures) != -1;
 }
 
+global func ReRequestHostFeatures()
+{
+	if(IsNetwork())
+	{
+		var features = hostFeatures;
+		hostFeatures = [];
+
+		if(features)
+		{
+			for(var feature in features)
+			{
+				RequestHostFeature(feature);
+			}
+		}
+	}
+}
+
 global func AnnounceHostTime(int time)
 {
 	hostTime = time;
@@ -28,7 +45,6 @@ global func AnnounceHostTime(int time)
 
 global func GetSystemTime(int what)
 {
-	RequestHostFeature("ContinuousHostTime");
 	if(HaveHostFeature("HostTime"))
 	{
 		if(what == 10) // is leap year

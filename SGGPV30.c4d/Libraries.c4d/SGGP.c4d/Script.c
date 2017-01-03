@@ -54,7 +54,6 @@ global func GetSystemTime(int iWhat)
 
 protected func Initialize()
 {
-	RequestHostFeature("ContinuousHostTime");
 	iSystemTime = [];
 	SGGP_SystemTimeStrings = ["Year", "Month", "WeekDay", "Day", "Hour", "Minute", "Second", "Millisecond"];	
 	if(!FindObject(HELP))

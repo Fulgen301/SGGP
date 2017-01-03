@@ -1,0 +1,13 @@
+#Activate
+
+Info=Infos
+PlayerNumber=Spielernummer: %d
+ScriptIsActive=Scripten aktiv: %s
+Yes=Ja
+No=Nein
+
+#Settings
+ActivateScript=Scripten aktivieren
+DeactivateScript=Scripten deaktivieren
+Rules=Regeln
+Environment=Umwelt

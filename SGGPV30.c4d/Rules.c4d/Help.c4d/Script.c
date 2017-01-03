@@ -33,6 +33,32 @@ func Activate(int iPlayer)
 		if(ScriptOn) AddMenuItem("Scripten deaktivieren", "Off", MEPU, pCall);
 	}
 }
+
+protected func Activate(int iPlr)
+{
+	//return _inherited(iPlr, ...);
+	
+	var pUser = GetCursor(iPlr);
+	if(!pUser) return;
+	
+	CreateMenu(HELP, pUser, 0, C4MN_Extra_None, GetName(), 0, C4MN_Style_Dialog);
+	
+	// Info
+	AddMenuItem("$Info$", 0, NONE, pUser);
+	AddMenuItem(Format("$PlayerNumber$", iPlr), 0, NONE, pUser);
+	if(ScriptOn) AddMenuItem(Format("$ScriptIsActive$", "$Yes$"), 0, NONE, pUser);
+	else AddMenuItem(Format("$ScriptIsActive$", "$No$"), 0, NONE, pUser);
+	if(GetLeague() || (iPlr && !IsSGGPTeamMember(iPlr))) return;
+	// Blankline
+	AddMenuItem(" ", 0, NONE, pUser);
+	
+	// Settings
+	if(ScriptOn) AddMenuItem("$DeactivateScript$", "Off", MEPU, pUser);
+	else AddMenuItem("$ActivateScript$", "On", MEPU, pUser);
+	
+	AddMenuItem("$Rules$", Format("Regeln(%d)",iPlr), MEPU, pUser);
+	AddMenuItem("$Environment$", Format("Umwelt(%d)", iPlr), MEPU, pUser);
+}
 /*-- Interne Funktionen --*/
 
 private func On() 
@@ -62,269 +88,6 @@ private func Off()
   	Log("<c ff0000>Das Scripten wurde deaktiviert</c>");
   	return(1);
 }
-
-private func NoMore()
-{
-	SetMaxPlayer(0);
-	NoMordet=1;
-	Log("<c ffcc00>Beitritt wurde deaktiviert</c>");
-}
-private func AnyMore()
-{
-	SetMaxPlayer(12);
-	NoMordet=0;
-	Log("<c ffcc00>Beitritt wurde aktiviert</c>");
-}
-
-private func Info(int iPlayer)
-{
-	if(ScriptOn) MessageWindow(Format("Spielernummer: <c ffcc00>%d</c>|Landschaftshöhe: <c ffcc00>%d</c>|Landschaftsbreite: <c ffcc00>%d</c>|Scripten aktiv: <c 00ff00>Ja</c>",iPlayer,LandscapeHeight(),LandscapeWidth(), ),iPlayer);
-	if(!ScriptOn) MessageWindow(Format("Spielernummer: <c ffcc00>%d</c>|Landschaftshöhe: <c ffcc00>%d</c>|Landschaftsbreite: <c ffcc00>%d</c>|Scripten aktiv: <c ff0000>Nein</c>",iPlayer,LandscapeHeight(),LandscapeWidth(), ),iPlayer);
-}
-
-/*
-#####################################################################################
-#####################################################################################
-########################                               ##############################
-########################   Relaunchsystem-Funktionen   ##############################
-########################                               ##############################
-#####################################################################################
-#####################################################################################
-*/
-
-/*
-#####################################################################################
-#####################################################################################
-########################                              ###############################
-########################   Globale Hilfs-Funktionen   ###############################
-########################                              ###############################
-#####################################################################################
-#####################################################################################
-*/
-global func CastNuclearSmoke(int iCount)
-{
-	var Bob;
-	Bob = -5;
-	while(Bob != 8)
-	{
-		Bob++;
-		CreateObject(NUCR,iCount,Bob*-iCount/2) -> DoCon(iCount*10);
-		CreateObject(NUCR,-iCount,Bob*-iCount/2) -> DoCon(iCount*10);
-		CreateObject(NUCR,0,Bob*-iCount/10) -> DoCon(iCount*10);
-	}
-	while(Bob != 11)
-	{
-		Bob++;
-		CreateObject(NUCR,-iCount*6,Bob*-iCount/2) -> DoCon(iCount*10);
-		CreateObject(NUCR,-iCount*4,Bob*-iCount/2) -> DoCon(iCount*10);
-		CreateObject(NUCR,-iCount*2,Bob*-iCount/2) -> DoCon(iCount*10);
-		CreateObject(NUCR,-iCount,Bob*-iCount/2) -> DoCon(iCount*10);
-		CreateObject(NUCR,0,Bob*-iCount/2) -> DoCon(iCount*10);
-		CreateObject(NUCR,iCount,Bob*-iCount/10) -> DoCon(iCount*10);
-		CreateObject(NUCR,iCount*2,Bob*-iCount/2) -> DoCon(iCount*10);
-		CreateObject(NUCR,iCount*4,Bob*-iCount/2) -> DoCon(iCount*10);
-		CreateObject(NUCR,iCount*6,Bob*-iCount/2) -> DoCon(iCount*10);
-	}
-}
-
-global func Xplode(iLevel,pTarget)
-{
-  if(!iLevel)
-  {
-   return(1);
-  }
-
-  if(!pTarget)
-  {
-   return(1);
-  }
-  var pNuce;
-  pNuce = CreateObject(NUCE);
-  ShakeViewPort(iLevel, 0, GetX(pTarget), GetY(pTarget));
-  SetPosition(GetX(pTarget),GetY(pTarget),pNuce);
-  pNuce -> BlastFree(0,0, iLevel*5);
-  
-  pNuce -> CastNuclearSmoke(iLevel);
-  CreateParticle("NuclearBlast",0,0,0,0,iLevel * 50);
-  var pDes;
-  BlastObjects(GetX(pNuce),GetY(pNuce),iLevel * 500);
-  for(pDes in FindObjects(Find_Distance(iLevel)))
-  {
-   if(GetOCF(pDes) & OCF_Alive)
-   {
-    pDes -> CreateObject(NUSK);
-    Kill(pDes);
-    if(pDes)
-    {
-     pDes -> RemoveObject();
-    }
-   }
-   if(GetOCF(pDes) & OCF_Inflammable)
-   {
-    Incinerate(pDes);
-   }
-  }
-  pTarget->RemoveObject();
-  pNuce -> Rauch(iLevel);
-  AddEffect("FlashPlayers", 0, 300, 10, 0,NUCE);
-  Sound("Blast3");
-  return(1);
-}
-
-global func Invisib()
-{
-	SetMatAdjust(HSLa(0,0,0,255));
-}
-
-global func BlackWhite()
-{
-	var pO;
-	for(pO in FindObjects(Find_NoContainer(0)))
-	{
-		SetClrModulation(HSL(0,0,0),pO);
-	}
-	SetMatAdjust(HSLa(0,0,0,0));
-	SetSkyAdjust(HSLa(0,0,255,0),HSL(0,0,255));
-}
-
-global func ReColor()
-{
-	var pO;
-	for(pO in FindObjects(Find_NoContainer(0)))
-	{
-		SetClrModulation(RGB(RandomX(128,255),RandomX(128,255),RandomX(128,255)),pO);
-	}
-	var i;
-	var szMat;
-	SetMatAdjust(RGBa(RandomX(0,255),RandomX(0,255),RandomX(0,255),RandomX(0,255)));
-	SetSkyAdjust(RGBa(RandomX(0,255),RandomX(0,255),RandomX(0,255),RandomX(0,255)),RGBa(RandomX(0,255),RandomX(0,255),RandomX(0,255),RandomX(0,255)));
-}
-
-
-global func StartDialog(int iPlr,string szText,id idPort) 
-{
-	CreateMenu(0, GetCursor(iPlr), this(), 0, "Dialog", 0, C4MN_Style_Dialog, 0,333);
-	AddMenuItem(Format("Portrait:%i:%x:%s",idPort,0,"1"), "", NONE, GetCursor(iPlr), 0, 0, "", 5, 0, 0);
-	AddMenuItem(szText, "", NONE, GetCursor(iPlr));
-	SetMenuTextProgress(3, GetCursor(iPlr));
-}
-
-global func DialogAnswer(int iPlr, string szText,string szFunc,id idPic)
-{
-	if(!szText) return(0);
-	if(!szFunc) return(0);
-	AddMenuItem(szText, szFunc, idPic, GetCursor(iPlr));
-}
-
-
-global func Dummy256()
-{
-}
-
-global func AddToArray(What,array& Arr)
-{
-	SetLength(Arr,GetLength(Arr)+1);
-	Arr[GetLength(Arr)] = What;
-	return(GetLength(Arr));
-}
-
-global func RemoveFromArray(What,array& Arr)
-{
-	var i;
-	i = 0;
-	while(Arr[i] != What)
-	{
-		if(GetLength(Arr) == i) return(0);
-		i++;
-	}
-	if(Arr[i] == What) Arr[i] = 0;
-}
-
-global func EliminateTeam(int iTeam)
-{
-	var i;
-	while(i != GetPlayerCount(0))
-	{
-		if(GetPlayerName(i))
-		{
-			if(GetPlayerTeam(i) == iTeam) EliminatePlayer(i);
-		}
-		i++;
-	}
-}
-
-
-global func KillCrew(int iPlayer)
-{
-	var i=GetCrewCount(iPlayer); while (i--) Kill(GetCrew(iPlayer, i));
-}
-
-global func CheckHelp()
-{
-	if(!FindObject(HELP)) CreateObject(HELP);
-}
-
-global func MatVert(string szMaterial,int iX,int iWidth)
-{
-	DrawMaterialQuad(szMaterial,iX,0,iX+iWidth,0,iX+iWidth,LandscapeHeight(),iX,LandscapeHeight(),1);
-	return(1);
-}
-
-global func MatHori(string szMaterial,int iY,int iWidth)
-{
-	DrawMaterialQuad(szMaterial,0,iY,LandscapeWidth(),iY,LandscapeWidth(),iY+iWidth,0,iY+iWidth);
-	return(1);
-}
-
-global func MatQuad(string szMaterial,int iX,int iY,int iWidth,int iHeigth)
-{
-	DrawMaterialQuad(szMaterial,iX,iY,iX+iWidth,iY,iX+iWidth,iY+iHeigth,iX,iY+iHeigth,1);
-	return(1);
-}
-
-
-global func HelpContext(int iPlayer)
-{	
-	if(FindObject(HELP))
-	{
-		FindObject(HELP) -> Activate(iPlayer);
-	}
-	else
-	{
-		CreateObject(HELP) -> Activate(iPlayer);
-	}
-}
-/*
-#####################################################################################
-#####################################################################################
-#########################                      ######################################
-#########################   Timer-Funktionen   ######################################
-#########################                      ######################################
-#####################################################################################
-#####################################################################################
-*/
-
-
-global func SetTime(int iMinutes,int iSecounds)
-{
-	CheckHelp(0);
-	var pTimer;
-	pTimer = FindObject(TIMR);
-	if(!pTimer) pTimer = CreateObject(TIMR);
-	LocalN("iMinute",pTimer) = iMinutes;
-	LocalN("iSecound",pTimer) = iSecounds;
-	return(1);
-}
-
-global func ChangeTimerCount(int iC)
-{
-	CheckHelp(0);
-	var pTimer;
-	pTimer = FindObject(TIMR);
-	if(!pTimer) pTimer = CreateObject(TIMR);
-	LocalN("Count",pTimer) = iC;
-}
-
 
 /*
 #####################################################################################
@@ -645,6 +408,199 @@ func ClimUp()
 	Sound("Connect");
 	Message("{{ICE1}} <c ffcc00>Wärmer</c>");
 	Temperature++;
+}
+
+/*
+#####################################################################################
+#####################################################################################
+########################                               ##############################
+########################   Relaunchsystem-Funktionen   ##############################
+########################                               ##############################
+#####################################################################################
+#####################################################################################
+*/
+
+/*
+#####################################################################################
+#####################################################################################
+########################                              ###############################
+########################   Globale Hilfs-Funktionen   ###############################
+########################                              ###############################
+#####################################################################################
+#####################################################################################
+*/
+global func CastNuclearSmoke(int iCount)
+{
+	var Bob;
+	Bob = -5;
+	while(Bob != 8)
+	{
+		Bob++;
+		CreateObject(NUCR,iCount,Bob*-iCount/2) -> DoCon(iCount*10);
+		CreateObject(NUCR,-iCount,Bob*-iCount/2) -> DoCon(iCount*10);
+		CreateObject(NUCR,0,Bob*-iCount/10) -> DoCon(iCount*10);
+	}
+	while(Bob != 11)
+	{
+		Bob++;
+		CreateObject(NUCR,-iCount*6,Bob*-iCount/2) -> DoCon(iCount*10);
+		CreateObject(NUCR,-iCount*4,Bob*-iCount/2) -> DoCon(iCount*10);
+		CreateObject(NUCR,-iCount*2,Bob*-iCount/2) -> DoCon(iCount*10);
+		CreateObject(NUCR,-iCount,Bob*-iCount/2) -> DoCon(iCount*10);
+		CreateObject(NUCR,0,Bob*-iCount/2) -> DoCon(iCount*10);
+		CreateObject(NUCR,iCount,Bob*-iCount/10) -> DoCon(iCount*10);
+		CreateObject(NUCR,iCount*2,Bob*-iCount/2) -> DoCon(iCount*10);
+		CreateObject(NUCR,iCount*4,Bob*-iCount/2) -> DoCon(iCount*10);
+		CreateObject(NUCR,iCount*6,Bob*-iCount/2) -> DoCon(iCount*10);
+	}
+}
+
+global func Xplode(iLevel,pTarget)
+{
+  if(!iLevel)
+  {
+   return(1);
+  }
+
+  if(!pTarget)
+  {
+   return(1);
+  }
+  var pNuce;
+  pNuce = CreateObject(NUCE);
+  ShakeViewPort(iLevel, 0, GetX(pTarget), GetY(pTarget));
+  SetPosition(GetX(pTarget),GetY(pTarget),pNuce);
+  pNuce -> BlastFree(0,0, iLevel*5);
+  
+  pNuce -> CastNuclearSmoke(iLevel);
+  CreateParticle("NuclearBlast",0,0,0,0,iLevel * 50);
+  var pDes;
+  BlastObjects(GetX(pNuce),GetY(pNuce),iLevel * 500);
+  for(pDes in FindObjects(Find_Distance(iLevel)))
+  {
+   if(GetOCF(pDes) & OCF_Alive)
+   {
+    pDes -> CreateObject(NUSK);
+    Kill(pDes);
+    if(pDes)
+    {
+     pDes -> RemoveObject();
+    }
+   }
+   if(GetOCF(pDes) & OCF_Inflammable)
+   {
+    Incinerate(pDes);
+   }
+  }
+  pTarget->RemoveObject();
+  pNuce -> Rauch(iLevel);
+  AddEffect("FlashPlayers", 0, 300, 10, 0,NUCE);
+  Sound("Blast3");
+  return(1);
+}
+
+global func AddToArray(What,array& Arr)
+{
+	SetLength(Arr,GetLength(Arr)+1);
+	Arr[GetLength(Arr)] = What;
+	return(GetLength(Arr));
+}
+
+global func RemoveFromArray(What,array& Arr)
+{
+	var i;
+	i = 0;
+	while(Arr[i] != What)
+	{
+		if(GetLength(Arr) == i) return(0);
+		i++;
+	}
+	if(Arr[i] == What) Arr[i] = 0;
+}
+
+global func EliminateTeam(int iTeam)
+{
+	var i;
+	while(i != GetPlayerCount(0))
+	{
+		if(GetPlayerName(i))
+		{
+			if(GetPlayerTeam(i) == iTeam) EliminatePlayer(i);
+		}
+		i++;
+	}
+}
+
+
+global func KillCrew(int iPlayer)
+{
+	var i=GetCrewCount(iPlayer); while (i--) Kill(GetCrew(iPlayer, i));
+}
+
+global func CheckHelp()
+{
+	if(!FindObject(HELP)) CreateObject(HELP);
+}
+
+global func MatVert(string szMaterial,int iX,int iWidth)
+{
+	DrawMaterialQuad(szMaterial,iX,0,iX+iWidth,0,iX+iWidth,LandscapeHeight(),iX,LandscapeHeight(),1);
+	return(1);
+}
+
+global func MatHori(string szMaterial,int iY,int iWidth)
+{
+	DrawMaterialQuad(szMaterial,0,iY,LandscapeWidth(),iY,LandscapeWidth(),iY+iWidth,0,iY+iWidth);
+	return(1);
+}
+
+global func MatQuad(string szMaterial,int iX,int iY,int iWidth,int iHeigth)
+{
+	DrawMaterialQuad(szMaterial,iX,iY,iX+iWidth,iY,iX+iWidth,iY+iHeigth,iX,iY+iHeigth,1);
+	return(1);
+}
+
+
+global func HelpContext(int iPlayer)
+{	
+	if(FindObject(HELP))
+	{
+		FindObject(HELP) -> Activate(iPlayer);
+	}
+	else
+	{
+		CreateObject(HELP) -> Activate(iPlayer);
+	}
+}
+/*
+#####################################################################################
+#####################################################################################
+#########################                      ######################################
+#########################   Timer-Funktionen   ######################################
+#########################                      ######################################
+#####################################################################################
+#####################################################################################
+*/
+
+
+global func SetTime(int iMinutes,int iSecounds)
+{
+	CheckHelp(0);
+	var pTimer;
+	pTimer = FindObject(TIMR);
+	if(!pTimer) pTimer = CreateObject(TIMR);
+	LocalN("iMinute",pTimer) = iMinutes;
+	LocalN("iSecound",pTimer) = iSecounds;
+	return(1);
+}
+
+global func ChangeTimerCount(int iC)
+{
+	CheckHelp(0);
+	var pTimer;
+	pTimer = FindObject(TIMR);
+	if(!pTimer) pTimer = CreateObject(TIMR);
+	LocalN("Count",pTimer) = iC;
 }
 
 public func OnClonkDeath(object pClonk, int iKiller)

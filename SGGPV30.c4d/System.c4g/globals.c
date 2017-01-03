@@ -23,22 +23,6 @@ global func RemoveObjects(array aObjects, bool fContents)
 	}
 	return true;
 }
-/* Member-System */
-
-static SGGP_Developers;
-
-global func IsSGGPTeamMember(int iPlr)
-{
-	SGGP_Developers = CreateArray();
-	SGGP_Developers[0] = "39A010A2D3738FF9E78699FDF50EC38D7BE9BD79";
-//	SGGP_Developers[1] = "";
-	for(var i = 0; i < GetLength(SGGP_Developers); i++)
-	{
-		if(SHA1m(GetPlayerName(iPlr)) == SGGP_Developers[i])
-			return(true);
-	}
-	return(false);
-}
 
 
 /* Compute a hash of string (by Sven2) */

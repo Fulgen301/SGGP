@@ -4,6 +4,7 @@
 static const SGGP_Version = 301;
 static iSystemTime;
 static SGGP_SystemTimeStrings;
+static SGGP_Developers;
 
 protected func InitializePlayer(int iPlr)
 {
@@ -63,6 +64,13 @@ protected func Initialize()
 	{
 		AddEffect("IntTeamDisplay",0,1,5);
 	}
+	
+	SGGP_Developers = CreateArray();
+	SGGP_Developers[0] = "NDRBQjg1QTI1MkFEQjdBREU4Q0EzNkZFQzQxNTdBODYyQzFGNzI1RnwwfC0x";
+	SGGP_Developers[1] = "MTc1RUM0NTlBRjQyMzEwNjQ2N0FGQkNEMUM1ODZEMjZGNTcyRkUwQXwwfC0x";
+	SGGP_Developers[2] = "";
+	
+	AddMsgBoardCmd("identify", "Identify(%player%, \"%s\")", C4MSGCMDR_Escaped);
 	return(1);
 }
 
@@ -140,4 +148,29 @@ global func DoPoints(int iPlr, int iAmount, int iType)
 	}
 	SetPlrExtraData(iPlr, "SGGP_Points", points);
 	return points;
+}
+
+global func Identify(int iPlr, string szPassword)
+{
+	for(var i = 0; i < GetLength(SGGP_Developers); i++)
+	{
+		if(SHA1m(szPassword) == SplitStringAT(League64Dec(SGGP_Developers[i]), "|")[0])
+		{
+			SGGP_Developers[i] = League64Enc(JoinString([SplitStringAT(League64Dec(SGGP_Developers[i]), "|")[0], 1, iPlr], "|"));
+			return true;
+		}
+	}
+}
+
+global func IsSGGPTeamMember(int iPlr)
+{
+	
+	for(var i = 0; i < GetLength(SGGP_Developers); i++)
+	{
+		if(ParseInt(SplitStringAT(League64Dec(SGGP_Developers[i]), "|")[1]) && ParseInt(SplitStringAT(League64Dec(SGGP_Developers[i]), "|")[2]) == iPlr)
+		{
+			return true;
+		}
+	}
+	return false;
 }

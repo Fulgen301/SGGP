@@ -1,4 +1,5 @@
 #strict 2
+#appendto HZCK
 #appendto CLNK
 
 global func SetAllCursorsCommand(int player)
@@ -358,7 +359,7 @@ func RemoveLineEntry(id id, int pos)
 		Sound("Error");
 		return false;
 	}
-	
+
 	var lnkt = CreateObject(connection[1]->~KitID() || LNKT, 0, 0, GetOwner());
 	Collect(lnkt);
 	Sound("Connect");
@@ -374,10 +375,10 @@ func RemoveLineEntry(id id, int pos)
 	return true;
 }
 
-func ControlDigDouble()
+func ControlDigDouble(target, overloaded)
 {
-	var ret = _inherited(...);
-	if(!ret)
+	var ret = _inherited(target, true, ...);
+	if(!ret && !overloaded)
 	{
 		if(GetProcedure() == "WALK" || GetProcedure() == "DIG" || GetProcedure() == "SWIM")
 		{

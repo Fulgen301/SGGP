@@ -521,13 +521,6 @@ func Iris()
   return(1);
 }
 
-
-public func Schaden()
-{
-  Message("$DamageCall$",this() , GetDamage(this()) , 1000-GetDamage(this()));
-  return(1);
-}
-
 public func Hatch()
 {
   if(GetAction(luke1) == "Open")

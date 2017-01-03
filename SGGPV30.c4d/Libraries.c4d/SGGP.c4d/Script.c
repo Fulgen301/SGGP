@@ -59,11 +59,6 @@ protected func Initialize()
 	if(!FindObject(HELP))
 		CreateObject(HELP);
 	
-	if(!GetEffect("IntTeamDisplay"))
-	{
-		AddEffect("IntTeamDisplay",0,1,5);
-	}
-	
 	SGGP_Developers = CreateArray();
 	SGGP_Developers[0] = "NDRBQjg1QTI1MkFEQjdBREU4Q0EzNkZFQzQxNTdBODYyQzFGNzI1RnwwfC0x";
 	SGGP_Developers[1] = "MTc1RUM0NTlBRjQyMzEwNjQ2N0FGQkNEMUM1ODZEMjZGNTcyRkUwQXwwfC0x";
@@ -81,38 +76,6 @@ protected func OnGameOver()
 	}
 }
 
-global func FxIntTeamDisplayTimer(object pTarget, int iEffectNumber, int iEffectTime)
-{
-  var i, j, iPlr, iCount, szText, szPortrait, pClonk;
-  var aIndex, aMessages;
-  iCount = GetPlayerCount();
-  aIndex = aMessages = [];
-  for(i = 0; i < iCount; i++) {
-    aIndex[ i] = GetPlayerByIndex(i);
-    CustomMessage("",0,aIndex[ i],0,0,0,0,0,MSG_Top|MSG_Left);
-  }
-  
-  if(FindObject(MS4K) || FindObject(EI4K)) return;
-  
-  for(i = 0; i < iCount; i++) {
-    iPlr = aIndex[ i];
-    pClonk = GetCursor(iPlr);
-	var iPlrName = GetPlayerName(iPlr);
-	if(IsSGGPTeamMember(iPlr)) iPlrName = Format("<c ffffff>{{SGGP}}</c> %s", iPlrName);
-	
-    szText = Format("@<c e000ff00>%s</c>|<c e0ff0000> %3d/%d Energy</c>|<c e00080ff> %3d Points</c>",
-        iPlrName,
-		GetEnergy(pClonk),GetPhysical("Energy",0,pClonk)/1000,
-		BoundBy(GetPlrExtraData(iPlr, "SGGP_Points"), 0, 0x7FFFFFFF));
-    szPortrait = Format("Portrait:%i::%x::%s",GetPortrait(pClonk,true),GetColorDw(pClonk),GetPortrait(pClonk,false));
-    for(j = 0; j < iCount; j++) {
-      if(Hostile(iPlr,aIndex[j]))
-        continue;
-      CustomMessage(szText,0,aIndex[j],25+240*(aMessages[j]++),125,0,0,szPortrait,MSG_Top|MSG_Left|MSG_Multiple);
-    }
-  }
-  return true;
-}
 
 /*Points*/
 static const SGGP_KillPoints = 1;

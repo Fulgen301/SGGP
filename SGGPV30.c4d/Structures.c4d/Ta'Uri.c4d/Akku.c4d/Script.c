@@ -22,8 +22,8 @@ func Timer()
 		DoEnergy(+iNeed);
 	}
 	if(EnergieStand < 1) EnergieStand = 1;
-	if(EnergieStand > 3990) EnergieStand = 3990;
-	SetPhase(EnergieStand / 200);
+	if(EnergieStand > 4100) EnergieStand = 4100;
+	SetPhase(Min(EnergieStand / 200, 3990/200));
 }
 
 func ControlDigDouble()

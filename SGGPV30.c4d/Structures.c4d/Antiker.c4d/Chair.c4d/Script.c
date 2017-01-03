@@ -2,7 +2,7 @@
 
 #strict 2
 
-local energy;
+local energy, destroyed;
 
 public func & HasEnergy()
 {
@@ -98,5 +98,17 @@ protected func FxTimerTimer(object pTarget, int pEffect)
 		{
 			HasEnergy() += 100;
 		}
+	}
+}
+
+protected func Damage()
+{
+	if(destroyed) return;
+	
+	if(GetDamage() > 100)
+	{
+		destroyed = true;
+		SetClrModulation(RGB(100,100,100));
+		Incinerate();
 	}
 }

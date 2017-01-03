@@ -16,7 +16,7 @@ Mass=2000
 Components=ROCK=5;CRYS=10;METL=15
 Picture=0,0,30,50
 Construction=1
-Timer=1
+Timer=10
 TimerCall=Timer
 SolidMask=0,50,30,50
 TopFace=0,0,30,50

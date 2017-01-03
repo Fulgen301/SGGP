@@ -329,6 +329,15 @@ public func FindStargate()
 {
 	return FindObject2(Find_Func("IsStargate"),Find_Distance(1000),Sort_Distance());
 }
+
+protected func Damage()
+{
+	if(GetDamage() > 100)
+	{
+		Incinerate();
+		SetClrModulation(RGB(100,100,100));
+	}
+}
 		
 public func IsMachine() {return true;}
 public func IsDHD()		{return true;}

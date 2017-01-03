@@ -1066,6 +1066,12 @@ func Shield()
   
   return(1);
 }
+
+protected func UpdateTransferZone()
+{
+	if(shield) shield->SetActionData(256+20);
+}
+
 public func IsBulletTarget(id idBullet, object pBullet, object pShooter)
 {
 	if(pBullet && pBullet->GetOwner() != GetOwner() && Hostile(pBullet->GetOwner(), GetOwner()))

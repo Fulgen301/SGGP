@@ -359,7 +359,7 @@ if(GetCon() < 100) return;
 //###########################
 //### SOLIDMASK-STEUERUNG ###
 //###########################
-  if(GetDir() == 0)
+/*  if(GetDir() == 0)
   {
    SetSolidMask(0,150,300,150);
   }
@@ -368,7 +368,7 @@ if(GetCon() < 100) return;
   {
    SetSolidMask(300,150,300,150);
   }
-
+*/
 //###########################
 //#### ENERGIE-STEUERUNG ####
 //###########################
@@ -799,6 +799,7 @@ func Turned()
    SetVertexXY(17,133,11);
    SetVertexXY(18,-81,45);
    SetVertexXY(19,105,54);
+   SetSolidMask(0,150,300,150);
   }
   
   if(GetDir() == 0)
@@ -822,6 +823,7 @@ func Turned()
    SetVertexXY(17,-133,11);
    SetVertexXY(18,81,45);
    SetVertexXY(19,-105,54);
+   SetSolidMask(300,150,300,150);
   }
 
 //Der rest:

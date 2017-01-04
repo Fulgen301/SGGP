@@ -2,7 +2,7 @@
 id=ZPM2
 Version=4,9,5
 Name=ZeroPointModule
-Category=2
+Category=C4D_StaticBack
 Width=4
 Height=7
 Offset=-2,-5
@@ -14,6 +14,3 @@ Value=1000
 Mass=10
 Components=CRYS=50;METL=5;
 Picture=13,0,64,64
-//LineConnect=2
-Timer=1
-TimerCall=Piccheck

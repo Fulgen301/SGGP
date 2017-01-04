@@ -1,14 +1,12 @@
 /*-- Zero Point Modul --*/
 
-#strict
+#strict 2
 
 local timer;
 
 func Initialize() 
 {
-  SetAction("Inactive");
-  SetVisibility(VIS_None());
-  return(1);
+  ObjectSetAction(this, "None");
 }
 
 func Minus()
@@ -40,17 +38,25 @@ func GetZpm()
   return(FindContents(ZPM_));
 }
 
-func Piccheck()
+protected func Collection2(object pZPM)
 {
-  if(FindContents(ZPM_))
-  {
-   SetVisibility(VIS_All());
-   SetAction(GetAction(FindContents(ZPM_)));
-  }
-  else
-  {
-   SetAction("Inactive");
-   SetVisibility(VIS_None());
-  }
-  return(1);
+	if(!pZPM) return;
+	if(pZPM && (pZPM->GetID() != ZPM_ || ContentsCount() > 2)) return pZPM->Exit();
+	SetAction(pZPM->GetAction());
 }
+
+protected func Ejection(object pZPM)
+{
+	if(!pZPM || pZPM->GetID() != ZPM_) return;
+	ObjectSetAction(this, "Idle");
+}
+
+public func SetAction(string szAction)
+{
+	Log(szAction);
+	if(Contents()) Contents()->SetAction(szAction, ...);
+	return _inherited(szAction, ...);
+}
+
+private func Visible()		{ SetVisibility(VIS_All); }
+private func Invisible()	{ SetVisibility(VIS_None); }

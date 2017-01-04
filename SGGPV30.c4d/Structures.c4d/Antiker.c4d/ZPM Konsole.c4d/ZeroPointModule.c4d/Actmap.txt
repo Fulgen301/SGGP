@@ -1,9 +1,18 @@
 [Action]
+Name=None
+Delay=1
+Length=1
+Facet=0,0,4,7
+NextAction=Hold
+StartCall=Invisible
+
+[Action]
 Name=Inactive
 Delay=1
 Length=1
 Facet=0,0,4,7
 NextAction=Inactive
+StartCall=Visible
 
 [Action]
 Name=Activen
@@ -11,6 +20,7 @@ Delay=1
 Length=1
 Facet=4,0,4,7
 NextAction=Activen
+StartCall=Visible
 
 [Action]
 Name=Depledet
@@ -18,3 +28,4 @@ Delay=1
 Length=1
 Facet=8,0,4,7
 NextAction=Depledet
+StartCall=Visible

@@ -9,7 +9,7 @@ global func CreateObjects(id ID, int x, int y, int owner, int amount)
 	var array = CreateArray(amount);
 	for(var i = 0; i < amount; i++)
 	{
-		array[i] = CreateObject(ID, x, y, owner);
+		array[i] = CreateObject(ID, x + GetX(this), y + GetY(this), owner);
 	}
 	return array;
 }

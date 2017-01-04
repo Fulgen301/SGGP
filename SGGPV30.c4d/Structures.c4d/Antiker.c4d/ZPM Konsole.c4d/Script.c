@@ -1,405 +1,194 @@
 #strict 2
 #include BAS3
 
-local zpm1, zpm2, zpm3;
+local zpms;
 local User;
 local info;
 local iMode;
 
-func Initialize()
+protected func Initialize()
 {
-  zpm1 = CreateObject(ZPM2);
-  zpm2 = CreateObject(ZPM2);
-  zpm3 = CreateObject(ZPM2);
-  SetObjectOrder(zpm1,this);
-  SetObjectOrder(zpm2,this);
-  SetObjectOrder(zpm3,this);
-  return(1);
+  zpms = CreateObjects(ZPM2, 0, 0, GetOwner(),3);
+  OnPositionChange(GetX(), GetY());
 }
 
-func Damage()
+protected func Damage()
 {
   if(GetDamage() > 200)
   {
-   Explode(EnrgA()+EnrgB()+EnrgC()+50);
+	  var size = 50;
+	  for(var zpm in zpms)
+	  {
+		  if(zpm) size += zpm->Enrg();
+	  }
+   Explode(size);
   }
-  return(1);
 }
 
-func Destruction()
+protected func Destruction()
 {
-  if(zpm1) zpm1->RemoveObject();
-  if(zpm2) zpm2->RemoveObject();
-  if(zpm3) zpm3->RemoveObject();
+  RemoveObjects(zpms);
   return _inherited();
 }
 
-func ZpmA()
+public func OnPositionChange(int iNewX, int iNewY)
 {
-  if(zpm1->GetZpm() == 0)
-  {
-   return("1.ZPM:<c ff0000> Nicht vorhanden</c>");
-  }
+	var x = -13;
+	for(var i = 0; i < GetLength(zpms); i++)
+	{
+		if(zpms[i])
+		{
+			zpms[i]->SetPosition(iNewX + x, iNewY - 5);
+			if(!i) x = 3;
+			else x += 13;
+		}
+	}
+}
 
-  if(GetAction(zpm1) == "Depledet")
-  {
-   return("1.ZPM:<c 000000> Erschöpft</c>");
-  }
+protected func Check()
+{
+  if(GetCon() != 100) return;
+
+  if(CheckEnergyNeedChain()) GiveEnerg();
   
-  if(GetAction(zpm1) == "Activen")
+  for(var i = 0; GetIndexOf(0, zpms) != -1; i = GetIndexOf(0, zpms))
   {
-   return("1.ZPM:<c 00ff00> Aktiv</c>");
+	  zpms[i] = CreateObject(ZPM2, 0, 0, GetOwner());
   }
-  
-  if(GetAction(zpm1) == "Inactive")
-  {
-   return("1.ZPM:<c 0000ff> Inaktiv</c>");
-  }
-  return(1);
 }
 
-func ZpmB()
+public func GiveEnerg()
 {
-  if(zpm2->GetZpm() == 0)
-  {
-   return("2.ZPM:<c ff0000> Nicht vorhanden</c>");
-  }
-
-  if(GetAction(zpm2) == "Depledet")
-  {
-   return("2.ZPM:<c 000000> Erschöpft</c>");
-  }
-  
-  if(GetAction(zpm2) == "Activen")
-  {
-   return("2.ZPM:<c 00ff00> Aktiv</c>");
-  }
-  
-  if(GetAction(zpm2) == "Inactive")
-  {
-   return("2.ZPM:<c 0000ff> Inaktiv</c>");
-  }
-  return(1);
+	for(var zpm in zpms)
+	{
+		if(zpm && zpm->GetAction() == "Activen")
+		{
+			zpm->Minus();
+			DoEnergy(10000);
+			return;
+		}
+	}
 }
 
-func ZpmC()
+public func Free()
 {
-  if(zpm3->GetZpm() == 0)
-  {
-   return("3.ZPM:<c ff0000> Nicht vorhanden</c>");
-  }
-
-  if(GetAction(zpm3) == "Depledet")
-  {
-   return("3.ZPM:<c 000000> Erschöpft</c>");
-  }
-  
-  if(GetAction(zpm3) == "Activen")
-  {
-   return("3.ZPM:<c 00ff00> Aktiv</c>");
-  }
-  
-  if(GetAction(zpm3) == "Inactive")
-  {
-   return("3.ZPM:<c 0000ff> Inaktiv</c>");
-  }
-  return(1);
+	for(var zpm in zpms)
+	{
+		if(zpm && !zpm->FindContents(ZPM_)) return true;
+	}
 }
 
-func EnrgA()
-{
-  return(zpm1->Enrg());
-}
-
-func EnrgB()
-{
-  return(zpm2->Enrg());
-}
-
-func EnrgC()
-{
-  return(zpm3->Enrg());
-}
-
-func Check()
-{
-  if(GetCon() != 100)
-  {
-   return(1);
-  }
-
-  if(CheckEnergyNeedChain())
-  {
-   GiveEnerg();
-  }
-  if(zpm1)
-  {
-	zpm1->SetPosition(GetX()-13,GetY()-5);
-	zpm1->SetYDir();
-  }
-  else
-  {
-	  zpm1 = CreateObject(ZPM2);
-	  SetObjectOrder(zpm1,this);
-  }
-  if(zpm2)
-  {
-	  zpm2->SetPosition(GetX()+3,GetY()-5);
-	  zpm2->SetYDir();
-  }
-  else
-  {
-	  zpm2 = CreateObject(ZPM2);
-	  SetObjectOrder(zpm2,this);
-  }
-  if(zpm3)
-  {
-	  zpm3->SetPosition(GetX()+13,GetY()-5);
-	  zpm3->SetYDir();
-  }
-  else
-  {
-	  zpm3 = CreateObject(ZPM2);
-	  SetObjectOrder(zpm3,this);
-  }
-  if(info)
-  {
-   Message(Format("%v (%v%)|%v (%v%)|%v (%v%)",ZpmA(),EnrgA(),ZpmB(),EnrgB(),ZpmC(),EnrgC()),this);
-  }
-  else Message("");
-  return(1);
-}
-
-func GiveEnerg()
-{
-  if(zpm1->GetZpm() != 0)
-  {
-   if(GetAction(zpm1) == "Activen")
-   {
-    zpm1->Minus();
-    DoEnergy(10000);
-    return(1);
-   }
-  }
-  
-  if(zpm2->GetZpm() != 0)
-  {
-   if(GetAction(zpm2) == "Activen")
-   {
-    zpm2->Minus();
-    DoEnergy(10000);
-    return(1);
-   }
-  }
-  
-  if(zpm3->GetZpm() != 0)
-  {
-   if(GetAction(zpm3) == "Activen")
-   {
-    zpm3->Minus();
-    DoEnergy(10000);
-    return(1);
-   }
-  }
-  return(0);
-}
-
-func Free()
-{
-  if(zpm1->GetZpm() == 0)
-  {
-   return(1);
-  }
-  if(zpm2->GetZpm() == 0)
-  {
-   return(1);
-  }
-  if(zpm3->GetZpm() == 0)
-  {
-   return(1);
-  }
-  return(0);
-}
-
-func HasZpm(bool active)
+public func HasZPM(bool active)
 {
 	var i;
-  if(zpm1->GetZpm() != 0)
-  {
-   if(!active) i++;
-   else if(zpm1->GetZpm()->GetAction() == "Activen") i++;
-  }
-  if(zpm2->GetZpm() != 0)
-  {
-   if(!active) i++;
-   else if(zpm2->GetZpm()->GetAction() == "Activen") i++;
-  }
-  if(zpm3->GetZpm() != 0)
-  {
-   if(!active) i++;
-   else if(zpm3->GetZpm()->GetAction() == "Activen") i++;
-  }
+	for(var zpm in zpms)
+	{
+		if(zpm && zpm->GetAction() != "None") i++;
+	}
   return i;
 }
 
 public func GetActiveZPMCount()
 {
-	return HasZpm(true);
+	var i;
+	for(var zpm in zpms)
+	{
+		if(zpm && zpm->GetAction() == "Active") i++;
+	}
+	
+	return i;
 }
 
-public func GetAllZPMs()
+public func & GetAllZPMs()
 {
-	return [zpm1, zpm2, zpm3];
+	return zpms;
 }
 
-func ControlDigDouble(pCaller)
+protected func ControlDigDouble(pCaller)
 {
   User = pCaller;
-  CreateMenu(GetID(this()), User, 0,0, "ZPM Konsole", 0, 1);
-  AddMenuItem("Info An/Aus", "Info",MEPU,User);
-  if(FindContents(ZPM_,User))
+  CreateMenu(GetID(), User, 0,0, GetName(), 0, C4MN_Style_Dialog);
+  
+  AddMenuItem("Status", 0, NONE, User);
+  for(var i = 0; i < GetLength(zpms); i++)
   {
-   if(Free())
-   {
-    AddMenuItem("ZPM hineinlegen","PutZpm",MEPU,User);
-   }
-  }
-  if(HasZpm())
-  {
-   AddMenuItem("ZPM herausnehmen","GetZpm",MEPU,User);
+	if(zpms[i])
+	{
+		var string;
+		var act = zpms[i]->GetAction();
+		if(act == "Activen") string = "$Activen$";
+		else if(act == "Inactive") string = "$Inactive$";
+		else if(act == "Depledet") string = "$Depledet";
+		else if(act == "None") string = "$None$";
+		
+	  AddMenuItem(FormatN("$ZPMFormat$", ["i", "a", "e"], [i + 1, string, zpms[i]->Enrg()]), 0, NONE, User);
+	}
   }
   
+  AddMenuItem(" ", 0, NONE, User);
   
-  if(ZpmA() == "1.ZPM:<c 00ff00> Aktiv</c>")
+  if(FindContents(ZPM_,User) && Free())
   {
-   AddMenuItem("1.ZPM Deaktivieren","SwtZpmA",MEPU,User);
-  }
-  if(ZpmA() == "1.ZPM:<c 0000ff> Inaktiv</c>")
-  {
-   AddMenuItem("1.ZPM Aktivieren","SwtZpmA",MEPU,User);
+    AddMenuItem("$PutZPM$","PutZPM",MEPU,User);
   }
   
-  if(ZpmB() == "2.ZPM:<c 00ff00> Aktiv</c>")
+  if(HasZPM())
   {
-   AddMenuItem("2.ZPM Deaktivieren","SwtZpmB",MEPU,User);
-  }
-  if(ZpmB() == "2.ZPM:<c 0000ff> Inaktiv</c>")
-  {
-   AddMenuItem("2.ZPM Aktivieren","SwtZpmB",MEPU,User);
+   AddMenuItem("$GetZPM$","GetZPM",MEPU,User);
   }
   
-  if(ZpmC() == "3.ZPM:<c 00ff00> Aktiv</c>")
+  for(var i = 0; i < GetLength(zpms); i++)
   {
-   AddMenuItem("3.ZPM Deaktivieren","SwtZpmC",MEPU,User);
-  }
-  if(ZpmC() == "3.ZPM:<c 0000ff> Inaktiv</c>")
-  {
-   AddMenuItem("3.ZPM Aktivieren","SwtZpmC",MEPU,User);
+	  var txt;
+	  var active = 0;
+	  
+	  if(zpms[i])
+	  {
+		  if(zpms[i]->GetAction() == "Activen")
+		  {
+			  txt = "$DeactivateZPM$";
+			  active = 1;
+		  }
+		  else if(zpms[i]->GetAction() == "Inactive") txt = "$ActivateZPM$";
+		  else continue;
+		  
+		  AddMenuItem(Format(txt, i + 1), Format("SwitchZPM(%d, %d)", i, active), MEPU, User);
+	  }
   }
   return(1);
 }
 
-func SwtZpmA()
+protected func SwitchZPM(int i, int active)
 {
-  if(GetAction(FindContents(ZPM_,zpm1)) == "Activen")
-  {
-   FindContents(ZPM_,zpm1)->SetAction("Inactive");
-  }
-  else
-  {
-   FindContents(ZPM_,zpm1)->SetAction("Activen");
-  }
-  return(1);
+	if(!zpms[i]) return;
+	if(active) zpms[i]->SetAction("Inactive");
+	else zpms[i]->SetAction("Activen");
 }
 
-func SwtZpmB()
+public func GetZPM()
 {
-  if(GetAction(FindContents(ZPM_,zpm2)) == "Activen")
+  for(var zpm in zpms)
   {
-   FindContents(ZPM_,zpm2)->SetAction("Inactive");
+	  if(zpm && zpm->FindContents(ZPM_) && User)
+	  {
+		  zpm->FindContents(ZPM_)->Enter(User);
+		  return true;
+	  }
   }
-  else
-  {
-   FindContents(ZPM_,zpm2)->SetAction("Activen");
-  }
-  return(1);
 }
 
-func SwtZpmC()
+public func PutZPM()
 {
-  if(GetAction(FindContents(ZPM_,zpm3)) == "Activen")
+  for(var zpm in zpms)
   {
-   FindContents(ZPM_,zpm3)->SetAction("Inactive");
+	  if(zpm && !zpm->RejectCollect() && User)
+	  {
+		  User->FindContents(ZPM_)->Enter(zpm);
+		  return true;
+	  }
   }
-  else
-  {
-   FindContents(ZPM_,zpm3)->SetAction("Activen");
-  }
-  return(1);
 }
 
-func GetZpm()
-{
-  if(zpm1->GetZpm() != 0)
-  {
-   FindContents(ZPM_,zpm1)->Enter(User);
-   return(1);
-  }
-  
-  if(zpm2->GetZpm() != 0)
-  {
-   FindContents(ZPM_,zpm2)->Enter(User);
-   return(1);
-  }
-  
-  if(zpm3->GetZpm() != 0)
-  {
-   FindContents(ZPM_,zpm3)->Enter(User);
-   return(1);
-  }
-  return(1);
-}
-
-func PutZpm()
-{
-  if(!FindContents(ZPM_,User))
-  {
-   return(1);
-  }
-  
-  if(zpm1->GetZpm() == 0)
-  {
-   FindContents(ZPM_,User)->Enter(zpm1);
-   return(1);
-  }
-  
-  if(zpm2->GetZpm() == 0)
-  {
-   FindContents(ZPM_,User)->Enter(zpm2);
-   return(1);
-  }
-  
-  if(zpm3->GetZpm() == 0)
-  {
-   FindContents(ZPM_,User)->Enter(zpm3);
-   return(1);
-  }
-  return(1);
-}
-
-func Info()
-{
-  if(info)
-  {
-   info = 0;
-  }
-  else
-  {
-   info = 1;
-  }
-  Sound("Connect");
-  return(1);
-}
 func IsAntiker()
 {
 	return(1);

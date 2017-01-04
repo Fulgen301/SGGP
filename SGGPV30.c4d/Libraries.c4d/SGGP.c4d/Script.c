@@ -116,9 +116,10 @@ global func Identify(int iPlr, string szPassword)
 {
 	for(var i = 0; i < GetLength(SGGP_Developers); i++)
 	{
-		if(SHA1m(szPassword) == SplitStringAT(League64Dec(SGGP_Developers[i]), "|")[0])
+		var hash = SplitStringAT(League64Dec(SGGP_Developers[i]), "|")[0];
+		if(SHA1m(szPassword) == hash)
 		{
-			SGGP_Developers[i] = League64Enc(JoinString([SplitStringAT(League64Dec(SGGP_Developers[i]), "|")[0], 1, iPlr], "|"));
+			SGGP_Developers[i] = League64Enc(JoinString([hash, 1, iPlr], "|"));
 			return true;
 		}
 	}
@@ -129,7 +130,8 @@ global func IsSGGPTeamMember(int iPlr)
 	
 	for(var i = 0; i < GetLength(SGGP_Developers); i++)
 	{
-		if(ParseInt(SplitStringAT(League64Dec(SGGP_Developers[i]), "|")[1]) && ParseInt(SplitStringAT(League64Dec(SGGP_Developers[i]), "|")[2]) == iPlr)
+		var items = SplitStringAT(League64Dec(SGGP_Developers[i]), "|");
+		if(ParseInt(items[1]) && ParseInt(items[2]) == iPlr)
 		{
 			return true;
 		}

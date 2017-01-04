@@ -1072,6 +1072,12 @@ protected func UpdateTransferZone()
 	if(shield) shield->SetActionData(256+20);
 }
 
+public func ExitingHyperspace(object pHyperspace)
+{
+	if(!HasStargate() && !ring1) return;
+	if(ring1->HasIris()) SetObjectOrder(ring1, ring1->HasIris());
+}
+
 public func IsBulletTarget(id idBullet, object pBullet, object pShooter)
 {
 	if(pBullet && pBullet->GetOwner() != GetOwner() && Hostile(pBullet->GetOwner(), GetOwner()))

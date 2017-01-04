@@ -75,7 +75,6 @@ static const ATLANTISOS_QUARANTINE		 = 16;
 protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 {
 	var values = [];
-	var interval = EffectVar(2, pTarget, iEffect);
 	var status = 0;
 	
 	// Executing the function in the structures
@@ -112,7 +111,6 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 	
 	if(status == ATLANTISOS_OK)
 	{
-		interval = 35;
 		
 		var defcon_active = false;
 		
@@ -221,16 +219,9 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 				}
 			}
 		}
-		
-		interval = 10;
 	}
 	
 	EffectVar(1, pTarget, iEffect) = status;
-	if(interval != EffectVar(2, pTarget, iEffect))
-	{
-		EffectVar(2, pTarget, iEffect) = interval;
-		ChangeEffect("IntAtlantisOS", pTarget, 0, "IntAtlantisOS", interval);
-	}
 }
 
 protected func FxIntAtlantisOSRaise(object pTarget, int iEffect)

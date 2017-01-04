@@ -295,6 +295,6 @@ global func FormatN(string format, array placeholders, array items)
 global func SetPosition(int iX, int iY, object pObj, bool fNoCalls)
 {
 	if(!pObj) if(!(pObj = this)) return;
-	if(!fNoCalls && AbsX(iX) != pObj->GetX() && AbsY(iY) != pObj->GetY() && pObj->~OnPositionChange(Abs(iX), AbsY(iY))) return;
+	if(!fNoCalls && iX != pObj->GetX() && iY != pObj->GetY() && pObj->~OnPositionChange(iX, iY)) return;
 	return _inherited(iX, iY, pObj);
 }

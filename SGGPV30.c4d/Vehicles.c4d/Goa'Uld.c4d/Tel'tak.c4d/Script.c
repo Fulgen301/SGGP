@@ -1074,7 +1074,7 @@ protected func UpdateTransferZone()
 
 public func ExitingHyperspace(object pHyperspace)
 {
-	if(!HasStargate() && !ring1) return;
+	if(!HasGate() && !ring1) return;
 	if(ring1->HasIris()) SetObjectOrder(ring1, ring1->HasIris());
 }
 

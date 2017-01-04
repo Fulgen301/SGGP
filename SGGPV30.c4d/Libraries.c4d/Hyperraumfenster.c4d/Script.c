@@ -111,6 +111,7 @@ public func Timer()
 			iWdt = 8 * GetCon();
 			for (pObj in FindObjects(Find_Or(Find_Category(C4D_Vehicle), Find_Category(C4D_Object), Find_Category(C4D_Living)), Find_Not(Find_AnyContainer()), Find_InRect(-iWdt / 4, -iWdt / 2, iWdt / 2, iWdt))) 
 			{
+				pObj->~EnteringHyperspace(this);
 				AddEffect("Hyperdrive", pObj, 200, 0, this(), 0, GetXDir(pObj), GetYDir(pObj), iTime);
 				EffectVar(1, pObj, GetEffect("Hyperdrive", pObj)) = iTime;
 				EffectVar(2, pObj, GetEffect("Hyperdrive", pObj)) = GetYDir(pObj);
@@ -130,6 +131,7 @@ public func Timer()
 					pObj->SetXDir(EffectVar(2, pObj, GetEffect("Hyperdrive", pObj)) * 5);
 					pObj->SetXDir(EffectVar(3, pObj, GetEffect("Hyperdrive", pObj)));
 					RemoveEffect("Hyperdrive", pObj);
+					pObj->~ExitingHyperspace(this);
 				}
 			}
 		}

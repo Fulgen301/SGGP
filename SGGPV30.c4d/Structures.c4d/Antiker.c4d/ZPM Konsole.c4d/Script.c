@@ -6,8 +6,15 @@ local User;
 local info;
 local iMode;
 
+protected func Construction()
+{
+	_inherited(...);
+	AddTimer("Check", 4);
+}
+
 protected func Initialize()
 {
+	_inherited(...);
   zpms = CreateObjects(ZPM2, 0, 0, GetOwner(),3);
   OnPositionChange(GetX(), GetY());
 }

@@ -18,8 +18,6 @@ Picture=0,0,45,15
 Construction=1
 LineConnect=19
 Grab=2
-Timer=1
-TimerCall=Check
 
 [Physical]
 Energy=1000000

@@ -2,11 +2,18 @@
 
 #strict 2
 
-local timer;
+local timer, target, actiondata;
 
-func Initialize() 
+protected func Set(object pTarget, int iActionData)
 {
-  ObjectSetAction(this, "None");
+	if(pTarget)
+	{
+		target = pTarget;
+		actiondata = iActionData;
+		SetAction("None", pTarget);
+		SetActionData(iActionData);
+	}
+	return this;
 }
 
 func Minus()
@@ -54,14 +61,17 @@ protected func RejectCollect()
 protected func Ejection(object pZPM)
 {
 	if(!pZPM || pZPM->GetID() != ZPM_) return;
-	ObjectSetAction(this, "None");
+	SetAction("None");
 	Invisible();
 }
 
-public func SetAction(string szAction)
+public func SetAction(string szAction, object pTarget)
 {
-	if(Contents()) Contents()->SetAction(szAction, ...);
-	return _inherited(szAction, ...);
+	if(!pTarget && target) pTarget = target;
+	if(Contents()) Contents()->SetAction(szAction);
+	var ret = _inherited(szAction, pTarget, ...);
+	SetActionData(actiondata);
+	return ret;
 }
 
 private func Visible()		{ SetVisibility(VIS_All); }

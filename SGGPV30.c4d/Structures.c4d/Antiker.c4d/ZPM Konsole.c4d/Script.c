@@ -9,14 +9,8 @@ local iMode;
 protected func Construction()
 {
 	_inherited(...);
+	zpms = CreateArray(3);
 	AddTimer("Check", 4);
-}
-
-protected func Initialize()
-{
-	_inherited(...);
-  zpms = CreateObjects(ZPM2, 0, 0, GetOwner(),3);
-  OnPositionChange(GetX(), GetY());
 }
 
 protected func Damage()
@@ -38,20 +32,6 @@ protected func Destruction()
   return _inherited();
 }
 
-public func OnPositionChange(int iNewX, int iNewY)
-{
-	var x = -13;
-	for(var i = 0; i < GetLength(zpms); i++)
-	{
-		if(zpms[i])
-		{
-			zpms[i]->SetPosition(iNewX + x, iNewY - 5);
-			if(!i) x = 3;
-			else x += 13;
-		}
-	}
-}
-
 protected func Check()
 {
   if(GetCon() != 100) return;
@@ -61,6 +41,8 @@ protected func Check()
   for(var i = 0; GetIndexOf(0, zpms) != -1; i = GetIndexOf(0, zpms))
   {
 	  zpms[i] = CreateObject(ZPM2, 0, 0, GetOwner());
+	  zpms[i]->Set(this, 256*4 + 4 + i);
+	  zpms[i]->SetAction("None", this);
   }
 }
 

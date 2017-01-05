@@ -1,5 +1,6 @@
 [Action]
 Name=None
+Procedure=ATTACH
 Delay=1
 Length=1
 Facet=0,0,4,7
@@ -8,6 +9,7 @@ StartCall=Invisible
 
 [Action]
 Name=Inactive
+Procedure=ATTACH
 Delay=1
 Length=1
 Facet=0,0,4,7
@@ -16,6 +18,7 @@ StartCall=Visible
 
 [Action]
 Name=Activen
+Procedure=ATTACH
 Delay=1
 Length=1
 Facet=4,0,4,7
@@ -24,6 +27,7 @@ StartCall=Visible
 
 [Action]
 Name=Depledet
+Procedure=ATTACH
 Delay=1
 Length=1
 Facet=8,0,4,7

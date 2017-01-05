@@ -82,7 +82,7 @@ public func GetActiveZPMCount()
 	var i;
 	for(var zpm in zpms)
 	{
-		if(zpm && zpm->GetAction() == "Active") i++;
+		if(zpm && zpm->GetAction() == "Activen") i++;
 	}
 	
 	return i;

@@ -5,8 +5,7 @@ Title=Melee
 [Definitions]
 Definition1=Objects.c4d
 Definition2=Hazard.c4d
-Definition3=DTMenuStandalone.c4d
-Definition4=SGGPV30.c4d
+Definition3=SGGPV30.c4d
 
 [Game]
 Goals=MELE=1

@@ -8,11 +8,10 @@ ForcedGfxMode=1
 Definition1=Objects.c4d
 Definition2=Hazard.c4d
 Definition3=Western.c4d
-Definition4=DTMenuStandalone.c4d
-Definition6=SGGPV30.c4d
-Definition7=FarWorlds.c4d
-Definition8=Fantasy.c4d
-Definition9=Knights.c4d
+Definition4=SGGPV30.c4d
+Definition5=FarWorlds.c4d
+Definition6=Fantasy.c4d
+Definition7=Knights.c4d
 
 [Game]
 StructNeedEnergy=0

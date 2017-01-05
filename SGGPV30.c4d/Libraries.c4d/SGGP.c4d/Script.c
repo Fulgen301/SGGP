@@ -52,9 +52,14 @@ global func GetSystemTime(int iWhat)
 	return iSystemTime[iWhat];
 }
 
+protected func UpdateTransferZone()
+{
+	SGGP->Initialize();
+}
+
 protected func Initialize()
 {
-	iSystemTime = [];
+	if(GetType(iSystemTime) != C4V_Array) iSystemTime = [];
 	SGGP_SystemTimeStrings = ["Year", "Month", "WeekDay", "Day", "Hour", "Minute", "Second", "Millisecond"];	
 	if(!FindObject(HELP))
 		CreateObject(HELP);

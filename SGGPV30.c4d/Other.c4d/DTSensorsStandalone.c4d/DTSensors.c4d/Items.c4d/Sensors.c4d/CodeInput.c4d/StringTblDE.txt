@@ -1,9 +1,0 @@
-RightCode=Richtiges Passwort
-WrongCode=Falsches Passwort
-EnterCode=Passwort eingeben
-EnterCurrentCode=Aktuelles Passwort eingeben
-EnterNewCode=Neues Passwort eingeben
-NoCodeSet=Es ist noch kein Passwort gesetzt!
-CodeChanged=Passwort erfolgreich gesetzt.
-ChangeCode=Passwort ändern
-TxtWrongCode=Falsches Passwort!|Neuer Versuch…

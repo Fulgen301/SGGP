@@ -1,2 +1,0 @@
-DE:Sensorpack
-US:Sensorpack

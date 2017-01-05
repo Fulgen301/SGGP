@@ -1,2 +1,0 @@
-DE:Passworteingabe
-US:Code input

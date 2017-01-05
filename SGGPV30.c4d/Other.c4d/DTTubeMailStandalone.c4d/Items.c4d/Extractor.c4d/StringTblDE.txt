@@ -1,7 +1,0 @@
-SelectTarget=Behälter wählen
-SendObject=Objekt senden
-SendObjectType=%s senden
-Buy=Kaufen
-SetWorker=Als Arbeiterclonk setzen
-WorkerSet=%s als Arbeiter gesetzt.
-WorkerUnset=Arbeiter entfernt.

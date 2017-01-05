@@ -1,4 +1,0 @@
-[Action]
-Name=Connect
-Procedure=CONNECT
-FacetBase=1 

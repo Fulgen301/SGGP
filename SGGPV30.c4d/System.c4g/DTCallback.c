@@ -201,3 +201,124 @@ global func foreach(array arr, callback)
 		CallA(callback, [val, i++]);
 	}
 }
+
+global func CheckCallback(callback)
+{
+	if(GetType(callback) == C4V_String)
+	{
+		return true;
+	}
+
+	if(GetType(callback) == C4V_Array)
+	{
+		if(GetType(callback[0]) == C4V_Int)
+		{
+			if(callback[0] == CallbackTarget_Bind && GetLength(callback) == 3)
+			{
+				if(CheckCallback(callback[1]) && CheckBindCallbackBinding(callback[2]))
+				{
+					return true;
+				}
+			}
+			else if(callback[0] == CallbackTarget_Global || callback[0] == CallbackTarget_Scenario)
+			{
+				if(GetLength(callback) == 2 && GetType(callback[1]) == C4V_String && callback[1] != "")
+				{
+					return true;
+				}
+			}
+		}
+		else if(GetType(callback[0]) == C4V_C4ID || GetType(callback[0]) == C4V_C4Object)
+		{
+			if(GetLength(callback) == 2 && GetType(callback[1]) == C4V_String && callback[1] != "")
+			{
+				return true;
+			}
+		}
+	}
+
+	return (this && this->~CheckCustomCallback(callback, ...)) || ROCK->~CheckCustomCallback(callback, ...);
+}
+
+global func CheckBindCallbackBinding(array binding)
+{
+	for(var b in binding)
+	{
+		if(b && GetType(b) != C4V_Int)
+		{
+			if(GetType(b) == C4V_Array)
+			{
+				if(b[0] == BindCallback_Bind_Value)
+				{
+					if(GetLength(b) != 2)
+					{
+						return false;
+					}
+				}
+				else if(b[0] == BindCallback_Bind_Context || b[0] == BindCallback_Bind_ContextDef)
+				{
+					continue;
+				}
+				else if(b[0] == BindCallback_Bind_CallbackResult)
+				{
+					if(GetLength(b) != 2 || !CheckCallback(b[1]))
+					{
+						return false;
+					}
+				}
+				else if(b[0] == BindCallback_Bind_ArgumentArrayPart)
+				{
+					if(GetLength(b) != 3)
+					{
+						return false;
+					}
+
+					if(b[1] && (GetType(b[1]) != C4V_Int || b[1] < 0))
+					{
+						return false;
+					}
+
+					for(var part in b[2])
+					{
+						if(part && (GetType(part) != C4V_Int || part < 0))
+						{
+							return false;
+						}
+					}
+				}
+				else if(b[0] == BindCallback_Bind_Reference)
+				{
+					if(GetLength(b) != 2 || !CheckScopedVar(b[1]))
+					{
+						return false;
+					}
+				}
+				else if(GetType(b[0]) == C4V_Int && b[0] < 0)
+				{
+					if(!CheckBindCallbackCustomBinding(b))
+					{
+						return false;
+					}
+				}
+				else
+				{
+					if(!CheckBindCallbackBinding(b))
+					{
+						return false;
+					}
+				}
+			}
+			else
+			{
+				return false;
+			}
+		}
+		else if(b < 0)
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
+global func CheckBindCallbackCustomBinding() { return _inherited(...); }

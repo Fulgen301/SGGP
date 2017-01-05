@@ -1,6 +1,0 @@
-RightFinger=Richtiger Fingerabdruck
-WrongFinger=Falscher Fingerabdruck
-SetMasterFinger=Hauptfingerabdruck setzen
-AddFinger=Fingerabdruck hinzufügen
-ChangeFingers=Fingerabdrücke verwalten
-MasterFinger=Hauptfingerabdruck: %s

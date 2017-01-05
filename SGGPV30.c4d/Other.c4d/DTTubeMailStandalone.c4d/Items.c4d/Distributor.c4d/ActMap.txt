@@ -1,4 +1,0 @@
-[Action]
-Name=Float
-Procedure=FLOAT
-FacetBase=1

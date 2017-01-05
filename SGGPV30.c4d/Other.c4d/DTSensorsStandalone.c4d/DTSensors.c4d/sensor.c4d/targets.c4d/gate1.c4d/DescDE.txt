@@ -1,2 +1,0 @@
-Ein Tor.
-Kann mit Sensoren gesteuert werden!

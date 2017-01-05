@@ -1,2 +1,0 @@
-RetrieveObject=Objekt anfordern
-RetrieveObjectType=%s anfordern

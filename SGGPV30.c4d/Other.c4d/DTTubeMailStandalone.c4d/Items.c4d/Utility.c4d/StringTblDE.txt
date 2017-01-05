@@ -1,5 +1,0 @@
-SelectTarget=Behälter wählen
-SelectSendType=Zu sendendes Objekt wählen
-SelectRetrieveType=Anzuforderndes Objekt wählen
-Production=Produktion
-AttachWall=An Wand anbringen

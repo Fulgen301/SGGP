@@ -1,3 +1,0 @@
-Retrigger=Erneut aktivieren
-LiquidTrigger=Flüssigkeit erkannt
-NoLiquidTrigger=Flüssigkeit entfernt

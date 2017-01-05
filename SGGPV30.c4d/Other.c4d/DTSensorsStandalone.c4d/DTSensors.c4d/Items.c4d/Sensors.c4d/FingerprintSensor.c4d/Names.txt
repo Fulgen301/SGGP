@@ -1,2 +1,0 @@
-DE:Fingerabdrucksensor
-US:Fingerprint sensor

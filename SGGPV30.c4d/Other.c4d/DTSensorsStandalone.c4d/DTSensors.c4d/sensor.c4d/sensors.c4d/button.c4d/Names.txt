@@ -1,2 +1,0 @@
-DE:Knopf
-US:Button

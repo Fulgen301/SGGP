@@ -1,4 +1,0 @@
-[DefCore]
-id=SN7I
-Name=Sensor base
-Category=C4D_StaticBack

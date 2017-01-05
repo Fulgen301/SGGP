@@ -1,7 +1,0 @@
-RightCard=Right card
-WrongCard=Wrong card
-GetCard=Take card
-AddReader=Add reader to card
-RemoveReader=Remove reader from card
-LoadCard=Put card in
-CardLoaded=There is already a card inserted

@@ -1,8 +1,0 @@
-[DefCore]
-id=SE7I
-Name=Sensor entrance
-Category=C4D_Object|C4D_Foreground|C4D_MouseIgnore
-Width=10
-Height=10
-Offset=-5,-5
-Entrance=-5,-5,10,10

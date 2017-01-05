@@ -1,8 +1,0 @@
-Timeout=Timeout
-Interval=Interval: %d frames
-Start=Start
-Stop=Stop
-SingleShot=Single shot
-Test=Emit test signal
-Repeats=Repeat: %s
-InfRepeats=infinite

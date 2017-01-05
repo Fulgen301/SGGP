@@ -1,2 +1,0 @@
-DE:Objektsensor
-US:Object sensor

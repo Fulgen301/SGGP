@@ -1,7 +1,0 @@
-#strict 2
-#appendto HUT1
-#appendto HUT2
-#appendto HUT3
-#appendto WRKS
-
-func IsTubeTarget() { return true; }

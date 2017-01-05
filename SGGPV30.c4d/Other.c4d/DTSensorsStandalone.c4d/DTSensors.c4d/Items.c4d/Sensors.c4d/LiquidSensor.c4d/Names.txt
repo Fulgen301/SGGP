@@ -1,2 +1,0 @@
-DE:Flüssigkeitssensor
-US:Liquid sensor

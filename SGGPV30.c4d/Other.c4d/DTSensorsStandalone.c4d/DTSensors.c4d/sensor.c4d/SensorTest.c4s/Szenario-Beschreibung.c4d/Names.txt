@@ -1,2 +1,0 @@
-DE:Szenario-Beschreibung
-US:Szenario-Beschreibung

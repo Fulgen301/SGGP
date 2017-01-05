@@ -1,1 +1,0 @@
-Stellt die Grundfunktionen des Sensors bereit!

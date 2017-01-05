@@ -1,2 +1,0 @@
-DE:Lebewesen-Sensor
-US:Living-Sensor

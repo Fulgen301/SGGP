@@ -1,2 +1,0 @@
-DE:Kartenleser
-US:Card reader

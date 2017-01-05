@@ -1,3 +1,0 @@
-Retrigger=Retrigger
-LiquidTrigger=Liquid detected
-NoLiquidTrigger=Liquid removed

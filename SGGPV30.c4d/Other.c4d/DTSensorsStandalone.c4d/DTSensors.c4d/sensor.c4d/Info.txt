@@ -1,2 +1,0 @@
-Das Pack darf für eigene Szenarien verwendet werden,
-es darf aber nicht verändert sondern nur überladen werden.

@@ -1,2 +1,0 @@
-DE:Rohrpostteilnehmer-Hilfsfunktionen
-EN:Tube mail participants utility

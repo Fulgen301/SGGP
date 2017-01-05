@@ -1,2 +1,0 @@
-RetrieveObject=Request object
-RetrieveObjectType=Request %s

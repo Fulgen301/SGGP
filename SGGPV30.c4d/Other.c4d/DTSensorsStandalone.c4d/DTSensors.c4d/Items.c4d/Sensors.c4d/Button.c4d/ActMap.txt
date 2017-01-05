@@ -1,6 +1,0 @@
-[Action]
-Name=Pressed
-NextAction=Idle
-Delay=10
-Length=1
-Facet=0,4,10,4

@@ -1,5 +1,0 @@
-SelectTarget=Select container
-SelectSendType=Choose object to send
-SelectRetrieveType=Select object to request
-Production=Production
-AttachWall=Attach to wall

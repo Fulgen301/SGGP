@@ -1,3 +1,0 @@
-[Action]
-Name=Wall
-Facet=0,4,10,10 

@@ -1,3 +1,0 @@
-[Action]
-Name=On
-Facet=0,5,10,5

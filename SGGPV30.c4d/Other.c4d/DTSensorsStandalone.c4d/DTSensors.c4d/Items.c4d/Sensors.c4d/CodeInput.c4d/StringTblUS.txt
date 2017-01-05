@@ -1,9 +1,0 @@
-RightCode=Right code
-WrongCode=Wrong code
-EnterCode=Enter code
-EnterCurrentCode=Enter current code
-EnterNewCode=Enter new code
-NoCodeSet=No code is set!
-CodeChanged=Code changed successfully.
-ChangeCode=Change code
-TxtWrongCode=Wrong code!|Try again…

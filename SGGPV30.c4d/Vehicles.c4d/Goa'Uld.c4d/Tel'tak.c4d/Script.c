@@ -43,11 +43,7 @@ local energy, mess,tangtime;  //Energie
 
 public func HasGate()
 {
-	if(ring1->~IsStargate())
-	{
-		return(1);
-	}
-	return(0);
+	return ring1->~IsStargate();
 }
 
 //#######################
@@ -1074,7 +1070,7 @@ protected func UpdateTransferZone()
 
 public func ExitingHyperspace(object pHyperspace)
 {
-	if(!HasGate() && !ring1) return;
+	if(!HasGate() || !ring1) return;
 	if(ring1->HasIris()) SetObjectOrder(ring1, ring1->HasIris());
 }
 

@@ -18,8 +18,7 @@ protected func OnDmg(int iDmg, int iType)
 
 protected func Damage(int iDamage)
 {
-	if(IsRef(GetEnergy())) GetEnergy() -= Min(iDamage/10, 50);
-	else RemoveObject();
+	GetEnergy() -= Min(iDamage/10, 50);
 }
 
 public func & GetEnergy()
@@ -29,7 +28,7 @@ public func & GetEnergy()
 
 protected func LightningStrike()
 {
-	if(IsRef(GetEnergy())) GetEnergy() += 10;
+	GetEnergy() += 10;
 }
 
 public func IsShield() { return true; }

@@ -780,3 +780,4 @@ func IsBulletTarget()    { return(1); }
 
 public func CanDialGate() { return GetDamage() < 300; }
 public func CanCloak()	  { return true; }
+public func GetRace() { return SG1_Ancient; }

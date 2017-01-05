@@ -243,3 +243,5 @@ protected func Destruction()
 	if(ring2) ring2->RemoveObject();
 	return _inherited(...);
 }
+
+public func GetRace() { return SG1_Ancient | SG1_Goauld; }

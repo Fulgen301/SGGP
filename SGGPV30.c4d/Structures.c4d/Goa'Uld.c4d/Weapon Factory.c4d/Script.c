@@ -66,3 +66,5 @@ public func ContextConstruction(pCaller)
   [$Production$|Image=GetID(this())|Condition=IsBuilt]
   return(MenuProduction(pCaller));
 }
+
+public func GetRace() { return SG1_Goauld; }

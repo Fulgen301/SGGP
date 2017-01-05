@@ -138,3 +138,5 @@ func Damage()
   }
   return(1);
 }
+
+public func GetRace() { return SGA_Wraith; }

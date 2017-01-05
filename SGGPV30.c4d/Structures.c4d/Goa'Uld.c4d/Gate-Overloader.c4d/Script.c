@@ -243,3 +243,5 @@ func IsAntiker()
 {
 	return(1);
 }
+
+public func GetRace() { return SG1_Ancient | sSG1_Goauld; }

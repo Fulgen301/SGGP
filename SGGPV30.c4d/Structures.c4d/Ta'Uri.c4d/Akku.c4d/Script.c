@@ -37,4 +37,6 @@ func ControlDigDouble()
 	{
 		InfoOn = 1;
 	}
-}	
+}
+
+public func GetRace() { return SG1_StargateCenter; }

@@ -146,3 +146,5 @@ public func IsConsoleTarget()
 {
 	return(1);
 }
+
+public func GetRace() { return SG1_StargateCenter; }

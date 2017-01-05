@@ -60,3 +60,5 @@ public func ConsoleControlled(int i)
    return(1);
   }
 }
+
+public func GetRace() { return SG1_StargateCenter | SG1_Ancient; }

@@ -138,3 +138,5 @@ func IsAntiker()
 {
 	return(1);
 }
+
+public func GetRace() { return SG1_StargateCenter; }

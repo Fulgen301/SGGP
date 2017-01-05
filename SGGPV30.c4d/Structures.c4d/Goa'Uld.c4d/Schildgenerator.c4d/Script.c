@@ -279,3 +279,5 @@ protected func Destruction()
 	if(shield) shield->RemoveObject();
 	return _inherited();
 }
+
+public func GetRace() { return SG_All; }

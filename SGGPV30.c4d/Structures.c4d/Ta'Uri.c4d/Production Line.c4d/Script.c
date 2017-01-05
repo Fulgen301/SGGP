@@ -171,4 +171,5 @@ func Info()
 	if(!isOn) Stat = "<c ff0000>Aus</c>";
 	Message("Geschwindigkeit:<c %x>%d%</c>|Richtung: <c ffcc00>%s</c>|Status:%s",this(),RGB(200-Speed*4,Speed*4,0),Speed*2,Direc,Stat);
 }
-	
+
+public func GetRace() { return SG1_StargateCenter; }

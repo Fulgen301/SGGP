@@ -176,3 +176,5 @@ public func SensorControl(object pSensor)
 	return InputCallback(LocalN("desc", pSensor));
 
 }
+
+public func GetRace() { return SG1_Asgard; }

@@ -125,3 +125,4 @@ func EMPShock()
 }
 
 func IsMachine() 		{ return(1); }
+public func GetRace() { return SGA_Wraith; }

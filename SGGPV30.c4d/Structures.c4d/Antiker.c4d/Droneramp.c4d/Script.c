@@ -61,3 +61,4 @@ public func SetTarget(object pObj)
 
 public func Atlantis()	{return true;}
 public func IsAntiker()	{return true;}
+public func GetRace() { return SG1_Ancient; }

@@ -196,3 +196,5 @@ public func AtlantisOSFunc()
 	if(i < 10) return ATLANTISOS_ZPMLOW;
 	return ATLANTISOS_OK;
 }
+
+public func GetRace() { return SG1_Ancient; }

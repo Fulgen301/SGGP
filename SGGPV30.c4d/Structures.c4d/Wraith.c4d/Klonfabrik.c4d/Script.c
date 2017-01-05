@@ -54,3 +54,5 @@ protected func FxIntEnergyTimer(object pTarget, int iEffect)
 		energy += 50;
 	}
 }
+
+public func GetRace() { return SGA_Wraith; }

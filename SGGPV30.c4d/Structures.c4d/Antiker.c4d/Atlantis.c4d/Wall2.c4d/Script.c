@@ -233,6 +233,8 @@ public func IsPartOfAtlantis()
 	return true;
 }
 
+public func GetRace() { return SG1_Ancient; }
+
 protected func Damage()
 {
 	if(GetDamage() > 400)

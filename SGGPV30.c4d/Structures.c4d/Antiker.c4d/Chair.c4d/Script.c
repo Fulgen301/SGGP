@@ -112,3 +112,5 @@ protected func Damage()
 		Incinerate();
 	}
 }
+
+public func GetRace() { return SG1_Ancient; }

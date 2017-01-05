@@ -96,3 +96,5 @@ func Info()
 		InfoOn = 1;
 	}
 }
+
+public func GetRace() { return SG1_Asgard; }

@@ -255,3 +255,5 @@ public func IsBulletTarget(id idBullet, object pBullet, object pShooter)
   }
   return(true);
 }
+
+public func GetRace() { return SGA_Wraith; }

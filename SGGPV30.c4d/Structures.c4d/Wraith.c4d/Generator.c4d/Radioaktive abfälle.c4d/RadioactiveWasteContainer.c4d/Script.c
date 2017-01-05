@@ -152,3 +152,4 @@ func Open()
 }
 
 func IsBulletTarget() 	{ return(1); }
+public func GetRace() { return SG_All; }

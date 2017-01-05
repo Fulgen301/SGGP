@@ -121,3 +121,5 @@ public func Teltak()
 {
 	if(target) target->~Teltak();
 }
+
+public func GetRace() { return SG1_Ancient | SG1_Goauld; }

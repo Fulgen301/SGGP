@@ -171,3 +171,5 @@ protected func Out()
   FindObject(0,0,0,0,0,OCF_Alive(),0,0,this())->Exit();
   return(1);
 }
+
+public func GetRace() { return SG1_Goauld; }

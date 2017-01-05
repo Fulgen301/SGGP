@@ -33,3 +33,4 @@ protected func LightningStrike()
 }
 
 public func IsShield() { return true; }
+public func GetRace() { return SG_All; }

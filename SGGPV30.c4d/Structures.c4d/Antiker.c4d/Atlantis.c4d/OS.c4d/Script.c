@@ -239,3 +239,5 @@ public func Atlantis()
 {
 	return true;
 }
+
+public func GetRace() { return SG1_Ancient; }

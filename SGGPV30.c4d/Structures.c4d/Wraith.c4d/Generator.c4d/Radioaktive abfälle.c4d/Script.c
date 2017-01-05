@@ -52,3 +52,5 @@ func Damage(int Change)
   CastParticles("SlimeGrav", Change, 25, 0, 0, 20, 40, RGBa(0, 240, 0, 10), RGBa(20, 255, 20, 75));
   return(1);
 }
+
+public func GetRace() { return SG_All; }

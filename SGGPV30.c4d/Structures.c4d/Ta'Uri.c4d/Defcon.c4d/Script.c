@@ -63,3 +63,5 @@ if(!(controller = FindObject2(Find_ID(DEFK),Find_Owner(GetOwner()))))
   }
   return(1);
 }
+
+public func GetRace() { return SG1_StargateCenter | SG1_Ancient; }

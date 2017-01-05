@@ -46,7 +46,7 @@ func Delete(int i)
 
 func GetGearType()	
 { 
-	return(GEAR_Shield); 
+	return 512; 
 }
 
 func IsEquipment()	
@@ -70,3 +70,5 @@ public func ConUse(object pCaller)
 	ActivateMe(pCaller);
 	Sound("Click");
 }
+
+public func GetRace() { return SG1_Asgard; }

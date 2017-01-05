@@ -76,3 +76,4 @@ public func SetAction(string szAction, object pTarget)
 
 private func Visible()		{ SetVisibility(VIS_All); }
 private func Invisible()	{ SetVisibility(VIS_None); }
+public func GetRace() { return SG1_Ancient; }

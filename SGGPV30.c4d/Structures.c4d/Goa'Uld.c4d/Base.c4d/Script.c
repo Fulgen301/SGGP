@@ -7,3 +7,4 @@
 
 protected func SoundOpenDoor() { return(1); }
 protected func SoundCloseDoor() { return(1); }
+public func GetRace() { return SG1_Goauld; }

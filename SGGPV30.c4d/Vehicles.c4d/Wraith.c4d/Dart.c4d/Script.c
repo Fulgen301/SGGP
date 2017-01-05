@@ -771,3 +771,4 @@ public func Starting()
 func IsMachine() 		{ return(1); }
 
 func IsBulletTarget()    { return(1); }
+public func GetRace() { return SGA_Wraith; }

@@ -42,3 +42,5 @@ private func StepOff()
         SetClrModulation(RGBa(255, 255, 255, step));
         return 1;
 }
+
+public func GetRace() { return SG1_Goauld; }

@@ -315,3 +315,5 @@ func IsAsgard()
 {
 	return true;
 }
+
+public func GetRace() { return SG1_Asgard; }

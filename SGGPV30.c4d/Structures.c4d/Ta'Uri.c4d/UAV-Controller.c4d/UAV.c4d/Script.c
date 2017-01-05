@@ -118,3 +118,4 @@ func SetDirec(int angle)
 }
 
 func IsBulletTarget()  { return(true);}
+public func GetRace() { return SG1_StargateCenter; }

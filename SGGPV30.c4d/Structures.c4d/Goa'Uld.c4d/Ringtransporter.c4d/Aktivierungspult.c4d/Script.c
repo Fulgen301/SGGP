@@ -141,6 +141,8 @@ func InputCallback(string szName)
    FindObject(RIG1,-150,-150,300,300)->SetName(szName);
    return(1);
   }
-  Message("Kein Ringtransporter in der nähe!",this());
+  Message("Kein Ringtransporter in der Nähe!",this());
   return(1);
 }
+
+public func GetRace() { return SG1_Ancient | SG1_Goauld; }

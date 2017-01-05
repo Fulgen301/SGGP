@@ -109,4 +109,6 @@ func ChangeOwner(int iOwner)
 	Message("<c ffcc00>Besitzer zu %s geändert</c>",this(),GetPlayerName(iOwner));
 	ContainedDigDouble(pUser);
 }
+
+public func GetRace() { return SG1_StargateCenter; }
 			

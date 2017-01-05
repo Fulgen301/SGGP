@@ -101,3 +101,5 @@ func Undock()
   jumper = 0;
   return(1);
 }
+
+public func GetRace() { return SG1_Ancient; }

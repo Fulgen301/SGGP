@@ -165,3 +165,5 @@ func ControlUp(pCursor)
   condir = 0;
   return(1);
 }
+
+public func GetRace() { return SG1_StargateCenter; }

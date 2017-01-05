@@ -16,6 +16,11 @@ protected func OnDmg(int iDmg, int iType)
 	return 75;
 }
 
+protected func AttachTargetLost()
+{
+	return RemoveObject();
+}
+
 protected func Damage(int iDamage)
 {
 	GetEnergy() -= Min(iDamage/10, 50);

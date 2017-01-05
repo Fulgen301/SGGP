@@ -9,6 +9,7 @@ protected func Construction()
 
 global func GetALOS(int iPlr)
 {
+	if(!GetPlayerName(iPlr)) return;
 	var obj;
 	if(obj = FindObject2(Find_ID(ALOS), Find_Owner(iPlr))) return obj;
 	else return CreateObject(ALOS,0,0,iPlr);

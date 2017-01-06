@@ -4,3 +4,10 @@ Length=1
 Delay=100
 Facet=10,0,10,15
 EndCall=Start
+
+[Action]
+Name=Fuse2
+Length=1
+Delay=100
+Facet=10,0,10,15
+EndCall=FuseEnd2

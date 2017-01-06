@@ -112,8 +112,17 @@ public func ControlLeftDouble(pCaller)
 	{
 		pTo = this;
 		Sound("rt_button2");
-		SetAction("Fuse");
+		SetAction("Fuse2");
 	}
+}
+
+public func FuseEnd2()
+{
+	if(transporter && transporter->LocalN("ring2"))
+	{
+		transporter->Activate(transporter->LocalN("ring2"));
+	}
+	else Sound("rt_error");
 }
 
 func ControlUpDouble(object pCaller)

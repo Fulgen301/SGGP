@@ -13,16 +13,16 @@ local down;
 //Automatische Namenssetzung des Transporters
 public func Initialize()
 {
-  target = FindObject2(Find_ID(RIG1),Find_Distance(20),Find_Owner(GetOwner()));
+  target = FindObject(TEL_,0,0,-1,-1);
   return(1);
 }
 
 public func Check()
 {
   SetXDir();
-  if(down != 0 && target)
+  if(down != 0)
   {
-   SetPosition(pX,pY);
+   SetPosition(pX,pY,target);
   }
   
   if(down == 1)
@@ -36,9 +36,6 @@ public func Check()
    SetYDir(-200);
    return(1);
   }
-  
-  if(Teltak() && target)
-  {
 
   if(GetDir(target) == 1)
   {
@@ -49,8 +46,6 @@ public func Check()
   {
    SetPosition(GetX(target) +20,GetY(target)+65);
   }
-  }
-  else if(target) SetPosition(target->GetX(), target->GetY() + 65);
   return(1);
 }
 
@@ -77,7 +72,7 @@ public func SolidUp()
   {
    SetPosition(GetX(),GetY()+10);
   }
-  if(Teltak()&& target) target ->~ContainedUpDouble();
+  target ->~ContainedUpDouble();
   down = 1;
   phas = GetPhase();
   SetSolidMask(phas*100,200,100,100);
@@ -86,14 +81,14 @@ public func SolidUp()
   
 public func SolidLight()
 {
-  if(Teltak()&& target) target ->~ContainedUpDouble();
+  target ->~ContainedUpDouble();
   SetSolidMask(0,300,100,100);
   return(1);
 }
 
 public func SolidDown()
 {
-  if(Teltak()&& target) target ->~ContainedUpDouble();
+  target ->~ContainedUpDouble();
   down = -1;
   var phas;
   var help;
@@ -111,15 +106,8 @@ public func Off()
 
 public func Vorb()
 {
-  if(Teltak()&& target) target -> ContainedUpDouble();
+  target ->~ContainedUpDouble();
   pX = GetX(target);
   pY = GetY(target);
   return(1);
 }
-
-public func Teltak()
-{
-	if(target) target->~Teltak();
-}
-
-public func GetRace() { return SG1_Ancient | SG1_Goauld; }

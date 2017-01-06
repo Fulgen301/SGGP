@@ -8,13 +8,25 @@ local name;
 local put;
 local Array1;
 local Array2;
+local ring2;
 
 static RIG1_Number;
 
 //Automatische Namenssetzung des Transporters
+
+protected func Construction()
+{
+	ring2 = CreateObject(RIG3,0,0,GetOwner());
+	ring2->LocalN("target") = this;
+}
 public func Initialize()
 {
 	name = Format("Transporter %d", ++RIG1_Number);
+}
+
+protected func Destruction()
+{
+	if(ring2) ring2->RemoveObject();
 }
 
 public func IsFindable()
@@ -59,8 +71,10 @@ public func IsValid(target)
 	{
 		return true;
 	}
+	
+	Log("%v, %v, %v", target, target->GetID(), target->GetID() != RIG3);
 
-	if(GetID(target) != GetID(this))
+	if((GetID(target) != GetID(this)) && (GetID(target) != RIG3))
 	{
 		return true;
 	}
@@ -117,7 +131,7 @@ public func Beam()
 
 	for(obj in Array1)
 	{
-		SetPosition(GetX(obj)+GetX(this())-GetX(ring),GetY(obj)+GetY(this())-GetY(ring),obj);
+		SetPosition(GetX(obj)+GetX(this())-GetX(ring),GetY(obj)+GetY(this)-GetY(ring),obj);
 	}
 
 	for(obj in Array2)

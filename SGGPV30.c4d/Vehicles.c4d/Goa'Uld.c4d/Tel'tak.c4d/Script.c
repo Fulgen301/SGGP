@@ -21,7 +21,7 @@ local chosen,chosen_timer;                           //Aktueller User
 //### RINGTRANSPORTER ###
 //#######################
 local ring1; //Innenbordringtransporter
-//local ring2; //Auﬂenbordringtransporter
+local ring2; //Auﬂenbordringtransporter
 local ringc; //RingtansporterBedinung
 
 //################
@@ -86,11 +86,9 @@ private func InitializeInventory()
 //#######################
   ring1 = CreateObject(RIG1);  //Ringtransporter
   if(ring1->LocalN("ring2")) ring1->LocalN("ring2")->LocalN("target") = this;
-  //ring2 = ring1->LocalN("ring2");  //Auﬂenbordringtransporter
+  ring2 = ring1->LocalN("ring2");  //Auﬂenbordringtransporter
   ringc = CreateObject(RIG2);  //Ringtransportersteuerung
-  LocalN("nobase",ringc) = 1;
   SetCategory(C4D_Vehicle,ringc);
-  LocalN("nobase",ring1) = 1;
 
 //################
 //### HECKLUKE ###
@@ -262,7 +260,7 @@ if(GetCon() < 100) return;
    //Ringtransporter / Stargate
    if(GetID(ring1)==RIG1)
    {
-   ring1 -> SetPosition(GetX()-20,GetY()+23);
+   ring1 -> SetPosition(GetX()-20,GetY()+14);
    ringc -> SetPosition(GetX()+25,GetY()+25);
    }
    else
@@ -290,7 +288,7 @@ if(GetCon() < 100) return;
    //Ringtransporter
    if(GetID(ring1)==RIG1)
    {
-   	ring1 -> SetPosition(GetX()+20,GetY()+23);
+   	ring1 -> SetPosition(GetX()+20,GetY()+14);
    	ringc -> SetPosition(GetX()-25,GetY()+25);
    }
    else

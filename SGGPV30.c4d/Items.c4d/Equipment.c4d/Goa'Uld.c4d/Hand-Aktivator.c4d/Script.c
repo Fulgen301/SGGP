@@ -1,61 +1,92 @@
 /*-- Hand-Activator --*/
 
-#strict
+#strict 2
 
+local transporter;
 local pUser;
-local next;
-local pTo;
 
-func Activate(pCall)
+func FindTransporters(int distance)
 {
-  Sound("Connect");
-  pUser = pCall;
-  var von;
-  if(FindObject(RIG1,-150,-150,300,300))
-  {
-   von = FindObject(RIG1,0,0,-1,-1);
-  }
-  else
-  {
-   Message("Kein Ringtransporter in der Nähe!",pUser);
-   Sound("Error");
-   return(1);
-  }
-  Sound("rt_button1");
-  SetOwner(GetOwner(pUser));
-  if(FindObject2(Find_ID(RIG1),Find_Distance(500),Find_Exclude(von),Find_Func("IsFindable")))
-  {
-   CreateMenu(RIG1,pUser,0,0,0,0,1);
-   var next;
-   for(next in FindObjects(Find_ID(RIG1),Find_Distance(500),Find_Exclude(von),Find_Func("IsFindable")))
-   {
-    AddMenuItem(Format("%s",LocalN("name",next)),"Go",MEPU,pUser,0,next,"Anwählen");
-   }
-   return(1);
-  }
-  else
-  {
-   Message("Kein anzuwählender Ringtransporter in der Nähe!",pUser);
-   Sound("Error");
-  }
-  return(1);
+	return FindObjects(Find_ID(RIG1), Find_OCF(OCF_Fullcon), Find_Distance(distance || 150), Sort_Distance(), ...);
+}
+
+func Activate(object pCaller)
+{
+	Sound("Connect");
+	SetOwner(GetOwner(pCaller));
+	pUser = pCaller;
+	var transporters = FindTransporters();
+
+	for(var i = 0; i < GetLength(transporters); ++i)
+	{
+		transporters[i] = [transporters[i], LocalN("name", transporters[i]), MEPU];
+	}
+
+	if(!pCaller || !pCaller->~CreateSelectionMenu("ChooseTransporter", transporters, GetID(), "$ChooseTransporter$", this))
+	{
+		if(GetLength(transporters) > 0)
+		{
+			ChooseTransporter(0, transporters[0][0]);
+		}
+	}
+
+	return 1;
+}
+
+func ChooseTransporter(id dummy, object pTransporter, bool fSpecial)
+{
+	transporter = pTransporter;
+
+	Sound("rt_button1");
+
+	if(fSpecial)
+	{
+		if(!transporter || !transporter->LocalN("ring2"))
+		{
+			Message("$NoTargetTransporter$", this);
+			Sound("Error");
+		}
+		else
+		{
+			transporter->Activate(transporter->LocalN("ring2"));
+		}
+		return;
+	}
+
+
+
+	if(transporter)
+	{
+		var transporters = FindTransporters(500, Find_Exclude(transporter), Find_Func("IsFindable"));
+
+		if(GetLength(transporters) > 0)
+		{
+			for(var i = 0; i < GetLength(transporters); ++i)
+			{
+				transporters[i] = [transporters[i], LocalN("name", transporters[i]), MEPU];
+			}
+
+			if(!pUser || !pUser->~CreateSelectionMenu("Go", transporters, RIG1, "$Dial$", this))
+			{
+				Go(0, transporters[0][0]);
+			}
+		}
+		else
+		{
+			Message("$NoTargetTransporter$", this);
+			Sound("Error");
+		}
+	}
 }
 
 public func Go(trash, tar)
 {
-  pTo = tar;
-  if(FindObject(RIG1,-150,-150,300,300))
-  {
-   FindObject(RIG1,-150,-150,300,300) -> Activate(pTo);
-   return(1);
-  }
-  Sound("rt_error");
-  return(1);
+	transporter->Activate(tar);
 }
 
-public func ConDesc() 
+public func ConDesc()
 {
-  return("Ringtransporter auswählen");
+	return "$ChooseTransporter$";
 }
 
 protected func Hit()		{ Sound("ClonkHit*"); }

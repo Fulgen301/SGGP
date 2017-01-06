@@ -2,7 +2,7 @@
 static const RepliView = 2000;
 local pFind,Action,pEnemy,pQueen,iDamg,pBuilding,Forced,pTree,pBeam,pARW,pGate,pDrohne,Dummy;
 
-/* 
+/*
 Aktionsliste der Replikatoren: (Variable: "Action")
 ---------------------------------------------------
 	0: Nix
@@ -42,7 +42,7 @@ protected func Scaling()
 	var szDesiredAction;
 	if (GetYDir() > 0) szDesiredAction = "ScaleDown"; else szDesiredAction = "Scale";
 	if (GetAction() ne szDesiredAction) SetAction(szDesiredAction);
-	return(1);   
+	return(1);
 }
 
 func MachAction(int i)
@@ -67,7 +67,7 @@ func Timer()
 	if(!pQueen)
 	{
 		pQueen = FindObject2(Find_ID(REQU));
-		if(!pQueen) 
+		if(!pQueen)
 		{
 			if(!FindObject2(Find_Distance(150),Find_Category(C4D_Structure)) && GetX() > 200 && GetX() < LandscapeWidth() - 200)
 			{
@@ -99,7 +99,7 @@ func Timer()
 		if(!pARW)
 		{
 			pARW= FindARW();
-			if(pARW) 
+			if(pARW)
 			{
 				SetCommand(this(),"Get",pARW);
 				Action = 7;
@@ -129,7 +129,7 @@ func Timer()
 				pGate= FindGate();
 				if(pGate) SetCommand(this(),"MoveTo",pGate);
 				if(!pGate)
-				{	
+				{
 					pFind= FindObj();
 					if(pFind) SetCommand(this(),"Get",pFind);
 					if(!pFind)
@@ -141,7 +141,7 @@ func Timer()
 							pTree = FindTree();
 							if(pTree) SetCommand(this(),"MoveTo",pTree);
 							if(!pTree)
-							{	
+							{
 								 Action = 3;
 								return();
 							}
@@ -159,7 +159,7 @@ func Timer()
 		}
 		Action = 7;
 		return(1);
-	}	
+	}
 	if(Action == 1)
 	{
 		if(pFind) SetCommand(this(),"Get",pFind);
@@ -183,7 +183,7 @@ func Timer()
 					Action = 12;
 					return();
 				}
-			}	
+			}
 			if(GetComponent(1,0,pFind)) Split2Components(pFind);
 			var i;
 			i = 1;
@@ -223,7 +223,7 @@ func Timer()
 				pBeam = pBea;
 				SetCommand(this(),"MoveTo",pBeam);
 				Action = 6;
-			}	
+			}
 		}
 	}
 	if(Action == 2)
@@ -270,7 +270,7 @@ func Timer()
 	}
 	if(Action == 4)
 	{
-		if(!pBuilding) 
+		if(!pBuilding)
 		{
 			Action = 0;
 			SetCommand(this(),"MoveTo",pQueen);
@@ -300,7 +300,7 @@ func Timer()
 	}
 	if(Action == 5)
 	{
-		if(!pTree) 
+		if(!pTree)
 		{
 			Action = 0;
 			SetCommand(this(),"MoveTo",pQueen);
@@ -334,7 +334,7 @@ func Timer()
 	if(Action == 7)
 	{
 		if(pARW) SetCommand(this(),"Get",pARW);
-		if(Contained(pARW) && Contained(pARW) != this()) 
+		if(Contained(pARW) && Contained(pARW) != this())
 		{
 			Action = 0;
 		}
@@ -353,9 +353,9 @@ func Timer()
 				pBeam = pBea;
 				SetCommand(this(),"MoveTo",pBeam);
 				Action = 8;
-			}	
+			}
 		}
-	
+
 	}
 	if(Action == 8)
 	{
@@ -383,7 +383,7 @@ func Timer()
 				if(Contents()) Exit(Contents());
 				Action = 0;
 			}
-			
+
 		}
 	}
 	if(Action == 9)
@@ -404,7 +404,7 @@ func Timer()
 	if(Action == 10)
 	{
 		var pNextDr;
-		if(ObjectCount2(Find_ID(REDA),Find_Distance(RepliView)) >= 3) 
+		if(ObjectCount2(Find_ID(REDA),Find_Distance(RepliView)) >= 3)
 		{
 			Action = 0;
 			Dummy = 0;
@@ -414,7 +414,7 @@ func Timer()
 		{
 			CreateConstruction(REDA,0,0,-1,10);
 			Dummy=0;
-			Action=0;			
+			Action=0;
 		}
 		if(GetX(pNextDr) > GetX() && GetX() > 100)
 		{
@@ -463,7 +463,7 @@ func Replikator()
 func Damage(int iLevel)
 {
     iDamg = GetDamage();
-	if(iDamg > 10) 
+	if(iDamg > 10)
 	{
 		CastReplis(RepliHunger);
 		RemoveObject();
@@ -494,7 +494,7 @@ func EMPShock()
 	EMPShockEffect(200);
 }
 
-func EMPShockEnd() 
+func EMPShockEnd()
 {
 	SetAction("Walk");
 }
@@ -521,19 +521,19 @@ func KilledByARW()
 	RemoveObject();
 }
 
-func IsMachine() 
-{ 
-	return(true); 
+func IsMachine()
+{
+	return(true);
 }
 
-func IsThreat() 
-{ 
-	return(true); 
+func IsThreat()
+{
+	return(true);
 }
 
-func IsBulletTarget() 
-{ 
-	return(true); 
+func IsBulletTarget()
+{
+	return(true);
 }
 
 func FindTree()
@@ -565,19 +565,18 @@ func FindBuilding()
 				//Find_ID(GATL),
 				Find_ID(TWR2),
 				Find_Func("IsStargate"),
-				Find_Func("IsRepli"))),		
+				Find_Func("IsRepli"))),
 		Find_Not(
 			Find_Or(
 				Find_ID(RIG1),
 				Find_ID(RIG2),
-				Find_ID(RIG3),
 				Find_ID(TEL2),
 				Find_ID(TEL3),
 				Find_ID(TEL4),
 				Find_ID(TEL5),
 				Find_ID(TELS),
 				Find_ID(TELZ),
-				Find_ID(TEL_))),	
+				Find_ID(TEL_))),
 		Find_Not(
 			Find_Or(
 				Find_ID(TELK))),
@@ -656,4 +655,4 @@ global func RepliAggro(bool fOn)
 		}
 	}
 }
-		
+

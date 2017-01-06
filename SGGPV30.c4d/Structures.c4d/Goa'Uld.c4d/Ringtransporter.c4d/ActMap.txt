@@ -4,7 +4,7 @@
 Name=Up
 Length=16
 Delay=3
-Facet=0,0,100,100
+Facet=0,57,100,57,-25
 NextAction=Light1
 PhaseCall=SolidUp
 
@@ -12,7 +12,7 @@ PhaseCall=SolidUp
 Name=Light1
 Length=9
 Delay=3
-Facet=0,100,100,100
+Facet=0,114,100,57,-25
 NextAction=Light2
 EndCall=Beam
 StartCall=SolidLight
@@ -21,7 +21,7 @@ StartCall=SolidLight
 Name=Light2
 Length=9
 Delay=3
-Facet=900,100,100,100
+Facet=900,114,100,57,-25
 NextAction=Down
 
 [Action]
@@ -29,7 +29,7 @@ Name=Down
 Length=16
 Delay=3
 Reverse=1
-Facet=0,0,100,100
+Facet=0,57,100,57,-25
 PhaseCall=SolidDown
 
 
@@ -39,7 +39,7 @@ PhaseCall=SolidDown
 Name=Fake
 Length=16
 Delay=3
-Facet=0,0,100,100
+Facet=0,57,100,57,-25
 NextAction=Fake2
 PhaseCall=SolidUp
 
@@ -47,7 +47,7 @@ PhaseCall=SolidUp
 Name=Fake2
 Length=18
 Delay=3
-Facet=0,100,100,100
+Facet=0,114,100,57,-25
 NextAction=Fake3
 StartCall=SolidLight
 
@@ -56,5 +56,5 @@ Name=Fake3
 Length=16
 Delay=3
 Reverse=1
-Facet=0,0,100,100
+Facet=0,57,100,57,-25
 PhaseCall=SolidDown

@@ -1,148 +1,164 @@
-#strict
+#strict 2
 
-local pX, pY;
-local pUser;
-local next;
 local pTo;
-local nobase;
+local transporter;
 
-public func Initialize()
+func Initialize()
 {
-  pX = GetX();
-  pY = GetY();
-  nobase = 1;
-  return(1);
-}
-
-public func Check()
-{
-  return(1);
+	SetTransporter(0, FindTransporters()[0]);
 }
 
 public func IsBulletTarget()
 {
-  if(!ActIdle())
-  {
-   return(1);
-  }
-  return();
+	return !ActIdle();
 }
 
 public func Damage()
 {
-  if(GetDamage(this()) >= 100)
-  {
-   Explode(30);
-   return(1);
-  }
-  return(1);
+	if(GetDamage(this) >= 100)
+	{
+		Explode(30);
+	}
+}
+
+func CheckTransporter(object pCaller)
+{
+	if(!transporter)
+	{
+		PlayerMessage(GetController(pCaller), "$NoTransporterAssigned$", this);
+		Sound("Error");
+		return false;
+	}
+	return true;
 }
 
 public func ControlDigDouble(pCaller)
 {
-  var von;
-  if(FindObject(RIG1,-150,-150,300,300))
-  {
-   von = FindObject(RIG1,0,0,-1,-1);
-  }
-  else
-  {
-   Message("Kein Ringtransporter in der Nähe!",this());
-   Sound("Error");
-   return(1);
-  }
+	if(!CheckTransporter(pCaller))
+	{
+		return 1;
+	}
 
-  if(!ActIdle())
-  {
-   Sound("rt_error");
-   return(1);
-  }
+	if(!ActIdle())
+	{
+		Sound("rt_error");
+		return 1;
+	}
 
-  Sound("rt_button1");
+	Sound("rt_button1");
 
-  pUser = pCaller;
-  SetOwner(GetOwner(pUser));
-  
-  if(FindObject2(Find_ID(RIG1),Find_Distance(500),Find_Exclude(von),Find_Func("IsFindable")))
-  {
-   CreateMenu(RIG1,pUser,0,0,0,0,1);
-   var next;
-   for(next in FindObjects(Find_ID(RIG1),Find_Distance(500),Find_Exclude(von),Find_Func("IsFindable")))
-   {
-    AddMenuItem(Format("%s",LocalN("name",next)),"Go",MEPU,pUser,0,next,"Anwählen");
-   }
-   return(1);
-  }
-  else
-  {
-   Message("Kein anzuwählender Ringtransporter in der Nähe!",this());
-   Sound("Error");
-  }
-  return(1);
+	SetOwner(GetOwner(pCaller));
+
+	var transporters = FindTransporters(500, Find_Exclude(transporter), Find_Func("IsFindable"));
+
+	if(GetLength(transporters) > 0)
+	{
+		for(var i = 0; i < GetLength(transporters); ++i)
+		{
+			transporters[i] = [transporters[i], LocalN("name", transporters[i]), MEPU];
+		}
+
+		if(!pCaller || !pCaller->~CreateSelectionMenu("Go", transporters, RIG1, "$Dial$", this))
+		{
+			Go(0, transporters[0][0]);
+		}
+	}
+	else
+	{
+		Message("$NoTargetTransporter$", this);
+		Sound("Error");
+	}
+	return 1;
 }
 
 public func Go(trash, tar)
 {
-  pTo = tar;
-  if(FindObject(RIG1,-150,-150,300,300))
-  {
-   SetAction("Fuse");
-   Sound("rt_button2");
-   return(1);
-  }
-  Sound("rt_error");
-  return(1);
+	pTo = tar;
+	if(transporter)
+	{
+		SetAction("Fuse");
+		Sound("rt_button2");
+	}
+	else
+	{
+		Sound("rt_error");
+	}
 }
 
 public func Start()
 {
-  if(FindObject(RIG1,-150,-150,300,300))
-  {
-   FindObject(RIG1,-150,-150,300,300) -> Activate(pTo);
-   return(1);
-  }
-  Sound("rt_error");
-  return(1);
+	if(transporter)
+	{
+		transporter->Activate(pTo);
+	}
+	else
+	{
+		Sound("rt_error");
+	}
 }
 
 public func ControlRightDouble(pCaller)
 {
-  pUser = pCaller;
-  CallMessageBoard(0,false,"Geben sie hier den neuen Namen ihres Ringtransporters ein:",GetOwner(pUser));
-  return(1);
+	if(CheckTransporter(pCaller))
+	{
+		CallMessageBoard(0, false, "$EnterName$", GetController(pCaller));
+	}
+	return 1;
 }
 
 public func ControlLeftDouble(pCaller)
 {
-  pUser = pCaller;
-  if(nobase)
-  {
-   Sound("rt_button2");
-   SetAction("Fuse2");
-   return(1);
-  }
-  return();
+	if(CheckTransporter(pCaller))
+	{
+		pTo = this;
+		Sound("rt_button2");
+		SetAction("Fuse");
+	}
 }
 
-public func FuseEnd2()
+func ControlUpDouble(object pCaller)
 {
-  if(nobase)
-  {
-   if(FindObject(RIG1,-150,-150,300,300)) FindObject(RIG1,-150,-150,300,300) -> Activate(FindObject(RIG1,-150,-150,300,300)->LocalN("ring2"));
-   return(1);
-  }
-  return(1);
+	var transporters = FindTransporters();
+
+	for(var i = 0; i < GetLength(transporters); ++i)
+	{
+		transporters[i] = [transporters[i], LocalN("name", transporters[i]), MEPU];
+	}
+
+	if(!pCaller || !pCaller->~CreateSelectionMenu("SetTransporter", transporters, GetID(), "$AssignTransporter$", this))
+	{
+		if(GetLength(transporters) > 0)
+		{
+			SetTransporter(0, transporters[0][0]);
+		}
+	}
+}
+
+func FindTransporters(int distance)
+{
+	return FindObjects(Find_ID(RIG1), Find_OCF(OCF_Fullcon), Find_Distance(distance || 150), Sort_Distance(), ...);
+}
+
+func SetTransporter(id dummy, object pTransporter)
+{
+	transporter = pTransporter;
 }
 
 func InputCallback(string szName)
 {
-  if(FindObject(RIG1,-150,-150,300,300))
-  {
-   FindObject(RIG1,-150,-150,300,300)->SetName(szName);
-   return(1);
-  }
-  Message("Kein Ringtransporter in der Nähe!",this());
-  return(1);
+	if(transporter && szName && szName != "")
+	{
+		transporter->SetName(szName);
+	}
+}
+
+func Grabbed(object pByObject, bool fGrab)
+{
+	if(fGrab && transporter)
+	{
+		PlayerMessage(GetController(pByObject), "%s", this, transporter->LocalN("name"));
+		pByObject->CreateSelectMark()->MarkObject(transporter, 35);
+	}
 }
 
 public func GetRace() { return SG1_Ancient | SG1_Goauld; }

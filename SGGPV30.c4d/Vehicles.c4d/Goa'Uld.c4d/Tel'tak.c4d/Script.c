@@ -1,4 +1,4 @@
-/*--- 
+/*---
 ###############
 ###############
 ### Tel'tak ###
@@ -51,7 +51,7 @@ public func HasGate()
 //#######################
 local aInventory;
 
-public func Initialize() 
+public func Initialize()
 {
 	_inherited(...);
 	energy = 100;
@@ -188,7 +188,7 @@ public func CheckParts()
   }
   return(1);
 }
-        
+
 public func Destroy()
 {
   if(ring1)
@@ -230,7 +230,7 @@ if(GetCon() < 100) return;
     return(1);
    }
   }
-  
+
   if(!chosen)
   {
   	chosen_timer+=1;
@@ -240,7 +240,7 @@ if(GetCon() < 100) return;
   		Choose();
   	}
   }
-  
+
 //Keine Positionsveränderung wärnd man getarnt ist
   if(cloaked)
   {
@@ -268,12 +268,12 @@ if(GetCon() < 100) return;
    	ring1 -> SetPosition(GetX()-92,GetY()-17);
    	ringc->SetPosition(GetX()+25,GetY()+30);
    }
-   
+
    //Heckluke
    luke1 -> SetPosition(GetX()-145,GetY()+25);
    luke1 -> Dir1();
    lukec -> SetPosition(GetX()-58,GetY()+25);
-   
+
    //Andere
    gen ->   SetPosition(GetX()-100,GetY()+18);
    pod ->   SetPosition(GetX()+45,GetY()+25);
@@ -281,7 +281,7 @@ if(GetCon() < 100) return;
    entr ->  SetPosition(GetX()+110,GetY()+27);
    crate -> SetPosition(GetX()-80,GetY()+30);
   }
-  
+
   //Seite: 2 (links)
   if(GetDir() == 0)
   {
@@ -301,7 +301,7 @@ if(GetCon() < 100) return;
    luke1 -> SetPosition(GetX()+124,GetY()+25);
    luke1 -> Dir0();
    lukec -> SetPosition(GetX()+58,GetY()+25);
-   
+
    //Andere
    gen ->   SetPosition(GetX()+100,GetY()+18);
    pod ->   SetPosition(GetX()-45,GetY()+25);
@@ -309,7 +309,7 @@ if(GetCon() < 100) return;
    entr ->  SetPosition(GetX()-110,GetY()+27);
    crate -> SetPosition(GetX()+80,GetY()+30);
   }
-  
+
   var x;
   for(x in aInventory)
   {
@@ -330,7 +330,7 @@ if(GetCon() < 100) return;
 		  }
 	  }*/
   }
-  
+
   if (GetAction(gen) == "Active")
   {
 	  genstate = 1;
@@ -408,7 +408,7 @@ if(GetCon() < 100) return;
   {
 	  Message("%v Energie", this(), energy);
   }
-  
+
   for(obj in FindObjects(Find_Category(C4D_Vehicle),Find_Container(this)))
   {
 	  if(obj) Exit(obj);
@@ -560,7 +560,7 @@ func Cloaking()
    Sound("sodan_cloak_off");
    return(1);
   }
-  
+
   if(!cloaked)
   {
    cloaked = 1;
@@ -580,7 +580,7 @@ public func Visible()
    x->SetVisibility(VIS_All);
    x->SetClrModulation(0);
   }
-  
+
   SetOwner(GetOwner(pPilot));
   SetVisibility(VIS_All);
   SetClrModulation(0);
@@ -619,13 +619,13 @@ public func Invisible()
 public func ExitPilot()
 {
   pPilot->Exit();
-  
+
   if(GetDir() == 0)
   {
    pPilot->SetPosition(GetX()-100,GetY()+27);
    return(1);
   }
-  
+
   pPilot->SetAction("Walk");
   pPilot->SetPosition(GetX()+100,GetY()+27);
   return(1);
@@ -653,7 +653,7 @@ func SDir()
 {
   SetAction("Wenden");
   return(true);
-}  
+}
 
 protected func ContainedUp()
 {
@@ -666,7 +666,7 @@ protected func ContainedUp()
   if(GetComDir() == COMD_UpLeft || GetComDir() == COMD_UpRight) SetComDir(COMD_Up);
   if(GetComDir() == COMD_Down) SetComDir(COMD_Up);
   if(GetComDir() == COMD_Left) SetComDir(COMD_UpLeft);
-  if(GetComDir() == COMD_DownLeft) SetComDir(COMD_Left); 
+  if(GetComDir() == COMD_DownLeft) SetComDir(COMD_Left);
   if(GetComDir() == COMD_DownRight) SetComDir(COMD_Right);
   if(GetComDir() == COMD_Right) SetComDir(COMD_UpRight);
   if(GetComDir() == COMD_Stop) SetComDir(COMD_Up);
@@ -675,7 +675,7 @@ protected func ContainedUp()
 
 protected func ContainedDown()
 {
-//  if(GetAction() == "Fly") 
+//  if(GetAction() == "Fly")
 //   {
 
   if(GetAction() == "Stand")
@@ -692,7 +692,7 @@ protected func ContainedDown()
     {
     SetComDir(COMD_Stop);
     }
-   if(GetComDir() == COMD_Left) 
+   if(GetComDir() == COMD_Left)
     {
     SetComDir(COMD_DownLeft);
     }
@@ -704,7 +704,7 @@ protected func ContainedDown()
     {
     SetComDir(COMD_Down);
     }
-   if(GetComDir() == COMD_Right) 
+   if(GetComDir() == COMD_Right)
     {
     SetComDir(COMD_DownRight);
     }
@@ -751,7 +751,7 @@ protected func ContainedLeft()
   if(iExtra) return;
   if(GetAction() =="Turn") return;
   SetCommand(this(),"None");
-  SetComDir(COMD_Left);  
+  SetComDir(COMD_Left);
    if(GetDir() == DIR_Right)
     {
    SetAction("Turn");
@@ -795,7 +795,7 @@ func Turned()
    SetVertexXY(19,105,54);
    SetSolidMask(0,150,300,150);
   }
-  
+
   if(GetDir() == 0)
   {
    SetVertexXY(1,146,24);
@@ -825,9 +825,9 @@ func Turned()
   else SetDir(DIR_Left);
   iExtra = 0;
   return(true);
-}   
+}
 
-public func Stop() 
+public func Stop()
 {
   SetComDir(COMD_Stop);
   SetYDir(0);
@@ -959,7 +959,7 @@ func Shield()
 			   return(1);
 		   }
 	   }
-    
+
     //Meteorid
     if(GetID(target) == METO)
     {
@@ -967,7 +967,7 @@ func Shield()
      return(1);
     }
    }
-  
+
    //Trefferbearbeitung 2
    for(target in FindObjects(Find_Distance(radius),Find_Not(Find_Distance(radius - radius/8))))
    {
@@ -976,12 +976,12 @@ func Shield()
     {
      return(1);
     }
-    
+
     if (GetCategory(target) & C4D_Structure)
     {
     	return(1);
     }
-    
+
     //Normale Kugel
     if(target->~IsBullet() == 1)
     {
@@ -989,7 +989,7 @@ func Shield()
 //     energy -= 2;
      return(1);
     }
-    
+
     //KULL Ignorieren
     if(GetID(target) == KULL)
     {
@@ -998,7 +998,7 @@ func Shield()
       return(1);
      }
     }
-    
+
     //Jumperdrohne
     if(GetID(target) == PUDD)
     {
@@ -1009,7 +1009,7 @@ func Shield()
       return(1);
      }
     }
-    
+
     //Meteorid
     if(GetID(target) == METO)
     {
@@ -1024,7 +1024,7 @@ func Shield()
 		energy -= 5;
 		return(1);
 	}
-    
+
     //Rakete
     if(GetID(target) == MISS)
     {
@@ -1035,7 +1035,7 @@ func Shield()
       return(1);
      }
     }
-    
+
     //Lenkrakete
     if(GetID(target) == HMIS)
     {
@@ -1057,7 +1057,7 @@ func Shield()
     target->SetYDir((GetY(target)-GetY()) / 5);
    }
   }
-  
+
   return(1);
 }
 
@@ -1076,9 +1076,21 @@ public func IsBulletTarget(id idBullet, object pBullet, object pShooter)
 {
 	if(pBullet && pBullet->GetOwner() != GetOwner() && Hostile(pBullet->GetOwner(), GetOwner()))
 		return true;
-	
+
 	return false;
 }
+
+public func RejectTransport(object pTransporter)
+{
+	return pTransporter == ring1;
+}
+
+public func TransporterPosition(int& x, int& y)
+{
+	x = -20 * ((GetDir() * 2) - 1);
+	y = 8;
+}
+
 public func IsMachine() 		{ return(1); }
 public func Teltak()			{ return true; }
 public func HasHyperdrive()		{ return GetDamage() < 500 && energy >= 70; }

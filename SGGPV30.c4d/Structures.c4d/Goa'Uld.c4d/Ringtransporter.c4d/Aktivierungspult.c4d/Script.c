@@ -108,21 +108,16 @@ public func ControlRightDouble(pCaller)
 
 public func ControlLeftDouble(pCaller)
 {
-	if(CheckTransporter(pCaller))
+	if(CheckTransporter(pCaller) && transporter->LocalN("ring2"))
 	{
-		pTo = this;
+		pTo = transporter->LocalN("ring2");
 		Sound("rt_button2");
-		SetAction("Fuse2");
+		SetAction("Fuse");
 	}
-}
-
-public func FuseEnd2()
-{
-	if(transporter && transporter->LocalN("ring2"))
+	else
 	{
-		transporter->Activate(transporter->LocalN("ring2"));
+		Sound("rt_error");
 	}
-	else Sound("rt_error");
 }
 
 func ControlUpDouble(object pCaller)

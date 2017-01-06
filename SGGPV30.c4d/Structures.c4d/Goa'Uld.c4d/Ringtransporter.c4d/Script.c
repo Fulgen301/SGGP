@@ -6,8 +6,6 @@
 local ring;
 local name;
 local put;
-local Array1;
-local Array2;
 local ring2;
 
 static RIG1_Number;
@@ -71,8 +69,6 @@ public func IsValid(target)
 	{
 		return true;
 	}
-	
-	Log("%v, %v, %v", target, target->GetID(), target->GetID() != RIG3);
 
 	if((GetID(target) != GetID(this)) && (GetID(target) != RIG3))
 	{
@@ -123,20 +119,19 @@ public func Quick(choose)
 	SetAction("Up");
 }
 
+func FindTransportObjects(object ring)
+{
+	return FindObjects(ring->Find_InRect(-25, -25, 50, 51), Find_Not(Find_Or(Find_Category(C4D_Structure), Find_Category(C4D_StaticBack), Find_Category(C4D_Parallax), Find_Func("IsTree"), Find_Func("RejectTransport", ring))), ...);
+}
+
 public func Beam()
 {
-	Array1 = FindObjects(Find_InRect(GetX(ring)-25-GetX(),GetY(ring)-25-GetY(),50,51),Find_Not(Find_Category(C4D_Structure),Find_Category(C4D_StaticBack),Find_Category(C4D_Parallax),Find_Category(C4D_Parallax),Find_Func("IsTree")));
-	Array2 = FindObjects(Find_InRect(-25,-25,50,51),Find_Not(Find_Category(C4D_Structure),Find_Category(C4D_StaticBack),Find_Category(C4D_Parallax),Find_Category(C4D_Parallax),Find_Func("IsTree")));
-	var obj;
-
-	for(obj in Array1)
+	for(var transport in [[this, ring, FindTransportObjects(ring)], [ring, this, FindTransportObjects(this)]])
 	{
-		SetPosition(GetX(obj)+GetX(this())-GetX(ring),GetY(obj)+GetY(this)-GetY(ring),obj);
-	}
-
-	for(obj in Array2)
-	{
-		SetPosition(GetX(obj)+GetX(ring)-GetX(this()),GetY(obj)+GetY(ring)-GetY(this()),obj);
+		for(var obj in transport[2])
+		{
+			SetPosition(GetX(obj) - GetX(transport[1]) + GetX(transport[0]), GetY(obj) - GetY(transport[1]) + GetY(transport[0]), obj);
+		}
 	}
 }
 

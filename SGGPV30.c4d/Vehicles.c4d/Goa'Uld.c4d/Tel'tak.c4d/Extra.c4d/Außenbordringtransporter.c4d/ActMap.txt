@@ -4,7 +4,7 @@
 Name=Fake
 Length=16
 Delay=3
-Facet=0,0,100,100
+Facet=0,0,100,100,-25,-33
 NextAction=Fake2
 PhaseCall=SolidUp
 StartCall=Vorb
@@ -13,7 +13,7 @@ StartCall=Vorb
 Name=Fake2
 Length=18
 Delay=3
-Facet=0,100,100,100
+Facet=0,100,100,100,-25,-33
 NextAction=Fake3
 StartCall=SolidLight
 
@@ -22,6 +22,6 @@ Name=Fake3
 Length=16
 Delay=3
 Reverse=1
-Facet=0,0,100,100
+Facet=0,0,100,100,-25,-33
 PhaseCall=SolidDown
 EndCall=Off

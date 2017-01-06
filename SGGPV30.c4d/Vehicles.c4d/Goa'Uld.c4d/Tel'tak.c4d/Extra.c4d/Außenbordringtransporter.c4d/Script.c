@@ -1,7 +1,7 @@
 //*-- Der Ringtransporter --*//
   //*--   AUSSENBORD   --*//
 
-#strict
+#strict 2
 
 local ring;
 local put;
@@ -24,29 +24,25 @@ public func Check()
   {
    SetPosition(pX,pY,target);
   }
-  
+
   if(down == 1)
   {
    SetYDir(50);
    return(1);
   }
-  
+
   if(down == -1)
   {
    SetYDir(-200);
    return(1);
   }
 
-  if(GetDir(target) == 1)
+  if(target)
   {
-   SetPosition(GetX(target) -20,GetY(target)+65);
+   var offX = 0, offY = 0;
+   target->~TransporterPosition(offX, offY, this);
+   SetPosition(GetX(target) + offX, GetY(target) + 57 + offY);
   }
-  
-  if(GetDir(target) == 0)
-  {
-   SetPosition(GetX(target) +20,GetY(target)+65);
-  }
-  return(1);
 }
 
 public func Fake()
@@ -75,14 +71,14 @@ public func SolidUp()
   target ->~ContainedUpDouble();
   down = 1;
   phas = GetPhase();
-  SetSolidMask(phas*100,200,100,100);
+  SetSolidMask(phas*100,200,100,100,-25,-33);
   return(1);
 }
-  
+
 public func SolidLight()
 {
   target ->~ContainedUpDouble();
-  SetSolidMask(0,300,100,100);
+  SetSolidMask(0,300,100,100,-25,-33);
   return(1);
 }
 
@@ -94,7 +90,7 @@ public func SolidDown()
   var help;
   phas = GetPhase();
   help = 1500 - (phas*100);
-  SetSolidMask(help,200,100,100);
+  SetSolidMask(help,200,100,100,-25,-33);
   return(1);
 }
 

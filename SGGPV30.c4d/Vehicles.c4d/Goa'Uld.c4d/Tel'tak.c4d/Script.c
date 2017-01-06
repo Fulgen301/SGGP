@@ -1088,7 +1088,7 @@ public func RejectTransport(object pTransporter)
 public func TransporterPosition(int& x, int& y)
 {
 	x = -20 * ((GetDir() * 2) - 1);
-	y = 8;
+	y = 15;
 }
 
 public func IsMachine() 		{ return(1); }

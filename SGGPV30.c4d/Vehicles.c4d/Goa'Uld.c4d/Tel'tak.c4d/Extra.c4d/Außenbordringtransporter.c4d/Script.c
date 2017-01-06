@@ -97,6 +97,7 @@ public func SolidDown()
 public func Off()
 {
   down = 0;
+  SetCategory(C4D_StaticBack);
   return(1);
 }
 
@@ -105,5 +106,6 @@ public func Vorb()
   target ->~ContainedUpDouble();
   pX = GetX(target);
   pY = GetY(target);
+  SetCategory(C4D_Structure);
   return(1);
 }

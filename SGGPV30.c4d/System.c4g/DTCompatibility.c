@@ -4,6 +4,7 @@
 
 static hostFeatures;
 static hostTime;
+static const nil = 0;
 
 global func SetGameComment() { return _inherited(...); }
 global func IsHost() { return _inherited(...); }

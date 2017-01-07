@@ -281,134 +281,58 @@ func IsBusy()
 }
 
 //Die Namensüberprüfung/1. Anwahl des Gates:
-func Dial(string gate)
+public func Dial(string gate)
 {
-  if(IsBusy() || !outgoing)
-  {
-   return(1);
-  }
-  
-  var pGate;
-  var szName = "";
-  for(pGate in FindObjects(Find_Func("IsStargate")))
-  {
-   if (pGate != this)
-   {
-    	szName = pGate -> GetName(pGate);
-    	if (szName == gate)
-    	{
-			fake = false;
-     		CallGate(pGate);
-     		return(1);	
-    	}
-		else
-		{
-			szName = "";
-		}
-   }
-  }
-  if(szName == "" || szName == 0)
-  {
-	  fake = true;
-	  CallGate(this);
-	  return 1;
-  }
-  //Message("<c ff0000>Gate wurde nicht gefunden!</c>",this);
-  //FailSound();
-  return(1);
-}
-
-//Das eigentliche "Anwählen" des Gates beginnt:
-func CallGate(object pGate)
-{
-  if(pGate == this)
-  {
-	  if(energy >= 100000)
-	  {
-		  energy -= 100000;
-		  CallGate2(this, 7);
-		  return 1;
-	  }
-	  else
-	  {
-		  Message("<c ff0000>Zu wenig Energie!</c>",this);
-		  FailSound();
-		  return 1;
-	  }
-  }
-  if(GetAction(pGate) != "Idle")
-  {
-   return FailSound();
-  }
-  if(!LocalN("incoming", pGate))
-  {
-	  return FailSound();
-  }
-  if(!FindObject2(Find_ID(ENRG)))
-  {
-  	CallGate2(pGate);
-  	return(1);
-  }
-  if(ChevronCount(pGate) == 8)
-  {
-  	if(energy >= 500000)
-  	{
-  		energy -= 500000;
-  		CallGate2(pGate, 8);
-  		return(1);
-  	}
-  }
-  if(ChevronCount(pGate) == 9)
-  {
-  	if(energy > 1000000)
-  	{
-  		energy -= 1000000;
-  		CallGate2(pGate, 9);
-  		return(1);
-  	}
-  }
-  if(ChevronCount(pGate) == 7)
-  {
-  	if(energy > 100000)
-  	{
-  		energy -= 100000;
-  		CallGate2(pGate, 7);
-  		return(1);
-  	}
-  }
-  Message("<c ff0000>Zu wenig Energie!</c>",this);
-  FailSound();
-  return(1);
- }
-
-
-func CallGate2(object pGate, int iChevronCount)
-{
-	if(IsDestinyGate())
+	if(IsBusy()) return;
+	var szName;
+	var pGate;
+	for(var obj in FindObjects(Find_Func("IsStargate"), Find_Exclude(this), Find_Not(Find_Func("IsBusy"))))
 	{
-		time = 7;
+		if((szName = obj->GetName()) == gate)
+		{
+			pGate = obj;
+			break;
+		}
+	}
+	
+	if(!pGate)
+	{
+		fake = true;
+		time = 20;
+		SetAction("Outgoing1");
+		return true;
+	}
+	
+	//Energy
+	
+	var enrg = BoundBy(Distance(GetX(),GetY(),pGate->GetX(),pGate->GetY())*100, 100000, 1000000);
+	if(energy >= enrg)
+	{
+		energy -= enrg;
 	}
 	else
 	{
+		fake = true;
 		time = 20;
+		if(!IsBusy()) SetAction("Outgoing1");
+		return true;
 	}
-	if(pGate == this)
-	{
-		SetAction("Outgoing1");
-		return 1;
-	}
-  pTo = pGate;
-  LocalN("pFrom",pGate) = this;
-  chevroncount = iChevronCount;
-  pGate->LocalN("chevroncount") = iChevronCount;
-  if(IsDestinyGate()) Sound("destiny_start");
-  SetAction("Outgoing1");
-//  LaunchEarthquake(GetX(),GetY());
-
-  if(IsDestinyGate()) pGate->Sound("destiny_start");
-  pGate->SetAction("Income1");
-//  LaunchEarthquake(GetX(pGate),GetY(pGate));
-  return(1);
+	
+	if(IsBusy()) return;
+	
+	pTo = pGate;
+	pTo->LocalN("pFrom") = this;
+	
+	if(IsDestinyGate()) Sound("destiny_start");
+	
+	time = 20 - !!IsDestinyGate() * 13;
+	
+	pTo = pGate;
+	pGate->LocalN("pFrom") = this;
+	SetAction("Outgoing1");
+	if(pGate->~IsDestinyGate()) pGate->Sound("destiny_start");
+	pTo->SetAction("Income1");
+	return true;
 }
 
 //Überprüft ob das Gate sich abschalten muss:

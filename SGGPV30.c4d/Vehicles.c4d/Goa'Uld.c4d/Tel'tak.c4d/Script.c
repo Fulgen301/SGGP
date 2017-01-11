@@ -1094,7 +1094,7 @@ public func TransporterPosition(int& x, int& y)
 public func IsMachine() 		{ return(1); }
 public func Teltak()			{ return true; }
 public func HasHyperdrive()		{ return GetDamage() < 500 && energy >= 70; }
-public func HasShield()			{ return energy > 15; }
+public func HasShield()			{ return energy > 25; }
 public func CanCloak()			{ return true; }
 public func MaxDamage() 		{ return 1000; }
 public func GetRace() 			{ return SG1_Goauld; }

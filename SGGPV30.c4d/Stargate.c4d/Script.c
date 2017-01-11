@@ -229,6 +229,11 @@ func OpenSound()
   return(1);
 }
 
+public func HasName(string sz)
+{
+	return Name == sz;
+}
+
 //Gibt den aktuellen Status des Gates zurück:
 func GetState()
 {
@@ -258,7 +263,7 @@ func GetName()
 
 public func GiveName()
 {
-	return(Name);
+	return GetName();
 }
 
 //Setzt den neuen Namen
@@ -284,16 +289,8 @@ func IsBusy()
 public func Dial(string gate)
 {
 	if(IsBusy()) return;
-	var szName;
-	var pGate;
-	for(var obj in FindObjects(Find_Func("IsStargate"), Find_Exclude(this), Find_Not(Find_Func("IsBusy"))))
-	{
-		if((szName = obj->GetName()) == gate)
-		{
-			pGate = obj;
-			break;
-		}
-	}
+	
+	var pGate = FindObject2(Find_Func("IsStargate"), Find_Exclude(this), Find_Func("HasName", gate), Find_Not(Find_Func("IsBusy")));
 	
 	if(!pGate)
 	{

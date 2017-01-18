@@ -315,8 +315,6 @@ public func Dial(string gate)
 		return true;
 	}
 	
-	if(IsBusy()) return;
-	
 	pTo = pGate;
 	pTo->LocalN("pFrom") = this;
 	
@@ -415,11 +413,13 @@ public func Deactivate()
 	{
 		pTo->LocalN("pFrom") = 0;
 		pTo->LocalN("pTo") = 0;
+		pTo->SetAction("Off");
 	}
 	if(pFrom)
 	{
 		pFrom->LocalN("pFrom") = 0;
 		pFrom->LocalN("pTo") = 0;
+		pFrom->SetAction("Off");
 	}
 	pFrom = 0;
 	pTo = 0;

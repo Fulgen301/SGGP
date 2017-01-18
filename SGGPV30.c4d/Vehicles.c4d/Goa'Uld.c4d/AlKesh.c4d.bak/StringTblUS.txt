@@ -1,0 +1,3 @@
+Stabwaffe=Staffweapon
+Hyperdrive=open hyperspacewindow
+HyperdriveState=hyperdrive health

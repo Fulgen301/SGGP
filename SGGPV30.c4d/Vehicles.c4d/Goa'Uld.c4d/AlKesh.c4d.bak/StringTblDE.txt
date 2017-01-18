@@ -1,0 +1,3 @@
+Stabwaffe=Stabwaffe
+Hyperdrive=Hyperraumfenster öffnen
+HyperdriveState=Hyperraumantriebsstatus

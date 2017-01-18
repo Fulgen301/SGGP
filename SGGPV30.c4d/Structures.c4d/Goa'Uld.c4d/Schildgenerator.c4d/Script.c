@@ -11,9 +11,11 @@ local energy, time;
 local info;
 local atlantis;
 local shield;
+local mode;
 
 protected func Initialize()
 {
+	Local(0) |= GetOwner();
   SetAction("Off");
   radius = 200;
   energy = 0;
@@ -126,6 +128,7 @@ protected func Info()
 
 public func Switch()
 {
+	if(mode) return Cloak();
   if(energy < 20)
   {
    if(!on)
@@ -152,9 +155,37 @@ public func Switch()
   return true;
 }
 
+public func Cloak()
+{
+	if(on)
+	{
+		for(var obj in FindObjects(Find_Distance(radius)))
+		{
+			if(obj)
+			{
+				obj->SetVisibility(VIS_All);
+				obj->SetClrModulation();
+			}
+		}
+		on = 0;
+	}
+	else
+	{
+		for(var obj in FindObjects(Find_Distance(radius)))
+		{
+			if(obj)
+			{
+				obj->SetVisibility(VIS_Local);
+				obj->SetClrModulation(RGBa(0,0,100,100));
+			}
+		}
+		on = 1;
+	}
+}
+
 protected func RadiusChanged()
 {
-	if(!on || !shield) return;
+	if(!on || !shield  || mode) return;
 	else if(shield && shield->GetID() != C4Id(Format("SH%d", radius/10)))
 	{
 		var newshield = this->CreateShield(radius, GetOwner());
@@ -189,6 +220,7 @@ global func RemoveShield(object pObj)
 
 protected func Check()
 {
+	Local(0) = GetOwner();
   if(info)
   {
    Message("<c ff0000>Energie:</c> <c 00ff00>%v</c>|<c ff0000>Radius:</c> <c 00ff00>%v</c>",this,energy,radius);
@@ -236,6 +268,18 @@ protected func Check()
 	  time++;
 	  if(time % 50 == 0)
 		  energy--;
+	
+	if(mode)
+	{
+		for(var obj in FindObjects(Find_Distance(radius)))
+		{
+			if(obj)
+			{
+				obj->SetVisibility(VIS_Local);
+				obj->SetClrModulation(RGBa(0,0,100,100));
+			}
+		}
+	}
 	return;
 	     //Effektbearbeitung
    help += 10;

@@ -1066,7 +1066,7 @@ protected func UpdateTransferZone()
 	if(shield) shield->SetActionData(256+20);
 }
 
-public func ExitingHyperspace(object pHyperspace)
+public func ExitedHyperspace(object pHyperspace)
 {
 	if(!HasGate() || !ring1) return;
 	if(ring1->HasIris()) SetObjectOrder(ring1, ring1->HasIris());

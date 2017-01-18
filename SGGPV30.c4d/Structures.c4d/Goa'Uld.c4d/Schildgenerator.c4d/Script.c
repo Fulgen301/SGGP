@@ -281,3 +281,4 @@ protected func Destruction()
 }
 
 public func GetRace() { return SG_All; }
+public func IsShieldGenerator() { return true; }

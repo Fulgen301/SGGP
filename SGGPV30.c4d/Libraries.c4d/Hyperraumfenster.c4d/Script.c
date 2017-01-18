@@ -83,17 +83,17 @@ public func Timer()
 				}
 				else 
 				{
-					DoCon(-1);
+					DoCon(-2); //
 				}
 			}
 			else 
 			{
-				DoCon(-1);
+				DoCon(-2);
 			}
 		}
 		else 
 		{
-			DoCon(1);
+			DoCon(2);
 		}
 		return true;
 	}
@@ -117,6 +117,7 @@ public func Timer()
 				EffectVar(2, pObj, GetEffect("Hyperdrive", pObj)) = GetYDir(pObj);
 				EffectVar(3, pObj, GetEffect("Hyperdrive", pObj)) = GetXDir(pObj);
 				pObj->Enter(this());
+				pObj->~EnteredHyperspace(this);
 			}
 		}
 		else 
@@ -127,11 +128,12 @@ public func Timer()
 			{
 				if (EffectVar(1, pObj, GetEffect("Hyperdrive", pObj)) == iTime)
 				{
+					pObj->~ExitingHyperspace(this);
 					Exit(pObj, 0, iWdt / 2);
 					pObj->SetXDir(EffectVar(2, pObj, GetEffect("Hyperdrive", pObj)) * 5);
 					pObj->SetXDir(EffectVar(3, pObj, GetEffect("Hyperdrive", pObj)));
 					RemoveEffect("Hyperdrive", pObj);
-					pObj->~ExitingHyperspace(this);
+					pObj->~ExitedHyperspace(this);
 				}
 			}
 		}

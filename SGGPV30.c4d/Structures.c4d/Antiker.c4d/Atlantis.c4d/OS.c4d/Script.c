@@ -71,17 +71,23 @@ static const ATLANTISOS_QUARANTINE		 = 16;
 	0 - proplist with all registered structures
 	1 - status
 	2 - current effect interval
+	3 - Stargate
+	4 - Shield generator
+	5 - ZPM console
+	6 - DefCon controller
+	7 - Stardrive controller
 */
 
 protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 {
 	var values = [];
 	var status = 0;
+	var i;
 	
 	// Executing the function in the structures
-	for(var i = 0; i < GetLength(EffectVar(0, pTarget, iEffect)); i++)
+	for(var obj in EffectVar(0, pTarget, iEffect))
 	{
-		if(EffectVar(0, pTarget, iEffect)[i]) values[i] = EffectVar(0, pTarget, iEffect)[i]->~AtlantisOSFunc();
+		if(obj) values[i] = obj->~AtlantisOSFunc();
 		
 		//Handle the return value
 		
@@ -102,6 +108,16 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 		}*/
 		
 		status |= values[i];
+		i++;
+		
+		if(obj)
+		{
+			if(!EffectVar(3, pTarget, iEffect) && obj->~IsStargate()) EffectVar(3, pTarget, iEffect) = obj; // Stargate
+			else if(!EffectVar(4, pTarget, iEffect) && obj->~IsShieldGenerator()) EffectVar(4, pTarget, iEffect) = obj; // Shield generator
+			else if(!EffectVar(5, pTarget, iEffect) && obj->~GetID() == ZPMG) EffectVar(5, pTarget, iEffect) = obj; // ZPM console
+			else if(!EffectVar(6, pTarget, iEffect) && obj->~GetID() == DEFK) EffectVar(6, pTarget, iEffect) = obj; // DefCon controller
+			else if(!EffectVar(7, pTarget, iEffect) && obj->~GetID() == ALSK) EffectVar(7, pTarget, iEffect) = obj; // Stardrive controller
+		}
 	}
 	
 	//
@@ -110,55 +126,47 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 	//
 	//
 	
+	var gate = EffectVar(3, pTarget, iEffect);
+	
 	if(status == ATLANTISOS_OK)
 	{
 		
 		var defcon_active = false;
-		
-		for(var gate in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), "IsStargate"))
+		if(gate && !gate->IsSpaceGate())
 		{
-			if(gate && !gate->IsSpaceGate())
+			if(WildcardMatch(gate->GetAction(), "Income*"))
 			{
-				if(WildcardMatch(gate->GetAction(), "Income*"))
+				if(gate->GetAction() == "Income1" || gate->GetAction() == "Income2")
 				{
-					if(gate->GetAction() == "Income1" || gate->GetAction() == "Income2")
+					if(!(gate->IsClose()))
 					{
-						if(!(gate->IsClose()))
-						{
-							if(!(gate->HasIris())) gate->InstallIris();
-							gate->~ControlIris();
-						}
-					}
-					else if(gate->IsClose() && gate->GetState() != 2)
-					{
-						gate->ControlIris();
+						if(!(gate->HasIris())) gate->InstallIris();
+						gate->~ControlIris();
 					}
 				}
-				
-				if(gate->IsBusy())
+				else if(gate->IsClose() && gate->GetState() != 2)
 				{
-					if(!defcon_active) defcon_active = true;
+					gate->ControlIris();
 				}
-				else if(gate->IsClose()) gate->ControlIris();
 			}
+				
+			if(gate->IsBusy())
+			{
+				if(!defcon_active) defcon_active = true;
+			}
+			else if(gate->IsClose()) gate->ControlIris();
 		}
 	
-		if(pTarget->GetStructures(EffectVar(0, pTarget, iEffect), DEFK) == [] && FindObject2(Find_ID(DEFK), Find_Owner(pTarget->GetOwner()))) GetALOS(pTarget->GetOwner())->RegisterStructure(FindObject2(Find_ID(DEFK), Find_Owner(pTarget->GetOwner())));
-		for(var defcontr in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), DEFK))	
+		if(!EffectVar(6, pTarget, iEffect) && FindObject2(Find_ID(DEFK), Find_Owner(pTarget->GetOwner()))) GetALOS(pTarget->GetOwner())->RegisterStructure(FindObject2(Find_ID(DEFK), Find_Owner(pTarget->GetOwner())));
+		else if(EffectVar(6, pTarget, iEffect))
 		{
-			if(defcontr)
-			{
-				defcontr->~ConsoleControlled((defcon_active * 3) + 1);
-			}
+			EffectVar(6, pTarget, iEffect)->~ConsoleControlled((defcon_active * 3) + 1);
 		}
 	}
 	
 	if(status & ATLANTISOS_ZPMLOW)
 	{
-		for(var defc in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), DEFK))
-		{
-			if(defc) defc->ConsoleControlled(5);
-		}
+		if(EffectVar(6, pTarget, iEffect)) EffectVar(6, pTarget, iEffect)->ConsoleControlled(5);
 		// Check if there is a defcon controller; if yes, set it to the highest level;
 		// if submerged and the shield is online, trying to raise the city; 
 		// if we do not have enough power for that,
@@ -201,25 +209,9 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 	
 	if(status & ATLANTISOS_QUARANTINE)
 	{
-		for(var defcontr in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), DEFK))	
-		{
-			if(defcontr)
-			{
-				defcontr->~ConsoleControlled(5);
-			}
-		}
+		if(EffectVar(6, pTarget, iEffect)) EffectVar(6, pTarget, iEffect)->ConsoleControlled(5);
 		
-		for(var gate in pTarget->GetStructures(EffectVar(0, pTarget, iEffect), "IsStargate"))
-		{
-			if(gate && !(gate->IsClose()))
-			{
-				gate->~ControlIris();
-				if(WildcardMatch(gate->GetAction(), "Outgoing*"))
-				{
-					gate->Deactivate();
-				}
-			}
-		}
+		if(gate) gate->Deactivate();
 	}
 	
 	EffectVar(1, pTarget, iEffect) = status;

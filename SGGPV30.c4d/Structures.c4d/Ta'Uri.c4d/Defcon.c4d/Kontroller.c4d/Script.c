@@ -12,7 +12,7 @@ func Initialize() {
 
 protected func FxIntCheckTimer(object pTarget, int iEffect, int time)
 {
-	if((EffectVar(0, pTarget, iEffect) = FindObject2(Find_ID(ANKS), Find_Owner(GetOwner())))) SetPosition(EffectVar(0, pTarget, iEffect)->GetX(), EffectVar(0, pTarget, iEffect)->GetY());
+	if((EffectVar(0, pTarget, iEffect) = FindObject2(Find_ID(ANKS), Find_Owner(GetOwner())))) SetPosition(GetX(EffectVar(0, pTarget, iEffect)), GetY(EffectVar(0, pTarget, iEffect)));
 }
 
 func IsConsoleTarget() {return(1);}

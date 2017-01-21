@@ -83,17 +83,17 @@ public func Timer()
 				}
 				else 
 				{
-					DoCon(-2); //
+					DoCon(-1); //
 				}
 			}
 			else 
 			{
-				DoCon(-2);
+				DoCon(-1);
 			}
 		}
 		else 
 		{
-			DoCon(2);
+			DoCon(1);
 		}
 		return true;
 	}

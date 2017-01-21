@@ -29,7 +29,7 @@ private func Traveling()
 
 public func Hit()
 {
-  Explode(5);
+  Explode(8);
   return(1);
 }
 
@@ -44,7 +44,14 @@ private func HitObject(object pObject) {
 
 public func BulletStrike(object pObj) {
   if(pObj)
-    DoDmg(iDamage, DMG_Energy, pObj, iPrec);
+  {
+	  if(pObj->~GetOCF() & OCF_Living)
+	  {
+		  DoDmg(RandomX(145,160),DMG_Energy, pObj, iPrec);
+		  return 1;
+	  }
+	else DoDmg(iDamage, DMG_Energy, pObj, iPrec);
+  }
   return(1);
 }
 

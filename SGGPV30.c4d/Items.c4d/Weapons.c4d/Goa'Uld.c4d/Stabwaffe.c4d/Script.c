@@ -32,10 +32,10 @@ public func FMData1(int data)
 {
   if(data == FM_Name)      return("$Standard$");
   if(data == FM_AmmoID)    return(ENAM);
-  if(data == FM_AmmoLoad)  return(1);
-  if(data == FM_AmmoUsage) return(1);
+  if(data == FM_AmmoLoad)  return(10);
+  if(data == FM_AmmoUsage) return(10);
 
-  if(data == FM_Reload)    return(30);
+  if(data == FM_Reload)    return(50);
   if(data == FM_Recharge)  return(1);
 //  if(data == FM_Condition) return(!GetUpgrade(KLAS));
 

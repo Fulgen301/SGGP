@@ -24,6 +24,7 @@ private func RollSound()	  { return Sound("destiny_roll"); }
 private func ChevronSound()	  { return Sound("destiny_chevron");  }
 //private func OpenSound()	  { return Sound("destiny_kawoosh"); }
 private func FailSound()	  { return Sound("pegasus_fail",0,0,50); }
+public func ChevronPrefix()   { return "UN"; }
 
 public func FindDHD()		  { return FindObject2(Find_Func("IsDHD"),Find_Or(Find_Func("IsDestinyDHD"),Find_Func("IsDialPC"))); }
 

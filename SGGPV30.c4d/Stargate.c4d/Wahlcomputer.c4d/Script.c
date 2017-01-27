@@ -16,10 +16,12 @@ local defcon_action;
 local Name;
 local forw;
 local bState;
+local chevrons;
 
 func Initialize()
 {
   password = "";
+  chevrons = [];
   return(1);
 }
 
@@ -81,19 +83,6 @@ func InputCallback(string pw)
    MakeMenu();
    return(5);
   }
-
-  if(dial)
-  {
-   dial = 0;
-   if(!FindStargate())
-   {
-    Message("<c ff0000>Kein Gate gefunden!</c>",this());
-    Sound("Error");
-    return(1);
-   }
-   FindStargate()->Dial(pw);
-   return(1);
-  }
   
   if(npw)
   {
@@ -101,34 +90,21 @@ func InputCallback(string pw)
    password = pw;
    return(1);
   }
-  
-  if(rena)
-  {
-   rena = 0;
-   if(!FindStargate())
-   {
-    Message("<c ff0000>Kein Gate gefunden!</c>",this());
-    Sound("Error");
-    return(1);
-   }
-   FindStargate()->ReName(pw);
-   Message("<c 00ff00>Neuer Gatename:</c><c 0000ff>%v</c>",this(),pw);
-   return(1);
-  }
-  return(1);
 }
 
 func MakeMenu()
 {
 	if(!FindStargate()) return;
-  CreateMenu(STWA,user, 0, 0, FindStargate()->GetName(), 0, 1, true);
+	  var str = "";
+  for(var cv in FindStargate()->GetChevrons())
+  {
+	  if(cv) str = Format("%s{{%s%02d}}  ", str, FindStargate()->ChevronPrefix(), cv);
+  }
+  CreateMenu(STWA,user, 0, 0, str, 0, 1, true);
   if(FindStargate() && FindStargate()->IsBusy())
 	AddMenuItem("$ShutdownGate$","Deactivate",MEPU,user);
   AddMenuItem("$DialGate$","Dial",MEPU,user);
-  if(!FindObject(UMBE))
-  {
-   AddMenuItem("$RenameGate$","Rename",MEPU,user);
-  }
+  AddMenuItem("Koordinaten anzeigen", "ShowCoordinates", MEPU, user);
   if(!FindObject(NOPW))
   {
    AddMenuItem("$ChangePassword$","ChangePass",MEPU,user);
@@ -153,13 +129,31 @@ func MakeMenu()
 	  AddMenuItem("Eingehende Wurmlöcher erlauben","ChangeIncomingState",MEPU,user,0,true);
   }
   else AddMenuItem("Eingehende Wurmlöcher verbieten","ChangeIncomingState",MEPU,user,0,false);
-  
-  if(!LocalN("forwarding",FindStargate()))
-  {
-	  AddMenuItem("Weiterleitung einrichten","ChangeForwardingState",MEPU,user,0,true);
-  }
-  else AddMenuItem("Weiterleitung entfernen","ChangeForwardingState",MEPU,user,0,false);
   return(1);
+}
+
+protected func ShowCoordinates()
+{
+	if(!FindStargate()) return;
+	var prefixes = [];
+	for(var i = 0, def; def = GetDefinition(i, 2); i++)
+	{
+		if(def && def->~IsStargate())
+		{
+			prefixes[GetLength(prefixes)] = def->~ChevronPrefix();
+		}
+	}
+	
+	var msg = "";
+	for(var prefix in prefixes)
+	{
+		for(var cv in FindStargate()->GetChevrons())
+		{
+			msg = Format("%s  {{%s%02d}}", msg, prefix, cv);
+		}
+		msg = Format("%s|", msg);
+	}
+	MessageWindow(msg, GetOwner(user));
 }
 
 protected func ChangeOutgoingState(id dummy, bool state)
@@ -178,36 +172,6 @@ protected func ChangeIncomingState(id dummy, bool state)
 		LocalN("incoming",FindStargate()) = state;
 		return true;
 	}
-}
-
-protected func ChangeForwardingState(id dummy, bool state)
-{
-	bState = state;
-	if(state)
-	{
-		forw=1;
-		CallMessageBoard(0,false,"Geben Sie den Namen des Stargates ein, zu dem eine Weiterleitung eingerichtet werden soll:",GetOwner(user));
-	}
-	else
-	{
-		LocalN("forwarding",FindStargate()) = false;
-		LocalN("fGate",FindStargate()) = 0;
-		Message("<c 00ff00>Weiterleitung entfernt!",this);
-		bState = false;
-	}
-	
-}
-
-func GetGateName()
-{
-  if(!FindStargate())
-  {
-   Message("<c ff0000>Kein Gate gefunden!</c>",this());
-   Sound("Error");
-   return(1);
-  }
-  Message("<c 0000ff>Gatename:</c><c 00ff00>%v</c>",this(),LocalN("Name",FindStargate()));
-  return(1);
 }
 
 func BuildIris()
@@ -244,13 +208,6 @@ func Iris()
   return(1);
 }
 
-func Rename()
-{
-  rena = 1;
-  CallMessageBoard(0, false, "Geben sie hier den neuen Namen ihres Stargates ein:", GetOwner(user));
-  return(1);
-}
-
 func Deactivate()
 {
   if(!FindStargate())
@@ -272,9 +229,48 @@ func ChangePass()
 
 func Dial()
 {
-  dial = 1;
-  CallMessageBoard(0, false, "Geben sie hier den Namen des anzuwählenden Gates ein:", GetOwner(user));
-  return(1);
+  OpenChevronMenu(user);
+}
+
+public func OpenChevronMenu(object pCaller)
+{
+	if(!FindStargate()) return;
+	CreateMenu(GetID(), pCaller, 0, 0, GetName());
+	
+	if(GetType(chevrons) != C4V_Array) chevrons = [];
+	if(GetLength(chevrons) == 7) return AddMenuItem("Fertig", "Finish", GetID(), pCaller);
+	for(var cv in FindStargate()->GetAllChevrons())
+	{
+		var icon;
+		if(GetIndexOf(cv, chevrons) == -1)
+		{
+			icon = C4Id(Format("%s%02d", FindStargate()->ChevronPrefix(), cv));
+		}
+		else
+			icon = CXRL;
+		AddMenuItem(GetName(), Format("ChevronSelection(%d)", cv), icon, pCaller);
+	}
+}
+
+public func ChevronSelection(int cv)
+{
+	if(GetIndexOf(cv, chevrons) != -1)
+	{
+		Sound("start");
+		OpenChevronMenu(user);
+		return;
+	}
+	Sound("Connect");
+	chevrons[GetLength(chevrons)] = cv;
+	if(FindStargate()) FindStargate()->~Chevron(GetLength(chevrons));
+	OpenChevronMenu(user);
+}
+
+public func Finish()
+{
+	if(!FindStargate()) return Sound("start");
+	FindStargate()->Dial(chevrons);
+	chevrons = [];
 }
 
 func GateEnergy()
@@ -283,46 +279,6 @@ func GateEnergy()
 	{
 		Message("Energie: %v",this(),FindStargate()->~Energy());
 	}
-}
-
-func EMPShock()
-{
-EMPShockEffect(20);
-if(FindStargate())
-{
-var gate;
-gate = FindStargate();
-if(FindObject2(Find_Func("IsStargate"),Find_Exclude(gate)))
-{
-gate->Dial(FindObject2(Find_Func("IsStargate"),Find_Exclude(gate))->GetName());
-}
-}
-}
-
-func Check()
-{
-}
-
-func Alert(int state)
-{
-	if(FindObjectOwner(DEFK,GetOwner()))
-	{
-		if(state)
-		{
-			defcon_action = FindObject(DEFK)->GetAction();
-			FindObject(DEFK)->SetAction("Defcon4");
-		}
-		else
-		{
-			if(defcon_action)
-			{
-				FindObject(DEFK)->SetAction(defcon_action);
-				defcon_action = "";
-			}
-		}
-		return(1);
-	}
-	return(0);
 }
 
 public func FindStargate()

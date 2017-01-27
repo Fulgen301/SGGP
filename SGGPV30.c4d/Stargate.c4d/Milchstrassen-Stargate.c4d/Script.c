@@ -27,3 +27,4 @@ public func FindDHD()		  {return FindObject2(Find_Func("IsDHD"),Find_Or(Find_Fun
 private func RollSound()	  { return Sound("Roll"); }
 private func ChevronSound()	  { return Sound("Chevron"); }
 private func FailSound()	  { return Sound("Fail",0,0,50); }
+public func ChevronPrefix()   { return "CH"; }

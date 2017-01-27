@@ -17,6 +17,7 @@ local outgoing, incoming, forwarding;
 local fGate;
 local chevroncount;
 local fake;
+local aChevrons;
 
 public func IsTeltakGate()
 {
@@ -60,13 +61,48 @@ func Initialize()
   {
 	  if(obj) i++;
   }
-  Name = Format("Stargate %v",i);
   iX = GetX();
   iY = GetY();
   outgoing = true;
   incoming = true;
   forwarding = false;
+  
+  aChevrons = [];
+  
+  InitChevrons();
+  for(var i = 0; FindObject2(Find_Func("HasAddress", aChevrons), Find_Exclude(this)) && i < 100; i++) InitChevrons();
   return(1);
+}
+
+protected func InitChevrons()
+{
+	var all = GetAllChevrons();
+	for(var i = 0; GetLength(aChevrons) < 7; i++)
+	{
+		var x = RandomX(1,GetLength(all));
+		if(GetIndexOf(all[x], aChevrons) == -1 && all[x] != 0) aChevrons[GetLength(aChevrons)] = all[x];
+	}
+}
+
+public func GetAllChevrons()
+{
+	var ret = [];
+	for(var i = 1; GetName(0, C4Id(Format("%s%02d", ChevronPrefix(), i))); i++)
+	{
+		if(i > 15) return ret;
+		ret[GetLength(ret)] = i;
+	}
+	return ret;
+}
+
+public func & GetChevrons()
+{
+	return aChevrons;
+}
+
+public func HasAddress(array aAddress)
+{
+	return aChevrons == aAddress;
 }
 
 //Hat das Gate eine Iris?
@@ -229,6 +265,11 @@ func OpenSound()
   return(1);
 }
 
+public func Chevron(int i)
+{
+	
+}
+
 public func HasName(string sz)
 {
 	return Name == sz;
@@ -286,11 +327,11 @@ func IsBusy()
 }
 
 //Die Namensüberprüfung/1. Anwahl des Gates:
-public func Dial(string gate)
+public func Dial(array gate)
 {
 	if(IsBusy()) return;
 	
-	var pGate = FindObject2(Find_Func("IsStargate"), Find_Exclude(this), Find_Func("HasName", gate), Find_Not(Find_Func("IsBusy")));
+	var pGate = FindObject2(Find_Func("IsStargate"), Find_Exclude(this), Find_Func("HasAddress", gate), Find_Not(Find_Func("IsBusy")));
 	
 	if(!pGate)
 	{
@@ -392,6 +433,7 @@ func Check()
 
   if((!pFrom && !pTo && !fake) || (pTo && !fake && pTo->GetAction() == "Idle") || (pFrom && pFrom->GetAction() == "Idle"))
     Deactivate();
+  else if(pTo || pFrom) fake = false;
   return(1);
 }
 
@@ -561,6 +603,8 @@ public func IsPegasusGate()
 {
 	return(0);
 }
+
+public func ChevronPrefix() { return ""; }
 
 public func GiveEnergy(int amount)
 {

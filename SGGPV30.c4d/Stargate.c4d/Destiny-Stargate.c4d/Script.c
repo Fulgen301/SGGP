@@ -91,3 +91,9 @@ protected func DialSounds()
   }
   return(1);
 }
+
+
+public func ChevronPhase()
+{
+	return [1, 14, 33, 44, 99, 78, 92, 98];
+}

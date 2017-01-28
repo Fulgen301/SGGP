@@ -72,6 +72,11 @@ public func OpenChevronMenu(object pCaller)
 	}
 }
 
+public func MenuQueryCancel()
+{
+	chevrons = [];
+}
+
 public func ChevronSelection(int cv)
 {
 	if(GetIndexOf(cv, chevrons) != -1)
@@ -82,13 +87,21 @@ public func ChevronSelection(int cv)
 	}
 	ChevronSound();
 	chevrons[GetLength(chevrons)] = cv;
-	if(FindStargate()) FindStargate()->~Chevron(GetLength(chevrons));
+	if(FindStargate())
+	{
+		FindStargate()->~Chevron(GetLength(chevrons));
+		if(GetLength(chevrons) == 7)
+		{
+			FindStargate()->~Dial(chevrons);
+		}
+	}
 	OpenChevronMenu(pUser);
 }
 
 public func Finish()
 {
 	if(!FindStargate()) return Sound("start");
+	FindStargate()->~Chevron();
 	FindStargate()->Dial(chevrons);
 	chevrons = [];
 }

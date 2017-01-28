@@ -298,3 +298,48 @@ global func SetPosition(int iX, int iY, object pObj, bool fNoCalls)
 	if(!fNoCalls && iX != pObj->GetX() && iY != pObj->GetY() && pObj->~OnPositionChange(iX, iY)) return;
 	return _inherited(iX, iY, pObj);
 }
+
+/** @author MundA */
+
+//Lässt eine Aktion "einfrieren". Man kann sich zwar bewegen, aber die Phase der Aktion bleibt die selbe. Wird die Aktion durch eine andere ersetzt ist diese nicht eingefroren
+global func HoldAction(object pObj)
+{
+	if(GetEffect("HoldAction" , pObj))	return false;
+
+	var iEffectNumber = AddEffect("HoldAction" , pObj , 20 , 1 , 0 , 0);
+	EffectCall(pObj , iEffectNumber, "SetVariables" , pObj , GetAction(pObj) , GetPhase(pObj));
+
+	return true;
+}
+
+
+
+global func FxHoldActionSetVariables(pTarget , iNumber , pObj , sAction , iPhase)
+{
+	EffectVar(0 , pTarget , iNumber) = pObj;
+	EffectVar(1 , pTarget , iNumber) = sAction;
+	EffectVar(2 , pTarget , iNumber) = iPhase;
+}
+
+
+global func FxHoldActionTimer(pTarget , iNumber , iEffectTime)
+{
+	var pObj = EffectVar(0 , pTarget , iNumber);
+	var sAction = EffectVar(1 , pTarget , iNumber);
+	var iPhase = EffectVar(2 , pTarget , iNumber);
+
+	if(GetAction(pObj) != sAction)	return -1;
+
+	SetPhase(iPhase , pObj);
+}
+
+
+
+//Hebt die "Einfrierung" einer Aktion wieder auf
+global func ContinueAction(object pObj)
+{
+	if(GetEffect("HoldAction" , pObj))	RemoveEffect("HoldAction" , pObj);
+	else	return false;
+
+	return true;
+}

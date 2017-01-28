@@ -56,7 +56,10 @@ func Timer()
 			cv = pTo -> GetChevrons();
 			if(ObjectCount2(Find_OCF(OCF_Collectible),Find_NoContainer(),Find_Not(Find_ID(REWU),Find_ID(ARW_),Find_Func("IsEquipment")),Find_Not(Find_And(Find_ID(FLAG),Find_Action("FlyBase"))),Find_Distance(RepliView,GetX(pTo)-GetX(),GetY(pTo)-GetY())))
 			{
+				Gate->LocalN("chevroncount") = 7;
 				Gate->Dial(cv);
+				Gate->LocalN("chevroncount") = 0;
+				ScheduleCall(Gate, "Dial", 10);
 				pOther = pTo;
 			}
 		}

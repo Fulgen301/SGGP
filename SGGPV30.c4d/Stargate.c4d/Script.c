@@ -208,6 +208,7 @@ func KawooshKill()
 //Die Sounds beim anwählen
 protected func DialSounds()
 {
+	if(GetEffect("HoldAction", this)) return;
   if(GetPhase() == 1)
   {
    RollSound();
@@ -267,7 +268,8 @@ func OpenSound()
 
 public func Chevron(int i)
 {
-	
+	chevroncount = i;
+	if(GetAction() == "Idle") SetAction("Outgoing1");
 }
 
 public func HasName(string sz)
@@ -325,22 +327,28 @@ func IsBusy()
   return !(GetAction() == "Idle");
 }
 
-//Die Namensüberprüfung/1. Anwahl des Gates:
 public func Dial(array gate)
 {
-	if(IsBusy()) return;
-	
+	if(!chevroncount)
+	{
+		if(pTo)
+		{
+			ContinueAction(this);
+			ContinueAction(pTo);
+			time = 20 - !!IsDestinyGate() * 13;
+		}
+		else
+		{
+			FailSound();
+			Deactivate();
+			return;
+		}
+	}
 	var pGate = FindObject2(Find_Func("IsStargate"), Find_Exclude(this), Find_Func("HasAddress", gate), Find_Not(Find_Func("IsBusy")));
-	
 	if(!pGate)
 	{
-		fake = true;
-		time = 20;
-		SetAction("Outgoing1");
-		return true;
+		return;
 	}
-	
-	//Energy
 	
 	var enrg = BoundBy(Distance(GetX(),GetY(),pGate->GetX(),pGate->GetY())*100, 100000, 1000000);
 	if(energy >= enrg)
@@ -349,25 +357,16 @@ public func Dial(array gate)
 	}
 	else
 	{
-		fake = true;
-		time = 20;
-		if(!IsBusy()) SetAction("Outgoing1");
-		return true;
+		return;
 	}
 	
 	pTo = pGate;
 	pTo->LocalN("pFrom") = this;
-	
-	if(IsDestinyGate()) Sound("destiny_start");
-	
-	time = 20 - !!IsDestinyGate() * 13;
-	
-	pTo = pGate;
-	pGate->LocalN("pFrom") = this;
-	SetAction("Outgoing1");
-	if(pGate->~IsDestinyGate()) pGate->Sound("destiny_start");
 	pTo->SetAction("Income1");
-	return true;
+	pTo->RollSound();
+	pTo->ChevronSound();
+	pTo->SetPhase(pTo->ChevronPhase()[chevroncount]);
+	HoldAction(pTo);
 }
 
 //Überprüft ob das Gate sich abschalten muss:
@@ -420,19 +419,27 @@ func Check()
 	  fGate->SetPhase(GetPhase());
 	  Deactivate();
   }
-  if(GetAction() == "Off")
-  {
-   return(1);
-  }
   
-  if(GetAction() == "Idle")
+  if(GetAction() == "Outgoing1" && chevroncount)
+  {
+	  if(GetPhase() != ChevronPhase()[chevroncount])
+	  {
+		  ContinueAction(this);
+	  }
+	  else
+	  {
+		  HoldAction(this);
+	  }
+	  
+	  return 1;
+  }
+  else if(GetAction() == "Off" || GetAction() == "Idle")
   {
    return(1);
   }
 
-  if((!pFrom && !pTo && !fake) || (pTo && !fake && pTo->GetAction() == "Idle") || (pFrom && pFrom->GetAction() == "Idle"))
-    Deactivate();
-  else if(pTo || pFrom) fake = false;
+  if((!pFrom && !pTo) || (pFrom && pFrom->GetAction() == "Idle") || (pTo && pTo->GetAction() == "Idle"))
+	  Deactivate();
   return(1);
 }
 
@@ -658,4 +665,10 @@ protected func Okay(int x, int y)
 	iY = y;
 	SetPosition(x,y);
 	return true;
+}
+
+
+public func ChevronPhase()
+{
+	return [1, 8, 15, 22, 29, 36, 44, 49];
 }

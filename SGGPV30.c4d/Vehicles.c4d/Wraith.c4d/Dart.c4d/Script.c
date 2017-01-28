@@ -3,8 +3,6 @@
 #strict 2
 #include CVHC
 
-local iEnergy; //Sowas ist eigentlich recht unwichtig...
-local pPilot;   //Ey, wer fliegt mich?
 local open;    //Ist momentan die Luke geöffnet?
 local iExtra;  //Ne winzige Hilfsvariable für die Turn funktion
 local fire;    //Sammelstrahl oder Blaster aktiv?
@@ -22,15 +20,18 @@ local Gate;	   //Platzhaltervariable für das Gateanwählen.
 public func Initialize() 
 {
 	_inherited(...);
+	chevrons = [];
   MaxDam = 500;					//Maximaler Schaden: 	Check
   Wdamage = 300;				//Schaden für Waffen: 	Check
   Fdamage = 450;				//Schaden fürs Fliegen:	Check
   alflusy = 1;					//Alternatives Flugsystem anschalten
   SetAction("Open");			//Der Dart ist regulär offen geliefert
-  iEnergy = 100;				//Jawohl, volle Akkus bei lieferung
+  energy = 100;				//Jawohl, volle Akkus bei lieferung
   AddDamageEffect(this);		//Juhu, der Dart ist Raucher
   core = CreateObject(WRDC);	//Jetzt noch der Wraithkern für Lebewesenspeicherung
   ScheduleCall(0,"LightSet",1);	//Und noch n kleier Timer um den Sammelstrahl zu setzen
+  
+  Icon_Hatch = WRD1;
   return(1);
 }
 
@@ -214,7 +215,7 @@ public func Aktiviti()
   }
   
   
-  if(GetDamage() > Fdamage || !FindContents())	//Haben wir zuviel Schaden um zu Fliegen...
+  if(GetDamage() > Fdamage || !FindObject2(Find_OCF(OCF_CrewMember), Find_Container(this)))	//Haben wir zuviel Schaden um zu Fliegen...
   {
    SetAction("Open");		//...dann Ist die Türe immer auf und wir können nichtmehr Starten,...
    open = 1;				//...Und man kann immer Betreten und verlassen!
@@ -331,6 +332,7 @@ protected func ContainedUpDouble()			//Stehenbleiben bei Doppelhoch!
 protected func MakeMenu()
 {
 	_inherited(...);
+	AddMenuItem("Motor Aus","Enginestop",WRD3,Par(0));
   if(fire == 1)
   {
    AddMenuItem("Blaster","FireSwitch",WRD5,pPilot);
@@ -438,34 +440,7 @@ public func Destroy()
 
 public func ExitPilot() 
 {
-  if(GetAction() == "Fly")
-  {
-   if(light)
-   {
-    light -> TurnOn();
-    light -> SetCon(100);
-   }
-   LocalN("outfade",light) = 1;
-   var clnok;
-   clnok = pPilot;
-   SetAction("Stand");
-   Sound("DartButton");
-   SetEntrance(1);
-   clnok -> Exit();
-   SetEntrance(0);
-   if(GetDir() == 0)
-   {
-    clnok -> SetPosition(GetX()+40,GetY());
-   }
-   else
-   {
-    clnok -> SetPosition(GetX()-40,GetY());
-   }
-   SetAction("Fly");
-   clnok -> SetAction("Tumble");
-   clnok -> SetYDir(10000);
-   return(1);
-  }
+	if(GetAction() == "Stand") return;
 
   if(!open)
   {
@@ -684,3 +659,4 @@ func IsMachine() 		{ return(1); }
 func IsBulletTarget()    { return(1); }
 public func GetRace() { return SGA_Wraith; }
 public func CanDialGate() { return GetDamage() < 300; }
+public func MaxDamage() { return MaxDam; }

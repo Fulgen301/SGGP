@@ -52,11 +52,11 @@ func Timer()
 		var pTo;
 		for(pTo in FindObjects(Find_Func("IsStargate"),Find_Not(Find_Func("Testi")),Find_Func("GetName"),Find_Exclude(Gate)))
 		{
-			var szName;
-			szName = pTo -> GetName(pTo);
+			var cv;
+			cv = pTo -> GetChevrons();
 			if(ObjectCount2(Find_OCF(OCF_Collectible),Find_NoContainer(),Find_Not(Find_ID(REWU),Find_ID(ARW_),Find_Func("IsEquipment")),Find_Not(Find_And(Find_ID(FLAG),Find_Action("FlyBase"))),Find_Distance(RepliView,GetX(pTo)-GetX(),GetY(pTo)-GetY())))
 			{
-				Gate->Dial(szName);
+				Gate->Dial(cv);
 				pOther = pTo;
 			}
 		}

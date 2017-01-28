@@ -298,13 +298,12 @@ func GetState()
 //Gibt nur den Namen zurück:
 func GetName()
 {
-  if(!Name) return "";
-  return(Name);
-}
-
-public func GiveName()
-{
-	return GetName();
+  var ret = "";
+  for(var cv in aChevrons)
+  {
+	  ret = Format("%s{{%s%02d}}  ", ret, ChevronPrefix(), cv);
+  }
+  return ret;
 }
 
 //Setzt den neuen Namen

@@ -5,6 +5,7 @@
 local pPilot;
 local shield;
 local energy;
+local chevrons;
 
 // Weapons
 local aWeapons;
@@ -59,16 +60,57 @@ protected func MakeMenu(object pCaller)
 	
 	if(CanDialGate())
 	{
-		var pGate = FindObject2(Find_Func("IsStargate"), Find_Distance(800));
+		var pGate = FindStargate();
 		if(pGate) AddMenuItem(Format("$DialGate$", pGate->GetName()), "Dial", pGate->GetID(), pPilot);
 	}
 }
 
 private func Hatch() {}
 
-private func Dial()
+protected func Dial()
 {
-  CallMessageBoard(0,false,"$GateName$",pPilot->GetOwner());
+	OpenChevronMenu(pPilot);
+}
+
+public func OpenChevronMenu(object pCaller)
+{
+	if(!FindStargate()) return;
+	CreateMenu(GetID(), pCaller, 0, 0, GetName());
+	
+	if(GetType(chevrons) != C4V_Array) chevrons = [];
+	if(GetLength(chevrons) == 7) return AddMenuItem("Fertig", "Finish", GetID(), pCaller);
+	for(var cv in FindStargate()->GetAllChevrons())
+	{
+		var icon;
+		if(GetIndexOf(cv, chevrons) == -1)
+		{
+			icon = C4Id(Format("%s%02d", FindStargate()->ChevronPrefix(), cv));
+		}
+		else
+			icon = CXRL;
+		AddMenuItem(GetName(), Format("ChevronSelection(%d)", cv), icon, pCaller);
+	}
+}
+
+public func ChevronSelection(int cv)
+{
+	if(GetIndexOf(cv, chevrons) != -1)
+	{
+		Sound("start");
+		OpenChevronMenu(pPilot);
+		return;
+	}
+	Sound("Connect");
+	chevrons[GetLength(chevrons)] = cv;
+	if(FindStargate()) FindStargate()->~Chevron(GetLength(chevrons));
+	OpenChevronMenu(pPilot);
+}
+
+public func Finish()
+{
+	if(!FindStargate()) return Sound("start");
+	FindStargate()->Dial(chevrons);
+	chevrons = [];
 }
 
 public func InputCallback(string szName)
@@ -102,6 +144,8 @@ public func Okay(int iX, int iY)
 private func InitializeWeapons() { return []; }
 private func InitializeInventory() { return []; }
 
+
+public func FindStargate()	{ return FindObject2(Find_Func("IsStargate"), Find_Distance(800), Sort_Distance()); }
 public func HasHyperdrive() { return false; }
 public func CanCloak()		{ return false; }
 public func HasShield()		{ return false; }

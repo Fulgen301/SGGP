@@ -36,8 +36,8 @@ func InitializePlayer(int iPlr)
 func Initialize()
 {
 	_inherited();
-	CreateGate(SGR1,STGT, 268, 1428, -1,"Russen");
-	CreateGate(SGR2,STGT, 2638, 2358, -1,"Wasser");
+	CreateGate(SGR1,STGT, 268, 1428, -1);
+	CreateGate(SGR2,STGT, 2638, 2358, -1,[1,2,3,4,5,6,7]);
 	FindObject(_CST)->CreateContents(DHDK);
 	ScriptGo(1);
 	CreateObject(NQSH)-> SetMissionAccess("SGGP 2");

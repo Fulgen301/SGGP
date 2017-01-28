@@ -2,7 +2,7 @@
 
 #strict 2
 
-global func CreateGate(id ramp,id type,int x,int y,int owner,string name)
+global func CreateGate(id ramp,id type,int x,int y,int owner, array aChevrons)
 {
 	var gate;
 	if(ramp)
@@ -14,9 +14,9 @@ global func CreateGate(id ramp,id type,int x,int y,int owner,string name)
 	{
 		gate = CreateObject(type, x, y, owner);
 	}
-	if(name)
+	if(aChevrons)
 	{
-		gate->ReName(name);
+		gate->GetChevrons() = aChevrons;
 	}	
 	return(gate);
 }

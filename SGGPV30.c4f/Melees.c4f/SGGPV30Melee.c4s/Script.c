@@ -16,9 +16,9 @@ func Initialize()
 	CreateObject(AUBA);
 	CreateObject(SPER);
 	CreateObject(RULL);
-	CreateGate(SGR2,STGT,989,415,NO_OWNER,"Stargate 1");
+	CreateGate(SGR2,STGT,989,415,NO_OWNER);
 	CreateObject(DHD_,906,410,NO_OWNER);
-	CreateGate(SGR2,STGT,2222,414,NO_OWNER,"Stargate 2");
+	CreateGate(SGR2,STGT,2222,414,NO_OWNER);
 	CreateObject(DHD_,2365,431,NO_OWNER);
 	ScriptGo(1);	
 	return(1);

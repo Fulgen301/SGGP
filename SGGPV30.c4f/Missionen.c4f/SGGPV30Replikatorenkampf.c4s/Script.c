@@ -4,8 +4,8 @@
 func Initialize() 
 {
 	_inherited();
-	CreateGate(SGR2, STGT, 4466, 610, NO_OWNER, "Replikatoren");
-	CreateGate(SGR2, STGT, 1471, 460, NO_OWNER, "Stargate-Kommando");
+	CreateGate(SGR2, STGT, 4466, 610, NO_OWNER);
+	CreateGate(SGR2, STGT, 1471, 460, NO_OWNER);
    	ScriptGo(1);
    	RemoveAll(MANC);
    	RemoveAll(REBO);

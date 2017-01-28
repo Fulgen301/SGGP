@@ -7,9 +7,9 @@ func Initialize()
 {
 	_inherited();
 	SetSkyParallax(1, 20,20, 0,0, SkyPar_Keep(),SkyPar_Keep());
-	CreateGate(SGR2,STGT, 2555, 280, -1,"Jaffa");
+	CreateGate(SGR2,STGT, 2555, 280, -1);
 	CreateObject(DHD_,2503,185,-1);
-	CreateGate(SGR2,STGT, 2553, 1378, -1,"Wraith");
+	CreateGate(SGR2,STGT, 2553, 1378, -1);
 	CreateObject(DHD_,2478,1375,-1);
 	UpdateScoreboard();
 	helper = 1;

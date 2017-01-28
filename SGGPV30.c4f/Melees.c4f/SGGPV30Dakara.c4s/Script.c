@@ -15,7 +15,7 @@ func Initialize()
 	CreateObject(DARK);
 	CreateObject(DARK);
 	CreateObject(DARK);
-	CreateGate(SGR2,STGT, 2501, 700, NO_OWNER,"Dakara");
+	CreateGate(SGR2,STGT, 2501, 700, NO_OWNER);
 	CreateObject(DHD_, 2410, 692, NO_OWNER);
 	ScriptGo(1);
 	SetSkyParallax(1, 20,20, 20,0, SkyPar_Keep(),SkyPar_Keep());  

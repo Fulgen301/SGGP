@@ -124,7 +124,7 @@ func ControlRightDouble(pCaller)
   {
    if(FindObject(NOKR))
    {
-    Message("Gatename:|<c 00ff00>%v</c>",this(),FindStargate()->GetName());
+    Message("%s",this,FindStargate()->GetName());
     return;
    }
   }
@@ -142,10 +142,6 @@ func ControlRightDouble(pCaller)
 	  if(cv) str = Format("%s{{%s%02d}}  ", str, FindStargate()->ChevronPrefix(), cv);
   }
   CreateMenu(GetID(),pUser, 0, 0, str, 0, 1);
-  if(!FindObject(UMBE))
-  {
-   AddMenuItem("Gate umbenennen","Rename",MEPU,pUser);
-  }
   
   if(!FindObject(NOKR))
   {

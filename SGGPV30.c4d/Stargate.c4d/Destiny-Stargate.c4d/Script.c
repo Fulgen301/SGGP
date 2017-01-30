@@ -95,5 +95,5 @@ protected func DialSounds()
 
 public func ChevronPhase()
 {
-	return [1, 14, 33, 44, 99, 78, 92, 98];
+	return [1, 14, 33, 44, 49, 78, 92, 98];
 }

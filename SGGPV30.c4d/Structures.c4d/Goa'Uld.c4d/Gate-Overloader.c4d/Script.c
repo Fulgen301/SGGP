@@ -87,7 +87,7 @@ func SearchGate()
 {
   if(target = FindObject2(Find_Func("IsStargate"),Find_InRect(-50,-100,750,200)))
   {
-   Message("<c 00ff00>Gate gefunden:</c>|<c 0000ff>%v</c>",this(),LocalN("Name",target));
+   Message("<c 00ff00>Gate gefunden:</c>|<c 0000ff>%v</c>",this(),target->GetName());
    Sound("BipBipBip");
   }
   else
@@ -134,7 +134,7 @@ func Check()
   {
    if(target)
    {
-    Message("Anvisiert:|<c 00ff00>%v</c>|---|Restzeit:|<c 00ff00>%v</c>|---|Zielgate:|<c 00ff00>%v</c>",this(),LocalN("Name",target),RestTime(),LocalN("Name",TargetGate()));
+    Message("Anvisiert:|<c 00ff00>%v</c>|---|Restzeit:|<c 00ff00>%v</c>|---|Zielgate:|<c 00ff00>%v</c>",this(),target->GetName(),RestTime(),LocalN("Name",TargetGate()));
    }
    else
    {

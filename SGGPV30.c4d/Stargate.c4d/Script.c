@@ -18,6 +18,7 @@ local fGate;
 local chevroncount;
 local fake;
 local aChevrons;
+local input;
 
 public func IsTeltakGate()
 {
@@ -308,17 +309,53 @@ func GetName()
   return ret;
 }
 
-//Setzt den neuen Namen
-func ReName(newName)
+public func OpenChevronMenu(object pCaller, object pDHD)
 {
-  if(newName == 0)
-  {
-   Message("Es muss ein Name gesetzt werden!",this);
-   Sound("Error");
-   return(1);
-  }
-  Name = newName;
-  return(1);
+	if(!pCaller || !pDHD) return;
+	CreateMenu(GetID(), pCaller, 0, 0, pDHD->GetName());
+	
+	if(GetType(input) != C4V_Array) input = [];
+	if(GetLength(input) == 7) return AddMenuItem("Fertig", "Finish", pDHD->GetID(), pCaller);
+	for(var cv in GetAllChevrons())
+	{
+		var icon;
+		if(GetIndexOf(cv, input) == -1)
+		{
+			icon = C4Id(Format("%s%02d", ChevronPrefix(), cv));
+		}
+		else
+			icon = CXRL;
+		AddMenuItem(pDHD->GetName(), Format("Object(%d)->ChevronSelection(%d, Object(%d), Object(%d))", this->ObjectNumber(), cv, pCaller->ObjectNumber(), pDHD->ObjectNumber()), icon, pCaller);
+	}
+}
+
+public func MenuQueryCancel()
+{
+	input = [];
+}
+
+public func ChevronSelection(int cv, object pCaller, object pDHD)
+{
+	if(!pCaller || !pDHD) return;
+	if(GetIndexOf(cv, input) != -1)
+	{
+		pDHD->Sound("start");
+		OpenChevronMenu(pCaller, pDHD);
+		return;
+	}
+	pDHD->~ChevronSound();
+	input[GetLength(input)] = cv;
+	Chevron(GetLength(input));
+	if(GetLength(input) == 7) Dial(input);
+	OpenChevronMenu(pCaller, pDHD);
+	SelectMenuItem(cv - 1, pCaller);
+}
+
+public func Finish()
+{
+	Chevron();
+	Dial(input);
+	input = [];
 }
 
 //Beschäftigt?!
@@ -341,8 +378,8 @@ public func Dial(array gate)
 		{
 			FailSound();
 			Deactivate();
-			return;
 		}
+		return;
 	}
 	var pGate = FindObject2(Find_Func("IsStargate"), Find_Exclude(this), Find_Func("HasAddress", gate), Find_Not(Find_Func("IsBusy")));
 	if(!pGate)

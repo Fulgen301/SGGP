@@ -69,67 +69,7 @@ private func Hatch() {}
 
 protected func Dial()
 {
-	OpenChevronMenu(pPilot);
-}
-
-public func OpenChevronMenu(object pCaller)
-{
-	if(!FindStargate()) return;
-	CreateMenu(GetID(), pCaller, 0, 0, GetName());
-	
-	if(GetType(chevrons) != C4V_Array) chevrons = [];
-	if(GetLength(chevrons) == 7) return AddMenuItem("Fertig", "Finish", GetID(), pCaller);
-	for(var cv in FindStargate()->GetAllChevrons())
-	{
-		var icon;
-		if(GetIndexOf(cv, chevrons) == -1)
-		{
-			icon = C4Id(Format("%s%02d", FindStargate()->ChevronPrefix(), cv));
-		}
-		else
-			icon = CXRL;
-		AddMenuItem(GetName(), Format("ChevronSelection(%d)", cv), icon, pCaller);
-	}
-}
-
-public func MenuQueryCancel()
-{
-	chevrons = [];
-}
-
-public func ChevronSelection(int cv)
-{
-	if(GetIndexOf(cv, chevrons) != -1)
-	{
-		Sound("start");
-		OpenChevronMenu(pPilot);
-		return;
-	}
-	Sound("Connect");
-	chevrons[GetLength(chevrons)] = cv;
-	if(FindStargate())
-	{
-		FindStargate()->~Chevron(GetLength(chevrons));
-		if(GetLength(chevrons) == 7)
-		{
-			FindStargate()->~Dial(chevrons);
-		}
-	}
-	OpenChevronMenu(pPilot);
-}
-
-public func Finish()
-{
-	if(!FindStargate()) return Sound("start");
-	FindStargate()->~Chevron();
-	FindStargate()->Dial(chevrons);
-	chevrons = [];
-}
-
-public func InputCallback(string szName)
-{
-	var pGate = FindObject2(Find_Func("IsStargate"),Find_Distance(800),Sort_Distance());
-	if(pGate) pGate->Dial(szName);
+	if(FindStargate()) FindStargate()->OpenChevronMenu(pPilot, this);
 }
 
 private func ExitPilot()	{ if(pPilot) pPilot->Exit();}

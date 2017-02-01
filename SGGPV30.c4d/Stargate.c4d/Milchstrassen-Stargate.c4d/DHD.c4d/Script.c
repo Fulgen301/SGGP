@@ -47,64 +47,12 @@ func ControlUpDouble(pCaller)
   }
   else
   {
-   OpenChevronMenu(pCaller);
+   FindStargate()->OpenChevronMenu(pCaller, this);
   }
   return(1);
 }
 
-public func OpenChevronMenu(object pCaller)
-{
-	if(!FindStargate()) return;
-	CreateMenu(GetID(), pCaller, 0, 0, GetName());
-	
-	if(GetType(chevrons) != C4V_Array) chevrons = [];
-	if(GetLength(chevrons) == 7) return AddMenuItem("Fertig", "Finish", GetID(), pCaller);
-	for(var cv in FindStargate()->GetAllChevrons())
-	{
-		var icon;
-		if(GetIndexOf(cv, chevrons) == -1)
-		{
-			icon = C4Id(Format("%s%02d", FindStargate()->ChevronPrefix(), cv));
-		}
-		else
-			icon = CXRL;
-		AddMenuItem(GetName(), Format("ChevronSelection(%d)", cv), icon, pCaller);
-	}
-}
 
-public func MenuQueryCancel()
-{
-	chevrons = [];
-}
-
-public func ChevronSelection(int cv)
-{
-	if(GetIndexOf(cv, chevrons) != -1)
-	{
-		Sound("start");
-		OpenChevronMenu(pUser);
-		return;
-	}
-	ChevronSound();
-	chevrons[GetLength(chevrons)] = cv;
-	if(FindStargate())
-	{
-		FindStargate()->~Chevron(GetLength(chevrons));
-		if(GetLength(chevrons) == 7)
-		{
-			FindStargate()->~Dial(chevrons);
-		}
-	}
-	OpenChevronMenu(pUser);
-}
-
-public func Finish()
-{
-	if(!FindStargate()) return Sound("start");
-	FindStargate()->~Chevron();
-	FindStargate()->Dial(chevrons);
-	chevrons = [];
-}
 
 func ControlDigDouble(pCaller)
 {

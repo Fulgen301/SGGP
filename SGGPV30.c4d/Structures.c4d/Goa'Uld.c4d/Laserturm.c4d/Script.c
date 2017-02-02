@@ -1,6 +1,6 @@
 /*-- Laserturm --*/
 
-#strict
+#strict 2
 
 local on;
 local dist;
@@ -17,13 +17,13 @@ func ControlDigDouble(pCaller)
   if(on)
   {
    on = 0;
-   Message("<c ff0000>DEAKTIVIERT!</c>",this());
+   Message("<c ff0000>DEAKTIVIERT!</c>",this);
    Sound("Ding");
   }
   else
   {
    on = 1;
-   Message("<c 00ff00>AKTIVIERT!</c>",this());
+   Message("<c 00ff00>AKTIVIERT!</c>",this);
    Sound("Ding");
   }
   return(1);
@@ -31,8 +31,19 @@ func ControlDigDouble(pCaller)
 
 func Fire()
 {
+	if(FindObject2(Find_ID(ENRG)))
+	{
+		if(EnergyCheck(500)) DoEnergy(-500);
+		else return;
+	}
+	
   ScheduleCall(0,"Laser",2,4);
   return(1);
+}
+
+protected func Damage()
+{
+	if(GetDamage() < 100) return Explode(75);
 }
 
 func Laser()
@@ -40,14 +51,14 @@ func Laser()
   Sound("ParticleShot");
   var laser = CreateObject(LASR,0,0,GetOwner());
   laser->SetClrModulation(RGB(255,0,0));
-  laser->Set(Random(360),10,650,30,this());
+  laser->Set(Random(360),10,650,30,this);
   return(1);
 }
 
 func LaserStrike(pVictim, iTime)
 {
   pVictim->DoDamage(50);
-  if(pVictim)
+  if(pVictim && pVictim->GetOCF() & OCF_Alive)
   {
    pVictim->DoEnergy(-50);
   }
@@ -57,9 +68,9 @@ func LaserStrike(pVictim, iTime)
 func Check()
 {
   if(!on) { return(1); }
-  if(FindObject2(Find_Distance(dist),Find_Or(Find_Category(C4D_Vehicle()),Find_OCF(OCF_Alive())),Find_Hostile(GetOwner())))
+  if(FindObject2(Find_Distance(dist),Find_Or(Find_Category(C4D_Vehicle),Find_OCF(OCF_Alive)),Find_Hostile(GetOwner())))
   {
-   if(GetAction() eq "Close")
+   if(GetAction() == "Close")
    {
     Sound("BipBipBip");
     SetAction("Opens");

@@ -43,7 +43,7 @@ func Fire()
 
 protected func Damage()
 {
-	if(GetDamage() < 100) return Explode(75);
+	if(GetDamage() > 100) return Explode(75);
 }
 
 func Laser()

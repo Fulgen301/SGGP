@@ -63,7 +63,6 @@ public func FMData1(int data)
 public func Fire1()    // Peng
 { 
   var user = GetUser();
-  var angle = GetR();
   
   var iX;
   var iY;
@@ -72,7 +71,7 @@ public func Fire1()    // Peng
   
   var laser = CreateObject(LASR, iX, iY, GetController(user));
   laser->SetClrModulation(RGBa(255, 255, 255, 64));
-  laser->Set(angle, 13, 500, 30, this(), user);
+  laser->Set(GetR() + 90, 13, 500, 30, this(), user);
   laser->SetContinuous(2);
   Sound("RailGunShot");
 }
@@ -93,7 +92,6 @@ public func Fire1()    // Peng
 func LaserStrike(object pObj) {
   //Schaden machen, natürlich tollen Energiebrazzelschaden!
   DoDmg(6, DMG_Energy, pObj);
-
   return(0);
 }
 

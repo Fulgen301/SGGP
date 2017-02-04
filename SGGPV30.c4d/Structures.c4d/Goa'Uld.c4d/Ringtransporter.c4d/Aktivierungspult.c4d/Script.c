@@ -140,7 +140,8 @@ func ControlUpDouble(object pCaller)
 
 func FindTransporters(int distance)
 {
-	return FindObjects(Find_ID(RIG1), Find_OCF(OCF_Fullcon), Find_Distance(distance || 150), Sort_Distance(), ...);
+	if(FindObject2(Find_ID(RIGU))) return FindObjects(Find_ID(RIG1), Find_OCF(OCF_Fullcon), Sort_Distance(), ...);
+	else return FindObjects(Find_ID(RIG1), Find_OCF(OCF_Fullcon), Find_Distance(distance || 150), Sort_Distance(), ...);
 }
 
 func SetTransporter(id dummy, object pTransporter)

@@ -19,6 +19,7 @@ local chevroncount;
 local fake;
 local aChevrons;
 local input;
+local iris_action;
 
 public func IsTeltakGate()
 {
@@ -413,6 +414,13 @@ func Check()
   {
   	energy += 50;
   }
+  
+  if(!iris)
+  {
+	  InstallIris();
+	  if(iris_action) iris->SetAction(iris_action);
+  }
+  else iris_action = iris->GetAction();
 		
   if(IsSpaceGate() && !IsTeltakGate())	SetPosition(iX, iY);
   if(heat > 0)

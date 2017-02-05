@@ -8,13 +8,13 @@ static ypositions_ranges;
 
 func Initialize()
 {
-  CreateGate(SGR3, SGDG, 515, 298, -1, "Alienworld");
-  CreateGate(SGR2, SGAG, 2007, 1570, -1, "Pandora");
-  CreateGate(SGR3, SGDG, 2507, 3131, -1, "Dune");
-  CreateGate(SGR2, STGT, 347, 4151, -1, "Deathstar");
-  CreateGate(SGR2, SGAG, 2010, 5321, -1, "Thalus");
-  CreateGate(SGR3, SGDG, 3504, 5983, -1, "Lavahöhlen");
-  CreateGate(SGR1, STGT, 1596, 6987, -1, "Mond");
+  CreateGate(SGR3, SGDG, 515, 298, -1);
+  CreateGate(SGR2, SGAG, 2007, 1570, -1);
+  CreateGate(SGR3, SGDG, 2507, 3131, -1);
+  CreateGate(SGR2, STGT, 347, 4151, -1);
+  CreateGate(SGR2, SGAG, 2010, 5321, -1);
+  CreateGate(SGR3, SGDG, 3504, 5983, -1);
+  CreateGate(SGR1, STGT, 1596, 6987, -1);
   
   CreateObject(DHD_, 1514, 7000, -1);
   CreateObject(DHD_, 272, 4148, -1);

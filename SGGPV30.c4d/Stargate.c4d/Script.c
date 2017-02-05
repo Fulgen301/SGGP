@@ -418,7 +418,11 @@ func Check()
   if(!iris && heat < 100000)
   {
 	  InstallIris();
-	  if(iris_action) iris->SetAction(iris_action);
+	  if(iris && iris_action)
+	  {
+		  iris->SetAction(iris_action);
+		  if(iris_action == "Closes" || iris_action == "Close") iris->LocalN("open") = 0;
+	  }
   }
   else if(iris) iris_action = iris->GetAction();
 		

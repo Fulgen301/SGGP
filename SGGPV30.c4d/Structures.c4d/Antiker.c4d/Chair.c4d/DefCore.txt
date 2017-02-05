@@ -2,7 +2,7 @@
 id=ANKS
 Version=4,9,8
 Name=Kontrollstuhl
-Category=C4D_Structure
+Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
 Width=30
 Height=19
 Offset=-15,-10

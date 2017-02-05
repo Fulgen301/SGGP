@@ -415,12 +415,12 @@ func Check()
   	energy += 50;
   }
   
-  if(!iris)
+  if(!iris && heat < 100000)
   {
 	  InstallIris();
 	  if(iris_action) iris->SetAction(iris_action);
   }
-  else iris_action = iris->GetAction();
+  else if(iris) iris_action = iris->GetAction();
 		
   if(IsSpaceGate() && !IsTeltakGate())	SetPosition(iX, iY);
   if(heat > 0)

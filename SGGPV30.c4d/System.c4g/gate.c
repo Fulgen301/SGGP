@@ -16,7 +16,8 @@ global func CreateGate(id ramp,id type,int x,int y,int owner, array aChevrons)
 	}
 	if(aChevrons)
 	{
-		gate->GetChevrons() = aChevrons;
+		if(gate->~IsStargate()) gate->GetChevrons() = aChevrons;
+		else if(gate->~IsStargateRamp()) gate->LocalN("target")->GetChevrons() = aChevrons;
 	}	
 	return(gate);
 }

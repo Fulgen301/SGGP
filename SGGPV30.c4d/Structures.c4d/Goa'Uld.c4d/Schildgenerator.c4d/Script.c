@@ -15,7 +15,6 @@ local mode;
 
 protected func Initialize()
 {
-	Local(0) |= GetOwner();
   SetAction("Off");
   radius = 200;
   energy = 0;
@@ -37,6 +36,8 @@ protected func ControlDigDouble(object pUser)
   CreateMenu(GetID(this()), pUser, 0,0, "Schildgenerator", 0, 1);
   AddMenuItem("An/Aus", "Switch",MEPU,pUser);
   AddMenuItem("Info", "Info",MEPU,pUser);
+  if(mode) AddMenuItem("Tarnschirm deaktivieren", "SwitchMode", MEPU, pUser);
+  else AddMenuItem("Tarnschirm aktivieren", "SwitchMode", MEPU, pUser);
   if(radius < 550)
   {
    AddMenuItem("+ Radius", "RadUp",MEPU,pUser);
@@ -126,9 +127,14 @@ protected func Info()
   return(1);
 }
 
+protected func SwitchMode()
+{
+	if(mode) mode = 0;
+	else mode = 1;
+}
+
 public func Switch()
 {
-	if(mode) return Cloak();
   if(energy < 20)
   {
    if(!on)
@@ -144,43 +150,16 @@ public func Switch()
    on = 0;
    SetAction("Off");
    this->Message("<c ff0000>Aus</c>");
-   shield->RemoveObject();
+   if(shield) shield->RemoveObject();
    return(1);
   }
   on = 1;
   SetAction("On");
   this->Message("<c 00ff00>An</c>");
-  shield = this->CreateShield(radius, GetOwner());
+  
+  if(!mode) shield = this->CreateShield(radius, GetOwner());
   //shield->SetVisibility(VIS_None);
   return true;
-}
-
-public func Cloak()
-{
-	if(on)
-	{
-		for(var obj in FindObjects(Find_Distance(radius)))
-		{
-			if(obj)
-			{
-				obj->SetVisibility(VIS_All);
-				obj->SetClrModulation();
-			}
-		}
-		on = 0;
-	}
-	else
-	{
-		for(var obj in FindObjects(Find_Distance(radius)))
-		{
-			if(obj)
-			{
-				obj->SetVisibility(VIS_Local);
-				obj->SetClrModulation(RGBa(0,0,100,100));
-			}
-		}
-		on = 1;
-	}
 }
 
 protected func RadiusChanged()
@@ -226,14 +205,6 @@ protected func Check()
    Message("<c ff0000>Energie:</c> <c 00ff00>%v</c>|<c ff0000>Radius:</c> <c 00ff00>%v</c>",this,energy,radius);
   }
   
-  var zpm = FindObject2([40, this], [10, ZPM_], [1, [30, "Depledet"]]);
-
-  if(zpm && energy < 90 && zpm->LocalN("iEnergy") > 0)
-  {
-     zpm->LocalN("iEnergy") -= 1;
-     energy += 10;
-  }
-  
   if(FindContents(ENAP))
   {
    if(energy < 80)
@@ -266,6 +237,7 @@ protected func Check()
   if(on)
   {
 	  time++;
+	  if(mode) time++;
 	  if(time % 50 == 0)
 		  energy--;
 	
@@ -273,11 +245,17 @@ protected func Check()
 	{
 		for(var obj in FindObjects(Find_Distance(radius)))
 		{
-			if(obj)
+			if(obj && !GetEffect("IntGOSGInvisibility", obj))
 			{
-				obj->SetVisibility(VIS_Local);
-				obj->SetClrModulation(RGBa(0,0,100,100));
+				AddEffect("IntGOSGInvisibility", obj, 1, 1, 0, GetID(), this);
 			}
+		}
+	}
+	else
+	{
+		for(var obj in FindObjects(Find_Distance(radius)))
+		{
+			RemoveEffect("IntGOSGInvisibility", obj);
 		}
 	}
 	return;
@@ -326,3 +304,28 @@ protected func Destruction()
 
 public func GetRace() { return SG_All; }
 public func IsShieldGenerator() { return true; }
+
+public func FxIntGOSGInvisibilityStart(object pTarget, int iEffect, int iTemp, object pGen)
+{
+	if(iTemp) return;
+	EffectVar(0, pTarget, iEffect) = pGen;
+	EffectVar(1, pTarget, iEffect) = pTarget->GetVisibility();
+	EffectVar(2, pTarget, iEffect) = pTarget->GetClrModulation();
+}
+
+public func FxIntGOSGInvisibilityTimer(object pTarget, int iEffect, int iTime)
+{
+	if(EffectVar(0, pTarget, iEffect) && GetIndexOf(pTarget, FindObjects(EffectVar(0, pTarget, iEffect)->Find_Distance(EffectVar(0, pTarget, iEffect)->LocalN("radius")))) == -1)
+	{
+		return -1;
+	}
+	pTarget->SetVisibility(VIS_Owner);
+	pTarget->SetClrModulation(RGBa(0, 0, 100, 100));
+}
+
+public func FxIntGOSGInvisibilityStop(object pTarget, int iEffect, int iReason, bool fTemp)
+{
+	if(fTemp || !pTarget) return;
+	pTarget->SetVisibility(EffectVar(1, pTarget, iEffect));
+	pTarget->SetClrModulation(EffectVar(2, pTarget, iEffect));
+}

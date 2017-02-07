@@ -73,7 +73,7 @@ func SetBeamer(object pBeam,int iOwner,object pBefo)
 
 func Timer()
 {
-	if(pBeamer && GetCursor(GetOwner()) != this()) RemoveObject();
+	if(pBeamer && GetCursor(GetOwner()) != this()) return RemoveObject();
 	Frame++;
 	if(Frame > 10)
 	{

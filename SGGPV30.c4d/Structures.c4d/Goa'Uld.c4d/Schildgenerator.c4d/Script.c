@@ -5,7 +5,7 @@
 
 local on;
 local radius;
-local target;
+local targets;
 local help;
 local energy, time;
 local info;
@@ -151,6 +151,7 @@ public func Switch()
    SetAction("Off");
    this->Message("<c ff0000>Aus</c>");
    if(shield) shield->RemoveObject();
+   if(mode) Uncloak();
    return(1);
   }
   on = 1;
@@ -199,7 +200,6 @@ global func RemoveShield(object pObj)
 
 protected func Check()
 {
-	Local(0) = GetOwner();
   if(info)
   {
    Message("<c ff0000>Energie:</c> <c 00ff00>%v</c>|<c ff0000>Radius:</c> <c 00ff00>%v</c>",this,energy,radius);
@@ -237,26 +237,30 @@ protected func Check()
   if(on)
   {
 	  time++;
-	  if(mode) time++;
 	  if(time % 50 == 0)
 		  energy--;
 	
 	if(mode)
 	{
+		time++;
+		targets = FindObjects(Find_Distance(radius));
+		if(shield) shield->RemoveObject();
 		for(var obj in FindObjects(Find_Distance(radius)))
 		{
 			if(obj && !GetEffect("IntGOSGInvisibility", obj))
 			{
 				AddEffect("IntGOSGInvisibility", obj, 1, 1, 0, GetID(), this);
 			}
+			for(var line in FindObjects(Find_Func("IsLine"), Find_Or(Find_ActionTarget(obj), Find_ActionTarget2(obj))))
+			{
+				if(line && !GetEffect("IntGOSGInvisibility", line)) AddEffect("IntGOSGInvisibility", line, 1, 1, 0, GetID(), this);
+			}
 		}
 	}
 	else
 	{
-		for(var obj in FindObjects(Find_Distance(radius)))
-		{
-			RemoveEffect("IntGOSGInvisibility", obj);
-		}
+		targets = [];
+		Uncloak();
 	}
 	return;
 	     //Effektbearbeitung
@@ -275,8 +279,31 @@ protected func Check()
    CreateParticle("PSpark",pX,pY,RandomX(-10,10),RandomX(-10,-20),RandomX(40,60),GetPlrColorDw(GetOwner()));
 
   }
+  else
+	{
+		Uncloak();
+	}
   
   return true;
+}
+
+public func Uncloak()
+{
+	for(var obj in FindObjects(Find_Cloaked(this)))
+	{
+		if(obj) while(GetEffect("IntGOSGInvisibility", obj)) RemoveEffect("IntGOSGInvisibility", obj);
+	}
+}
+
+global func Find_Cloaked(object pGen)
+{
+	if(!pGen) pGen = this;
+	return [C4FO_Func, "Find_CloakedCheck", pGen];
+}
+
+global func Find_CloakedCheck(object pGen)
+{
+	if(GetEffect("IntGOSGInvisibility", this) && EffectVar(0, this, GetEffect("IntGOSGInvisibility", this)) == pGen) return true;
 }
 
 func IsAntiker()
@@ -315,7 +342,7 @@ public func FxIntGOSGInvisibilityStart(object pTarget, int iEffect, int iTemp, o
 
 public func FxIntGOSGInvisibilityTimer(object pTarget, int iEffect, int iTime)
 {
-	if(EffectVar(0, pTarget, iEffect) && GetIndexOf(pTarget, FindObjects(EffectVar(0, pTarget, iEffect)->Find_Distance(EffectVar(0, pTarget, iEffect)->LocalN("radius")))) == -1)
+	if(EffectVar(0, pTarget, iEffect) && !pTarget->~IsLine() && GetIndexOf(pTarget, EffectVar(0, pTarget, iEffect)->LocalN("targets")) == -1)
 	{
 		return -1;
 	}

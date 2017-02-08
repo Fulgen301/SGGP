@@ -1,0 +1,3 @@
+NoGate=<c ff0000>Kein Gate in Reichweite!</c>
+CrystDamaged=<c ff0000>Der Kristall ist kaputt!</c>
+NoCyst=<c ff0000>Kein Kontrollkristall vorhanden!</c>

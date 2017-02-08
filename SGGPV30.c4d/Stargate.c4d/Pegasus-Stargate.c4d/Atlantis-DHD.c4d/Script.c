@@ -1,6 +1,6 @@
 /*---- Das DHD ----*/
 
-#strict
+#strict 2
 
 #include DHD_
 
@@ -10,15 +10,6 @@ public func ChevronSound()
 	return(1);
 }
 
-public func ToggleAtlantis()
-{
-	if(atlantis)
-	{
-		atlantis=0;
-	}
-	atlantis=1;
-	return(atlantis);
-}
 
 public func FindStargate()
 {

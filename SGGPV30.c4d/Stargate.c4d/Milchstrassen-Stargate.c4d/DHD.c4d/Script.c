@@ -2,7 +2,7 @@
 
 #strict 2
 
-local pUser,ready,rena,atlantis, forw, bState;
+local pUser,ready;
 local chevrons;
 
 func Initialize() 
@@ -24,7 +24,7 @@ func ControlLeft(pCaller)
   ChevronSound();
   if(!FindStargate())
   {
-   Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
+   Message("$NoGate$",this);
    return(1);
   }
   FindStargate()->Deactivate();
@@ -42,7 +42,7 @@ func ControlUpDouble(pCaller)
   }
   if(!FindStargate())
   {
-   Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
+   Message("$NoGate", this);
    return(1);
   }
   else
@@ -53,104 +53,26 @@ func ControlUpDouble(pCaller)
 }
 
 
-
-func ControlDigDouble(pCaller)
+protected func ControlDigDouble(pCaller)
 {
-  ControlRightDouble(pCaller);
-  return(1);
+	[DHD manipulieren|Image=DHDK|Condition=CanManipulate]
+	CrystChange();
+	return true;
 }
 
-func ControlRightDouble(pCaller)
+public func CanManipulate()
 {
-  if(!FindStargate())
-  {
-   Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
-   return(1);
-  }
-  ChevronSound();
-  if(FindObject(UMBE))
-  {
-   if(FindObject(NOKR))
-   {
-    Message("%s",this,FindStargate()->GetName());
-    return;
-   }
-  }
-
-  if(!ready)
-  {
-   CrystChange();
-   return(1);
-  }
-
-  pUser = pCaller;
-  var str = "";
-  for(var cv in FindStargate()->GetChevrons())
-  {
-	  if(cv) str = Format("%s{{%s%02d}}  ", str, FindStargate()->ChevronPrefix(), cv);
-  }
-  CreateMenu(GetID(),pUser, 0, 0, str, 0, 1);
-  
-  if(!FindObject(NOKR))
-  {
-   AddMenuItem("DHD manipulieren","CrystChange",MEPU,pUser);
-  }
-  if(FindObject2(Find_ID(NOMA))) return(1);
-  if(!LocalN("outgoing",FindStargate()))
-  {
-	  AddMenuItem("Ausgehende Wurmlöcher erlauben","ChangeOutgoingState",MEPU,pUser,0,true);
-  }
-  else AddMenuItem("Ausgehende Wurmlöcher verbieten","ChangeOutgoingState",MEPU,pUser,0,false);
-  
-  if(!LocalN("incoming",FindStargate()))
-  {
-	  AddMenuItem("Eingehende Wurmlöcher erlauben","ChangeIncomingState",MEPU,pUser,0,true);
-  }
-  else AddMenuItem("Eingehende Wurmlöcher verbieten","ChangeIncomingState",MEPU,pUser,0,false);
-  return(1);
+	return !FindObject2(Find_ID(NOKR));
 }
 
-protected func ChangeOutgoingState(id dummy, bool state)
+protected func Grabbed(object pBy, bool fGrab)
 {
-	if(FindStargate())
+	pUser = pBy;
+	if(fGrab)
 	{
-		LocalN("outgoing",FindStargate()) = state;
-		return true;
+		if(FindStargate()) Message("@%s", FindStargate()->GetName());
 	}
-}
-
-protected func ChangeIncomingState(id dummy, bool state)
-{
-	if(FindStargate())
-	{
-		LocalN("incoming",FindStargate()) = state;
-		return true;
-	}
-}
-
-func Iris()
-{
-  if(!FindStargate())
-  {
-   Message("<c ff0000>Kein Gate gefunden!</c>",this());
-   Sound("Error");
-   return(1);
-  }
-  if(!FindStargate()->HasIris())
-  {
-   Message("<c ff0000>Das Gate hat keine Iris!</c>",this());
-   Sound("Error");
-   return(1);
-  }
-  FindStargate()->ControlIris();
-  return(1);
-}
-
-func Rename()
-{
-  rena = 1;
-  CallMessageBoard(0, false, "Geben sie hier den neuen Namen ihres Stargates ein:", GetOwner(pUser));
-  return(1);
+	else Message("");
 }
 
 func CrystChange()
@@ -161,7 +83,7 @@ func CrystChange()
    {
     if(LocalN("Damaged",FindContents(DHDK,pUser)) == 1)
     {
-     Message("<c ff0000>Der Kristall ist kaputt!</c>",this());
+     Message("$CrystDamaged$",this);
      Sound("Error");
      return(1);
     }
@@ -173,7 +95,7 @@ func CrystChange()
    }
    else
    {
-    Message("<c ff0000>Kein Kontrollkristall vorhanden!</c>",this());
+    Message("$NoCryst$",this);
     return(1);
    }
    Sound("start");
@@ -188,41 +110,6 @@ func CrystChange()
   return(1);
 }
 
-func InputCallback(string pGate)
-{
-  if(!FindStargate())
-  {
-   Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
-   return(1);
-  }
-
-  if(rena)
-  {
-   rena = 0;
-   if(!FindStargate())
-   {
-    Message("<c ff0000>Kein Gate in Reichweite!</c>",this());
-    Sound("Error");
-    return(1);
-   }
-   FindStargate()->ReName(pGate);
-   Message("<c 00ff00>Neuer Gatename:</c><c 0000ff>%v</c>",this(),pGate);
-   return(1);
-  }
-  if(!ready)
-  {
-   Sound("start");
-   return(1);
-  }
-  else
-  {
-   FindStargate()->Dial(pGate);
-   return(1);
-  }
-  return(1);
-}
-
-func IsMachine() {return(1);}
 public func ChevronSound()
 {
 	Sound("DHDChevron");
@@ -231,11 +118,9 @@ public func ChevronSound()
 
 protected func Check()
 {
-	if(atlantis) return;
 	if(FindStargate() && ready)
 	{
 		FindStargate()->GiveEnergy(500);
-//		FindStargate()->~ReName(Name);
 	}
 	return(1);
 }

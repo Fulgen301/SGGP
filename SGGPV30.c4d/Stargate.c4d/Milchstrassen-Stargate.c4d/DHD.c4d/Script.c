@@ -73,6 +73,7 @@ protected func Grabbed(object pBy, bool fGrab)
 	if(fGrab)
 	{
 		if(FindStargate()) Message("@%s", this, FindStargate()->GetName());
+		pUser->CreateSelectMark()->MarkObject(FindStargate(), 35);
 	}
 	else Message("",this);
 }

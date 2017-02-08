@@ -95,6 +95,7 @@ func InputCallback(string pw)
 func MakeMenu()
 {
 	if(!FindStargate()) return;
+	user->CreateSelectMark()->MarkObject(FindStargate(), 35);
   CreateMenu(STWA,user, 0, 0, FindStargate()->GetName(), 0, 1, true);
   if(FindStargate() && FindStargate()->IsBusy())
 	AddMenuItem("$ShutdownGate$","Deactivate",MEPU,user);

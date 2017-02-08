@@ -95,16 +95,11 @@ func InputCallback(string pw)
 func MakeMenu()
 {
 	if(!FindStargate()) return;
-	  var str = "";
-  for(var cv in FindStargate()->GetChevrons())
-  {
-	  if(cv) str = Format("%s{{%s%02d}}  ", str, FindStargate()->ChevronPrefix(), cv);
-  }
-  CreateMenu(STWA,user, 0, 0, str, 0, 1, true);
+  CreateMenu(STWA,user, 0, 0, FindStargate()->GetName(), 0, 1, true);
   if(FindStargate() && FindStargate()->IsBusy())
 	AddMenuItem("$ShutdownGate$","Deactivate",MEPU,user);
   AddMenuItem("$DialGate$","Dial",MEPU,user);
-  AddMenuItem("Koordinaten anzeigen", "ShowCoordinates", MEPU, user);
+  AddMenuItem("$ShowCoordinates$", "ShowCoordinates", MEPU, user);
   if(!FindObject(NOPW))
   {
    AddMenuItem("$ChangePassword$","ChangePass",MEPU,user);
@@ -117,18 +112,6 @@ func MakeMenu()
    }
   }
   AddMenuItem("$GateEnergy$","GateEnergy",MEPU,user);
-  if(FindObject2(Find_ID(NOMA))) return(1);
-  if(!LocalN("outgoing",FindStargate()))
-  {
-	  AddMenuItem("$EnableOutgoingWormholes$","ChangeOutgoingState",MEPU,user,0,true);
-  }
-  else AddMenuItem("$DisableOutgoingWormholes$","ChangeOutgoingState",MEPU,user,0,false);
-  
-  if(!LocalN("incoming",FindStargate()))
-  {
-	  AddMenuItem("Eingehende Wurmlöcher erlauben","ChangeIncomingState",MEPU,user,0,true);
-  }
-  else AddMenuItem("Eingehende Wurmlöcher verbieten","ChangeIncomingState",MEPU,user,0,false);
   return(1);
 }
 
@@ -153,25 +136,11 @@ protected func ShowCoordinates()
 		}
 		msg = Format("%s|", msg);
 	}
+	for(var cv in FindStargate()->GetChevrons())
+	{
+		msg = Format("%s %d", msg, cv);
+	}
 	MessageWindow(msg, GetOwner(user));
-}
-
-protected func ChangeOutgoingState(id dummy, bool state)
-{
-	if(FindStargate())
-	{
-		LocalN("outgoing",FindStargate()) = state;
-		return true;
-	}
-}
-
-protected func ChangeIncomingState(id dummy, bool state)
-{
-	if(FindStargate())
-	{
-		LocalN("incoming",FindStargate()) = state;
-		return true;
-	}
 }
 
 func BuildIris()

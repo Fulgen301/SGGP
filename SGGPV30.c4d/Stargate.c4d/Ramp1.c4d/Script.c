@@ -33,7 +33,7 @@ func Initialize()
 
 func PlaceGate(id gate)
 {
-	target = CreateObject(gate,0,-25);
+	target = CreateObject(gate,0,-25,GetOwner());
 	LocalN("ramp",target) = this;
   return(1);
 }

@@ -116,7 +116,7 @@ func HasIris()
 //Nein? Dann müssen wir eine Installieren:
 func InstallIris()
 {
-  iris = CreateObject(SGIR);
+  iris = CreateObject(SGIR,0,0,GetOwner());
   SetObjectOrder(this,iris);
   LocalN("target",iris) = this;
   return(1);

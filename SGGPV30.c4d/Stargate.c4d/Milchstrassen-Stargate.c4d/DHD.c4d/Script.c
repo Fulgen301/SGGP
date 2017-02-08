@@ -13,6 +13,7 @@ func Initialize()
 
 func ControlLeft(pCaller)
 {
+	[$ShutdownGate$]
   pUser = pCaller;
 
   if(!ready)
@@ -33,6 +34,7 @@ func ControlLeft(pCaller)
 
 func ControlUpDouble(pCaller)
 {
+	[$DialGate$]
   pUser = pCaller;
 
   if(!ready)
@@ -55,7 +57,7 @@ func ControlUpDouble(pCaller)
 
 protected func ControlDigDouble(pCaller)
 {
-	[DHD manipulieren|Image=DHDK|Condition=CanManipulate]
+	[$ManipulateDHD$|Image=DHDK|Condition=CanManipulate]
 	CrystChange();
 	return true;
 }
@@ -101,7 +103,7 @@ func CrystChange()
    Sound("start");
    return(1);
   }
-  else
+  else if(CanManipulate())
   {
    CreateContents(DHDK,pUser);
    ready = 0;

@@ -72,7 +72,7 @@ protected func Grabbed(object pBy, bool fGrab)
 	pUser = pBy;
 	if(fGrab)
 	{
-		if(FindStargate()) Message("@%s", FindStargate()->GetName());
+		if(FindStargate()) Message("@%s", this, FindStargate()->GetName());
 	}
 	else Message("");
 }

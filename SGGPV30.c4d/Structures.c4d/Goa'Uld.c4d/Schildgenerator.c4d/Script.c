@@ -261,6 +261,7 @@ protected func Check()
 	{
 		targets = [];
 		Uncloak();
+		if(!shield) shield = this->CreateShield(radius, GetOwner());
 	}
 	return;
 	     //Effektbearbeitung

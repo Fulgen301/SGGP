@@ -74,7 +74,7 @@ protected func Grabbed(object pBy, bool fGrab)
 	{
 		if(FindStargate()) Message("@%s", this, FindStargate()->GetName());
 	}
-	else Message("");
+	else Message("",this);
 }
 
 func CrystChange()

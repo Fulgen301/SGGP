@@ -1,6 +1,6 @@
-#strict
+#strict 2
 #include SHT1
-
+local iLevel,iY;
 local glow,iSX;
 
 /* Schuss */
@@ -8,13 +8,12 @@ local glow,iSX;
 //Extern für Überladung
 private func CreateTrail(int iSize, int iTrail)
 {
-	AddLight(30, RGB(0, 255, 0, ), this(), GLOW);
+	AddLight(30, RGB(0, 255, 0, ), this, GLOW);
 }
 
 private func Traveling()
 {
 	// effect
-	DoR(4);
 	if (glow)
 		glow->ChangeColor(Color(GetActTime()));
 	//CreateParticle("PSpark",0,0,-GetXDir()/4,-GetYDir()/4,RandomX(100,200)*GetCon()/100,
@@ -22,36 +21,42 @@ private func Traveling()
 	return _inherited();
 }
 
-/* Treffer */
-
 public func Timer()
 {
-	DoR(80);
+	DoR(60);
 }
+/* Treffer */
 
 private func Hit()
 {
 
-	for (var i = 8 + Random(7), glob; i; i--)
-	{
-		glob = CreateObject(SLST, 0, 0, GetOwner());
-		glob->~Launch(RandomX(-60, 60), RandomX(-60, 60), 8);
-	}
-	CastParticles("SlimeGrav", 10, 25, 0, 0, 20, 40, RGBa(0, 240, 0, 10), RGBa(20, 255, 20, 75));
-	CastParticles("FrSprk", 30, 5, 0, 0, 70, 130, RGBa(0, 240, 0, 10), RGBa(20, 255, 20, 75));
-	Sound("SlimeHit");
-	Sound("Poff");
+	if (iY)
+		return;
+	iY = 1;
+	ScheduleCall(this, "DidIt", 50, 0);
+	ScheduleCall(this, "Do", 1, 50);
+	Sound("Gobe");
+}
+
+
+public func DidIt()
+{
+	var pObj;
+	for (pObj in FindObjects(Find_Distance((iLevel * 10) / 2), Find_OCF(OCF_Alive))) 
+		if(pObj) pObj->~Zated();
 	RemoveObject();
+}
+
+public func Do()
+{
+	iLevel++;
+	CreateParticle("Flash", 0, 0, 0, 0, iLevel * 50, RGBa(255, 255, 255, Random(120)));
 }
 
 public func BulletStrike(object pObj)
 {
 
-	if (pObj)
-		if (pObj)
-		{
-			Stun(pObj, 80);
-		}
+	if(pObj) pObj->~Zated();
 	return 1;
 }
 
@@ -100,7 +105,7 @@ public func FxHitCheckTimer(object target, int effect, int time)
 			continue;
 		// IsBulletTarget oder Alive
 		if (obj->~IsBulletTarget(GetID(target), target, EffectVar(2, target, effect)) || GetOCF(obj) & OCF_Alive)
-			if (GetAction(obj) ne "Dead")
+			if (GetAction(obj) != "Dead")
 			{
 				DebugLog("%s IsBulletTarget: %i, %s, %s", "HitCheck", GetName(obj), GetID(target), GetName(target), GetName(EffectVar(2, target, effect)));
 				return target->~HitObject(obj);

@@ -17,7 +17,6 @@ Directions=2
 FlipDir=1
 Facet=0,240,360,240,-37,-58
 EndCall=Turned2
-StartCall=ClearDir
 NextAction=Fly
 
 [Action]
@@ -29,7 +28,6 @@ Directions=2
 FlipDir=1
 Facet=0,480,360,240,-37,-58
 EndCall=Turned1
-StartCall=ClearDir
 NextAction=Fly
 
 [Action]

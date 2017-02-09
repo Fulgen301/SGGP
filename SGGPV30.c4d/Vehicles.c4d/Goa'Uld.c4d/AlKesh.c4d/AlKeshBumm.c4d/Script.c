@@ -1,6 +1,7 @@
-#strict
+
+#strict 2
 #include SHT1
-local iLevel,iY;
+
 local glow,iSX;
 
 /* Schuss */
@@ -8,7 +9,7 @@ local glow,iSX;
 //Extern für Überladung
 private func CreateTrail(int iSize, int iTrail)
 {
-	AddLight(30, RGB(0, 255, 0, ), this(), GLOW);
+	AddLight(30, RGB(0, 255, 0, ), this, GLOW);
 }
 
 private func Traveling()
@@ -21,46 +22,21 @@ private func Traveling()
 	return _inherited();
 }
 
-public func Timer()
-{
-	DoR(60);
-}
 /* Treffer */
 
 private func Hit()
 {
-
-	if (iY)
-		return;
-	iY = 1;
-	ScheduleCall(this, "DidIt", 50, 0);
-	ScheduleCall(this, "Do", 1, 50);
-	Sound("Gobe");
-}
-
-
-public func DidIt()
-{
-	var pObj;
-	for (pObj in FindObjects(Find_Distance((iLevel * 10) / 2), Find_OCF(OCF_Alive))) 
-		Stun(pObj, 300);
-	RemoveObject();
-}
-
-public func Do()
-{
-	iLevel++;
-	CreateParticle("Flash", 0, 0, 0, 0, iLevel * 50, RGBa(255, 255, 255, Random(120)));
+	Explode(120);
+	Explode(60);
 }
 
 public func BulletStrike(object pObj)
 {
 
 	if (pObj)
-		if (pObj)
-		{
-			Stun(pObj, 80);
-		}
+	{
+		DoDmg(200, DMG_Energy, pObj, 10, GetOwner());
+	}
 	return 1;
 }
 
@@ -109,7 +85,7 @@ public func FxHitCheckTimer(object target, int effect, int time)
 			continue;
 		// IsBulletTarget oder Alive
 		if (obj->~IsBulletTarget(GetID(target), target, EffectVar(2, target, effect)) || GetOCF(obj) & OCF_Alive)
-			if (GetAction(obj) ne "Dead")
+			if (GetAction(obj) != "Dead")
 			{
 				DebugLog("%s IsBulletTarget: %i, %s, %s", "HitCheck", GetName(obj), GetID(target), GetName(target), GetName(EffectVar(2, target, effect)));
 				return target->~HitObject(obj);

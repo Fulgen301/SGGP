@@ -95,12 +95,7 @@ public func Damage()
     SetAction("Opens");
    }
   }
-  
-  if(GetDamage(this) >= 500)
-  {
-   Call("Destroy");
-   return(1);
-  }
+  return _inherited(...);
   return(1);
 }
 

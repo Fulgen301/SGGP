@@ -142,18 +142,6 @@ func Gate()
 	return(1);
 }
 
-//##########################
-//### SCHADENSSTEUERUNG  ###
-//##########################
-public func Damage()
-{
-  if(GetDamage() > MaxDamage())
-  {
-   Call("Destroy");
-  }
-  return(1);
-}
-
 
 //Gibt TRUE zurück, wenn ein Teil fehlt!
 public func CheckParts()

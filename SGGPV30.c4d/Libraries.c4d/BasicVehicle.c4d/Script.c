@@ -23,6 +23,7 @@ local Icon_Hatch;
 
 protected func Initialize()
 {
+	_inherited(...);
 	aWeapons = InitializeWeapons();
 	if(GetType(aWeapons) != C4V_Array) aWeapons = [];
 	
@@ -94,8 +95,16 @@ public func Okay(int iX, int iY)
 	energy -= 50;
 }
 
-private func InitializeWeapons() { return []; }
-private func InitializeInventory() { return []; }
+protected func Damage()
+{
+	if(GetDamage() >= MaxDamage())
+	{
+		return Destroy();
+	}
+}
+private func InitializeWeapons() 	{ return []; }
+private func InitializeInventory() 	{ return []; }
+private func Destroy()				{ return Explode(50); }
 
 
 public func FindStargate()	{ return FindObject2(Find_Func("IsStargate"), Find_Distance(800), Sort_Distance()); }

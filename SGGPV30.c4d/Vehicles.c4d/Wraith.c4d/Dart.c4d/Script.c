@@ -13,7 +13,6 @@ local on;      //Ist der Sammelstrahl an?
 local alflusy; //Alternatives Flug System
 local Wdamage; //Soviel schaden kann man haben, bis das Vehikel nichtmehr feuert.
 local Fdamage; //Soviel schaden kann man haben, bis das Vehikel nichtmehr fliegt.
-local MaxDam;  //Soviel schaden kann man haben, bis man in die Luft fliegt.
 local Gate;	   //Platzhaltervariable für das Gateanwählen.
 
 //Wer erräts? In der Initialize werden erstmal die Standarts gesetzt
@@ -21,7 +20,6 @@ public func Initialize()
 {
 	_inherited(...);
 	chevrons = [];
-  MaxDam = 500;					//Maximaler Schaden: 	Check
   Wdamage = 300;				//Schaden für Waffen: 	Check
   Fdamage = 450;				//Schaden fürs Fliegen:	Check
   alflusy = 1;					//Alternatives Flugsystem anschalten
@@ -183,9 +181,6 @@ public func Harvest()
   }
   return(1);
 }
-
-public func MaxDamage() { return (MaxDam); }	//Maximaler Schaden ist 500
-
 public func OnDmg(int iDmg, int iType) 
 {
   //Das erklär ich jetz aber nicht alles. Das is nur die Entfindlichkeit.
@@ -659,4 +654,4 @@ func IsMachine() 		{ return(1); }
 func IsBulletTarget()    { return(1); }
 public func GetRace() { return SGA_Wraith; }
 public func CanDialGate() { return GetDamage() < 300; }
-public func MaxDamage() { return MaxDam; }
+public func MaxDamage() { return 500; }

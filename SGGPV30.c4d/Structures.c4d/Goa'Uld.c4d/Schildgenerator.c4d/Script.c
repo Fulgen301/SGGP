@@ -260,7 +260,6 @@ protected func Check()
 	else
 	{
 		targets = [];
-		Uncloak();
 		if(!shield) shield = this->CreateShield(radius, GetOwner());
 	}
 	return;
@@ -282,7 +281,6 @@ protected func Check()
   }
   else
 	{
-		Uncloak();
 	}
   
   return true;

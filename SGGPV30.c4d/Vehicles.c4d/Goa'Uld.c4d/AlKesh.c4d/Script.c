@@ -94,6 +94,7 @@ public func ContainedDown()//runter, das gleiche wie hoch nur andersrum
     SetComDir(COMD_Right);
 //    }
    }
+   return 1;
 }
 
 public func ContainedLeft()

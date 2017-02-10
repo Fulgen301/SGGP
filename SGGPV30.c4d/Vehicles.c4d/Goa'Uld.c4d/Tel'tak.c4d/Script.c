@@ -16,7 +16,6 @@ local iMaxDamage, iAmmoCount, iExtra;  //Steuerung des Schiffes
 local cloaked;                           //Tarnung
 local chosen,chosen_timer;                           //Aktueller User
 
-
 //#######################
 //### RINGTRANSPORTER ###
 //#######################
@@ -40,6 +39,7 @@ local entr;  //Eingangsbereich
 local crate; //Transportkiste
 local help, radius, on, time;   //Schild
 local energy, mess,tangtime;  //Energie
+local counter;
 
 public func HasGate()
 {
@@ -304,40 +304,6 @@ if(GetCon() < 100) return;
    x -> SetXDir();
    x -> SetYDir();
   }
-//
-  if ((GetAction(gen) == "Deactive")||(energy<10))
-  {
-	  SetPhysical("Float", 200, 3);
-/*	  if (!cloaked)
-	  {
-		  /SetClrModulation(RGBa(0, 0, 0, 0));
-		  var y;
-		  for (y in aInventory)
-		  {
-			  y->SetClrModulation(RGBa(0, 0, 0, 0));
-		  }
-	  }*/
-  }
-
-  if (GetAction(gen) == "Active")
-  {
-	  genstate = 1;
-	  SetPhysical("Float", 1100);
-/*	  SetClrModulation(RGBa(0, 0, 255, 233));
-	  for (y in aInventory)
-	  {
-		  y->SetClrModulation(RGBa(0, 0, 255, 233));
-	  }
-	  gentime += 1;
-	  if (gentime == 50)
-	  {
-		  if (energy > 20)
-		  {
-			  energy -= 10;
-			  gentime = 0;
-		  }
-	  }*/
-  }
 //###########################
 //### SOLIDMASK-STEUERUNG ###
 //###########################
@@ -354,9 +320,24 @@ if(GetCon() < 100) return;
 //###########################
 //#### ENERGIE-STEUERUNG ####
 //###########################
-  if (crate->FindContents(TANG))
+  if(crate->FindContents(ZPM_) && crate->FindContents(ZPM_)->GetAction() != "Depledet" && energy <= 90)
   {
-	  tangtime+=1;
+	  tangtime++;
+	  if(tangtime == 50)
+	  {
+		  tangtime = 0;
+		  energy += 10;
+		  counter++;
+		  if(counter == 50)
+		  {
+			  counter = 0;
+			  crate->FindContents(ZPM_)->Minus();
+		  }
+	  }
+  }
+  else if (crate->FindContents(TANG))
+  {
+	  tangtime++;
 	  if (tangtime == 50)
 	  {
 		  energy += 3;

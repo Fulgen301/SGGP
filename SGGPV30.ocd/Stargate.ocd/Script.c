@@ -1,6 +1,7 @@
-	/*--Das Stargate --*/
+/*--Das Stargate --*/
 
-local Name;
+#strict 2
+
 local pTo;
 local pFrom;
 local time;
@@ -11,68 +12,90 @@ local destiny;
 local energy;
 local ramp;
 local position;
-local state;
-local fGate;
+local iX, iY;
 local chevroncount;
 local fake;
+local aChevrons;
+local input;
+local iris_action;
 
 public func IsTeltakGate()
 {
-    return teltak;
-}
-
-public func HasDestiny()
-{
-    return destiny;
+	if(teltak)
+	{
+		return(1);
+	}
+	return(0);
 }
 
 public func SetTeltak(object obj)
 {
-	if(obj && obj->~Teltak())
+	if(obj)
 	{
-		teltak = obj;
+	if(obj->GetID()==TEL_)
+	{
+		teltak=obj;
+		return(1);
 	}
-	
-	return this;
+	return(0);
+	}
+	return(0);
 }
 
 public func SetDestiny(object obj)
 {
-	if(obj && obj->~IsDestiny())
+	if(obj)
 	{
-		destiny = obj;
+		destiny=obj;
 	}
-	
-	return this;
+	return(1);
 }
-
-protected func Construction()
-{
-	AddEffect("IntCheck", this, 1, 1, this);
-}
-
 //Namenssetzung des Gates:
-protected func Initialize()
+func Initialize()
 {
   heat = 0;
   SetAction("Idle");
-  var i;
-  i = 0;
-  for(var obj in FindObjects(Find_Func("IsStargate")))
-  {
-	  if(obj) i++;
-  }
-  Name = Format("Stargate %v",i);
   position = new position {
-      x = GetX(),
-      y = GetY()
+	  iX = GetX(),
+	  iY = GetY()
   };
-  state = new state {
-      outgoing = true,
-      incoming = true,
-      forwarding = false
-  };
-  return true;
+  
+  aChevrons = [];
+  
+  InitChevrons();
+  for(var i = 0; FindObject2(Find_Func("HasAddress", aChevrons), Find_Exclude(this)) && i < 100; i++) InitChevrons();
+  return(1);
+}
+
+protected func InitChevrons()
+{
+	var all = GetAllChevrons();
+	for(var i = 0; GetLength(aChevrons) < 7; i++)
+	{
+		var x = RandomX(1,GetLength(all));
+		if(GetIndexOf(all[x], aChevrons) == -1 && all[x] != 0) aChevrons[GetLength(aChevrons)] = all[x];
+	}
+}
+
+public func GetAllChevrons()
+{
+	var ret = [];
+	for(var i = 1; GetName(0, C4Id(Format("%s%02d", ChevronPrefix(), i))); i++)
+	{
+		if(i > 15) return ret;
+		ret[GetLength(ret)] = i;
+	}
+	return ret;
+}
+
+public func GetChevrons()
+{
+	return aChevrons;
+}
+
+public func HasAddress(array aAddress)
+{
+	return aChevrons == aAddress;
 }
 
 //Hat das Gate eine Iris?
@@ -81,66 +104,72 @@ func HasIris()
   return(iris);
 }
 
-//Nein? Dann mÃ¼ssen wir eine Installieren:
+//Nein? Dann müssen wir eine Installieren:
 func InstallIris()
 {
-  iris = CreateObject(Stargate_Iris);
+  iris = CreateObject(SGIR,0,0,GetOwner());
+  SetObjectOrder(this,iris);
   iris.target = this;
   return(1);
 }
 
 //Abfrage ob die Iris zu ist
-public func IsClose()
+func IsClose()
 {
   if(!iris)
   {
-   return nil;
+   return(0);
   }
-  return iris->IsClose();
+  return(iris->IsClose());
 }
 
-//Abfrage ob beim angewÃ¤hlten Gate die Iris geschlossen ist
-public func pToClose()
+//Abfrage ob beim angewählten Gate die Iris geschlossen ist
+func pToClose()
 {
   if(!pTo)
   {
-   return nil;
+   return(0);
   }
-  return pTo->IsClose();
+  return(pTo->IsClose());
 }
 
 //Sound wenn was gegen die Iris kracht
-private func Dong()
+func Dong()
 {
   Sound("IrisHit");
-  return true;
+  return(1);
 }
 
 //Kontrolle an die Iris weitergeben
-protected func ControlIris()
+func ControlIris()
 {
   if(iris)
   {
    iris->Switch();
   }
-  return true;
+  return(1);
 }
 
-public func GDOControlIris(passw)
+func GDOControlIris(passw)
 {
   if(iris)
   {
    iris->GDOControl(passw);
   }
-  return true;
+  return(1);
 }
 
-//TÃ¶tung beim Kawoosh
-protected func KawooshKill()
+//Tötung beim Kawoosh
+func KawooshKill()
 {
+	if(GetPhase() > 66) return;
    var xobj;
-   FreeRect(GetX() - GetID()->GetDefOffset(0), GetY() - GetID()->GetDefOffset(1), GetID()->GetDefWidth(), GetID()->GetDefHeight());
-   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Or(Find_OCF(OCF_Living),Find_OCF(OCF_Collectible), Find_Category(C4D_Vehicle))))
+   DigFree(GetX()+18,GetY()+46,12);
+   DigFree(GetX()+41,GetY()+44,15);
+   DigFree(GetX()+10,GetY()+46,11);
+   DigFree(GetX()+63,GetY()+43,13);
+   DigFree(GetX()+46,GetY()+42,27);
+   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Or(Find_OCF(OCF_Living),Find_OCF(OCF_Collectible))))
    {
     if(!IsTeltakGate())
    	{
@@ -148,18 +177,31 @@ protected func KawooshKill()
    	}
 	else
 	{
-		if(xobj && !xobj->Contained(xobj) && !xobj->Teltak())
+		if(xobj && !Contained(xobj))
 		{
 			xobj->RemoveObject();
 		}
 	}
    }
-  return true;
+   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Category(C4D_Vehicle)))
+   {
+    if(IsTeltakGate())
+   	{
+		if(xobj && !xobj->~Teltak())
+		{
+			xobj->DoDamage(1000);
+		}
+   	}
+	else
+		if(xobj) xobj->DoDamage(1000);
+   }
+  return(1);
 }
 
-//Die Sounds beim anwÃ¤hlen
+//Die Sounds beim anwählen
 protected func DialSounds()
 {
+	if(GetEffect("HoldAction", this)) return;
   if(GetPhase() == 1)
   {
    RollSound();
@@ -199,6 +241,7 @@ protected func DialSounds()
   {
 	  if(fake)
 	  {
+		  fake = false;
 		  FailSound();
 		  Deactivate();
 	  }
@@ -207,113 +250,169 @@ protected func DialSounds()
   {
    ChevronSound();
   }
-  return true;
+  return(1);
 }
 
-private func OpenSound()
+func OpenSound()
 {
-  return Sound("StargateOpen");
+  Sound("StargateOpen");
+  return(1);
 }
 
-//Gibt den aktuellen Status des Gates zurÃ¼ck:
-public func GetState()
+public func Chevron(int i)
+{
+	chevroncount = i;
+	if(GetAction() == "Idle") SetAction("Outgoing1");
+}
+
+public func HasName(string sz)
+{
+	return Name == sz;
+}
+
+//Gibt den aktuellen Status des Gates zurück:
+func GetState()
 {
   if(GetAction() == "Outgoing3" || GetAction() == "Outgoing4") 
   {
-   return 1;
+   return(1);
   }
   
   if(GetAction() == "Income3" || GetAction() == "Income4")
   {
-   return 2;
+   return(2);
   }
   
-  if(GetAction() == "Idle" || GetAction() == "Off") 
+  if(GetAction() == "Idle") 
   {
-   return 0;
+   return(0);
   }
-  return 3;
+  return(3);
 }
 
-//Gibt nur den Namen zurÃ¼ck:
-public func GetName()
+//Gibt nur den Namen zurück:
+func GetName()
 {
-  return Name;
-}
-
-public func GiveName()
-{
-	return GetName();
-}
-
-//Setzt den neuen Namen
-public func ReName(newName)
-{
-  if(!newName)
+  var ret = "";
+  for(var cv in aChevrons)
   {
-   Message("Es muss ein Name gesetzt werden!",this);
-   Sound("Error");
-   return false;
+	  ret = Format("%s{{%s%02d}}  ", ret, ChevronPrefix(), cv);
   }
-  Name = newName;
-  return true;
+  return ret;
 }
 
-//START: AnwÃ¤hlen
-
-public func Dial(string gate)
+public func OpenChevronMenu(object pCaller, object pDHD)
 {
-	var szName;
-	var pGate;
-	for(var obj in FindObjects(Find_Func("IsStargate"), Find_Exclude(this), Find_Not(Find_Func("IsBusy"))))
+	if(!pCaller || !pDHD) return;
+	pCaller->CreateMenu(GetID(), nil, 0, pDHD->GetName());
+	
+	if(GetType(input) != C4V_Array) input = [];
+	if(GetLength(input) == 7) return pCaller->AddMenuItem("Fertig", "Finish", pDHD->GetID());
+	for(var cv in GetAllChevrons())
 	{
-		if((szName = obj->GetName()) == gate)
+		var icon;
+		if(GetIndexOf(cv, input) == -1)
 		{
-			pGate = obj;
-			break;
+			icon = C4Id(Format("%s%02d", ChevronPrefix(), cv));
 		}
+		else
+			icon = CXRL;
+		pCaller->AddMenuItem(pDHD->GetName(), Format("Object(%d)->ChevronSelection(%d, Object(%d), Object(%d))", this->ObjectNumber(), cv, pCaller->ObjectNumber(), pDHD->ObjectNumber()), icon);
+	}
+}
+
+public func ChevronSelection(int cv, object pCaller, object pDHD)
+{
+	if(!pCaller || !pDHD) return;
+	if(GetIndexOf(cv, input) != -1)
+	{
+		pDHD->Sound("start");
+		OpenChevronMenu(pCaller, pDHD);
+		return;
+	}
+	pDHD->~ChevronSound();
+	input[GetLength(input)] = cv;
+	Chevron(GetLength(input));
+	if(GetLength(input) == 7) Dial(input);
+	OpenChevronMenu(pCaller, pDHD);
+	SelectMenuItem(cv - 1, pCaller);
+}
+
+public func Finish()
+{
+	Chevron();
+	Dial(input);
+	input = [];
+}
+
+//Beschäftigt?!
+func IsBusy()
+{
+  return !(GetAction() == "Idle");
+}
+
+public func Dial(array gate)
+{
+	if(!chevroncount)
+	{
+		if(pTo)
+		{
+			ContinueAction(this);
+			ContinueAction(pTo);
+			time = 20 - !!IsDestinyGate() * 13;
+		}
+		else
+		{
+			FailSound();
+			Deactivate();
+		}
+		return;
+	}
+	var pGate = FindObject2(Find_Func("IsStargate"), Find_Exclude(this), Find_Func("HasAddress", gate), Find_Not(Find_Func("IsBusy")));
+	if(!pGate)
+	{
+		return;
 	}
 	
-	//Energy
-	
-	var cc = ChevronCount(this);
-	if(cc == 7 && energy >= 100000)
+	var enrg = BoundBy(Distance(GetX(),GetY(),pGate->GetX(),pGate->GetY())*100, 100000, 1000000);
+	if(energy >= enrg)
 	{
-		energy -= 100000;
-	}
-	else if(cc == 8 && energy >= 500000)
-	{
-		energy -= 500000;
-	}
-	else if(cc == 9 && energy >= 1000000)
-	{
-		energy -= 1000000;
+		energy -= enrg;
 	}
 	else
 	{
-		fake = true;
-		SetAction("Outgoing1");
-		return true;
+		return;
 	}
 	
 	pTo = pGate;
-	pTo.pFrom = this;
-	
-	SetAction("Outgoing1");
+	pTo->LocalN("pFrom") = this;
 	pTo->SetAction("Income1");
-	return true;
+	pTo->RollSound();
+	pTo->ChevronSound();
+	pTo->SetPhase(pTo->ChevronPhase()[chevroncount]);
+	HoldAction(pTo);
 }
 
-//ENDE: AnwÃ¤hlen
-
-protected func FxIntCheckTimer(object pTarget, proplist pEffect, int time)
+//Überprüft ob das Gate sich abschalten muss:
+func Check()
 {
-  if(energy <= 1000000)
+  if(EnergyCheck(100) && energy <= 1000000)
   {
   	energy += 50;
   }
+  
+  if(!iris && heat < 100000)
+  {
+	  InstallIris();
+	  if(iris && iris_action)
+	  {
+		  iris->SetAction(iris_action);
+		  if(iris_action == "Closes" || iris_action == "Close") iris->LocalN("open") = 0;
+	  }
+  }
+  else if(iris) iris_action = iris->GetAction();
 		
-  if(IsSpaceGate() && !IsTeltakGate())	SetPosition(position.x, position.y);
+  if(IsSpaceGate() && !IsTeltakGate())	SetPosition(iX, iY);
   if(heat > 0)
   {
    if(iris)
@@ -337,55 +436,64 @@ protected func FxIntCheckTimer(object pTarget, proplist pEffect, int time)
   }
   if(IsClose())
   {
-	  if(GetAction() == "Outgoing2") SetAction("Outgoing3");
-	  else if(GetAction() == "Income2") SetAction("Income3");
+   if(GetAction() == "Income2")
+   {
+    SetAction("Income3");
+   }
+   if(GetAction() == "Outgoing2")
+   {
+    SetAction("Outgoing3");
+   }
   }
-  if(!GetState())
+  
+  if(GetAction() == "Outgoing1" && chevroncount)
   {
-	  if(!pFrom)
+	  if(GetPhase() != ChevronPhase()[chevroncount])
 	  {
-		if(!pTo && !fake)
-		{
-			Deactivate();
-		}
+		  ContinueAction(this);
 	  }
-	  else if(pFrom && pFrom->GetAction() == "Idle")
+	  else
 	  {
-			Deactivate();
+		  HoldAction(this);
 	  }
-	  if(pTo && !fake)
-	  {
-		if(pTo->GetAction() == "Idle")
-		{
-			Deactivate();
-		}
-	  }
+	  
+	  return 1;
   }
-  return true;
+  else if(GetAction() == "Off" || GetAction() == "Idle")
+  {
+   return(1);
+  }
+
+  if((!pFrom && !pTo) || (pFrom && pFrom->GetAction() == "Idle") || (pTo && pTo->GetAction() == "Idle"))
+	  Deactivate();
+  return(1);
 }
 
 //Abschaltzeit
-private func ShutDelay()
+func ShutDelay()
 {
   time --;
   if(time <= 0)
   {
    Deactivate();
   }
-  return true;
+  return(1);
 }
 
 public func Deactivate()
 {
+	if(pFrom && !WildcardMatch(GetAction(), "Outgoing*")) return;
 	if(pTo)
 	{
 		pTo.pFrom = nil;
 		pTo.pTo = nil;
+		pTo->SetAction("Off");
 	}
 	if(pFrom)
 	{
 		pFrom.pFrom = nil;
 		pFrom.pTo = nil;
+		pFrom->SetAction("Off");
 	}
 	pFrom = nil;
 	pTo = nil;
@@ -399,41 +507,47 @@ public func Deactivate()
 	return true;
 }
 
-//Ãœberbringung des Ziels:
-protected func Transport()
+
+//Überbringung des Ziels:
+func Transport()
 {
+	if(!pTo) return;
   var obj;
   for(obj in FindObjects(Find_InRect(70,0,25,80)))
   {
-  	if(IsTeltakGate() && obj->~Teltak())
+	  if(!obj) continue;
+  	if(obj && obj->GetID() == TEL_)
   	{
-		continue;
+  		if(IsTeltakGate())
+  		{
+  			return(1);
+  		}
   	}
    if(obj->GetXDir() < 1)
    {
-    continue;
+    return(1);
    }
    if(IsClose())
    {
-    return true;
+    return(1);
    }
    if(pTo->IsClose())
    {
     obj->RemoveObject();
     pTo->Dong();
     Sound("teleport");
-    return true;
+    return(1);
    }
    if(obj->GetID() == TAUV)
    {
-    obj.dir= 180;
+    obj.dir = 180;
     obj->SetPosition(pTo->GetX(),pTo->GetY());
     Sound("teleport");
     pTo->Sound("teleport");
-    continue;
+    return(1);
    }
    Sound("teleport");
-   pTo->Sound("teleport");
+   Sound("teleport",0,pTo);
    var hX;
    var hY;
    hX = obj->GetX()-GetX();
@@ -442,15 +556,19 @@ protected func Transport()
    obj->SetDir(0);
    obj->SetComDir(COMD_Left);
    obj->SetDir(DIR_Left);
-   obj->SetXDir(-(obj->GetXDir()));
+   obj->SetXDir(obj->GetXDir()*-1);
   }
-  return true;
+  return(1);
 }
+
 protected func Destroy()
 {
-   if(ramp) ramp->RemoveObject();
+   if(ramp)
+   {
+     ramp->RemoveObject();
+   }
    Explode(300);
-   return true;
+   return(1);
 }
 
 protected func Damage()
@@ -463,289 +581,71 @@ protected func Damage()
 
 public func LightningStrike() 
 {
-	if (GetCon() < 100) return;
+	if (GetCon() < 100) return(0);
 	energy += 25000;
+	return(1);
+}
+
+public func IsStargate()
+{
 	return true;
 }
 
-public func SetFGate(object gate)
+public func ChevronSound()
 {
-	fGate = gate;
-	return this;
+	return(1);
 }
 
-//###############
-//###Callbacks###
-//###############
-
-public func IsBulletTarget(id Bullet)  { return IsSpaceGate(); }
-
-//Stargate
-public func IsStargate()				{ return true; }
-public func IsDestinyGate()				{ return false; }
-public func IsMilkywayGate()			{ return false; }
-public func IsPegasusGate()				{ return false; }
-public func IsSpaceGate()				{ return !ramp; }
-public func IsForwarding()				{ return (state.forwarding && !IsBusy()); }
-public func ChevronCount(object gate)	{ return 7; }
-public func IsBusy()					{ return !(GetAction() == "Idle"); }
-
-//Energy
-public func GetEnergy()					{ return energy; }
-
-//Sound
-private func ChevronSound()				{ return; }
-private func RollSound()				{ return; }
-private func FailSound()				{ return; }
-
-//Console
-public func IsConsoleTarget()			{ return true; }
-local ActMap = {
-
-Outgoing1 = {
-
-Prototype = Action,
-
-Name = "Outgoing1",
-
-Length = 51,
-
-Delay = 4,
-
-FlipDir = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Outgoing2",
-
-PhaseCall = "DialSounds",
-
-},
-
-Outgoing2 = {
-
-Prototype = Action,
-
-Name = "Outgoing2",
-
-Length = 66,
-
-Delay = 2,
-
-FlipDir = 1,
-
-X = 0,
-
-Y = 80,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Outgoing3",
-
-StartCall = "OpenSound",
-
-PhaseCall = "KawooshKill",
-
-},
-
-Outgoing3 = {
-
-Prototype = Action,
-
-Name = "Outgoing3",
-
-Length = 51,
-
-Delay = 1,
-
-FlipDir = 1,
-
-X = 0,
-
-Y = 160,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Outgoing4",
-
-EndCall = "ShutDelay",
-
-Sound = "Opened",
-
-PhaseCall = "Transport",
-
-},
-
-Outgoing4 = {
-
-Prototype = Action,
-
-Name = "Outgoing4",
-
-Length = 51,
-
-Delay = 1,
-
-FlipDir = 1,
-
-Reverse = 1,
-
-X = 0,
-
-Y = 160,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Outgoing3",
-
-Sound = "Opened",
-
-PhaseCall = "Transport",
-
-},
-
-Income1 = {
-
-Prototype = Action,
-
-Name = "Income1",
-
-Length = 51,
-
-Delay = 4,
-
-FlipDir = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Income2",
-
-PhaseCall = "DialSounds",
-
-},
-
-Income2 = {
-
-Prototype = Action,
-
-Name = "Income2",
-
-Length = 66,
-
-Delay = 2,
-
-FlipDir = 1,
-
-X = 0,
-
-Y = 80,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Income3",
-
-StartCall = "OpenSound",
-
-PhaseCall = "KawooshKill",
-
-},
-
-Income3 = {
-
-Prototype = Action,
-
-Name = "Income3",
-
-Length = 51,
-
-Delay = 1,
-
-FlipDir = 1,
-
-X = 0,
-
-Y = 160,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Income4",
-
-Sound = "Opened",
-
-},
-
-Income4 = {
-
-Prototype = Action,
-
-Name = "Income4",
-
-Length = 51,
-
-Delay = 1,
-
-FlipDir = 1,
-
-Reverse = 1,
-
-X = 0,
-
-Y = 160,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Income3",
-
-Sound = "Opened",
-
-},
-
-Off = {
-
-Prototype = Action,
-
-Name = "Off",
-
-Length = 63,
-
-Delay = 1,
-
-FlipDir = 1,
-
-X = 0,
-
-Y = 240,
-
-Wdt = 110,
-
-Hgt = 80,
-
-Sound = "StargateClose",
-
-NextAction = "Idle",
-
-},  };
+public func RollSound()
+{
+	return(1);
+}
+
+public func FailSound()
+{
+	return(1);
+}
+
+public func ChevronCount(object gate)
+{
+	return(7);
+}
+
+public func IsDestinyGate()
+{
+	return(0);
+}
+
+public func IsMilkywayGate()
+{
+	return(0);
+}
+
+public func IsPegasusGate()
+{
+	return(0);
+}
+
+public func ChevronPrefix() { return ""; }
+
+public func GiveEnergy(int amount)
+{
+	DoEnergy(amount);
+	return(1);
+}
+
+public func IsSpaceGate()
+{
+	return (!ramp && !IsTeltakGate());
+}
+
+public func Energy()
+{
+	return(energy);
+}
+
+public func ChevronPhase()
+{
+	return [1, 8, 15, 22, 29, 36, 44, 49];
+}
+local Name = "$Name$";

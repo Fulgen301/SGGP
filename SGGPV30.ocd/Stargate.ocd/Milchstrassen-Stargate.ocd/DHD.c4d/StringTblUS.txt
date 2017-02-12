@@ -1,0 +1,7 @@
+NoGate=<c ff0000>No gate in range!</c>
+CrystDamaged=<c ff0000>The crystal is damaged!</c>
+NoCryst=<c ff0000>No main control crystal!</c>
+ShutdownGate=Shutdown the gate
+DialGate=Dial a gate
+ManipulateDHD=Manipulate the DHD
+Name=DHD

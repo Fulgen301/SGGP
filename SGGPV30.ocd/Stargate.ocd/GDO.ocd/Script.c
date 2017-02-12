@@ -1,5 +1,7 @@
 /*-- Garage Door opener (GDO) --*/
 
+#strict
+
 local target;
 
 func Initialize()
@@ -16,7 +18,7 @@ public func ContextMenu(object pCaller)
 
 func Check()
 {
-  if(target = FindObject(Find_Distance(500),Find_Func("IsStargate"),Find_Or(Find_Action("Outgoing3"),Find_Action("Outgoing4"))))
+  if(target = FindObject2(Find_Distance(500),Find_Func("IsStargate"),Find_Or(Find_Action("Outgoing3"),Find_Action("Outgoing4"))))
   {
    if(target->pToClose())
    {
@@ -36,7 +38,7 @@ func Check()
 
 func ControlDigDouble()
 {
-  if(target = FindObject(Find_Distance(500),Find_Func("IsStargate"),Find_Or(Find_Action("Outgoing3"),Find_Action("Outgoing4"))))
+  if(target = FindObject2(Find_Distance(500),Find_Func("IsStargate"),Find_Or(Find_Action("Outgoing3"),Find_Action("Outgoing4"))))
   {
    Sound("BipBipBip");
    CallMessageBoard(0, false, "Passwort:", GetOwner(Contained()));
@@ -50,10 +52,10 @@ func ControlDigDouble()
 
 func InputCallback(pw)
 {
-  if(target = FindObject(Find_Distance(500),Find_Func("IsStargate"),Find_Or(Find_Action("Outgoing3"),Find_Action("Outgoing4"))))
+  if(target = FindObject2(Find_Distance(500),Find_Func("IsStargate"),Find_Or(Find_Action("Outgoing3"),Find_Action("Outgoing4"))))
   {
    Sound("BipBipBip");
-   target.pTo->GDOControlIris(pw);
+   LocalN("pTo",target)->GDOControlIris(pw);
   }
   else
   {

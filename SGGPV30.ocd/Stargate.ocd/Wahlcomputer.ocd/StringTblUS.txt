@@ -1,1 +1,8 @@
+#Menu
+ShutdownGate=Shutdown the gate
+DialGate=Dial a gate
+ChangePassword=Change password
+ToggleIris=Toggle iris
+GateEnergy=Energy of the gate
+ShowCoordinates=Show coordinates
 Name=Dialing Computer

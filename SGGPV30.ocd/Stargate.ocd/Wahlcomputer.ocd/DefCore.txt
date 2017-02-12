@@ -1,5 +1,5 @@
 [DefCore]
-id=Stargate_DialPC
+id=STWA
 Version=4,9,5
 Category=1154
 MaxUserSelect=1
@@ -15,8 +15,6 @@ Vertices=6
 VertexX=-18,-19,0,0,18,18
 VertexY=-12,12,-12,12,-12,12
 VertexFriction=70,70,70,70,70,70
-Timer=1
-TimerCall=Check
 
 [Physical]
 Energy=100000

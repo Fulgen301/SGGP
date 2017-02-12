@@ -1,0 +1,1 @@
+The main unit of the DHD, without this the DHD is not able to dial another gate. Unfortunately, it gets broken very quickly.

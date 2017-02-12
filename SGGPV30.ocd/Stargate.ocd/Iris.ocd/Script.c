@@ -1,6 +1,6 @@
 /*-- Iris --*/
 
-
+#strict
 
 local open;
 local target;
@@ -28,9 +28,9 @@ func Update(object gate)
 func GDOControl(pwget)
 {
   var cmp;
-  if(cmp = FindObject(Find_Distance(1000),Find_ID(Stargate_DialPC),Sort_Distance()))
+  if(cmp = FindObject2(Find_Distance(1000),Find_ID(STWA),Sort_Distance()))
   {
-   if(cmp.password == pwget)
+   if(LocalN("password",cmp) eq pwget)
    {
     Switch();
     return(1);
@@ -50,7 +50,7 @@ func Switch()
     var phase = GetPhase();
   if(open)
   {
-   if(GetAction() == "Open")
+   if(GetAction() eq "Open")
    {
     open = 0;
     SetAction("Closes");
@@ -61,7 +61,7 @@ func Switch()
     }
 	else Sound("luke1");
    }
-   if(GetAction() == "Opens")
+   if(GetAction() eq "Opens")
    {
     open = 0;
     SetAction("Closes");
@@ -73,26 +73,26 @@ func Switch()
 	else Sound("luke1");
     SetPhase(20-phase);
    }
-   if(GetAction() == "Closes")
+   if(GetAction() eq "Closes")
    {
     return(1);
    }
-   if(GetAction() == "Close")
+   if(GetAction() eq "Close")
    {
     return(1);
    }
   }
   else
   {
-   if(GetAction() == "Open")
+   if(GetAction() eq "Open")
    {
     return(1);
    }
-   if(GetAction() == "Opens")
+   if(GetAction() eq "Opens")
    {
     return(1);
    }
-   if(GetAction() == "Closes")
+   if(GetAction() eq "Closes")
    {
     open = 1;
     SetAction("Opens");
@@ -104,7 +104,7 @@ func Switch()
 	else Sound("luke1");
     SetPhase(20 - phase);
    }
-   if(GetAction() == "Close")
+   if(GetAction() eq "Close")
    {
     open = 1;
     SetAction("Opens");
@@ -148,7 +148,7 @@ func Check()
     Break();
    }
   }
-  SetPosition(target->GetX()+55,target->GetY()+40);
+  SetPosition(GetX(target)+55,GetY(target)+40);
   if(target->~IsPegasusGate() && !update)
   {
   	Update();
@@ -173,95 +173,50 @@ func Break()
   Explode(24);
   return 1;
 }
-local ActMap = {
-
-Opens = {
-
-Prototype = Action,
-
-Name = "Opens",
-
-Length = 20,
-
-Delay = 2,
-
-Reverse = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Open",
-
-},
-
-Open = {
-
-Prototype = Action,
-
-Name = "Open",
-
-Length = 1,
-
-Delay = 1,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Open",
-
-},
-
-Closes = {
-
-Prototype = Action,
-
-Name = "Closes",
-
-Length = 20,
-
-Delay = 2,
-
-X = 0,
-
-Y = 0,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Close",
-
-},
-
-Close = {
-
-Prototype = Action,
-
-Name = "Close",
-
-Length = 1,
-
-Delay = 1,
-
-X = 2090,
-
-Y = 0,
-
-Wdt = 110,
-
-Hgt = 80,
-
-NextAction = "Close",
-
-},  };
 local Name = "$Name$";
+local ActMap = {
+Opens = {
+Prototype = Action,
+Name = "Opens",
+Length = 20,
+Delay = 2,
+Reverse = 1,
+X = 0,
+Y = 0,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Open",
+},
+Open = {
+Prototype = Action,
+Name = "Open",
+Length = 1,
+Delay = 1,
+X = 0,
+Y = 0,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Open",
+},
+Closes = {
+Prototype = Action,
+Name = "Closes",
+Length = 20,
+Delay = 2,
+X = 0,
+Y = 0,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Close",
+},
+Close = {
+Prototype = Action,
+Name = "Close",
+Length = 1,
+Delay = 1,
+X = 2090,
+Y = 0,
+Wdt = 110,
+Hgt = 80,
+NextAction = "Close",
+},  };

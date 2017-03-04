@@ -173,12 +173,15 @@ global func ParseInt(string int)
 /** Assert
 */
 
-global func assert(string sz)
+global func assert(sz)
 {
-	var result = eval(sz);
+	var result = sz;
+	if(GetType(sz) == C4V_String)
+		result = eval(sz); 
+	
 	if(!result)
 	{
-		return FatalError(Format("AssertionError: %s", sz));
+		return FatalError(Format("AssertionError: %v", sz));
 	}
 }
 

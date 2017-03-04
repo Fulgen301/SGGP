@@ -53,7 +53,7 @@ public func FMData1(int data)
 public func Fire1()    // Projektilschuss
 { 
   var user = GetUser();
-  var angle = user->AimAngle(20) + RandomX(-1,+1);
+  var angle = Crosshair->GetAngle() + GetR();
   var x,y; CalculateRifle(x, y);
   var ammo = CreateObject(STBS,x,y,GetController(user));
   ammo->Launch(angle,250,600,5,300,GetFMData(FM_Damage, 1));

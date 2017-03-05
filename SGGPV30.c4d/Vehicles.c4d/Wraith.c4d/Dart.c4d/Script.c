@@ -327,13 +327,20 @@ protected func ContainedUpDouble()			//Stehenbleiben bei Doppelhoch!
 protected func MakeMenu()
 {
 	_inherited(...);
-	pPilot->AddStructMenuItems([
-		StructMenu_MenuEntry(WRD3, "Motor Aus", "", "Enginestop"),
-		StructMenu_ConditionalMenuEntry(WRD5, "Blaster", "", fire, "FireSwitch"),
-		StructMenu_ConditionalMenuEntry(WRD6, "Harvester", "", !fire, "FireSwitch"),
-		StructMenu_ConditionalMenuEntry(WRD7, "Freilassen", "", FindObject2(Find_Container(core)), "Exiting")
-		]);
-  return true;
+	AddMenuItem("Motor Aus","Enginestop",WRD3,Par(0));
+  if(fire == 1)
+  {
+   AddMenuItem("Blaster","FireSwitch",WRD5,pPilot);
+  }
+  if(fire == 0)
+  {
+   AddMenuItem("Harvester","FireSwitch",WRD6,pPilot);
+  }
+  if(FindObject2(Find_Container(core)))
+  {
+   AddMenuItem("Freilassen","Exiting",WRD7,pPilot);
+  }
+  return(1);
 }
 
 func Exiting()

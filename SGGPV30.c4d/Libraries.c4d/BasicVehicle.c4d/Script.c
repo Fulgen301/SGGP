@@ -47,30 +47,23 @@ protected func MakeMenu(object pCaller)
 {
 	pPilot = pCaller;
 	SetOwner(GetOwner(pPilot));
+	CreateMenu(GetID(), pPilot, this, C4MN_Extra_None, FormatN("$DateTimeFormat$", ["Y", "M", "D", "h", "m", "s"], [GetSystemTime(0), GetSystemTime(1), GetSystemTime(3), GetSystemTime(4), GetSystemTime(5), GetSystemTime(6)]), 0, C4MN_Style_Dialog);
+	AddMenuItem("$Status$", 0, NONE, pPilot);
+	AddMenuItem(Format("$Damage$: %v/%v", GetDamage(), MaxDamage()), 0, MEPU, pPilot);
+	AddMenuItem(Format("$Energy$: %v%%", energy), 0, MEPU, pPilot);
+	AddMenuItem(" ", 0, NONE, pPilot, 0, 0, " ");
 	
-	var menu = [
-		StructMenu_TextEntry(NONE, "$Status$"),
-		StructMenu_TextEntry(MEPU, Format("$Damage$: %v/%v", GetDamage(), MaxDamage())),
-		StructMenu_TextEntry(MEPU, Format("$Energy$: %v%%", energy)),
-		StructMenu_BlankLine(),
-		StructMenu_MenuEntry(pPilot->GetID(), "$Exit$", 0, "ExitPilot"),
-		StructMenu_MenuEntry(Icon_Hatch, "$Heck$", 0, "Hatch"),
-		StructMenu_ConditionalMenuEntry(Icon_Shield, "$Shield$", 0, HasShield(), "ToggleShield"),
-		StructMenu_ConditionalMenuEntry(Icon_Cloak, "$Cloak$", 0, CanCloak(), "Cloak"),
-		StructMenu_ConditionalMenuEntry(TEL4, "$Hyperspace$", 0, HasHyperdrive(), "Hyperspace")
-		];
+	AddMenuItem("$Exit$", "ExitPilot", pPilot->GetID(), pPilot);
+	AddMenuItem("$Heck$", "Hatch", Icon_Hatch, pPilot);
+	if(HasShield()) AddMenuItem("$Shield$", "ToggleShield", Icon_Shield, pPilot);
+	if(CanCloak()) AddMenuItem("$Cloak$", "Cloak", Icon_Cloak, pPilot);
+	if(HasHyperdrive()) AddMenuItem("$Hyperspace$", "Hyperspace", TEL4, pPilot);
 	
-	var pGate;
-	if(CanDialGate() && (pGate = FindStargate()))
+	if(CanDialGate())
 	{
-		menu[GetLength(menu)] = StructMenu_MenuEntry(pGate->GetID(), Format("$DialGate$", pGate->GetName()), 0, "Dial");
+		var pGate = FindStargate();
+		if(pGate) AddMenuItem(Format("$DialGate$", pGate->GetName()), "Dial", pGate->GetID(), pPilot);
 	}
-	
-	pPilot->CreateStructMenu(
-	GetID(),
-	FormatN("$DateTimeFormat$", ["Y", "M", "D", "h", "m", "s"], [GetSystemTime(0), GetSystemTime(1), GetSystemTime(3), GetSystemTime(4), GetSystemTime(5), GetSystemTime(6)]),
-	this,
-	menu);
 }
 
 private func Hatch() {}

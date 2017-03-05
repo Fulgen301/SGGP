@@ -224,45 +224,17 @@ protected func ContainedUpDouble()
 protected func MakeMenu(object pCaller)
 {
   _inherited(pCaller, ...);
-  AddMenuItem("Motor Aus","Enginestop",PUD5,Par(0));
-
-  if(FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO),Find_Func("Ready")))
-  {
-   AddMenuItem("Andocken","Docking",JUDO,Par(0));
-  }
-  else
-  {
-   if(FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO)))
-   {
-    AddMenuItem("Abdocken","AbDocking",JUDO,Par(0));
-   }
-  }
-  
-  if(FindContents(TANG))
-  {
-   if(!naqu)
-   {
-    AddMenuItem("Reaktor einbauen","NaEiBa",TANG,Par(0));
-   }
-  }
-  if(naqu)
-  {
-   AddMenuItem("Reaktor ausbauen","NaAuBa",TANG,Par(0));
-  }
-  
-  if(FindContents(ARW_))
-  {
-   if(!arw)
-   {
-    AddMenuItem("Disruptor einbauen","ArwEiBa",ARW_,Par(0));
-   }
-  }
-  if(arw)
-  {
-   AddMenuItem("EM-Welle abfeuern","ArwFire",ARW_,Par(0));
-   AddMenuItem("Disruptor ausbauen", "ArwAuBa", ARW_, Par(0));
-  }
-  return(1);
+  pPilot->AddStructMenuItems([
+	StructMenu_MenuEntry(PUD5, "Motor Aus", " ", "Enginestop"),
+	StructMenu_ConditionalMenuEntry(JUDO, "Andocken", "", FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO),Find_Func("Ready"))),
+	StructMenu_ConditionalMenuEntry(JUDO, "Abdocken", "", FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO))),
+	StructMenu_ConditionalMenuEntry(TANG, "Reaktor einbauen", "", FindContents(TANG) && !naqu, "NaEiBa"),
+	StructMenu_ConditionalMenuEntry(TANG, "Reaktor ausbauen", "", naqu, "NaAuBa"),
+	StructMenu_ConditionalMenuEntry(ARW_, "Disruptor einbauen", "", FindContents(ARW_) && !arw, "ArwEiBa"),
+	StructMenu_ConditionalMenuEntry(ARW_, "Anti-Replikatoren-Welle abfeuern", "", arw && energy >= 90, "ArwFire"),
+	StructMenu_ConditionalMenuEntry(ARW_, "Disruptor ausbauen", "", arw, "ArwAuBa")
+  ]);
+  return true;
 }
 
 

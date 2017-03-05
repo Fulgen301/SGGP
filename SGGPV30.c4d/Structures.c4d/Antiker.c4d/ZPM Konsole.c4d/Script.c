@@ -96,9 +96,9 @@ public func & GetAllZPMs()
 protected func ControlDigDouble(pCaller)
 {
   User = pCaller;
-  CreateMenu(GetID(), User, 0,0, GetName(), 0, C4MN_Style_Dialog);
   
-  AddMenuItem("Status", 0, NONE, User);
+  User->CreateStructMenu(GetID(), GetName(), this, [StructMenu_TextEntry(NONE, "Status")]);
+  
   for(var i = 0; i < GetLength(zpms); i++)
   {
 	if(zpms[i])
@@ -110,21 +110,15 @@ protected func ControlDigDouble(pCaller)
 		else if(act == "Depledet") string = "$Depledet";
 		else if(act == "None") string = "$None$";
 		
-	  AddMenuItem(FormatN("$ZPMFormat$", ["i", "a", "e"], [i + 1, string, zpms[i]->Enrg()]), 0, NONE, User);
+		User->AddStructMenuItem(StructMenu_TextEntry(NONE, FormatN("$ZPMFormat$", ["i", "a", "e"], [i + 1, string, zpms[i]->Enrg()])));
 	}
   }
   
-  AddMenuItem(" ", 0, NONE, User);
-  
-  if(FindContents(ZPM_,User) && Free())
-  {
-    AddMenuItem("$PutZPM$","PutZPM",MEPU,User);
-  }
-  
-  if(HasZPM())
-  {
-   AddMenuItem("$GetZPM$","GetZPM",MEPU,User);
-  }
+  User->AddStructMenuItems([
+	StructMenu_BlankLine(),
+	StructMenu_ConditionalMenuEntry(MEPU, "$PutZPM$", "", FindContents(ZPM_, User) && Free(), "PutZPM"),
+	StructMenu_ConditionalMenuEntry(MEPU, "$GetZPM$", "", HasZPM(), "GetZPM")]);
+	
   
   for(var i = 0; i < GetLength(zpms); i++)
   {
@@ -141,7 +135,7 @@ protected func ControlDigDouble(pCaller)
 		  else if(zpms[i]->GetAction() == "Inactive") txt = "$ActivateZPM$";
 		  else continue;
 		  
-		  AddMenuItem(Format(txt, i + 1), Format("SwitchZPM(%d, %d)", i, active), MEPU, User);
+		  User->AddStructMenuItem(StructMenu_MenuEntry(MEPU, Format(txt, i + 1), " ", "SwitchZPM", [i, active]));
 	  }
   }
   return(1);
@@ -198,3 +192,11 @@ public func AtlantisOSFunc()
 }
 
 public func GetRace() { return SG1_Ancient; }
+
+public func UpdateTransferZone()
+{
+	for(var i in zpms[i])
+	{
+		if(zpms[i]) zpms[i]->SetActionData(256*4 + 4 + i);
+	}
+}

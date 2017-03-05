@@ -398,15 +398,13 @@ public func ContainedUpDouble()
 public func MakeMenu(pCaller)
 {
 	_inherited(pCaller, ...);
-  if(HasGate())
-  {
-  	AddMenuItem("$Iris$", "Iris", STGT, pPilot);
-  }
-  if(FindObject2(Find_ID(FLAG),Find_ActionTarget(this)))
-  {
-	  AddMenuItem("$Buy$","BuyMenu",SPIP,pPilot,0,pPilot);
-	  AddMenuItem("$Sell$","SellMenu",DPIP,pPilot,0,pPilot);
-  }
+	var f = FindObject2(Find_ID(FLAG),Find_ActionTarget(this));
+	
+	pPilot->AddStructMenuItems([
+		StructMenu_ConditionalMenuEntry(STGT, "$Iris$", " ", HasGate(), "Iris"),
+		StructMenu_ConditionalMenuEntry(SPIP, "$Buy$", " ", f, "BuyMenu"),
+		StructMenu_ConditionalMenuEntry(DPIP, "$Sell$", " ", f, "SellMenu")
+		]);
   return(1);
 }
 

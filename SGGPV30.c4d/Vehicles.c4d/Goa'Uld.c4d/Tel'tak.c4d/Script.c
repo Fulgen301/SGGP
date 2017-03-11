@@ -76,6 +76,10 @@ public func Initialize()
    Exit();
   }
   Choose();
+  for(var x in aInventory)
+  {
+	  if(x && x->~Teltak()) x->LocalN("target") = this;
+  }
   return(1);
 }
 

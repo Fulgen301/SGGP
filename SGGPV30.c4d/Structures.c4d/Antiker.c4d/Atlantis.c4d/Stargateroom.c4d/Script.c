@@ -14,7 +14,9 @@ public func CastlePartBasement() { return(BC16); }
 protected func Initialize()
 {
 	_inherited();
-	FindObject2(Find_ID(ALOS),Find_Owner(GetOwner()))->RegisterStructure(CreateGate(SGR1,SGAG,23,68,GetOwner()));
+	var gate = CreateGate(SGR1,SGAG,23,68,GetOwner());
+	gate->LocalN("target")->InstallShield();
+	FindObject2(Find_ID(ALOS),Find_Owner(GetOwner()))->RegisterStructure(gate);
 	FindObject2(Find_ID(ALOS),Find_Owner(GetOwner()))->RegisterStructure(CreateObject(STWA,-57,68,GetOwner()));
 }
 /* Forschung */

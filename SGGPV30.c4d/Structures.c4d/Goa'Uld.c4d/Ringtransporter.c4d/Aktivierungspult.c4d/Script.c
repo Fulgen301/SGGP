@@ -2,6 +2,7 @@
 
 local pTo;
 local transporter;
+local target;
 
 func Initialize()
 {
@@ -148,6 +149,8 @@ func SetTransporter(id dummy, object pTransporter)
 {
 	transporter = pTransporter;
 }
+
+public func Teltak() { return true; }
 
 func InputCallback(string szName)
 {

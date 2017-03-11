@@ -139,3 +139,8 @@ public func Timer()
 		}
 	}
 }
+
+public func RejectBuild()
+{
+	return true;
+}

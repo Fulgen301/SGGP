@@ -1,4 +1,5 @@
 #strict 2
+local target;
 
 public func Teltak()
 {

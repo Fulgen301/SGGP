@@ -3,6 +3,7 @@
 #strict
 
 local flame, step, speedX, speedY, Sprit, maxSprit;
+local target;
 
 
 /* Initialisierung */

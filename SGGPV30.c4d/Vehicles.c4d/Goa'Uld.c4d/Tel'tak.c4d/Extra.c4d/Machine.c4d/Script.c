@@ -2,26 +2,11 @@
 
 local time;
 
+local target;
+
 public func Initialize()
 {
   SetAction("Deactive");
-  return(1);
-}
-
-public func ControlDigDouble()
-{
-  if(GetAction() == "Active")
-  {
-   SetAction("Deactive");
-   Sound("ring_button1");
-   return(1);
-  }
-
-  if(GetAction() == "Deactive")
-  {
-	SetAction("Active");
-	Sound("ring_button2");
-  }
   return(1);
 }
 

@@ -195,7 +195,7 @@ public func GetRace() { return SG1_Ancient; }
 
 public func UpdateTransferZone()
 {
-	for(var i in zpms[i])
+	for(var i = 0; i < GetLength(zpms); i++)
 	{
 		if(zpms[i]) zpms[i]->SetActionData(256*4 + 4 + i);
 	}

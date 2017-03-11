@@ -7,6 +7,7 @@ local ring;
 local name;
 local put;
 local ring2;
+local target;
 
 static RIG1_Number;
 
@@ -31,6 +32,8 @@ public func IsFindable()
 {
 	return GetAction() == "Idle" && name != "Off";
 }
+
+public func Teltak() { return true; }
 
 //Steuert die Treffbarkeit
 public func IsBulletTarget()

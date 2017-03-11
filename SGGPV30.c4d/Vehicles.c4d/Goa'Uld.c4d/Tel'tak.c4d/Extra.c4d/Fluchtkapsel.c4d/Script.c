@@ -1,4 +1,5 @@
 #strict
+local target;
 
 public func Initialize()
 {

@@ -58,7 +58,6 @@ private func HitObject(object pObject)
   var angle = Angle(GetX(),GetY(),GetX(pObject),GetY(pObject));
   var dist = Distance(GetX(),GetY(),GetX(pObject),GetY(pObject));
 
-  Kill(pObject);
   if(GetID(pObject) == KULL)
   {
    pObject->Kill();

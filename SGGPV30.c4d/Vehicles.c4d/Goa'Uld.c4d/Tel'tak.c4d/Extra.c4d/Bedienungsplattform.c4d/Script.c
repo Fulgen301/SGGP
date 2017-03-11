@@ -1,6 +1,7 @@
 #strict
 
 local door;
+local target;
 
 public func Initialize()
 {

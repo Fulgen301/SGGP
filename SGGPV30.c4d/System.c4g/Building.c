@@ -1,5 +1,7 @@
 /* Building */
 
+#strict 2
+
 global func AddBuildEffect(object pObj)
 {
 	if(!pObj) if(!(pObj = this)) return;

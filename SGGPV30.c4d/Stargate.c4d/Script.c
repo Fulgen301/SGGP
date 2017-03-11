@@ -20,14 +20,11 @@ local fake;
 local aChevrons;
 local input;
 local iris_action;
+local shield;
 
 public func IsTeltakGate()
 {
-	if(teltak)
-	{
-		return(1);
-	}
-	return(0);
+	return teltak;
 }
 
 public func SetTeltak(object obj)
@@ -116,10 +113,19 @@ func HasIris()
 //Nein? Dann müssen wir eine Installieren:
 func InstallIris()
 {
-  iris = CreateObject(SGIR,0,0,GetOwner());
+	if(iris) return;
+  if(shield) iris = CreateObject(SGSH, 0, 0, GetOwner());
+  else iris = CreateObject(SGIR,0,0,GetOwner());
   SetObjectOrder(this,iris);
   LocalN("target",iris) = this;
   return(1);
+}
+
+public func InstallShield()
+{
+	if(iris) iris->RemoveObject();
+	shield = true;
+	InstallIris();
 }
 
 //Abfrage ob die Iris zu ist
@@ -171,38 +177,22 @@ func GDOControlIris(passw)
 //Tötung beim Kawoosh
 func KawooshKill()
 {
-	if(GetPhase() > 66) return;
-   var xobj;
    DigFree(GetX()+18,GetY()+46,12);
    DigFree(GetX()+41,GetY()+44,15);
    DigFree(GetX()+10,GetY()+46,11);
    DigFree(GetX()+63,GetY()+43,13);
    DigFree(GetX()+46,GetY()+42,27);
-   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Or(Find_OCF(OCF_Living),Find_OCF(OCF_Collectible))))
+   
+   for(var obj in FindObjects(
+	Find_InRect(60, 22, 30, 45),
+	Find_Or(Find_OCF(OCF_Living), Find_OCF(OCF_Collectible), Find_Category(C4D_Vehicle), Find_Exclude(this))
+   ))
    {
-    if(!IsTeltakGate())
-   	{
-   		if(xobj) xobj->RemoveObject();
-   	}
-	else
-	{
-		if(xobj && !Contained(xobj))
-		{
-			xobj->RemoveObject();
-		}
-	}
-   }
-   for(xobj in FindObjects(Find_InRect(60,22,30,45),Find_Category(C4D_Vehicle)))
-   {
-    if(IsTeltakGate())
-   	{
-		if(xobj && !xobj->~Teltak())
-		{
-			xobj->DoDamage(1000);
-		}
-   	}
-	else
-		if(xobj) xobj->DoDamage(1000);
+	 if(obj)
+	 {
+		 if(obj->Contained() == IsTeltakGate() || obj->LocalN("target") == IsTeltakGate())	continue;
+		 else obj->RemoveObject();
+	 }
    }
   return(1);
 }
@@ -313,7 +303,7 @@ func GetName()
 public func OpenChevronMenu(object pCaller, object pDHD)
 {
 	if(!pCaller || !pDHD) return;
-	CreateMenu(GetID(), pCaller, 0, 0, pDHD->GetName());
+	CreateMenu(GetID(), pCaller, 0, 0, pDHD->GetName(), 0, 0, 0, STRG);
 	
 	if(GetType(input) != C4V_Array) input = [];
 	if(GetLength(input) == 7) return AddMenuItem("Fertig", "Finish", pDHD->GetID(), pCaller);
@@ -328,11 +318,6 @@ public func OpenChevronMenu(object pCaller, object pDHD)
 			icon = CXRL;
 		AddMenuItem(pDHD->GetName(), Format("Object(%d)->ChevronSelection(%d, Object(%d), Object(%d))", this->ObjectNumber(), cv, pCaller->ObjectNumber(), pDHD->ObjectNumber()), icon, pCaller);
 	}
-}
-
-public func MenuQueryCancel()
-{
-	input = [];
 }
 
 public func ChevronSelection(int cv, object pCaller, object pDHD)
@@ -362,7 +347,7 @@ public func Finish()
 //Beschäftigt?!
 func IsBusy()
 {
-  return !(GetAction() == "Idle");
+  return GetAction() != "Idle" && GetAction() != "Outgoing1";
 }
 
 public func Dial(array gate)
@@ -415,13 +400,12 @@ func Check()
   	energy += 50;
   }
   
-  if(!iris && heat < 100000)
+  if(!iris && heat < 200000)
   {
 	  InstallIris();
 	  if(iris && iris_action)
 	  {
 		  iris->SetAction(iris_action);
-		  if(iris_action == "Closes" || iris_action == "Close") iris->LocalN("open") = 0;
 	  }
   }
   else if(iris) iris_action = iris->GetAction();

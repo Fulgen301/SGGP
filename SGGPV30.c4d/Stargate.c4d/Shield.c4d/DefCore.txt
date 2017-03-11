@@ -1,0 +1,14 @@
+[DefCore]
+id=SGSH
+Version=4,9,8
+Name=Shield
+Category=2
+Width=110
+Height=80
+Offset=-55,-40
+Value=100
+Mass=1000
+Components=METL=20;
+Picture=2090,0,110,80
+Timer=1
+TimerCall=Check

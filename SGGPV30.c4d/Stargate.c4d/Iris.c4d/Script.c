@@ -1,28 +1,20 @@
 /*-- Iris --*/
 
-#strict
+#strict 2
 
-local open;
 local target;
-local update;
 local temp;
 
 func Initialize()
 {
   temp = 0;
   SetAction("Open");
-  open = 1;
   return(1);
 }
 
-func Update(object gate)
+public func IsClose()
 {
-	if(target && target->~IsPegasusGate())
-	{
-		SetGraphics("Atlantis");
-		update = 1;
-	}
-	return 1;
+	return GetAction() != "Open";
 }
 
 func GDOControl(pwget)
@@ -30,7 +22,7 @@ func GDOControl(pwget)
   var cmp;
   if(cmp = FindObject2(Find_Distance(1000),Find_ID(STWA),Sort_Distance()))
   {
-   if(LocalN("password",cmp) eq pwget)
+   if(cmp->LocalN("password") == pwget)
    {
     Switch();
     return(1);
@@ -45,78 +37,36 @@ func GDOControl(pwget)
   return(1);
 }
 
-func Switch()
+public func Switch()
 {
-    var phase = GetPhase();
-  if(open)
-  {
-   if(GetAction() eq "Open")
-   {
-    open = 0;
-    SetAction("Closes");
-    if(update)
-    {
-     SoundStart();
-     Sound("iris_atlantis_close");
-    }
-	else Sound("luke1");
-   }
-   if(GetAction() eq "Opens")
-   {
-    open = 0;
-    SetAction("Closes");
-    if(update)
-    {
-     SoundStart();
-     Sound("iris_atlantis_close");
-    }
-	else Sound("luke1");
-    SetPhase(20-phase);
-   }
-   if(GetAction() eq "Closes")
-   {
-    return(1);
-   }
-   if(GetAction() eq "Close")
-   {
-    return(1);
-   }
-  }
-  else
-  {
-   if(GetAction() eq "Open")
-   {
-    return(1);
-   }
-   if(GetAction() eq "Opens")
-   {
-    return(1);
-   }
-   if(GetAction() eq "Closes")
-   {
-    open = 1;
-    SetAction("Opens");
-    if(update)
-    {
-     SoundStop();
-     Sound("iris_atlantis_open");
-    }
-	else Sound("luke1");
-    SetPhase(20 - phase);
-   }
-   if(GetAction() eq "Close")
-   {
-    open = 1;
-    SetAction("Opens");
-    if(update)
-    {
-     SoundStop();
-     Sound("iris_atlantis_open");
-    }
-	else Sound("luke1");
-   }
-  }
-  return(1);
+	var phase = GetPhase();
+	if(GetAction() == "Open" || GetAction() == "Opens")
+	{
+		SetAction("Closes");
+		DoSound();
+	}
+	
+	else if(GetAction() == "Close" || GetAction() == "Closes")
+	{
+		SetAction("Opens");
+		DoSound();
+	}
+}
+
+public func SetAction(string szAction)
+{
+	if((szAction == "Opens" && GetAction() == "Closes") || (szAction == "Closes" && GetAction() == "Opens"))
+	{
+		var phs = GetPhase();
+		_inherited(szAction, ...);
+		SetPhase(20 - phs);
+	}
+	else return _inherited(szAction, ...);
+}
+
+public func DoSound()
+{
+	Sound("luke1");
 }
  
 func SoundStart()
@@ -133,39 +83,12 @@ func SoundStop()
 
 func Check()
 {
-	if(!target) return RemoveObject();
-  if(!update)
-  {
-   if(temp > 100)
-   {
-    Break();
-   }
-  }
-  else
-  {
-   if(temp > 200)
-   {
-    Break();
-   }
-  }
+  if(!target) return RemoveObject();
+  
+  if(temp > 200) Break();
+  
   SetPosition(GetX(target)+55,GetY(target)+40);
-  if(target->~IsPegasusGate() && !update)
-  {
-  	Update();
-  }
   return(1);
-}
-
-func IsClose()
-{
-  if(open)
-  {
-   return(0);
-  }
-  else
-  {
-   return(1);
-  }
 }
 
 func Break()

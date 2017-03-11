@@ -44,6 +44,11 @@ global func AnnounceHostTime(int time)
 	hostTime = time;
 }
 
+global func GetSystemTime(int iWhat)
+{
+	
+}
+
 global func GetSystemTime(int what)
 {
 	if(HaveHostFeature("HostTime"))
@@ -102,5 +107,11 @@ global func GetSystemTime(int what)
 		}
 		if(what == 0) return 1970 + ((hostTime + 31556926 * 2)/(31556926)) - 2;
 	}
-	else return _inherited(what, ...);
+	else
+	{
+		if(!IsNetwork()) return _inherited(what, ...);
+	
+		if(GetType(iSystemTime) != C4V_Array) iSystemTime = [];
+		return iSystemTime[what];
+	}
 }

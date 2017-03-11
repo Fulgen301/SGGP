@@ -41,15 +41,9 @@ global func SaveTime(int iPlr)
 		{
 			iSystemTime[i] = GetPlrExtraData(iPlr, Format("SGGP_%s", SGGP_SystemTimeStrings[i]));
 		}
+		
+		Schedule(Format("SaveTime(%d)", iPlr), 500);
 	}
-}
-
-global func GetSystemTime(int iWhat)
-{
-	if(!IsNetwork()) return _inherited(iWhat, ...);
-	
-	if(GetType(iSystemTime) != C4V_Array) iSystemTime = [];
-	return iSystemTime[iWhat];
 }
 
 protected func UpdateTransferZone()

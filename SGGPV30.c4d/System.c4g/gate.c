@@ -2,7 +2,7 @@
 
 #strict 2
 
-global func CreateGate(id ramp,id type,int x,int y,int owner, array aChevrons)
+global func CreateGate(id ramp,id type,int x,int y,int owner, aChevrons) // array aChevrons
 {
 	var gate;
 	if(ramp)
@@ -14,10 +14,10 @@ global func CreateGate(id ramp,id type,int x,int y,int owner, array aChevrons)
 	{
 		gate = CreateObject(type, x, y, owner);
 	}
-	if(aChevrons)
+	if(aChevrons && GetType(aChevrons) == C4V_Array)
 	{
 		if(gate->~IsStargate()) gate->GetChevrons() = aChevrons;
 		else if(gate->~IsStargateRamp()) gate->LocalN("target")->GetChevrons() = aChevrons;
-	}	
+	}
 	return(gate);
 }

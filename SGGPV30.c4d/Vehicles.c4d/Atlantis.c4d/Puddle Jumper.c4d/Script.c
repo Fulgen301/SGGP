@@ -1,7 +1,7 @@
 /*--- Puddle Jumper ---*/
 
 #strict 2
-#include CVHC
+#include VHCL
 
 local iExtra;
 local Gate;

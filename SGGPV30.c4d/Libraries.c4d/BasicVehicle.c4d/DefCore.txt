@@ -1,5 +1,5 @@
 [DefCore]
-id=CVHC
+id=VHCL
 Version=4,9,10,7
 Name=Basic Vehicle
 Category=C4D_StaticBack

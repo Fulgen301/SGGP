@@ -2,7 +2,7 @@
 
 #strict 2
 #include WEPN
-#include CVHC
+#include VHCL
 
 public func Initialize()
 {

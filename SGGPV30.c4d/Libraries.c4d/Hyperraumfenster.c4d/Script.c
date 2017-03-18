@@ -126,12 +126,13 @@ public func Timer()
 			var pObj;
 			for (pObj in FindObjects(Find_Container(this()))) 
 			{
-				if (EffectVar(1, pObj, GetEffect("Hyperdrive", pObj)) == iTime)
+				if (pObj && EffectVar(1, pObj, GetEffect("Hyperdrive", pObj)) == iTime)
 				{
 					pObj->~ExitingHyperspace(this);
 					Exit(pObj, 0, iWdt / 2);
-					pObj->SetXDir(EffectVar(2, pObj, GetEffect("Hyperdrive", pObj)) * 5);
-					pObj->SetXDir(EffectVar(3, pObj, GetEffect("Hyperdrive", pObj)));
+                    if(!pObj) continue;
+					pObj->~SetXDir(EffectVar(2, pObj, GetEffect("Hyperdrive", pObj)) * 5);
+					pObj->~SetXDir(EffectVar(3, pObj, GetEffect("Hyperdrive", pObj)));
 					RemoveEffect("Hyperdrive", pObj);
 					pObj->~ExitedHyperspace(this);
 				}

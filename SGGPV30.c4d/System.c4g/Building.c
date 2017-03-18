@@ -13,7 +13,7 @@ global func FxBuildStart(object pTarget, int iEffect, bool fTemp)
 {
 	if(fTemp) return;
 	
-	EffectVar(0, pTarget, iEffect) = BoundBy(GetMass(0, pTarget->GetID())/100, 1, 10);
+	EffectVar(0, pTarget, iEffect) = BoundBy(GetMass(0, pTarget->GetID())/100, 1, 7);
 }
 
 global func FxBuildEffect(string szNewEffectName, object pTarget)

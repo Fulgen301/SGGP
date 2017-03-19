@@ -392,6 +392,32 @@ public func Dial(array gate)
 	HoldAction(pTo);
 }
 
+public func Dial2(array gate)
+{
+    var pGate = FindObject2(Find_Func("IsStargate"), Find_Exclude(this), Find_Func("HasAddress", gate), Find_Not(Find_Func("IsBusy")));
+	if(!pGate)
+	{
+		return;
+	}
+	
+	var enrg = BoundBy(Distance(GetX(),GetY(),pGate->GetX(),pGate->GetY())*100, 100000, 1000000);
+	if(energy >= enrg)
+	{
+		energy -= enrg;
+	}
+	else
+	{
+		return;
+	}
+    
+    chevroncount = 0;
+    pTo = pGate;
+    pTo->LocalN("pFrom") = this;
+    SetAction("Outgoing1");
+    pTo->SetAction("Income1");
+    time = 20 - !!IsDestinyGate() * 13;
+}
+
 //Überprüft ob das Gate sich abschalten muss:
 func Check()
 {
@@ -490,6 +516,7 @@ func ShutDelay()
 public func Deactivate()
 {
 	if(pFrom && !WildcardMatch(GetAction(), "Outgoing*")) return;
+    input = [];
 	if(pTo)
 	{
 		pTo->LocalN("pFrom") = 0;

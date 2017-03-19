@@ -31,7 +31,7 @@ public func & GetEnergy()
 	if(GetActionTarget()) return GetActionTarget()->LocalN("energy");
 }
 
-protected func LightningStrike()
+public func LightningStrike()
 {
 	GetEnergy() += 10;
 }

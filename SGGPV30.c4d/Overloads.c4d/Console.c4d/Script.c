@@ -92,7 +92,7 @@ public func SetTarget(object pClonk)
 {
 	CreateMenu(SGGP,pClonk,0,0,"Ziel auswählen",0,1);
 	var obj;	   	
-  for(obj in FindObjects(Find_Func("ConsoleControl"),Find_Distance(1000)))
+  for(obj in FindObjects(Find_Func("ConsoleControl",1),Find_Distance(1000)))
   {
 	  AddMenuItem(GetName(obj), "Control", GetID(obj), pClonk, 0, obj);
   }

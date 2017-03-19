@@ -17,6 +17,8 @@ local Name;
 local forw;
 local bState;
 local chevrons;
+local addresses;
+local save;
 
 func Initialize()
 {
@@ -90,6 +92,16 @@ func InputCallback(string pw)
    password = pw;
    return(1);
   }
+  
+  if(save && FindStargate() && FindStargate()->LocalN("pTo"))
+  {
+      save = 0;
+      addresses = addresses || [];
+      var hash = CreateHash();
+      HashPut(hash, "chevrons", FindStargate()->LocalN("pTo")->GetChevrons());
+      HashPut(hash, "name", pw);
+      addresses[GetLength(addresses)] = hash;
+  }
 }
 
 func MakeMenu()
@@ -98,9 +110,13 @@ func MakeMenu()
 	user->CreateSelectMark()->MarkObject(FindStargate(), 35);
   CreateMenu(STWA,user, 0, 0, FindStargate()->GetName(), 0, 1, true);
   if(FindStargate() && FindStargate()->IsBusy())
+  {
 	AddMenuItem("$ShutdownGate$","Deactivate",MEPU,user);
+    AddMenuItem("Adresse speichern", "SaveAddress", MEPU, user);
+  }
   AddMenuItem("$DialGate$","Dial",MEPU,user);
   AddMenuItem("$ShowCoordinates$", "ShowCoordinates", MEPU, user);
+  AddMenuItem("Adressen anzeigen", "ShowAddresses", MEPU, user);
   if(!FindObject(NOPW))
   {
    AddMenuItem("$ChangePassword$","ChangePass",MEPU,user);
@@ -142,6 +158,34 @@ protected func ShowCoordinates()
 		msg = Format("%s %d", msg, cv);
 	}
 	MessageWindow(msg, GetOwner(user));
+}
+
+private func SaveAddress()
+{
+    if(!FindStargate()) return;
+    save = 1;
+    CallMessageBoard(0, false, "Geben Sie einen Namen für die Adresse ein: ");
+}
+
+private func ShowAddresses()
+{
+    if(!FindStargate()) return;
+    var msg = "";
+    var prefix = FindStargate()->~ChevronPrefix();
+    for(var adr in addresses)
+    {
+        if(adr && GetType(HashGet(adr, "chevrons")) == C4V_Array)
+        {
+            msg = Format("%s%s: ", msg, HashGet(adr, "name") || "");
+            for(var cv in HashGet(adr, "chevrons"))
+            {
+                msg = Format("%s  {{%s%02d}}", msg, prefix, cv);
+            }
+            msg = Format("%s|", msg);
+        }
+    }
+    
+    MessageWindow(msg, GetOwner(user));
 }
 
 func BuildIris()

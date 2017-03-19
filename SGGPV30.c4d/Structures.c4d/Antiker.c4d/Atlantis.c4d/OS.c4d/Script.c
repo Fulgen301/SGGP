@@ -58,7 +58,8 @@ protected func FxIntAtlantisOSStart(object pTarget, int iEffect, int iTemp, arra
 	EffectVar(0, pTarget, iEffect) = proplist;
 	EffectVar(1, pTarget, iEffect) = [];
 	EffectVar(1, pTarget, iEffect) = 0;
-	EffectVar(2, pTarget, iEffect) = 35;
+	EffectVar(2, pTarget, iEffect) = 0;
+    EffectVar(8, pTarget, iEffect) = CreateHash();
 }
 
 static const ATLANTISOS_OK				 = 0;
@@ -70,12 +71,14 @@ static const ATLANTISOS_QUARANTINE		 = 16;
 /* EffectVars
 	0 - proplist with all registered structures
 	1 - status
-	2 - current effect interval
+	2 - counter
 	3 - Stargate
 	4 - Shield generator
 	5 - ZPM console
 	6 - DefCon controller
 	7 - Stardrive controller
+    8 - common hashtable
+    9 - Dial PC
 */
 
 protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
@@ -95,6 +98,7 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 		{
 			// All ok, don't do anything.
 		}
+        
 		
 		else */
 		if(values[i] & ATLANTISOS_NOENERGY)
@@ -117,6 +121,7 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 			else if(!EffectVar(5, pTarget, iEffect) && obj->~GetID() == ZPMG) EffectVar(5, pTarget, iEffect) = obj; // ZPM console
 			else if(!EffectVar(6, pTarget, iEffect) && obj->~GetID() == DEFK) EffectVar(6, pTarget, iEffect) = obj; // DefCon controller
 			else if(!EffectVar(7, pTarget, iEffect) && obj->~GetID() == ALSK) EffectVar(7, pTarget, iEffect) = obj; // Stardrive controller
+            else if(!EffectVar(9, pTarget, iEffect) && obj->~IsDialPC()) EffectVar(9, pTarget, iEffect) = obj; // Dial pc
 		}
 	}
 	
@@ -131,6 +136,22 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 	if(status == ATLANTISOS_OK)
 	{
 		
+        var obj = EffectVar(9, pTarget, iEffect);
+        var addresses;
+        if(obj && EffectVar(8, pTarget, iEffect) && (addresses = obj->LocalN("addresses")))
+        {
+            var list = [];
+            for(var a in addresses)
+            {
+                var hash = CreateHash();
+                HashPut(hash, "chevrons", HashGet(a, "chevrons"));
+                HashPut(hash, "invalid", 0);
+                list[GetLength(list)] = hash;
+            }
+            
+            HashPut(EffectVar(8, pTarget, iEffect), "addresses", list);
+        }
+        
 		var defcon_active = false;
 		if(gate && !gate->IsSpaceGate())
 		{
@@ -154,6 +175,10 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 			{
 				if(!defcon_active) defcon_active = true;
 			}
+            else if(EffectVar(2, pTarget, iEffect) % 300 == 0)
+            {
+                EffectCall(pTarget, iEffect, "StargateDial");
+            }
 			else if(gate->IsClose()) gate->ControlIris();
 		}
 	
@@ -162,6 +187,7 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 		{
 			EffectVar(6, pTarget, iEffect)->~ConsoleControlled((defcon_active * 3) + 1);
 		}
+        
 	}
 	
 	if(status & ATLANTISOS_ZPMLOW)
@@ -215,6 +241,7 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 	}
 	
 	EffectVar(1, pTarget, iEffect) = status;
+    EffectVar(2, pTarget, iEffect)++;
 }
 
 protected func FxIntAtlantisOSRaise(object pTarget, int iEffect)
@@ -224,12 +251,41 @@ protected func FxIntAtlantisOSRaise(object pTarget, int iEffect)
 
 protected func FxIntAtlantisOSStatus(object pTarget, int iEffect, object pChair)
 {
-	var msg = "";
-	PlayerMessage(pTarget->GetOwner(), msg, pChair);
 }
-public func Atlantis()
+
+protected func FxIntAtlantisOSStargateDial(object pTarget, int iEffect)
 {
-	return true;
+    var gate;
+    if(!(gate = EffectVar(3, pTarget, iEffect))) return;
+    
+	var addresses = HashGet(EffectVar(8, pTarget, iEffect), "addresses");
+    addresses = addresses || [CreateHash()];
+    
+    var counter = HashGet(EffectVar(8, pTarget, iEffect), "counter");
+    
+    var adr = addresses[counter];
+    
+    var pGate = FindObject2(Find_Func("IsStargate"), Find_Exclude(gate), Find_Func("HasAddress", HashGet(adr, "chevrons")), Find_Not(Find_Func("IsBusy")));
+	if(pGate)
+    {
+        var enrg = BoundBy(Distance(gate->GetX(),gate->GetY(),pGate->GetX(),pGate->GetY())*100, 100000, 1000000);
+        if(gate->LocalN("energy") >= enrg)
+        {
+            gate->Dial2(HashGet(adr, "chevrons"));
+        }
+    }
+    
+    if(gate->GetAction() == "Idle")
+    {
+        HashPut(adr, "invalid", HashGet(adr, "invalid") + 1);
+    }
+    else HashPut(adr, "invalid", 0);
+    
+    if(counter >= GetLength(addresses)) counter = 0;
+    
+    HashPut(EffectVar(8, pTarget, iEffect), "addresses", addresses);
+    HashPut(EffectVar(8, pTarget, iEffect), "counter", counter);
+    ScheduleCall(gate, "Deactivate", 600);
 }
 
 public func GetRace() { return SG1_Ancient; }

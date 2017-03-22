@@ -359,7 +359,7 @@ if(GetCon() < 100) return;
 //###########################
 //##### SCHILD-STEUERUNG ####
 //###########################
-  if(shield)
+  /*if(shield)
   {
 	if(energy <= 15)
 	{
@@ -372,7 +372,7 @@ if(GetCon() < 100) return;
 			energy--;
 			time = 0;
 		}
-  }
+  }*/
 
 //#############################
 //# ENERGIEANZEIGEN-STEUERUNG #

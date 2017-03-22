@@ -13,3 +13,5 @@ DateTimeFormat=%04d%Y%-%02d%M%-%02d%D% - %02d%h%:%02d%m%:%02d%s%
 
 #DialGate
 GateName=Gatename:
+
+UpgradeShield=Upgrade the shield

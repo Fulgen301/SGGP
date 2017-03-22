@@ -7,6 +7,11 @@ local pCurrentTarget;  //Zweiter Teleporter (Ziel)
 local pLight;
 local isPrivate;
 
+protected func Construction()
+{
+    SetCon(100);
+}
+
 func Initialize() 
 {
   SetAction("Activated");
@@ -35,6 +40,11 @@ func CheckBeam(object clonk)
     Sound("Error");
     if(clonk) PlayerMessage(clonk->GetOwner(), "$NoTarget$", this);
     return;
+  }
+  
+  if(pCurrentTarget->GetID() == ASTE && pCurrentTarget->GetAction() == "Stand")
+  {
+      return BeamObjects();
   }
   // Ziel nicht aktiv?
   if(pCurrentTarget->GetAction() != "Activated")
@@ -101,6 +111,11 @@ public func FxBeamStart(object target, int effectNumber, int temp, beamTo, x, y)
   EffectVar(2, target, effectNumber) = beamTo; // Objekt zu dem gebeamt wird
   if(beamTo)
   {
+      if(beamTo->GetID() == ASTE)
+      {
+          beamTo->In(target);
+          return -1;
+      }
     x = beamTo->GetX();
     y = beamTo->GetY() + target->GetObjHeight()/2;
   }
@@ -154,7 +169,7 @@ func MenuSetTarget(id icon, object target)
 //Ziel setzen
 func SetTarget(object target) 
 {
-  if(target->GetID() != TELE) return false;
+  if(target->GetID() != TELE && target->GetID() != ASTE) return false;
   pCurrentTarget = target;
   return true;
 }
@@ -168,13 +183,13 @@ func SearchTargets(object clonk)
   //Menü bauen
   CreateMenu(HSGN, clonk, this());
 
-  var teleporters = FindObjects(Find_ID(TELE),
+  var teleporters = FindObjects(Find_Or(Find_ID(TELE), Find_ID(ASTE)),
                                 Find_Exclude(this),
                                 Find_Not(Find_Func("IsPrivateTeleporter")),
                                 Find_Not(Find_Hostile(GetOwner())));
   for(var teleporter in teleporters)
   {
-    AddMenuItem("$ChooseTarget$", "MenuSetTarget", GetID(), clonk, 0, teleporter);
+    AddMenuItem("$ChooseTarget$", "MenuSetTarget", GetID(teleporter), clonk, 0, teleporter);
   }
   // Effekt für tolles Feature
   AddEffect("TeleMenu", clonk, 101, 5, this, 0, teleporters);

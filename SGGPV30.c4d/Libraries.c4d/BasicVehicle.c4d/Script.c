@@ -225,7 +225,12 @@ public func Okay(int iX, int iY)
 
 protected func OnDmg(int iDmg, int iType)
 {
-    if(iType == DMG_Energy && GetEffect("HazardShield", this)) return 100;
+    if(GetEffect("HazardShield", this))
+    {
+        if(iType == DMG_Energy) return 100;
+        return 50;
+    }
+    return 0;
 }
 
 protected func Damage(int iDamage)

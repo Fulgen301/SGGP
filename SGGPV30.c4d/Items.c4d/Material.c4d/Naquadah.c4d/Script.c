@@ -1,24 +1,28 @@
-/*--- Eisenerz ---*/
+/*--- Naquadah ---*/
 
-#strict
+#strict 2
 
 func Hit () {
   Sound("RockHit*");
 }
 
-/* Für Erzmine */
-
-public func Sale(int plr) {
-  var obj;
-  if (obj = FindObject (OREM, 50 - GetX (), 49 - GetY ()))
-    obj -> OREM::PlayerHasSold(plr, this ());
-  return(GetID());
+protected func Damage()
+{
+  // Explodiert nicht, wenn er von einem Clonk getragen wird (Sonderregel gegen T-Flint-Superjumps)
+  if (Contained() && Contained()->~IsClonk())
+  {
+      Extinguish();
+      return 0;
+  }
+  // Explosion - verzögert, um Endlosrekursion zu verhindern
+  Schedule("Explode(40)", 1);
+  return 1;
 }
 
-public func Purchase(int plr, object buyobj) {
-  var obj;
-  if (obj = FindObject (OREM, 50 - GetX (), 49 - GetY ()))
-    obj -> OREM::PlayerHasBought(plr, this ());
+// Entzündet sich bei Explosionstreffer
+public func OnShockwaveHit(level, x, y)
+{
+ Incinerate();
 }
 
 func IsAlchemContainer() { return(true); }

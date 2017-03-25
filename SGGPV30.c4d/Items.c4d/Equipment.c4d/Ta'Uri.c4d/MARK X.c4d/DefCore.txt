@@ -9,7 +9,7 @@ Height=10
 Offset=-13,-5
 Value=200
 Mass=50
-Components=METL=3;CRYS=1;NAQU=10;
+Components=METL=5;CRYS=3;NAQU=15;
 Picture=0,20,150,130
 Vertices=4
 VertexX=-3,3,0,0,

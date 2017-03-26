@@ -1,4 +1,4 @@
-#strict
+#strict 2
 
 #include SGGP
 
@@ -6,14 +6,14 @@ static Deaths1,Deaths2,helper;
 func Initialize() 
 {
 	_inherited();
-	SetSkyParallax(1, 20,20, 0,0, SkyPar_Keep(),SkyPar_Keep());
-	CreateGate(SGR2,STGT, 2555, 280, -1);
+	SetSkyParallax(1, 20,20, 0,0, SkyPar_Keep,SkyPar_Keep);
+	CreateGate(SGR2,STGT, 2555, 280, -1, [8, 9, 13, 14, 15, 12, 4]);
 	CreateObject(DHD_,2503,185,-1);
-	CreateGate(SGR2,STGT, 2553, 1378, -1);
-	CreateObject(DHD_,2478,1375,-1);
+	CreateGate(SGR2,SGAG, 2553, 1378, -1,[9, 2, 6, 12, 15, 4, 8]);
+	CreateObject(DHDP,2478,1375,-1);
 	UpdateScoreboard();
-	helper = 1;
-	ScriptGo(0);
+	SetTime(10,0);
+	Schedule("TimerDown()",1);
 	return(1);
 }
 
@@ -63,7 +63,7 @@ func UpdateScoreboard()
 	SetScoreboardData(SBRD_Caption,SBRD_Caption,"Tode");
 }
 
-func Script21600()
+public func TimerDown()
 {
-	helper = 0;
+	FindObjects(Find_Func("IsStargate"), Find_Func("ControlIris"));
 }

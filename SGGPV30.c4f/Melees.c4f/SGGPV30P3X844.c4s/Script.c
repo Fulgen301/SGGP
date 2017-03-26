@@ -5,8 +5,8 @@ func Initialize()
 {  
 	_inherited();
 	aRels = CreateArray(12);
-	CreateGate(SGR1, STGT, 1869, 2540, -1);
-	CreateGate(SGR1, STGT, 1905, 1585, -1);
+	CreateGate(SGR1, STGT, 1869, 2540, -1,[8,9,13,14,15,12,4]);
+	CreateGate(SGR1, STGT, 1905, 1585, -1,[9,2,6,12,15,4,8]);
 	CreateObject(DHD_,1693,1454,-1);
 	CreateObject(DHD_,1892,2524,-1);
 }

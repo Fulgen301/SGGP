@@ -44,11 +44,6 @@ global func AnnounceHostTime(int time)
 	hostTime = time;
 }
 
-global func GetSystemTime(int iWhat)
-{
-	
-}
-
 global func GetSystemTime(int what)
 {
 	if(HaveHostFeature("HostTime"))

@@ -1,3 +1,0 @@
-NothingUpgradeable=Nichts aufrüstbares verfügbar.
-Upgrade=%s aufrüsten
-Name=Laser-Upgrade

@@ -1,8 +1,0 @@
-#Menu
-ShutdownGate=Stargate abschalten
-DialGate=Gate anwählen
-ChangePassword=Passwort ändern
-ToggleIris=Iris bedienen
-GateEnergy=Energieanzeige des Gates
-ShowCoordinates=Koordinaten anzeigen
-Name=Wahlcomputer

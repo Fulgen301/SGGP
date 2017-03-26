@@ -1,7 +1,0 @@
-[DefCore]
-id=RR3V
-Category=1
-Width=10
-Height=10
-Offset=-5,-5
-Picture=279,0,34,9

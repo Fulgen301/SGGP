@@ -1,3 +1,0 @@
-MsgStuck=Klemmt!
-
-Name=Bodenschalter

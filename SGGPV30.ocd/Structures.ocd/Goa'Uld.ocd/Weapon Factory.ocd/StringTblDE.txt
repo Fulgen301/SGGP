@@ -1,4 +1,0 @@
-TxtNoconstructionplans=Keine Baupläne verfügbar
-TxtProductions=Herstellung: %s
-Production=Produktion
-Name=Waffenfabrik

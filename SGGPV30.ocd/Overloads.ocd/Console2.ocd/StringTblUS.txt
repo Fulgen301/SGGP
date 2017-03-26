@@ -1,2 +1,0 @@
-Control=Control
-Name=Console

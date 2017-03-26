@@ -1,7 +1,0 @@
-[DefCore]
-id=TBHD
-Version=4,9,5
-Category=25165825
-Width=10
-Height=10
-Offset=-5,-5

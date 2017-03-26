@@ -1,3 +1,0 @@
-DescUp=Open
-DescDown=Close
-Name=Gate

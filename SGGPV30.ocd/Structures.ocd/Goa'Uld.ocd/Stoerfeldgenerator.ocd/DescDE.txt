@@ -1,2 +1,0 @@
-Mit diesem Gerät ist es möglich ein Störfeld zu erzeugen, was die Zielerfassung des Teleporter stört.
-Das Ziel kann dann nichtmehr in der Umgebung eingestellt werden.

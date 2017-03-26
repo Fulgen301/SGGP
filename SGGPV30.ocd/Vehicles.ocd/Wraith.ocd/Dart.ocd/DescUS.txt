@@ -1,1 +1,0 @@
-The Dart (A Wraith Harvester) is built for fighting and collecting Living creatures from the ground.

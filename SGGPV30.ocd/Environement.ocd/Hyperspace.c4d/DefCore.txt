@@ -1,6 +1,0 @@
-[DefCore]
-id=HPRS
-Category=1
-Width=20
-Height=20
-Picture=0,20,80,150

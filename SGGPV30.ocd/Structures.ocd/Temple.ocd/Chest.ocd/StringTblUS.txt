@@ -1,2 +1,0 @@
-MsgUnlocked=Chest unlocked!
-Name=Chest

@@ -1,2 +1,0 @@
-Count=Count:
-Name=Hunt the Replicators

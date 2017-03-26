@@ -1,1 +1,0 @@
-Wie die normale ZPM Schnittstelle, nur finden hier 3 ZPMs ihren Platz.

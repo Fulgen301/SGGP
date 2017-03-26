@@ -1,1 +1,0 @@
-Eine Fernbedienung, mit der man die Iris eines Gates öffnen kann, ohne selber den Wahlcomputer zu bedienen. Allerdings braucht man nach wie vor das Passwort des Wahlcomputers.

@@ -1,1 +1,0 @@
-A kind of remotecontrol which you can open the iris with without having access to the dialing computer. You still need the password of the dialing computer.

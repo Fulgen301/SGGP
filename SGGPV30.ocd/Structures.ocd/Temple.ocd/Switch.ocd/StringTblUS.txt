@@ -1,2 +1,0 @@
-DescSwitch=Switch
-Name=Switch

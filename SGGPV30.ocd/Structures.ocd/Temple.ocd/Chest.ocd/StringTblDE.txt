@@ -1,2 +1,0 @@
-MsgUnlocked=Truhe geöffnet!
-Name=Kiste

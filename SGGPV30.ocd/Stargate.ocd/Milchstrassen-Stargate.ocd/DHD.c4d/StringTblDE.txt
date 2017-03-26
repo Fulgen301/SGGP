@@ -1,7 +1,0 @@
-NoGate=<c ff0000>Kein Gate in Reichweite!</c>
-CrystDamaged=<c ff0000>Der Kristall ist kaputt!</c>
-NoCryst=<c ff0000>Kein Kontrollkristall vorhanden!</c>
-ShutdownGate=Stargate abschalten
-DialGate=Gate anwählen
-ManipulateDHD=DHD manipulieren
-Name=DHD

@@ -1,2 +1,0 @@
-DE:Helfes-Helfer
-US:HelperHelper

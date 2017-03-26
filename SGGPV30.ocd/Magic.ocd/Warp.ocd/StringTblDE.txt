@@ -1,2 +1,0 @@
-TxtNoPlace=Kein Warpziel gefunden!
-Name=Wurmloch

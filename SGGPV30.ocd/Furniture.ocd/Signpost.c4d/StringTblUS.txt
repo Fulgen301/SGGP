@@ -1,3 +1,0 @@
-CtrlRead=Read
-
-Name=Signpost

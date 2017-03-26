@@ -1,1 +1,0 @@
-The Transport Core is a HelperObject, where the Harvested Objects are Stored.

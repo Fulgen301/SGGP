@@ -1,2 +1,0 @@
-BadPlace=Target location unsuitable
-Name=Teleprojectile

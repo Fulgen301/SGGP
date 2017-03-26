@@ -1,5 +1,0 @@
-CtxNightVisionOn=Nachtsichtgerät einschalten
-CtxNightVisionOff=Nachtsichtgerät ausschalten
-CtrlActivateDesc=Anlegen
-AlreadyWears=%s trägt schon|so eine Ausrüstung!
-Name=Kull Rüstung

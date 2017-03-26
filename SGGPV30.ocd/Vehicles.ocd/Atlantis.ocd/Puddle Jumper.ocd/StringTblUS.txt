@@ -1,4 +1,0 @@
-NoGate=No Gate!
-Disabled=Gate not ready
-Connecting=Open Wormhole
-Name=Puddle Jumper

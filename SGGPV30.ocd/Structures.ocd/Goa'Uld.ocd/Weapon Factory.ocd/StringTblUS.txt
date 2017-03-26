@@ -1,4 +1,0 @@
-TxtNoconstructionplans=No construction plans
-TxtProductions=Production: %s
-Production=Production
-Name=Weapon Factory

@@ -1,2 +1,0 @@
-The Nanites heal the Clonk slowly.
-Beware of getting electric impulses. They can destroy the nanites.

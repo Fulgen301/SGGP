@@ -1,0 +1,16 @@
+[DefCore]
+id=GRAV
+Name=Grab
+Version=4,9,5
+Category=C4D_Structure
+MaxUserSelect=10
+Width=20
+Height=15
+Offset=-10,-7
+Value=10
+Mass=100
+Components=ROCK=2
+Picture=0,0,20,15
+Vertices=1
+VertexY=8
+VertexFriction=20

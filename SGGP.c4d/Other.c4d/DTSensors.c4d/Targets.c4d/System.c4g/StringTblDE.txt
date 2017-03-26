@@ -1,0 +1,15 @@
+BRDG_Lock=Verankern
+BRDG_Release=Loslösen
+BRDG_Toggle=Verankern/Loslösen
+
+CTW0_DirectShoot=Schießen
+
+TWR2_LeftGate=Linkes Tor
+TWR2_RightGate=Rechts Tor
+TWR2_GateOpen=%s öffnen
+TWR2_GateClose=%s schließen
+TWR2_GateOpenClose=%s öffnen/schließen
+
+TWR2_DrawBridgeUp=Zugbrücke hoch
+TWR2_DrawBridgeDown=Zugbrücke runter
+TWR2_DrawBridgeUpDown=Zubrücke hoch/runter

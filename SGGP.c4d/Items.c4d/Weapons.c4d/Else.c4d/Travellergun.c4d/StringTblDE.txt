@@ -1,0 +1,2 @@
+Standard=Töten
+Beteuben=Betäuben

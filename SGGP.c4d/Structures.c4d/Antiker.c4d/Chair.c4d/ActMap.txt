@@ -1,0 +1,13 @@
+[Action]
+Name=Stand
+Length=1
+Delay=1
+Facet=0,0,30,19
+NextAction=Hold
+
+[Action]
+Name=StandClonk
+Length=1
+Delay=1
+Facet=30,0,30,19
+NextAction=StandClonk

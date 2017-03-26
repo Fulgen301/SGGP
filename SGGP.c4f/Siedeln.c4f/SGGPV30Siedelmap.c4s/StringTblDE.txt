@@ -1,0 +1,4 @@
+TeamOne=Antiker
+TeamTwo=Goa'uld
+TeamThree=Wraith
+TeamFour=Menschen

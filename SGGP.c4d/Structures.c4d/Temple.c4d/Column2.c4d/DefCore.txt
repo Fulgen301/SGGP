@@ -1,0 +1,17 @@
+[DefCore]
+id=CLM2
+Version=4,9,9,9
+Name=Column
+Category=C4D_Structure|C4D_SelectBuilding|C4D_SelectKnowledge
+MaxUserSelect=5
+Width=60
+Height=100
+Offset=-30,-50
+Vertices=4
+VertexX=-30,30,-30,30
+VertexY=50,50,-50,-50
+VertexFriction=50,50,50,50
+Mass=100
+Components=ROCK=5
+Construction=1
+Rotate=1

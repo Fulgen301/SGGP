@@ -1,0 +1,3 @@
+NoGate=Kein Gate in Reichweite!
+Disabled=Gate nicht bereit
+Connecting=Wurmloch öffnen

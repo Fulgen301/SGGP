@@ -1,0 +1,4 @@
+[DefCore]
+Name=Tube mail participants utility
+id=UT7I
+Category=C4D_StaticBack

@@ -1,0 +1,22 @@
+HelpRule=Hilfsregel
+GainKnowledge=Bauplan erhalten
+
+CtxConstructionDesc=Bauauftrag
+CtxConstructionSite=Baustelle
+CtxConstructionMaterial=Baumaterial
+CtxConstructionContinue=Weiterbauen
+CtxChop=Fällen
+CtrlMenuDesc=Menü
+CtxGrab=Anfassen
+CtxEnter=Betreten
+TxtConnectline=Leitung anschließen
+TxtNoNewLine=Neue Leitung hier|nicht möglich.
+TxtLineRemoval=%s abgenommen.
+TxtNewLine=Konstruktion|%s.
+TxtNoConnectType=%s kann nicht an|%s angeschlossen werden.
+TxtConnect=%s an|%s angeschlossen
+TxtRemoveLine=Leitung trennen
+TxtConnectLineType=%s anschließen
+Release=Loslassen
+IDS_OBJ_DISCONNECT=%s von|%s getrennt.
+AlreadyDisconnected=Die ausgewählt Leitung wurde bereits getrennt.

@@ -1,0 +1,13 @@
+[DefCore]
+id=SH30
+Version=4,9,8
+Name=Shield
+Category=C4D_StaticBack
+Width=600
+Height=600
+Offset=-300,-300
+Vertices=1
+TopFace=0,0,600,600,0,0
+Picture=0,0,600,600
+SolidMask=0,600,600,600
+AttractLightning=1

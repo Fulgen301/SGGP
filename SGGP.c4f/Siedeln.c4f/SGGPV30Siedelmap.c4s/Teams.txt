@@ -1,0 +1,30 @@
+[Teams]
+Active=1
+AllowHostilityChange=1
+AllowTeamSwitch=0
+TeamDistribution=Free
+TeamColors=1
+
+	[Team]
+	id=1
+	Name=$TeamOne$
+	PlrStartIndex=4
+	Color=1515
+
+	[Team]
+	id=2
+	Name=$TeamTwo$
+	PlrStartIndex=2
+	Color=16711680
+
+	[Team]
+	id=3
+	Name=$TeamThree$
+	PlrStartIndex=3
+	Color=65280
+	
+	[Team]
+	id=4
+	Name=$TeamFour$
+	PlrStartIndex=1
+	Color=255

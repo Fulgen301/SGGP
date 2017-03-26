@@ -1,0 +1,2 @@
+DE:Steuerungskristall
+US:Navigatingcrystal

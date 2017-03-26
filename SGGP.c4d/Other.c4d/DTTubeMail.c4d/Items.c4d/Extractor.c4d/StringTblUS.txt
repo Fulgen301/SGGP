@@ -1,0 +1,7 @@
+SelectTarget=Select container
+SendObject=Send object
+SendObject=Send %s
+Buy=Buy
+SetWorker=Set als worker clonk
+WorkerSet=%s was set as worker clonk.
+WorkerUnset=Worker clonk was unset.

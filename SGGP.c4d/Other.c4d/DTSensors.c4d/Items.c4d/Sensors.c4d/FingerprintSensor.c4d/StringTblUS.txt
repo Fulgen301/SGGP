@@ -1,0 +1,6 @@
+RightFinger=Right fingerprint
+WrongFinger=Wrong fingerprint
+SetMasterFinger=Set master fingerprint
+AddFinger=Add fingerprint
+ChangeFingers=Manage fingerprints
+MasterFinger=Master fingerprint: %s

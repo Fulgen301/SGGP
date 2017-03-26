@@ -1,0 +1,9 @@
+#Menu
+Heck=Hatch
+Iris=Toggle iris
+Buy=Buy
+Sell=Sell
+Activate=Activate object
+
+#Selection
+Choose={{RIG1}} / {{STGT}}?

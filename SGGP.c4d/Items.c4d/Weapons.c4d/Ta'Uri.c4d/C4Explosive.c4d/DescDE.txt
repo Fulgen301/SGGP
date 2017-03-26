@@ -1,0 +1,5 @@
+Effektiver Sprengstoff, vielseitiges Werkzeug und gefährliche Waffe. Mit C4 können Angriffe koordiniert ablaufen und Minen gezielt gesprengt werden.
+Die Sprengkraft erhöht sich, wenn mehr C4 an einem Ort zusammen explodiert.
+
+
+Mit [Doppelgraben] öffnet sich das Menü. Kann nicht manuell gezündet werden.

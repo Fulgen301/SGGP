@@ -1,0 +1,6 @@
+[Action]
+Name=Fuse
+Length=1
+Delay=100
+Facet=10,0,10,15
+EndCall=Start

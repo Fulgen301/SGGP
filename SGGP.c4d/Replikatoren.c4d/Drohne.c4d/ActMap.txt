@@ -1,0 +1,8 @@
+[Action]
+Name=Fliegen
+Procedure=FLOAT
+NextAction=Fliegen
+Length=1
+Delay=1
+Facet=0,0,20,30
+PhaseCall=Timer

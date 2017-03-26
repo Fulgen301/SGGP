@@ -1,0 +1,44 @@
+Das Tel'tak ist ein Frchtschiff der Goa'Uld.
+Hier ist die Erklärung der Funktionen:
+
+
+DER RINGTRANSPORTER
+Der Ringtransporter im schiff lässt sich folgender maßen aktivieren: 
+1. Die Konsole für den Ringtransporter anfassen.
+2. Folgenden Code Tippen: Linkoben, Rechtsmitte, Linksunten, Linksmitte (müsst ihr euch merken)
+3. Schnell auf den Ringtransporter stellen, und abwarten.
+
+Um den Außenbord Ringtransporter vom Schiff zu Aktivieren:
+1. Konsole anfassen.
+2. Doppellinks drücken.
+3. Schnell auf den Ringtransporter stellen, und abwarten. (KEINE VERZÖGERUNG!)
+
+
+DIE SELBSTZERSTÖRUNG:
+1. Anfassen
+2. Doppelhoch aktiviert das Menü
+3. Such dir aus, in welcher Geschwindigkeit der Countdown ablaufen soll.
+4. Lauf weg, oder Aktivier nochmals mit Doppelhoch das Menü und Deaktiviere ihn.
+
+Durch den EMP vom Hazardpack wird der Gebrauch des Selbstzerstörungsmachanismus' außerkraft gesetzt für ca. 30 Sekunden
+
+
+DIE FLUCHTKAPSEL:
+ Durch Einsteigen
+1. Einsteigen mit Hoch vor der Kapsel (ohne anfassen)
+2. Doppelhoch aktiviert den Abschuss.
+
+ Durch Anfassen
+1. Kapsel anfassen
+2. Doppelgraben schießt eine Kapsel ab, Doppelhoch kauft falls keine Kapsel enthalten ist eine Neue.
+
+Die Kapsel kann entweder aufgefüllt werden indem man anfasst und mit Doppelhoch eine neue kauft, oder wenn man eine alte Kapsel per Ringtransporter an Bord beamt, und diese vor den Abschussmechanismus stellt.
+
+
+DIE HECKKLAPPE:
+1. Anfassen.
+2. Doppelhoch schließt und öffnet die Heckklappe.
+
+
+DER HYPERRAUMGENERATOR:
+Beschleunigt das Tel'tak.

@@ -1,0 +1,3 @@
+Success=<c 00ff00>Successful cloned!</c>
+EnergyFail=<c ff0000>Not enough energy!</c>
+Clone=Clone

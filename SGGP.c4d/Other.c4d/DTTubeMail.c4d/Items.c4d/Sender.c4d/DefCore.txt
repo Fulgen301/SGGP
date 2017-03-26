@@ -1,0 +1,22 @@
+[DefCore]
+id=TX7I
+Name=Sender
+Version=4,9,5
+Category=C4D_Vehicle|C4D_SelectMaterial|C4D_SelectKnowledge|C4D_SelectHomebase
+Width=10
+Height=10
+Offset=-5,-5
+Mass=10
+Value=5
+Components=METL=1;
+Picture=10,0,64,64
+Vertices=1
+VertexFriction=10
+VertexY=5
+Grab=1
+Construction=1
+; Collectible=1
+MaxUserSelect=10
+Rebuy=1
+; NoPushEnter=1
+GrabPutGet=C4D_GrabPut

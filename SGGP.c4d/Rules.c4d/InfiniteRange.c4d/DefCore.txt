@@ -1,0 +1,10 @@
+[DefCore]
+id=RIGU
+Name=Unendliche Reichweite
+Version=4,9,6,0
+Category=C4D_StaticBack|C4D_Rule
+Value=1
+Width=200
+Height=150
+Picture=0,0,64,64
+MaxUserSelect=100

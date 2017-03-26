@@ -1,0 +1,17 @@
+ObjectTrigger=Objekt erkannt
+NoObjectTrigger=Objekt entfernt
+DeniedObjectTrigger=Verbotenes Objekt erkannt
+SetupDetection=Erkennung einstellen
+DetectException=Ausnahme: %s
+DetectDef=%s
+DetectDenial=Verbot: %s
+AddType=Erkennungstyp hinzufügen
+Vehicle=Fahrzeuge
+Living=Lebewesen
+Object=Objekte
+TargetOwner=Zielbesitzer: %s
+All=Alle
+Allied=Verbündet
+Hostile=Feindlich
+DenyHostile=Verbündet, Feindlich verboten
+DenyAllied=Feindlich, Verbündet verboten

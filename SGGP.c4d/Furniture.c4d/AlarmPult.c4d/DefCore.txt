@@ -1,0 +1,14 @@
+[DefCore]
+id=CO3V
+Name=Controllpult
+Category=4
+MaxUserSelect=5
+Width=30
+Height=40
+Offset=-15,-20
+Value=5
+Mass=30
+Vertices=1
+VertexX=0
+VertexY=20
+VertexFriction=100

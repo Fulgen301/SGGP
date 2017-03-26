@@ -1,0 +1,19 @@
+[DefCore]
+id=LS7I
+Name=Liquid sensor
+Category=C4D_Object|C4D_SelectMaterial|C4D_SelectKnowledge|C4D_SelectHomebase
+Width=10
+Height=6
+Offset=-5,-3
+Mass=10
+Value=5
+Components=METL=1;
+Picture=10,0,64,64
+Vertices=1
+VertexFriction=100
+VertexY=0
+Grab=2
+Collectible=1
+MaxUserSelect=10
+Rebuy=1
+NoPushEnter=1

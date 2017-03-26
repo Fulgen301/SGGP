@@ -1,0 +1,1 @@
+Eine vorrichtung um ZPMs als Stomquelle verwenden zu können. Mit doppelgraben kann das Menü aufgerufen werden.

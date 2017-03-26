@@ -1,0 +1,2 @@
+Speichert Energie und gibt sie bei bedarf wieder ab.
+Die Prozentuale Energieanzeige kann per Anfassen und "Doppelgraben" an/aus geschaltet werden.

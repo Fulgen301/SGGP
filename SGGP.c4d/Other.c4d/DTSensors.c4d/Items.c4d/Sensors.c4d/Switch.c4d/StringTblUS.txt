@@ -1,0 +1,4 @@
+On=Switch on
+Off=Switch off
+Switch=Switch
+Retrigger=Retrigger

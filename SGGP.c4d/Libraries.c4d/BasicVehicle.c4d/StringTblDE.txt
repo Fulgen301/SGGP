@@ -1,0 +1,16 @@
+#Menu
+Exit=Aussteigen
+Cloak=Tarnung
+Damage=Schaden
+Shield=Schild
+Energy=Energie
+Hyperspace=Hyperantrieb
+Status=Status
+Heck=Heckluke
+DialGate=%s anwählen
+DateTimeFormat=%02d%D%.%02d%M%.%04d%Y% - %02d%h%:%02d%m%:%02d%s%
+
+#DialGate
+GateName=Gatename:
+
+UpgradeShield=Schild upgraden

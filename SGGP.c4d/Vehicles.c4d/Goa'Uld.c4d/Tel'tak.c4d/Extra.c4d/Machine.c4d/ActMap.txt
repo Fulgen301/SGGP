@@ -1,0 +1,14 @@
+[Action]
+Name=Active
+Length=10
+Delay=3
+Facet=0,0,17,43
+NextAction=Active
+Sound=Elevator
+
+[Action]
+Name=Deactive
+Length=1
+Delay=1
+Facet=0,43,17,43
+NextAction=Deactive

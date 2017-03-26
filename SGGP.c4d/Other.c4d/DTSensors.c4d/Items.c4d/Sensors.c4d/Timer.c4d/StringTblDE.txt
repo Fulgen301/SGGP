@@ -1,0 +1,8 @@
+Timeout=Zeitablauf
+Interval=Zeitintervall: %d Frames
+Start=Starten
+Stop=Stoppen
+SingleShot=Einzelne Verzögerung
+Test=Testsignal auslösen
+Repeats=Wiederholungen: %s
+InfRepeats=Endlos

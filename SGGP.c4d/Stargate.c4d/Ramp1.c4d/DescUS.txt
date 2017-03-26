@@ -1,0 +1,1 @@
+This is the ramp of the Stargatecenter. All SG-teams are going over this ramp when using the stargate.  When building the ramp, you can choose the gate type which should be built.

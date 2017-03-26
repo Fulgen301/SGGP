@@ -1,0 +1,9 @@
+[Action]
+Name=On
+Length=1
+Procedure=FLOAT
+Delay=0
+FlipDir=1
+Directions=2
+Facet=0,0,800,800
+NextAction=Hold

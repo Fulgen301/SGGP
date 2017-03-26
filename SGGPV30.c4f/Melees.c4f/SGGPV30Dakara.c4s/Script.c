@@ -37,6 +37,14 @@ func Initialize()
 	RemoveAll(WPST);
 	RemoveAll(TEL_);
 	RemoveAll(TELO);
+	
+	var ring1 = CreateObject(RIG1, 399, 671, NO_OWNER);
+	ring1->SetName("Dakara 1");
+	CreateObject(RIG2,354,693,NO_OWNER)->SetTransporter(ring1);
+	
+	var ring2 = CreateObject(RIG1, 1713, 1062, NO_OWNER);
+	ring2->SetName("Dakara 2");
+	CreateObject(RIG2, 1760, 1084, NO_OWNER)->SetTransporter(ring2);
 	return(1);
 }
 
@@ -124,17 +132,14 @@ func OnClonkDeath(object pKill)
 			aPoints[iKilledBy] = 0;
 		}
 	}
-	DoWealth(-50,GetOwner(pKill));
+	DoWealth(GetOwner(pKill), -50);
 	aPoints[GetOwner(pKill)] = 0;
 	UpdateScoreboard();
 }
 
 func RandCl()
 {
-	var aCl;
-	aCl = CreateArray(3);
-	aCl = [SGK_,JAFA,WRAT];
-	return(aCl[Random(3)]);
+	return [SGK_,JAFA,WRAT][Random(3)];
 }
 
 func RandX(int i)

@@ -1,0 +1,7 @@
+RightCard=Richtige Karte
+WrongCard=Falsche Karte
+GetCard=Karte herausnehmen
+AddReader=Leser in die Karte schreiben
+RemoveReader=Leser aus Karte löschen
+LoadCard=Karte hineinstecken
+CardLoaded=Es steckt bereits eine Karte!

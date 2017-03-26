@@ -226,8 +226,8 @@ protected func MakeMenu(object pCaller)
   _inherited(pCaller, ...);
   pPilot->AddStructMenuItems([
 	StructMenu_MenuEntry(PUD5, "Motor Aus", " ", "Enginestop"),
-	StructMenu_ConditionalMenuEntry(JUDO, "Andocken", "", FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO),Find_Func("Ready"))),
-	StructMenu_ConditionalMenuEntry(JUDO, "Abdocken", "", FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO))),
+	StructMenu_ConditionalMenuEntry(JUDO, "Andocken", "", FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO),Find_Func("Ready")), "Docking"),
+	StructMenu_ConditionalMenuEntry(JUDO, "Abdocken", "", FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO), Find_Func("HasJumper", this)), "AbDocking"),
 	StructMenu_ConditionalMenuEntry(TANG, "Reaktor einbauen", "", FindContents(TANG) && !naqu, "NaEiBa"),
 	StructMenu_ConditionalMenuEntry(TANG, "Reaktor ausbauen", "", naqu, "NaAuBa"),
 	StructMenu_ConditionalMenuEntry(ARW_, "Disruptor einbauen", "", FindContents(ARW_) && !arw, "ArwEiBa"),
@@ -240,32 +240,14 @@ protected func MakeMenu(object pCaller)
 
 func Docking()
 {
-  var hlp;
-  if(FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO),Find_Func("Ready")))
-  {
-   hlp = FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO),Find_Func("Ready"));
-  }
-  else
-  {
-   return(1);
-  }
-  hlp->Dock(this);
-  return(1);
+  var hlp = FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO),Find_Func("Ready"));
+  if(hlp) return hlp->Dock(this);
 }
 
 func AbDocking()
 {
-  var hlp;
-  if(FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO)))
-  {
-   hlp = FindObject2(Find_Distance(300),Find_PathFree(),Find_ID(JUDO));
-  }
-  else
-  {
-   return(1);
-  }
-  hlp->Undock();
-  return(1);
+  var hlp = FindObject2(Find_Distance(300), Find_PathFree(), Find_ID(JUDO), Find_Func("HasJumper", this));
+  if(hlp) return hlp->Undock();
 }
 
 func ArwFire()
@@ -374,17 +356,7 @@ func Hatch()
 
 func Energy()
 {
-  if(iMess == 1)
-  {
-   iMess --;
-   return(1);
-  }
-
-  if(iMess == 0)
-  {
-   iMess ++;
-   return(1);
-  }
+  iMess = !iMess;
 }
 
 func Enginestop()
@@ -405,7 +377,7 @@ func EMPShock()
   }
 
   EMPShockEffect(50);
-  energy -= 50;
+  if(energy > 50) energy -= 50;
   DoDamage(5);
   return(1);
 }
@@ -554,13 +526,13 @@ protected func ContainedThrow(pCaller)
   if(GetDir(this) == 1)
   {
    iDrohne->SetXDir(100);
-   FindObject(PUDD,-20,-20,40,40)->SetR(90);
+   iDrohne->SetR(90);
   }
 
   if(GetDir(this) == 0)
   {
    iDrohne->SetXDir(-100);
-   FindObject(PUDD,-20,-20,40,40)->SetR(270);
+   iDrohne->SetR(270);
   }
   return(1);
 }
@@ -746,5 +718,5 @@ func IsMachine() 		{ return(1); }
 func IsBulletTarget()    { return(1); }
 
 public func CanDialGate() { return GetDamage() < 300; }
-public func CanCloak()	  { return true; }
+public func CanCloak()	  { return GetDamage() < 350; }
 public func GetRace() { return SG1_Ancient; }

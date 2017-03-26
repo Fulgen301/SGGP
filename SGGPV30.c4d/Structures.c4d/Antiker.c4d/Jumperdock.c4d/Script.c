@@ -1,6 +1,6 @@
 /*-- Atlantis Door --*/
 
-#strict
+#strict 2
 
 local jumper;
 
@@ -12,14 +12,12 @@ func Initialize()
 
 func Ready()
 {
-  if(jumper)
-  {
-   return(0);
-  }
-  else
-  {
-   return(1);
-  }
+  return !jumper;
+}
+
+public func HasJumper(object pJumper)
+{
+	return jumper == pJumper;
 }
 
 func Check()

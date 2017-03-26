@@ -266,3 +266,7 @@ public func Serialize(array& extra)
 }
 
 public func IsConsoleTarget()   { return true; }
+protected func Damage()
+{
+	if(GetDamage() > 200) return Explode(100);
+}

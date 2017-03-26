@@ -175,10 +175,10 @@ protected func FxIntAtlantisOSTimer(object pTarget, int iEffect, int time)
 			{
 				if(!defcon_active) defcon_active = true;
 			}
-            else if(EffectVar(2, pTarget, iEffect) % 300 == 0)
+            /*else if(EffectVar(2, pTarget, iEffect) % 300 == 0)
             {
                 EffectCall(pTarget, iEffect, "StargateDial");
-            }
+            }*/
 			else if(gate->IsClose()) gate->ControlIris();
 		}
 	

@@ -20,7 +20,7 @@ func Initialize()
 	CreateObject(DHD_,906,410,NO_OWNER);
 	CreateGate(SGR2,STGT,2222,414,NO_OWNER);
 	CreateObject(DHD_,2365,431,NO_OWNER);
-	ScriptGo(1);	
+	Schedule("FindObjects(Find_Func(\"IsStargate\"),Find_Func(\"ControlIris\"))",1);
 	return(1);
 }
 
@@ -45,16 +45,6 @@ func InitializePlayer(int iPlayer)
 			i++;
 		}
 	}
-}
-
-func Script3()
-{
-	var pGate;
-	for(pGate in FindObjects(Find_ID(STGT)))
-	{
-		pGate -> ChangeIrisState();
-	}
-	ScriptGo();
 }
 
 func TimerDown()

@@ -1,2 +1,0 @@
-DE:Stabwaffe
-US:Staffweapon

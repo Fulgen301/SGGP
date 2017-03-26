@@ -1,9 +1,0 @@
-#Menu
-Heck=Heckluke
-Iris=Iris bedienen
-Buy=Kaufen
-Sell=Verkaufen
-Activate=Objekt aktivieren
-
-#Selection
-Choose={{RIG1}} / {{STGT}}?

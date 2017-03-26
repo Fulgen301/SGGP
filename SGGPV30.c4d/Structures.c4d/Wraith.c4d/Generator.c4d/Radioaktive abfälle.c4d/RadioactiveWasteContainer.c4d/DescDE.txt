@@ -1,3 +1,0 @@
-Ein Atommüllfass um Radioaktive abfälle zu lagern.
-Doppelgraben zum versiegeln/öffnen drücken.
-Es haben maximal 10 Objekte platz, die Strahlung kann nur dann nicht entweichen, wenn das Fass versiegelt ist.

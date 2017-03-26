@@ -1,3 +1,0 @@
-Dial=Anwählen
-NoTargetTransporter=Kein anzuwählender Ringtransporter in der Nähe!
-ChooseTransporter=Ringtransporter auswählen

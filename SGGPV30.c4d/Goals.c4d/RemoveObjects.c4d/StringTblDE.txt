@@ -1,2 +1,0 @@
-MsgGoalFulfilled=Alle Objekte wurden entfernt!
-MsgGoalTodo=Es müssen noch %dx %s entfernt werden.

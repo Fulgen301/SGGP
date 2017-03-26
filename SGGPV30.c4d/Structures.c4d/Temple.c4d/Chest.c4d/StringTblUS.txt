@@ -1,1 +1,0 @@
-MsgUnlocked=Chest unlocked!

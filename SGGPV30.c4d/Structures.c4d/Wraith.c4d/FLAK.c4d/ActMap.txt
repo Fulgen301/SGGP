@@ -1,7 +1,0 @@
-[Action]
-Name=Turn
-Length=90
-Delay=0
-Facet=0,0,60,60
-NextAction=Hold
-EnergyUsage=100

@@ -1,8 +1,0 @@
-[Action]
-Name=Be
-Length=1
-FacetBase=1
-Delay=0
-Directions=2
-FlipDir=1
-NextAction=Hold

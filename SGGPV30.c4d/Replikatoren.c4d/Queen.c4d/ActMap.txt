@@ -1,7 +1,0 @@
-[Action]
-Name=Stand
-Length=1
-Delay=1
-Facet=0,0,20,20
-NextAction=Hold
-StartCall=Dummer

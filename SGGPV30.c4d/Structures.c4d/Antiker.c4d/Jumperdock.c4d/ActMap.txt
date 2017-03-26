@@ -1,7 +1,0 @@
-[Action]
-Name=Wait
-Delay=1
-Facet=0,0,35,35
-FlipDir=1
-Directions=2
-NextAction=Wait

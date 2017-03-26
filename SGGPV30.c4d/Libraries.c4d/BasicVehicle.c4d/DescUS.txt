@@ -1,1 +1,0 @@
-Provides basic destruction and usage functions for vehicles.

@@ -1,9 +1,0 @@
-PutZPM=Put ZPM
-GetZPM=Get ZPM
-Activen=Active
-Inactive=Inactive
-Depledet=Depleted
-None=Missing
-ZPMFormat=ZPM %d%i%: %s%a% (%d%e%%%)
-DeactivateZPM=Deactivate ZPM %d
-ActivateZPM=Activate ZPM %d

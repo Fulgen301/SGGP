@@ -1,2 +1,0 @@
-DE:ZPM-Raum
-US:ZPM-Room

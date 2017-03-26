@@ -1,2 +1,0 @@
-Fire=Drohne abfeuern
-NotEnoughEnergy=<c ff0000>Nicht genug Energie!</c>

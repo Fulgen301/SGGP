@@ -1,3 +1,0 @@
-Dial=Dial
-NoTargetTransporter=There is no reachable ringtransporter available!
-ChooseTransporter=Choose ringtransporter

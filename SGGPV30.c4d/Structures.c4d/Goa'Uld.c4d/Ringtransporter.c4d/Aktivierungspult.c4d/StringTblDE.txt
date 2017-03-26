@@ -1,5 +1,0 @@
-NoTransporterAssigned=Kein Ringtransporter zugewiesen!
-Dial=Anwählen
-NoTargetTransporter=Kein anzuwählender Ringtransporter in der Nähe!
-EnterName=Neuer Name für den Ringtransporter:
-AssignTransporter=Ringtransporter zuweisen

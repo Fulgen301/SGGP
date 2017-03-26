@@ -1,5 +1,0 @@
-NoTransporterAssigned=No ringtransporter assigned!
-Dial=Dial
-NoTargetTransporter=There is no reachable ringtransporter available!
-EnterName=Enter new name for the ringtransporter:
-AssignTransporter=Assign ringtransporter

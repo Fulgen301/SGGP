@@ -1,2 +1,0 @@
-DE:Disruptor
-US:Disruptor

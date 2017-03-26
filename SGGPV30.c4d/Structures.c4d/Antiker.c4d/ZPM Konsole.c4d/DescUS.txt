@@ -1,1 +1,0 @@
-Like the normal ZPM Console, but here has 3 ZPMs their place.

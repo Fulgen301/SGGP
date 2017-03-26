@@ -1,2 +1,0 @@
-Damaged=Der Kristall scheint beschädigt zu sein
-NotDamaged=Der Kristall scheint in Ordnung zu sein

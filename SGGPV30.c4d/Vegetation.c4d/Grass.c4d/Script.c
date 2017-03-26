@@ -1,4 +1,0 @@
-/*-- Grass --*/
-
-#strict
-#include GRAS

@@ -1,2 +1,0 @@
-Standard=Single shots
-Beteuben=Knockout

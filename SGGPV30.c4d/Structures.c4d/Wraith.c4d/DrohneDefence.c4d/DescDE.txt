@@ -1,1 +1,0 @@
-Einmal gebaut feuert es auf alle heranfliegenden Drohnen und verteidigt so die Basis.

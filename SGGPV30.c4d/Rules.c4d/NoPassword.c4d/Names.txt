@@ -1,2 +1,0 @@
-DE:Keine Passwörter
-US:No Password

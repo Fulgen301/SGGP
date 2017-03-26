@@ -1,1 +1,0 @@
-Fires an electro magnetic pulse in the direction of it's target.

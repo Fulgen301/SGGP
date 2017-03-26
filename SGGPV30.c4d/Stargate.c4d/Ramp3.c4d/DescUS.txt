@@ -1,1 +1,0 @@
-A ramp of the type the Destiny is placing. When building the ramp, you can choose the gate type which should be built.

@@ -1,1 +1,0 @@
-An effective Railgun-Attachment for the sentry Gun.

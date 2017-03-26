@@ -1,5 +1,0 @@
-[Action]
-Name=Field
-Procedure=ATTACH
-FacetBase=1
-Sound=Energy

@@ -1,9 +1,9 @@
-[submodule "SGGPV30.c4d/Other.c4d/DTSensors.c4d"]
-	path = SGGPV30.c4d/Other.c4d/DTSensors.c4d
+[submodule "SGGPV31.c4d/Other.c4d/DTSensors.c4d"]
+	path = SGGPV31.c4d/Other.c4d/DTSensors.c4d
 	url = https://git.maxmitti.tk/clonk/TodsStuff/dist/DTSensors.c4d/
-[submodule "SGGPV30.c4d/Other.c4d/DTTubeMail.c4d"]
-	path = SGGPV30.c4d/Other.c4d/DTTubeMail.c4d
+[submodule "SGGPV31.c4d/Other.c4d/DTTubeMail.c4d"]
+	path = SGGPV31.c4d/Other.c4d/DTTubeMail.c4d
 	url = https://git.maxmitti.tk/clonk/TodsStuff/dist/DTTubeMail.c4d
-[submodule "SGGPV30.c4d/Other.c4d/DTMenuDebug.c4d"]
-	path = SGGPV30.c4d/Other.c4d/DTMenuDebug.c4d
+[submodule "SGGPV31.c4d/Other.c4d/DTMenuDebug.c4d"]
+	path = SGGPV31.c4d/Other.c4d/DTMenuDebug.c4d
 	url = https://git.maxmitti.tk/clonk/TodsStuff/dist/DTMenuDebug.c4d

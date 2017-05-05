@@ -612,13 +612,6 @@ protected func Damage()
 	}
 }
 
-public func LightningStrike() 
-{
-	if (GetCon() < 100) return(0);
-	energy += 25000;
-	return(1);
-}
-
 public func SetFGate(object gate)
 {
 	fGate = gate;

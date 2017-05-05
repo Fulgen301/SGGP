@@ -15,7 +15,6 @@ LineConnect=C4D_PowerInput|C4D_PowerConsumer
 Vertices=8
 VertexX=55,86,103,46,56,76,100,108
 VertexY=11,4,18,40,62,73,60,38
-AttractLightning=1
 
 [Physical]
 Energy=10000000

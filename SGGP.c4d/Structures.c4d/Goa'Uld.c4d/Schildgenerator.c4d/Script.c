@@ -149,14 +149,14 @@ public func Switch()
   {
    on = 0;
    SetAction("Off");
-   this->Message("<c ff0000>Aus</c>");
+   Message("<c ff0000>Aus</c>", this);
    if(shield) shield->RemoveObject();
    if(mode) Uncloak();
    return(1);
   }
   on = 1;
   SetAction("On");
-  this->Message("<c 00ff00>An</c>");
+  Message("<c 00ff00>An</c>", this);
   
   if(!mode) shield = this->CreateShield(radius, GetOwner());
   //shield->SetVisibility(VIS_None);

@@ -77,5 +77,5 @@ YearSpeed=53,0,0,100
 Wind=1,100,-100,100
 
 [Environment]
-Objects=LENS=1;EGLN=3;EGRS=1;TIME=5
+Objects=TIME=5
  

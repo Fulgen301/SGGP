@@ -23,7 +23,7 @@ local save;
 func Initialize()
 {
   password = "";
-  chevrons = [];
+  chevrons = addresses = [];
   return(1);
 }
 
@@ -263,8 +263,7 @@ protected func Damage()
 {
 	if(GetDamage() > 100)
 	{
-		Incinerate();
-		SetClrModulation(RGB(100,100,100));
+		Explode(20);
 	}
 }
 		

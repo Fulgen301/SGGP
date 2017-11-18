@@ -16,10 +16,3 @@ protected func Completion()
 		}
 	}
 	return true;
-}
-
-protected func Construction()
-{
-	if(this && ((GetCategory(this) & C4D_Structure)/* || (GetCategory(this) & C4D_Vehicle)*/) && !this->~IsRepli()) AddBuildEffect(this);
-	return _inherited(...);
-}

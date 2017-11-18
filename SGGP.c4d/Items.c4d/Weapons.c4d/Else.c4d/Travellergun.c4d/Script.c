@@ -1,8 +1,9 @@
 /*-- Pistole --*/
 
-#strict
+#strict 2
 
 #include WEPN
+#include WPN2
 
 // Anzeige in der Hand
 public func HandSize() { return(800); }
@@ -17,83 +18,40 @@ public func Selection()
   return(1);
 }
 
-public func OnReload(int i)
-{
-//  if(i == 1) Sound("PistolLoad");
-//  if(i == 2) Sound("PistolLoad");
-//  if(i == 3) Sound("GrenadeLoad");
-//  if(i == 4) Sound("SlimeLoad");
-}
-
 public func FMData1(int data)
 {
-  if(data == FM_Name)      return("$Standard$");
-  if(data == FM_AmmoID)    return(ENAM);
-  if(data == FM_AmmoLoad)  return(15);
-  if(data == FM_AmmoUsage) return(15);
+  if(data == FM_Name)      return "$Standard$";
+  if(data == FM_AmmoID)    return ENAM;
+  if(data == FM_AmmoLoad)  return 15;
+  if(data == FM_AmmoUsage) return 15;
 
-  if(data == FM_Reload)    return(50);
-  if(data == FM_Recharge)  return(50);
-//  if(data == FM_Condition) return(!GetUpgrade(KLAS));
+  if(data == FM_Reload)    return 50;
+  if(data == FM_Recharge)  return 50;
+  if(data == FM_Damage)    return 70;
 
-  if(data == FM_Damage)    return(70);
-
-  return(Default(data));
+  return Default(data);
 }
 
-public func FMData2(int data)
+public func FMData1T1(int data)
 {
-  if(data == FM_Name)      return("$Beteuben$");
-  if(data == FM_AmmoID)    return(ENAM);
-  if(data == FM_AmmoLoad)  return(1);
-
-  if(data == FM_Reload)    return(50);
-  if(data == FM_Recharge)  return(50);
-//  if(data == FM_Condition) return(!GetUpgrade(KLAS));
-
-  if(data == FM_Damage)    return(70);
-
-  return(Default(data));
+	if (data == FT_Name) return "$Kill$";
+	return FMData1(data);
 }
 
-public func BotData1(int data)
+public func FMData1T2(int data)
 {
-  if(data == BOT_Range)    return(500);
-  if(data == BOT_Power)    return(BOT_Power_1);
+  if(data == FT_Name)      return "$Beteuben$";
+  if(data == FM_Damage)    return 0;
 
-  return(Default(data));
+  return FMData1(data);
 }
 
-public func BotData2(int data)
+public func Fire1()
 {
-  if(data == BOT_Range)    return(300);
-  if(data == BOT_DmgType)  return(DMG_Energy);
-  if(data == BOT_Power)    return(BOT_Power_1);
-
-  return(Default(data));
+	return Fire1T1();
 }
 
-public func BotData3(int data)
-{
-  if(data == BOT_Range)    return(50);
-  if(data == BOT_DmgType)  return(DMG_Explosion);
-  if(data == BOT_Ballistic)  return(true);
-  if(data == BOT_Power)    return(BOT_Power_1);
-
-  return(Default(data));
-}
-
-public func BotData4(int data)
-{
-  if(data == BOT_Range)    return(50);
-  if(data == BOT_DmgType)  return(DMG_Bio);
-  if(data == BOT_Ballistic)  return(true);
-  if(data == BOT_Power)    return(BOT_Power_1);
-
-  return(Default(data));
-}
-
-public func Fire1()    // Projektilschuss
+public func Fire1T1()
 { 
   var user = GetUser();
   var angle = user->AimAngle(20) + RandomX(-1,+1);
@@ -111,7 +69,7 @@ public func Fire1()    // Projektilschuss
 }
 
 
-public func Fire2()    // Projektilschuss
+public func Fire1T2()
 { 
   var user = GetUser();
   var angle = user->AimAngle(20) + RandomX(-1,+1);

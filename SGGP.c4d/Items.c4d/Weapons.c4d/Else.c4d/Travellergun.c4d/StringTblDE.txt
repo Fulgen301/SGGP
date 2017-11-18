@@ -1,2 +1,3 @@
-Standard=Töten
+Standard=Energie
+Kill=Töten
 Beteuben=Betäuben

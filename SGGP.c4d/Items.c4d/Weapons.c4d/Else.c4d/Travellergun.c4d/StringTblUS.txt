@@ -1,2 +1,3 @@
-Standard=Single shots
+Standard=Energy
+Kill=Kill
 Beteuben=Knockout

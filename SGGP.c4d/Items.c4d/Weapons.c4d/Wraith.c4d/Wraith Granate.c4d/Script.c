@@ -1,6 +1,6 @@
 /*-- Wraith Granate --*/
 
-#strict
+#strict 2
 
 local Active;
 
@@ -86,6 +86,4 @@ protected func Hit()
   return(1);
 }
 
-func IsGrenade() { return(0); }
-public func IsReloading() {return(0);}
 public func GetRace()	{ return SGA_Wraith; }

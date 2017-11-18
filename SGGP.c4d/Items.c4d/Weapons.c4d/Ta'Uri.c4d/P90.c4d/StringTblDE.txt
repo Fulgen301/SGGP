@@ -1,5 +1,3 @@
+Bullets=Kugeln
 Standard=Automatik
 Singleshot=Einzelschuss
-Antikull=Antikullfunktion
-ANTKUpgradeDesc=P90 mit Antikullchip ausrüsten
-ANTKUpgraded=Die P90 wurde nun mit einem Antikullchip ausgerüstet

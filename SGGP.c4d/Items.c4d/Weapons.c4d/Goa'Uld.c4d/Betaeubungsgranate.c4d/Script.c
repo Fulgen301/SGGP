@@ -1,45 +1,25 @@
 /*-- Betäubungsgranate --*/
-#strict
+#strict 2
+#include NADE
 local Target;
 local pStructure;
 
-public func Activate()
-{
-  if(GetAction(Contained()) eq "Lie")
-  {
-   return(1);
-  }
-  
-  if(GetAction() eq "Scharf")
-  {
-   Contained(this())->SetAction("Throw");
-   Exit(this(), GetDir(Contained())*12-6, 0, 0, GetDir(Contained())*6-3, -3, GetDir(Contained())*60-30);
-   return(1);
-  }
-
-  SetAction("Scharf");
-//  ScheduleCall(0,"Exploden",100);
-  Sound("Connect");
-  return(1);
-}
+public func Color()	{return RGB(255,0,0);}	//Farbe
 
 global func KnockWave(int Level,object pTarget)
 {
   if(!pTarget)
   {
-   Message("KEIN ZIEL!");
-   return(1);
+	  return false;
   }
   CreateObject(WRSW,0,0,GetOwner(pTarget))->SetMaxSize(Level);
-  return(1);
+  return true;
 }
 
-protected func Exploden()
+public func Fused(object container)
 {
-  Sound("Connect");
   CreateObject(WRSW, 0, 0, GetOwner())->SetMaxSize(300);
   RemoveObject();
-  return(1);
 }
 
 protected func Hit()

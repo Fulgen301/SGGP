@@ -27,7 +27,6 @@ GrabPutGet=3
 BorderBound=7
 ContactCalls=1
 Base=1
-AttractLightning=1
 Timer=1
 TimerCall=Check
 

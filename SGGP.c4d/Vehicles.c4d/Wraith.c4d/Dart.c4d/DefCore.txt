@@ -20,7 +20,6 @@ Entrance=-50,-12,100,25
 Float=5
 ContactCalls=1
 NoBurnDecay=1
-AttractLightning=1
 Timer=1
 TimerCall=Aktiviti
 ColorByOwner=1

@@ -1,1 +1,2 @@
+Bullets=Kugeln
 Standard=Schnellfeuer

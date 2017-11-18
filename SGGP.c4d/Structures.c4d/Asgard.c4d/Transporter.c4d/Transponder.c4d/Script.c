@@ -8,7 +8,7 @@ func Initialize()
 }
 func ActivateMe(object pCaller)
 {
-	CreateMenu(ASTR, User, 0, 0, "Asgard Teleporter Transponder",0,1);
+	CreateMenu(ASTT, User, 0, 0, "Asgard Teleporter Transponder",0,1);
 	if(FindObject2(Find_ID(ASTE),Find_Distance(30,GetX(User)-GetX(),GetY(User)-GetY()),Sort_Distance())) AddMenuItem("Zu Transporter zuordnen", "Choose",  MEPU,User);
 	var pTr;
 	var i;

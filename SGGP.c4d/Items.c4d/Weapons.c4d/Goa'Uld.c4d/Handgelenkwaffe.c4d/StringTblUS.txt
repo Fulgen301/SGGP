@@ -1,1 +1,2 @@
+Bullets=Bullets
 Standard=Fast fire

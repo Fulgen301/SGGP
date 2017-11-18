@@ -21,7 +21,6 @@ Float=5
 //CollectionLimit=20
 ContactCalls=1
 NoBurnDecay=1
-AttractLightning=1
 Timer=1
 TimerCall=Aktiviti
 //GrabPutGet=3

@@ -13,7 +13,7 @@ protected func OnDmg(int iDmg, int iType)
 	{
 		return 100;
 	}
-	return 50;
+	return 0;
 }
 
 protected func AttachTargetLost()

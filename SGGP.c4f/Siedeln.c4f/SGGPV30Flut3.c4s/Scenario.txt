@@ -6,9 +6,10 @@ ForcedGfxMode=1
 
 [Definitions]
 Definition1=Objects.c4d
-Definition2=Hazard.c4d
-Definition3=ModernCombat.c4d
-Definition4=SGGP.c4d
+Definition2=FarWorlds.c4d
+Definition3=Hazard.c4d
+Definition4=ModernCombat.c4d
+Definition5=SGGP.c4d
 
 [Game]
 StructNeedEnergy=0

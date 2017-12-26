@@ -4,26 +4,26 @@
 
 local Active;
 
-public func Activate()
+public func Activate(object obj)
 {
-  if(GetAction(Contained()) eq "Lie")
+  if(GetAction(obj) == "Lie")
   {
    return(1);
   }
 
   if(Active == 1)
   {
-   Contained()->SetAction("Throw");
-   Exit(this(), GetDir(Contained())*12-6, 0, 0, GetDir(Contained())*6-3, -3, GetDir(Contained())*60-30);
+   obj->SetAction("Throw");
+   Exit(this(), GetDir(obj))*12-6, 0, 0, GetDir(obj)*6-3, -3, GetDir(obj)*60-30);
    return(1);
   }
 
-  CreateMenu(GetID(),Par(),0,0,"Zünder einstellen",0,1);
-  AddMenuItem("Sekunde","One",SNB1,Par(),0,0);
-  AddMenuItem("Sekunden","Two",SNB2,Par(),0,0);
-  AddMenuItem("Sekunden","Three",SNB3,Par(),0,0);
-  AddMenuItem("Sekunden","Four",SNB4,Par(),0,0);
-  AddMenuItem("Sekunden","Five",SNB5,Par(),0,0);
+  CreateMenu(GetID(),obj,0,0,"Zünder einstellen",0,1);
+  AddMenuItem("Sekunde","One",SNB1,obj,0,0);
+  AddMenuItem("Sekunden","Two",SNB2,obj,0,0);
+  AddMenuItem("Sekunden","Three",SNB3,obj,0,0);
+  AddMenuItem("Sekunden","Four",SNB4,obj,0,0);
+  AddMenuItem("Sekunden","Five",SNB5,obj,0,0);
   return(1);
 }
 

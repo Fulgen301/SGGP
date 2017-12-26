@@ -8,7 +8,6 @@
 
 protected func Initialize()
 {
-	SetClrModulation(Color());
   // In den Hintergrund versetzen
   SetCategory(C4D_StaticBack());
   // Bei Fertigstellung an anderen Teilen ausrichten

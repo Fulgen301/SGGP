@@ -24,7 +24,6 @@ protected func Initialize()
 
 protected func Construction()
 {
-  SetClrModulation(Color());
   // Erstellen des Fundaments
   CastlePartConstruction();
   return(1);
@@ -50,8 +49,6 @@ protected func Incineration()
 public func CastlePartWidth()    { return (80);  }
 public func CastlePartHeight()   { return (74);  }
 public func CastlePartTop()      { return (-13); }
-/*public func Color()				 { return(RGB(65,41,78)); }*/
-public func Color()				 {return RGB(27,86,184);}
 
 protected func CastlePartRange() { return(15);   } // Maximale Ausrichtungsentfernung
 

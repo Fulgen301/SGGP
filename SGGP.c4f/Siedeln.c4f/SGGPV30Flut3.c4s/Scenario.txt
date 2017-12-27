@@ -6,7 +6,7 @@ ForcedGfxMode=1
 
 [Definitions]
 Definition1=Objects.c4d
-Definition2=FarWorlds.c4d
+Definition2=FarWorlds.c4d\Deep.c4d\Structures.c4d\Airlock.c4d
 Definition3=Hazard.c4d
 Definition4=ModernCombat.c4d
 Definition5=SGGP.c4d

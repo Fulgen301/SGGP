@@ -11,7 +11,7 @@ public func BarrelYOffset() { return(-1000); }
 public func GetRace()	{ return SG1_StargateCenter; }
 public func IsPrimaryWeapon()	{ return true; }
 
-public func FMData1(int data)
+public func _FMData1(int data)
 {
   if(data == FM_Name)      return "$Bullets$";
   if(data == FM_AmmoID)    return STAM;
@@ -23,27 +23,54 @@ public func FMData1(int data)
   return Default(data);
 }
 
+public func FMData1(int data)
+{
+  if (FindDefinition(WPN2)) return _FMData1(data);
+  return FMData1T1(data);
+}
+
 public func FMData1T1(int data)
 {
-	if(data == FT_Name)      return "$Standard$";
-	if(data == FM_Recharge)  return 3;
-	if(data == FM_Auto)      return 1;
-	return FMData1(data);
+  if (FindDefinition(WPN2))
+  {
+    if (data == FT_Name) return "$Standard$";
+  }
+  else
+  {
+    if (data == FM_Name) return Format("%s - $Standard$", _FMData1(FM_Name));
+  }
+  if(data == FM_Recharge)  return 3;
+  if(data == FM_Auto)      return 1;
+  
+  return _FMData1(data);
 }
 
 
 public func FMData1T2(int data)
 {
-  if(data == FM_Name)      return "$Singleshot$";
+  if (FindDefinition(WPN2))
+  {
+    if (data == FT_Name) return "$Singleshot$";
+  }
+  else
+  {
+    if (data == FM_Name) return Format("%s - $Singleshot$", _FMData1(FM_Name));
+  }
   if(data == FM_Recharge)  return 10;
   if(data == FM_Damage)    return 10;
 
-  return FMData1(data);
+  return _FMData1(data);
+}
+
+public func FMData2(int data)
+{
+  if (FindDefinition(WPN2)) return;
+  return FMData1T2(data);
 }
 
 public func Fire1()
 {
-	return Fire1T1();
+  return Fire1T1();
 }
 
 public func Fire1T1()    // Projektilschuss
@@ -78,4 +105,9 @@ public func Fire1T2()    // Projektilschuss
 
   // Sound
   Sound("MPShot",0,ammo);
+}
+
+public func Fire2()
+{
+  return Fire1T2();
 }

@@ -346,3 +346,26 @@ global func ContinueAction(object pObj)
 
 	return true;
 }
+
+/* CMC */
+static const FT_Name = 24;
+static const EFSM_ExplosionEffects = 5;
+
+global func CMCActive()
+{
+	return FindDefinition(WPN2) && FindDefinition(PCMK);
+}
+
+global func GetEffectData()
+{
+	if (!CMCActive())
+	{
+		return 3;
+	}
+	return _inherited(...);
+}
+
+global func Echo()
+{
+	return _inherited(...);
+}

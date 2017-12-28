@@ -3,7 +3,7 @@
 [Definitions]
 Definition1=Objects.c4d
 Definition2=Hazard.c4d
-Definition3=ModernCombat.c4d
+Definition3=ModernCombat.c4d\Effects.c4d\Explosion.c4d
 Definition4=SGGP.c4d
 
 [Game]

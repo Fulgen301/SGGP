@@ -27,6 +27,35 @@ protected func Hit()
   Sound("GRHit*");
 }
 
+public func Activate(object obj)
+{
+	if (FindDefinition(NADE))
+	{
+		return _inherited(obj, ...);
+	}
+	
+	if (!obj) return;
+	
+	if (obj->GetOCF() & OCF_CrewMember && obj->GetAction() != "Walk")
+	{
+		return true;
+	}
+	
+	if (GetAction() == "Scharf")
+	{
+		if (obj->GetOCF() & OCF_CrewMember)
+		{
+			obj->SetAction("Throw");
+		}
+		Exit(this, obj->GetDir() * 12 - 6, 0, 0, obj->GetDir() * 6 - 3, obj->GetDir() * 60 - 30);
+		return true;
+	}
+	
+	SetAction("Scharf");
+	Sound("Connect");
+	return true;
+}
+
 
 
 func IsGoauldWeapon() { return(true); }

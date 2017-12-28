@@ -14,7 +14,7 @@ public func Activate(object obj)
   if(Active == 1)
   {
    obj->SetAction("Throw");
-   Exit(this(), GetDir(obj))*12-6, 0, 0, GetDir(obj)*6-3, -3, GetDir(obj)*60-30);
+   Exit(this, GetDir(obj)*12-6, 0, 0, GetDir(obj)*6-3, -3, GetDir(obj)*60-30);
    return(1);
   }
 

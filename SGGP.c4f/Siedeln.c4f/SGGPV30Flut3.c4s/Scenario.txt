@@ -6,10 +6,11 @@ ForcedGfxMode=1
 
 [Definitions]
 Definition1=Objects.c4d
-Definition2=FarWorlds.c4d\Deep.c4d\Structures.c4d\Airlock.c4d
-Definition3=Hazard.c4d
-Definition4=ModernCombat.c4d\Effects.c4d\Explosion.c4d
-Definition5=SGGP.c4d
+Definition2=FarWorlds.c4d
+Definition3=Western.c4d
+Definition4=Hazard.c4d
+Definition5=ModernCombat.c4d\Effects.c4d\Explosion.c4d
+Definition6=SGGP.c4d
 
 [Game]
 StructNeedEnergy=0
